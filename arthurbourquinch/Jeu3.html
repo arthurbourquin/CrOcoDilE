@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+	<title>Cursor Game</title>
+<style>
+    body {
+        margin: 0;
+        display: flex;
+        overflow: hidden;
+        position: relative;
+        background-color: #222;
+    }
+    canvas{
+    position: absolute;
+    }
+    a {
+    font-family: Roboto Slab;
+    font-weight: 600;
+    text-align:center;
+    position: absolute;
+    color: #222;
+    background-color: blanchedalmond;
+    }
+</style>
+</head>
+<body>
+
+<canvas id="Board"></canvas>
+<a id="Health" style="opacity: 0.75">0</a>
+<a id="Timer" style="opacity: 0.75">0</a>
+<a id="Score" style="opacity: 0.75">0</a>
+
+<script>
+
+let health = 0;
+let time = 0;
+let score = 0;
+let boardSize = Math.min(window.innerWidth, window.innerHeight) * 0.8;
+let margin = [0, 0];
+
+setInterval(run, 50);
+addEventListener('mousemove', draw);
+addEventListener('resize', draw);
+
+
+function worldToScreen(a) {
+    return ;
+}
+
+function run(){
+
+}
+
+function draw(){
+		let boardSize = Math.min(window.innerWidth, window.innerHeight) * 0.8;
+  		margin = [(window.innerWidth - boardSize) / 2, (window.innerHeight - boardSize) / 2];
+        var canvas = document.getElementById('Board');
+        canvas.width = boardSize;
+        canvas.height = boardSize;
+        canvas.style.left = margin[0] + 'px';
+        canvas.style.top = margin[1] + 'px';
+        canvas.style.border = '1px solid blanchedalmond';
+
+        var health = document.getElementById('Health');
+        Health.style.width = boardSize / 10 + 'px';
+        Health.style.height = boardSize / 20 + 'px';
+        Health.style.fontSize = boardSize / 30 + 'px';
+        Health.style.left = margin[0] + 'px';
+        Health.style.top = margin[1] + 'px';
+
+        var timer = document.getElementById('Timer');
+        Timer.style.width = boardSize / 10 + 'px';
+        Timer.style.height = boardSize / 20 + 'px';
+        Timer.style.fontSize = boardSize / 30 + 'px';
+        Timer.style.left = window.innerWidth / 2 - (boardSize / 20) + 'px';
+        Timer.style.top = margin[1] + 'px';
+
+        var score = document.getElementById('Score');
+        Score.style.width = boardSize / 10 + 'px';
+        Score.style.height = boardSize / 20 + 'px';
+        Score.style.fontSize = boardSize / 30 + 'px';
+        Score.style.left = window.innerWidth - margin[0] - (boardSize / 10) + 'px';
+        Score.style.top = margin[1] + 'px';
+}
+
+</script>
+
+</body>
+</html>

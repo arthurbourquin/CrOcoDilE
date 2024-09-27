@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+<title>Calculette</title>
+<style>
+body, textarea {
+    font-family: Roboto Slab;
+    color: #ddd;
+    background: #222;
+}
+#addCalculatorButton {
+    color: #ddd;
+    background-color: #222;
+    font-size: 1.5em;
+    font-weight: 500;
+    margin: 15px;
+    width: 40px;
+    height: 40px;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+}
+</style>
+</head>
+<body>
+
+<!-- Container to hold all calculators -->
+<div id="calculatorsContainer">
+</div>
+
+<!-- Button to create a new calculator -->
+<button id="addCalculatorButton" class="button">+</button>
+
+<script>
+function RefreshCalculator(inputElement, outputElement) {
+    let input = inputElement.value;
+    try {
+        let result = eval(input);
+        outputElement.innerText = result;
+    } catch (e) {
+        outputElement.innerText = 'Error';
+    }
+}
+
+let TohmColors = ['#e4202e', '#67ae40', '#424dec', '#a161cb', '#ffc300', '#30bcd1', '#f78d90', '#7a4b38', '#f16d00', '#ea498b'];
+let Colors = ['lightgrey', 'tomato', 'wheat', 'steelblue', 'seagreen', 'LightSlateGrey', 'DarkOrange', 'Gold', 'DarkCyan', 'OliveDrab'];
+let i = 0;
+
+function CreateNewCalculator() {
+    let c = Colors[i];
+    if (i == Colors.length) {i = 0};
+    let br = document.createElement('br');
+
+    // colorize + button
+    document.getElementById('addCalculatorButton').style.color = Colors[i + 1];
+    document.getElementById('addCalculatorButton').style.borderColor = Colors[i + 1];
+
+    // Create a new calculator container
+    let calculatorContainer = document.createElement('div');
+    calculatorContainer.style.border = '3px solid ' + c;
+    calculatorContainer.style.borderRadius = '20px';
+    calculatorContainer.className = 'calculator';
+    calculatorContainer.style.position = 'relative';
+    calculatorContainer.style.margin = '20px';
+    
+    // Create a new textarea for input
+    let newInput = document.createElement('textarea');
+    newInput.className = 'input';
+    newInput.type = 'text';
+    newInput.value = 'Math.sin(Math.PI / 4)';
+    newInput.style.border = '1px solid ' + c;
+    newInput.style.borderRadius = '5px';
+    newInput.style.color = c;
+    newInput.style.width = 'calc(100% - 70px)';
+    newInput.style.boxSizing = 'border-box';
+    newInput.style.margin = '15px';
+    newInput.style.padding = '15px';
+
+    // Create a new span for output
+    let newOutput = document.createElement('p');
+    newOutput.className = 'output';
+    newOutput.innerText = '';
+    newOutput.style.color = c;
+    newOutput.style.border = '1px solid ' + c;
+    newOutput.style.borderRadius = '5px';
+    newOutput.style.width = 'calc(100% - parent padding)';
+    newOutput.style.boxSizing = 'border-box'; 
+    newOutput.style.margin = '15px';
+    newOutput.style.padding = '15px';
+
+    // Create a new remove button
+    let removeButton = document.createElement('button');
+    removeButton.className = 'CloseButton';
+    removeButton.innerText = 'X';
+    removeButton.style.top = '15px';
+    removeButton.style.right = '15px';
+    removeButton.style.color = c;
+    removeButton.style.backgroundColor = '#222';
+    removeButton.style.border = '2px solid ' + c;
+    removeButton.style.borderRadius = '10px';
+    removeButton.style.padding = '5px';
+    removeButton.style.position = 'absolute';
+    removeButton.addEventListener('click', function() {
+        calculatorContainer.remove();
+    });
+
+    // Append input, output, and remove button to the calculator container
+    calculatorContainer.appendChild(newInput);
+    calculatorContainer.appendChild(br);
+    calculatorContainer.appendChild(newOutput);
+    calculatorContainer.appendChild(removeButton);
+    
+    // Append the new calculator container to the main container
+    document.getElementById('calculatorsContainer').appendChild(calculatorContainer);
+    
+    // Add input event listener for real-time calculation
+    newInput.addEventListener('input', function() {
+        RefreshCalculator(newInput, newOutput);
+    });
+
+    // Call the refresh function to initialize the output
+    RefreshCalculator(newInput, newOutput);
+
+    i++;
+
+}
+
+// Event listener for the "+" button
+document.getElementById('addCalculatorButton').addEventListener('click', CreateNewCalculator);
+
+// Initialize the first calculator
+document.querySelectorAll('.input').forEach(inputElement => {
+    let outputElement = inputElement.nextElementSibling;
+    inputElement.addEventListener('input', function() {
+        RefreshCalculator(inputElement, outputElement);
+    });
+    RefreshCalculator(inputElement, outputElement);
+});
+
+CreateNewCalculator();
+</script>
+</body>
+</html>

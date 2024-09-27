@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+<title>Cartons</title>
+<style>
+body {
+font-family: Roboto Slab;
+font-weight: 300;
+color: #ddd;
+background: #222;
+} b {font-weight: 700
+}
+textarea, button, #DispRecto, #DispVerso, #DispInfos, table {
+font-family: Roboto Slab;
+font-weight: 700;
+color: #ddd;
+background: #222;
+border: 1px solid #ddd;
+border-radius: 10px;
+margin: 5px;
+padding: 20px;
+}
+#DispUserInput {
+height: 200px;
+}
+#BtnInfos, #DispInfos {
+    color: steelblue;
+    border: 1px solid steelblue;
+}
+#BtnEdit {
+width: 200px;
+}
+#BtnInfos {
+font-weight: 900;
+}
+#DispInfos {
+    position: absolute;
+    left: 60px; /* Adjust as needed to align with the button */
+    display: none; /* Hidden by default */
+    z-index: 10; /* Positioned above other elements */
+}
+#DispRecto, #DispVerso {
+display: inline-block; /* Ensures the min width and height are respected */
+min-width: 300px;
+min-height: 150px;
+vertical-align: top;
+}
+table {
+border-collapse: collapse;
+text-align: center;
+vertical-align: middle;
+border: unset;
+}
+tr, th, td {
+border: 1px solid #ddd;
+padding: 15px;
+}
+</style>
+</head>
+
+<body>
+
+    <!-- Infos -->
+<div id="DivInfos">
+    <button id="BtnInfos" onclick="ShowInfos()">i</button>
+    <button id="BtnStart" onclick="Ask()">Commencer</button>
+    <button id="BtnReset" onclick="ResetScores()">Reset</button>
+    <button id="BtnEdit" onclick="SwitchMode()">Editer les cartons</button>
+    <span id="DispInfos">
+        Utilisez un tableur pour sauvegarder vos fiches comme ça :<br><br>
+        <table>
+            <tr style="background-color: #444"><th></th><th>A</th><th>B</th><th>C</th><th>D</th></tr>
+            <tr><th style="background-color: #444">1</th><td>Recto 1</td><td>;;</td><td>Verso 1</td><td></td></tr>
+            <tr><th style="background-color: #444">2</th><td>Recto 2</td><td>;;</td><td>Verso 2</td><td></td></tr>
+            <tr><th style="background-color: #444">3</th><td>Recto 3</td><td>;;</td><td>Verso 3</td><td></td></tr>
+            <tr><th style="background-color: #444">4</th><td></td><td></td><td></td><td></td></tr>
+        </table><br>
+        puis copiez-collez le tout dans le champs.<br>
+        <br>
+        -ou-<br>
+        <br>
+        Entrez directement les Rectos et Versos séparée par des ;; dans le champs.
+    </div>
+
+    
+<!-- Cartons -->
+<div id="DivCartons">
+    <span id="DispRecto">Recto</span>
+    <span id="DispVerso">Verso</span>
+    </div>
+    
+    <!-- Juste / Faux -->
+    <div id="DivCheck">
+    <button id="BtnDispVerso" onclick="Answer()">Montrer</button>
+    <button id="BtnCorrect" onclick="IsCorrect()">Juste</button>
+    <button id="BtnWrong" onclick="IsWrong()">Faux</button>
+    </div>
+    
+    <!-- Edition -->
+    <form style="margin: 0; padding: 0;"><textarea id="DispUserInput" style="width: 100%; box-sizing: border-box;">
+    (a-b)^2 ;; (a+b)(a-b)
+    1 + 3 ;; 4</textarea></form>
+    <table id="DispTable"></table>
+
+
+<script>
+
+
+
+</script>
+
+
+
+</body>

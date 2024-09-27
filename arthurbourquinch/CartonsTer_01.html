@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+    <title>Cartons</title>
+    <style>
+      body {
+        font-family: Roboto Slab;
+        font-weight: 300;
+        color: #ddd;
+        background: #222;
+      }
+      b {font-weight: 700}
+      #dispInfos {
+        display: none;
+      }
+      textarea, div, button, #DispQuestion, #DispAnswer  {
+        font-family: Roboto Slab;
+        font-weight: 700;
+        color: #ddd;
+        background: #222;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        margin: 10px;
+        padding: 10px;
+      }
+      #DispQuestion, #DispAnswer {
+        min-width: 300px;
+        min-height: 150px;
+      }
+      table {
+        border-collapse: collapse; /* Ensures borders are not doubled */
+        width: 100%; /* Makes table take the full width of the container */
+      }
+      th, td {
+        border: 1px solid #ddd;
+        padding: 10px;
+        text-align: left;
+      }
+    </style>
+  </head>
+
+  <body>
+
+    <!-- Infos -->
+    <button id="BtnInfos" onclick="ShowInfos()">i</button><br>
+    <span id="DispInfos">Faites un tableur pour sauvegarder vos fiches. Faite un colonne avec les Retcos, une autre avec ;; et une troisième avec les Versos, Copiez-Collez le tout dans le champs puis lancez le truc.</span><br>
+
+    <!-- Cartons -->
+    <span id="DispQuestion">Recto</span><br>
+    <span id="DispAnswer">Verso</span><br>
+
+    <!-- Juste / Faux -->
+    <button id="BtnCorrect">Juste</button><br>
+    <button id="BtnWrong">Faux</button><br>
+
+    <!-- Edition -->
+    <button id="BtnEdit" onclick="EditDisplay()">Cartonner / Editer</button>
+    <form style="margin: 0; padding: 0;"><textarea id="DispUserInput" style="width: 100%; box-sizing: border-box;">
+      Recto ;; Verso
+      (a-b)² ;; a²-b²</textarea></form>
+    <table id="DispTable"></table>
+
+    <script>
+
+      let EditMode = false;
+
+      function ShowInfos(){
+        if(document.getElementById('DispInfos').style.display == 'none'){
+          document.getElementById('DispInfos').style.display = 'inline';
+        } else {
+          document.getElementById('DispInfos').style.display = 'none';
+        }}
+      ShowInfos(); // hide infos
+
+      function EditDisplay(){
+        if(EditMode == true){
+          EditMode = false;
+          document.getElementById('DispQuestion').style.display = 'inline';
+          document.getElementById('DispAnswer').style.display = 'inline';
+          document.getElementById('BtnCorrect').style.display = 'inline';
+          document.getElementById('BtnWrong').style.display = 'inline';
+          document.getElementById('DispUserInput').style.display = 'none';
+          document.getElementById('DispTable').style.display = 'none';
+        } else {
+          EditMode = true;
+          document.getElementById('DispQuestion').style.display = 'none';
+          document.getElementById('DispAnswer').style.display = 'none';
+          document.getElementById('BtnCorrect').style.display = 'none';
+          document.getElementById('BtnWrong').style.display = 'none';
+          document.getElementById('DispUserInput').style.display = 'inline';
+          document.getElementById('DispTable').style.display = 'inline';
+        }}
+      EditDisplay(); // hide cartons
+
+      let RawInput
+      let Cartons
+
+      // Update Cartons
+      document.getElementById('DispUserInput').addEventListener('input', UpdateCartons);
+      document.getElementById('DispUserInput').addEventListener('input', UpdateTable);
+
+      function UpdateCartons() {
+        RawInput = document.getElementById('DispUserInput').value;
+        Cartons = RawInput.split('\n');
+        for(let i = 0; i < Cartons.length; i++){
+          Cartons[i] = Cartons[i].split(';;'); // set recto and verso values
+          Cartons[i][2] = true; // reset state to 'in stack'
+          Cartons[i][3] = 0; // reset good answers
+          Cartons[i][4] = 0; // reset bad answers
+        }
+      }
+
+      function UpdateTable(){
+        let table = document.getElementById('DispTable');
+        table.innerHTML = ''; // Clear the table before updating
+        for(let i = 0; i < Cartons.length; i++){
+          let tr = document.createElement('tr');
+          for(let j = 0; j < 2; j++){
+            let td = document.createElement('td');
+            td.innerText = Cartons[i][j];
+            tr.appendChild(td);
+          }
+          table.appendChild(tr);
+        }
+      }
+      UpdateCartons();
+      UpdateTable();
+    </script>
+
+  </body>
+</html>

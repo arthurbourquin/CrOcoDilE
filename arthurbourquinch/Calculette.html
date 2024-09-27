@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+<title>Calculette</title>
+<style>
+body, textarea, #output {
+font-family: Roboto Slab;
+font-size: 20px;
+color: #ddd;
+background: #222;
+margin: 20px;
+padding: 10px;
+}
+textarea, #output {
+border: 1px solid #ddd;
+border-radius: 5px;
+}
+</style>
+</head>
+<body>
+<textarea id="input" type="text">1+1</textarea><br>
+<span id="output">1+1</span>
+<script>
+function Refresh() {
+let input = document.getElementById('input').value;
+try {
+let result = eval(input);
+document.getElementById('output').innerText = result;
+} catch (e) {
+document.getElementById('output').innerText = 'Error';
+}
+}
+document.getElementById('input').addEventListener('input', Refresh);
+Refresh();
+</script>
+</body>
+</html>

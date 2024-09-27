@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+<title>Cartons</title>
+<style>
+body {
+font-family: Roboto Slab;
+font-weight: 300;
+color: #ddd;
+background: #222;
+} b {font-weight: 700
+}
+/* textarea, button, #DispRecto, #DispVerso, #DispInfos, table {
+font-family: Roboto Slab;
+font-weight: 700;
+color: #ddd;
+background: #222;
+border: 1px solid #ddd;
+border-radius: 10px;
+margin: 5px;
+padding: 20px;
+}
+#DispUserInput {
+height: 200px;
+} */
+
+
+.Infos {
+
+}
+#BtnInfos, #DispInfos {
+    color: steelblue;
+    border: 1px solid steelblue;
+}
+#BtnInfos {
+font-weight: 900;
+}
+#DispInfos {
+    display: inline-block;
+    font-weight: 300;
+}
+
+
+#DispRecto, #DispVerso {
+    display: inline-block; /* Ensures the min width and height are respected */
+    min-width: 300px;
+    min-height: 50px;
+    vertical-align: top;
+}
+table {
+    border-collapse: collapse;
+    text-align: center;
+    vertical-align: middle;
+    border: unset;
+}
+tr, th, td {
+    border: 1px solid #ddd;
+    padding: 15px;
+}
+.InfoTable tr, .InfoTable th, .InfoTable td {
+    color: steelblue;
+    font-weight: 300;
+    border: 0.5px solid steelblue;
+    padding: 5px 15px; /* ToRiBoLe */
+}
+</style>
+</head>
+
+<body>
+
+<!-- Display Buttons -->
+<button id="BtnInfos" onclick="ShowInfos()">i</button>
+<button id="BtnEdit" onclick="ToggleCartons()">Jeu</button>
+<button id="BtnEdit" onclick="ToggleEditMode()">Edition</button>
+
+
+<!-- Infos -->
+<div id="DivInfos">
+<span id="DispInfos">
+    Utilisez un <b>tableur</b> pour sauvegarder vos fiches comme ça :<br><br>
+    <table class="InfoTable">
+        <tr style="opacity: 0.5;"><th></th><th>A</th><th>B</th><th>C</th><th>D</th></tr>
+        <tr><th style="opacity: 0.5;">1</th><td>Recto 1</td><td>;;</td><td>Verso 1</td><td></td></tr>
+        <tr><th style="opacity: 0.5;">2</th><td>Recto 2</td><td>;;</td><td>Verso 2</td><td></td></tr>
+        <tr><th style="opacity: 0.5;">3</th><td>Recto 3</td><td>;;</td><td>Verso 3</td><td></td></tr>
+        <tr><th style="opacity: 0.5;">4</th><td></td><td></td><td></td><td></td></tr>
+    </table><br>
+    puis <b>copiez-collez</b> le tout dans le champs.<br>
+    <br>
+    -ou-<br>
+    <br>
+    Entrez directement les Rectos et Versos séparée par des ;; dans le champs.
+</span>
+</div>
+
+<!-- Cartons -->
+<div id="DivCartons">
+<span id="DispRecto">Recto</span>
+<span id="DispVerso">Verso</span>
+</div>
+
+<!-- Juste / Faux -->
+<div id="DivCheck">
+<button id="BtnDispVerso" onclick="Answer()">Montrer</button>
+<button id="BtnCorrect" onclick="UpdateCartonScore(1, 0)">Juste</button>
+<button id="BtnWrong" onclick="UpdateCartonScore(0, 1)">Faux</button>
+</div>
+
+<!-- Edition -->
+<form style="margin: 0; padding: 0;"><textarea id="DispUserInput" style="width: 100%; box-sizing: border-box;">
+(a-b)^2 ;; (a+b)(a-b)
+1 + 3 ;; 4</textarea></form>
+<table id="DispTable"><tr><th>defaule empty table...</th></tr></table>
+
+<script>
+
+
+//   V A R I A B L E S
+let Cartons = [['Recto', 'Verso', true, 0, 0, 0]];
+let RawUserInput = ''; // Raw input field data
+let FormattedUserInput = [['Recto', 'Verso', true, 0, 0, 0]];
+let CurrentCarton = 0;
+
+
+//   F U N C T I O N S
+
+// Show / Hide Infos
+function ShowInfos(){
+    const dispInfos = document.getElementById('DispInfos');
+    dispInfos.style.display = (dispInfos.style.display === 'none' || dispInfos.style.display === '') ? 'inline' : 'none';
+}
+
+
+// Toggle between Edit Mode and Game
+let EditMode = true;    
+function ToggleEditMode(){
+    let DivCheck = document.getElementById('DivCheck');
+    let BtnEdit = document.getElementById('BtnEdit');
+    let Recto = document.getElementById('DispRecto'); // Updated ID
+    let Verso = document.getElementById('DispVerso'); // Updated ID
+    let BtnCorrect = document.getElementById('BtnCorrect');
+    let BtnWrong = document.getElementById('BtnWrong');
+    let InputField = document.getElementById('DispUserInput');
+    let Table = document.getElementById('DispTable');
+    if (EditMode) {
+        EditMode = false;
+        InputField.style.display = 'none';
+        Table.style.display = 'none';
+    } else {
+        EditMode = true;
+        InputField.style.display = 'inline';
+        Table.style.display = 'inline';
+    }
+}
+let DisplayCartons = true;    
+function ToggleCartons(){
+    let DivCheck = document.getElementById('DivCheck');
+    let BtnEdit = document.getElementById('BtnEdit');
+    let Recto = document.getElementById('DispRecto'); // Updated ID
+    let Verso = document.getElementById('DispVerso'); // Updated ID
+    let BtnCorrect = document.getElementById('BtnCorrect');
+    let BtnWrong = document.getElementById('BtnWrong');
+    let InputField = document.getElementById('DispUserInput');
+    let Table = document.getElementById('DispTable');
+    if (DisplayCartons) {
+        DisplayCartons = false;
+        Recto.style.display = 'inline-block';
+        Verso.style.display = 'inline-block';
+        DivCheck.style.display = 'inline';
+    } else {
+        DisplayCartons = true;
+        Recto.style.display = 'none';
+        Verso.style.display = 'none';
+        DivCheck.style.display = 'none';
+    }
+}
+
+
+// Update Cartons
+document.getElementById('DispUserInput').addEventListener('input', UpdateUserInput);
+function UpdateUserInput(){
+    FormatUserInput();
+    ResetCartons();
+    UpdateTable();
+}
+function FormatUserInput(){
+    RawUserInput = document.getElementById('DispUserInput').value;
+    FormattedUserInput = RawUserInput.split('\n').map(line => line.split(';;'));
+}
+function TypeOf(a){
+    let type = [];
+    if (typeof a === "boolean") {
+        type.push('boolean');
+    } else if (typeof a === "number") {
+        type.push('number');
+        if (a === 0) {
+            type.push('zero');
+        } else if (a % 1 === 0) {
+            type.push('integer');
+        } else {
+            type.push('float');
+        }
+        if (a > 0) {
+            type.push('positive')
+        } else {
+            type.push('negative')
+        }
+    } else if (typeof(a) === "string") {
+        type.push('string');
+    } else {
+        type.push('undefined');
+    }
+    return type;
+}
+function ResetCartons() {
+    Cartons = [];  // Reinitialize Cartons array
+    for (let i = 0; i < FormattedUserInput.length; i++) {
+        let row = FormattedUserInput[i];
+        if (!row || row.length < 2) continue;  // Ensure row has at least 'Recto' and 'Verso'
+        
+        // Initialize a new carton entry with defaults
+        let carton = [row[0] || '', row[1] || '', row[2] !== 'false', 0, 0, 0];
+        
+        // Validate and assign scores if they exist and are positive integers
+        if (row[3] && !isNaN(row[3]) && Number(row[3]) >= 0) {
+            carton[3] = parseInt(row[3]);
+        }
+        if (row[4] && !isNaN(row[4]) && Number(row[4]) >= 0) {
+            carton[4] = parseInt(row[4]);
+        }
+        if (row[5] && !isNaN(row[5])) {
+            carton[5] = parseInt(row[5]);
+        }
+        
+        Cartons.push(carton);
+    }
+}
+function UpdateCartonScore(good, bad) {
+    Cartons[CurrentCarton][3] += good;
+    Cartons[CurrentCarton][4] += bad;
+    Cartons[CurrentCarton][5] = Cartons[CurrentCarton][3] - Cartons[CurrentCarton][4];
+}
+function UpdateTable() {
+    let table = document.getElementById('DispTable');
+    table.innerHTML = '';
+    Cartons.forEach(carton => {
+        let newRow = document.createElement('tr');
+        carton.forEach(cell => {
+            let newColumn = document.createElement('td');
+            newColumn.innerText = cell;
+            newRow.appendChild(newColumn);
+        });
+        table.appendChild(newRow);
+    });
+}
+
+// Game
+function Ask(){
+    CurrentCarton = Math.floor(Math.random() * Cartons.length);
+    while (Cartons[CurrentCarton][2] !== true) {CurrentCarton = Math.floor(Math.random() * Cartons.length);}
+    document.getElementById('DispRecto').innerText = Cartons[CurrentCarton][0];
+    document.getElementById('DispVerso').innerText = '';
+}
+function Answer(){
+    document.getElementById('DispVerso').innerText = Cartons[CurrentCarton][1];
+}
+
+UpdateUserInput();
+ResetCartons();
+Ask();
+
+</script>
+
+</body>
+</html>

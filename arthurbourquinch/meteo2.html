@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lausanne Weather</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .weather-container {
+            max-width: 400px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+        }
+        .weather-icon {
+            width: 50px;
+        }
+        h3 {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="weather-container">
+        <h2>Current Weather in <span id="city-name">Lausanne</span></h2>
+        <p><strong>Temperature:</strong> <span id="temperature"></span>°C</p>
+        <p><strong>Condition:</strong> <span id="condition"></span></p>
+        <img id="icon" class="weather-icon" alt="Weather Icon">
+        <p><strong>Humidity:</strong> <span id="humidity"></span>%</p>
+        <p><strong>Wind Speed:</strong> <span id="wind-speed"></span> km/h</p>
+
+        <h3>Next Day Forecast (<span id="next-day"></span>)</h3>
+        <p><strong>Temperature Min:</strong> <span id="next-tmin"></span>°C</p>
+        <p><strong>Temperature Max:</strong> <span id="next-tmax"></span>°C</p>
+        <p><strong>Condition:</strong> <span id="next-condition"></span></p>
+        <img id="next-icon" class="weather-icon" alt="Next Day Weather Icon">
+    </div>
+
+    <script>
+        async function getWeatherData() {
+            try {
+                const response = await fetch('https://www.prevision-meteo.ch/services/json/lausanne');
+                const data = await response.json();
+                
+                // Update the DOM elements with the current weather data
+                document.getElementById('city-name').textContent = data.city_info.name;
+                document.getElementById('temperature').textContent = data.current_condition.tmp;
+                document.getElementById('condition').textContent = data.current_condition.condition;
+                document.getElementById('icon').src = data.current_condition.icon_big;
+                document.getElementById('humidity').textContent = data.current_condition.humidity;
+                document.getElementById('wind-speed').textContent = data.current_condition.wnd_spd;
+
+                // Update the DOM elements with the next day's forecast data
+                document.getElementById('next-day').textContent = data.fcst_day_1.day_long;
+                document.getElementById('next-tmin').textContent = data.fcst_day_1.tmin;
+                document.getElementById('next-tmax').textContent = data.fcst_day_1.tmax;
+                document.getElementById('next-condition').textContent = data.fcst_day_1.condition;
+                document.getElementById('next-icon').src = data.fcst_day_1.icon_big;
+            } catch (error) {
+                console.error('Error fetching weather data:', error);
+            }
+        }
+
+        // Fetch the weather data when the page loads
+        window.onload = getWeatherData;
+    </script>
+</body>
+</html>

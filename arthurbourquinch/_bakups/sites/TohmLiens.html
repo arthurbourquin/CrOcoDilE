@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Arthur</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+<style>
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  background-color: #ffc300;
+  color: #222222;
+  font-family: Roboto Slab, sans-serif;
+  line-height: 1.6;
+  margin: 40px;
+}
+
+
+.filter-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 10px;
+  margin-bottom: 20px;
+  gap: 5px;
+}
+button, input, select, option, label, .LabelBox {
+  font-family: Roboto Slab;
+  font-weight: 600;
+  font-size: 16px;
+  text-align: center;
+  color: #ffc300;
+  background-color: #222;
+  padding: 5px;
+  border: 1px solid #222;
+}
+#InputDisplayNumber {
+  width: 60px;
+}
+
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(800px, 8fr));
+  gap: 60px;
+  margin: 10px;
+}
+.video-container {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+  margin-bottom: 15px;
+}
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.text-container {
+  margin-bottom: 40px;
+}
+.title {
+  font-size: 24px;
+  font-weight: 700;
+}
+.header {
+  font-size: 18px;
+  font-style: italic;
+}
+.description {
+  font-size: 14px;
+}
+.date {
+  font-size: 14px;
+  font-weight: 700;
+  color: #EA498B;
+}
+.credits {
+  font-size: 12px;
+  font-weight: 300;
+}
+.credits-name{
+  font-weight: 600;
+}
+.video-link a {
+  color: #222222;
+  text-decoration: none;
+}
+.video-link a:hover {
+  text-decoration: underline;
+}
+
+
+@media screen and (max-width: 1920px) {
+  .grid-container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media screen and (max-width: 1200px) {
+  .grid-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media screen and (max-width: 600px) {
+  .grid-container {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+    </style>
+</head>
+<body>
+    <div class="filter-container">
+        <div class="LabelBox">
+            <label>Afficher ce qui est</label>
+            <select id="category">
+                <option value="mandat">Mandat</option>
+                <option value="courtmetrage">Courmetrage</option>
+                <option value="corpo" selected>Corpo</option>
+                <option value="offbeat">Offbeat</option>
+                <option value="friendly">Friendly</option>
+                <option value="live">Live</option>
+                <option value="motiondesign">Motion Design</option>
+                <option value="vfx">VFX</option>
+                <option value="drawing">Drawing</option>
+                <option value="">Tout !</option>
+            </select>
+        </div>
+        <div class="LabelBox">
+            <label>Afficher</label>
+            <input type="number" id="InputDisplayNumber" value="6">
+            <label>Vidéos</label>
+        </div>
+        <div class="LabelBox">
+        	<button onclick="renderHtml(TohmWorks)">Appliquer les filtres</button>
+        </div>
+    </div>
+    <div id="content-container" class="grid-container"></div>
+
+    <script>
+        function renderHtml(data) {
+            let DisplayNumber = Number(document.getElementById('InputDisplayNumber').value);
+            const container = document.getElementById('content-container');
+            container.innerHTML = ""; // Clear existing content
+
+            data.slice(0, DisplayNumber).forEach((item, index) => {
+                // Debug: Check the data structure
+                console.log(item);
+
+                const contentDiv = document.createElement('div');
+                contentDiv.classList.add('content');
+                
+                let creditsHtml = '';
+                if (item.client) {
+                    creditsHtml += `<div>Client: <span class="credits-name">${item.client}</span></div>`;
+                }
+                if (item.prod) {
+                    creditsHtml += `<div>Production: <span class="credits-name">${item.prod}</span></div>`;
+                }
+                if (item.creative) {
+                    creditsHtml += `<div>Créatif: <span class="credits-name">${item.creative}</span></div>`;
+                }
+                if (item.intervenant) {
+                    creditsHtml += `<div>Autre(s) Intervenant(s): <span class="credits-name">${item.intervenant}</span></div>`;
+                }
+
+                const creditsDiv = creditsHtml ? `<div class="credits">${creditsHtml}</div>` : '';
+
+                contentDiv.innerHTML = `
+                    <div class="video-container">
+                        <iframe src="${item.link[0].link}" title="YouTube video player" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
+                    <div class="text-container">
+                        <div><span class="title">${item.title1}</span><span class="header"> - ${item.header}</span></div>
+                        <div class="description">${item.description}</div>
+                        <div class="date">${item.year}</div>
+                        ${creditsDiv}
+                    </div>
+                `;
+                
+                container.appendChild(contentDiv);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            if (typeof TohmWorks !== 'undefined' && Array.isArray(TohmWorks)) {
+                renderHtml(TohmWorks);
+            } else {
+                console.error('Data is not available or TohmWorks.js did not load correctly.');
+            }
+        });
+    </script>
+
+    <script src="https://www.arthurbourquin.ch/Tohm/TohmWorks.js"></script>
+</body>
+</html>
+

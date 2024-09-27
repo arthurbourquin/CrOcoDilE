@@ -1,0 +1,39 @@
+<!DOCTYPE html><html><head><style>body{margin:0px;}</style></head>
+<body>
+<canvas id="CANVAS" width="300" height="100" style="border:0px solid black;">
+</canvas>
+<script>
+let FPS = 60;
+const CANVAS = document.getElementById("CANVAS");
+let WW = window.innerWidth; let WW2 = WW / 2;
+let WH = window.innerHeight; let WH2 = WH / 2;
+let X = [   0,    (Math.random() - 0.5) / 2,    0]; 
+let Y = [   0,   -0.5, 0.1];
+let Z = [   0,    0,    0];
+let R = [ 115,    10,    0];
+let I = new Image(); I.src = 'https://arthurbourquin.ch/OuaisLesMedias/heig.png'; let IW = 1; let IH = 1 * (I.height / I.width);
+CANVAS.width = WW;
+CANVAS.height = WH;
+const CTX = CANVAS.getContext("2d");
+let i = 0;
+function DRAW() {
+i++;
+let S = 1 / (Math.sin(i / 50) + 1.5) * 100;
+X[1] = X[1] + X[2]; X[0] = X[0] + X[1];
+Y[1] = Y[1] + Y[2]; Y[0] = Y[0] + Y[1];
+X[1] = X[1] + X[2]; X[0] = X[0] + X[1];
+R[1] = R[1] + R[2]; R[0] = R[0] + R[1];
+CTX.resetTransform();
+//CTX.clearRect(0, 0, WW, WH);
+CTX.translate(WW / 2, WH / 2);
+CTX.scale(S, S);
+CTX.translate(X[0], Y[0]);
+CTX.rotate(R[0]);
+CTX.drawImage(I, -IW/2, -IH/2, IW, IH);
+CTX.resetTransform();
+//if(i > 200) clearInterval(RUN);
+}
+let RUN = setInterval('DRAW()', 1000 / FPS);
+</script>
+</body>
+</html>

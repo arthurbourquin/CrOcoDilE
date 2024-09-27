@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+<title>Box Layout</title>
+    <style>
+    	body {
+        font-family: Roboto;
+        color: #ddd;
+        background: black;
+        }
+        .row, .line {
+            box-sizing: border-box;
+            text-align: left;
+        }
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 5px;
+            margin: 5px;
+        }
+        .line {
+            flex: 1;
+            padding: 5px;
+            margin: 5px;
+        }
+        input {
+        	color: gold;
+            background: #111;
+            border: none;
+        }
+        button {
+        font-family: Roboto;
+        font-weight: 600;
+        color: #222;
+        background: gold;
+        border: none;
+        padding: 7px 12px;
+        margin: 2px;
+        }
+        button:hover{
+        color: white;
+        background: tomato;
+        }
+    </style>
+</head>
+<body>
+<div class="line" style="background: #111">
+	<div class="row" style="background: #222">
+      <div class="row" style="background: #333">
+      	<canvas id="canvas1">
+        </canvas>
+      </div>
+      <div class="row" style="background: #333">
+      	<canvas id="canvas2">
+        </canvas>
+      </div>
+      <div class="row" style="background: #333">
+      	<canvas id="canvas3">
+        </canvas>
+      </div>
+      <div class="row" style="background: #333">
+      	<canvas id="canvas4">
+        </canvas>
+      </div>
+	</div>
+	<div class="row" style="background: #222">
+      <div class="line" style="background: #333">
+        <div class="row" style="background: #444">
+          <img id="sourceImage" src="http://www.arthurbourquin.ch/OuaisLesMedias/Stars.png">
+        </div>
+        <div class="row" style="background: #444">
+          <form action="/action_page.php">
+            <label for="fname">url de l'image</label><br>
+            <input type="text" value="https://www..."><br>
+            envoyer dans :<br>
+            <button id="sendToCanvas1" onclick="c">1</button>
+            <button id="sendToCanvas2" onclick="c">2</button>
+            <button id="sendToCanvas3" onclick="c">3</button>
+            <button id="sendToCanvas4" onclick="c">4</button>
+          </form> 
+        </div>
+      </div>
+      <div class="line" style="background: #333">
+        <div class="row" style="background: #444">
+          <div id="sizeBlock" class="row" style="background: #555">
+            <form action="/action_page.php">
+              <label>largeur</label>
+              <input id="inputWidth" value="64" style="width: 30px"><br>
+              <label>hauteur</label>
+              <input id="inputHeight" value="64" style="width: 30px"><br>
+            </form> 
+            <form action="/action_page.php">
+              <button id="myButton" onclick="changeImagesSize(event)">Changer la taille</button>
+            </form> 
+          </div>
+          <div id="sequenceBlock" class="row" style="background: #555">
+            <form action="/action_page.php">
+              <label>vitesse</label>
+              <input id="speed" value="1" style="width: 30px"><br>
+              <label>ordre</label>
+              <input id="order" value="1234321111" style="width: 100px; letter-spacing: 0.5em">
+            </form> 
+          </div>
+        </div>
+      </div>
+      <div class="line" style="background: #222">
+        <div class="row" style="background: #444">
+          <img id="animation" src="http://www.arthurbourquin.ch/OuaisLesMedias/Stars.png">
+        </div>
+        <div class="row" style="background: #444">
+			<button id="play" onclick="play">Play</button> 
+			<button id="stop" onclick="stop">Stop</button> 
+		</div>
+      </div>
+	</div>
+	<div class="row" style="background: #222">
+      <div class="row" style="background: #333">
+      	<button id="color1" onclick="changeColor(1)" style="background: black"></button> 
+      </div>
+      <div class="row" style="background: #333">
+      	<button id="color2" onclick="changeColor(2)" style="background: white"></button> 
+      </div>
+      <div class="row" style="background: #333">
+      	<button id="color3" onclick="changeColor(3)" style="background: grey"></button> 
+      </div>
+      <div class="row" style="background: #333">
+      	<button id="color4" onclick="changeColor(4)" style="background: tomato"></button> 
+      </div>
+      <div class="row" style="background: #333">
+      	<button id="color5" onclick="changeColor(5)" style="background: seagreen"></button> 
+      </div>
+      <div class="row" style="background: #333">
+      	<button id="color6" onclick="changeColor(6)" style="background: steelblue"></button> 
+      </div>
+      <div class="row" style="background: #333">
+      	<button id="color7" onclick="changeColor(7)" style="background: violet"></button> 
+      </div>
+      <div class="row" style="background: #333">
+      	<button id="color8" onclick="changeColor(8)" style="background: gold"></button> 
+      </div>
+      <div class="row" style="background: #333">
+      	<button id="color9" onclick="changeColor(9)" style="background: darkturquoise"></button> 
+      </div>
+      <div class="row" style="background: #333">
+      	<button id="color10" onclick="changeColor(10)" style="background: pink"></button> 
+      </div>
+	</div>
+</div>
+
+<script>
+
+
+// Layout ---------------------------------------------------
+
+
+let imageSize = [];
+
+function changeImagesSize(event) {
+  
+  event.preventDefault();
+  
+  imageSize = [
+  	document.getElementById('inputWidth').value,
+    document.getElementById('inputHeight').value
+    ];
+  
+  let i = 1;
+  while (document.getElementById('canvas' + i)) {
+    let canvas = document.getElementById('canvas' + i);
+    canvas.width = imageSize[0];
+    canvas.height = imageSize[1];
+    i++;
+  }
+  
+  document.getElementById('sourceImage').style.width = imageSize[0] + 'px';
+  document.getElementById('sourceImage').style.height = imageSize[1] + 'px';
+
+  document.getElementById('animation').style.width = imageSize[0] + 'px';
+  document.getElementById('animation').style.height = imageSize[1] + 'px';
+
+}
+
+
+
+
+// Drawing --------------------------------------------------
+
+
+let prevPos = [];
+let distance = 0;
+let steps = 4;
+let sizeFactor = 5;
+let size = 10;
+let color = 'blanchedalmond';
+let isDrawing = false;
+let undoStack = [];
+
+let canvas = document.getElementById('canvas1');
+canvas.width = 128;
+canvas.height = 128;
+canvas.style.backgroundColor = '#222';
+canvas.style.border = '1px solid blanchedalmond';
+
+let ctx = canvas.getContext("2d");
+
+function computeDistance(a, b) {
+    return Math.pow(
+        Math.pow(b[0] - a[0], 2) + Math.pow(b[1] - a[1], 2), 
+        0.5
+    );
+}
+
+canvas.addEventListener('mousedown', function(e) {
+    if (e.button === 0) {
+        saveState();
+        isDrawing = true;
+    }
+});
+
+canvas.addEventListener('mousemove', function(e) {
+  if (e.buttons === 1) {
+    draw(e);
+  }
+});
+
+function draw(event) {
+    let canvas = event.target;
+    let rect = canvas.getBoundingClientRect();
+
+    let currentPos = [event.clientX - rect.left, event.clientY - rect.top];
+    distance = computeDistance(currentPos, prevPos);
+    steps = distance;
+    size = (1 - (Math.atan(distance / 5))/(Math.PI / 2)) * sizeFactor + 1;
+
+    ctx.save();
+    for (let i = 0; i < steps; i++) {
+        let x = currentPos[0] * (i / steps) + prevPos[0] * (1 - i / steps);
+        let y = currentPos[1] * (i / steps) + prevPos[1] * (1 - i / steps);
+
+        ctx.save();
+        ctx.translate(x, y);
+		ctx.rotate(Math.random() * Math.PI * 2);
+        ctx.beginPath();
+        ctx.rect(-size / 2, -size / 2, size, size);
+        ctx.fillStyle = color;
+        ctx.fill();
+        ctx.restore();
+    }
+    ctx.restore();
+
+    prevPos[0] = currentPos[0];
+    prevPos[1] = currentPos[1];
+}
+
+function clearCanvas() {
+    ctx.fillStyle = '#222';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    prevPos = [];
+}
+
+canvas.addEventListener('mouseup', function(e) {
+  resetPrevPos(e);
+});
+
+function resetPrevPos() {
+prevPos = [];
+}
+
+function saveImage() {
+    let canvas = document.getElementById('myCanvas');
+    let dataURL = canvas.toDataURL('image/png');
+    let link = document.createElement('a');
+    link.href = dataURL;
+    link.download = 'Fabuleux_Dessin.png';
+    link.click();
+};
+
+function transferImage(source, target){};
+
+async function copyToClipboard() {
+    let canvas = document.getElementById('myCanvas');
+    const dataUrl = canvas.toDataURL('image/png');
+    const blob = await fetch(dataUrl).then(res => res.blob());
+    const item = new ClipboardItem({'image/png': blob});
+    await navigator.clipboard.write([item]);
+}
+
+function saveState() {
+    let imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    undoStack.push(imageData);
+}
+
+function undo() {
+    if (undoStack.length > 0) {
+        let lastState = undoStack.pop();
+        ctx.putImageData(lastState, 0, 0);
+    }
+}
+
+clearCanvas();
+
+
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"git.ignoreLimitWarning": true,
+		"terminal.integrated.rendererType": "dom",
+		"files.associations": {
+			"ostream": "cpp"
+		}
+	}
+}

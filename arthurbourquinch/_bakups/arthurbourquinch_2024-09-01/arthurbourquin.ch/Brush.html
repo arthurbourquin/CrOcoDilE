@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playwrite+NG+Modern:wght@100..400&family=Roboto+Slab:wght@100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <title>Brush</title>
+<style>
+body {
+  background-color: #222;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  flex-direction: column;
+}
+div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+button {
+  font-family: Roboto Slab;
+  font-weight: 600;
+  border: none;
+  color: #222;
+  background-color: blanchedalmond;
+  padding: 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 1px;
+  cursor: pointer;
+}
+button:hover {
+  background-color: tomato;
+}
+button:active {
+  background-color: seagreen;
+}
+button:visited {
+  background-color: gold;
+}
+</style>
+</head>
+<body>
+
+<div>
+<script>
+
+let prevPos = [];
+let distance = 0;
+let steps = 4;
+let sizeFactor = 5;
+let size = 10;
+let color = 'blanchedalmond';
+let isDrawing = false;
+let undoStack = [];
+
+let canvas = document.createElement('canvas');
+canvas.id = 'myCanvas';
+canvas.width = 500;
+canvas.height = 500;
+canvas.style.backgroundColor = '#222';
+canvas.style.border = '1px solid blanchedalmond';
+document.body.appendChild(canvas);
+
+let ctx = canvas.getContext("2d");
+
+function computeDistance(a, b) {
+    return Math.pow(
+        Math.pow(b[0] - a[0], 2) + Math.pow(b[1] - a[1], 2), 
+        0.5
+    );
+}
+
+canvas.addEventListener('mousedown', function(e) {
+    if (e.button === 0) {
+        saveState();
+        isDrawing = true;
+    }
+});
+
+canvas.addEventListener('mousemove', function(e) {
+  if (e.buttons === 1) {
+    draw(e);
+  }
+});
+
+function draw(event) {
+    let canvas = event.target;
+    let rect = canvas.getBoundingClientRect();
+
+    let currentPos = [event.clientX - rect.left, event.clientY - rect.top];
+    distance = computeDistance(currentPos, prevPos);
+    steps = distance;
+    size = (1 - (Math.atan(distance / 5))/(Math.PI / 2)) * sizeFactor + 1;
+
+    ctx.save();
+    for (let i = 0; i < steps; i++) {
+        let x = currentPos[0] * (i / steps) + prevPos[0] * (1 - i / steps);
+        let y = currentPos[1] * (i / steps) + prevPos[1] * (1 - i / steps);
+
+        ctx.save();
+        ctx.translate(x, y);
+		ctx.rotate(Math.random() * Math.PI * 2);
+        ctx.beginPath();
+        ctx.rect(-size / 2, -size / 2, size, size);
+        ctx.fillStyle = color;
+        ctx.fill();
+        ctx.restore();
+    }
+    ctx.restore();
+
+    prevPos[0] = currentPos[0];
+    prevPos[1] = currentPos[1];
+}
+
+function clearCanvas() {
+    ctx.fillStyle = '#222';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    prevPos = [];
+}
+
+canvas.addEventListener('mouseup', function(e) {
+  resetPrevPos(e);
+});
+
+function resetPrevPos() {
+prevPos = [];
+}
+
+function saveImage() {
+    let canvas = document.getElementById('myCanvas');
+    let dataURL = canvas.toDataURL('image/png');
+    let link = document.createElement('a');
+    link.href = dataURL;
+    link.download = 'Fabuleux_Dessin.png';
+    link.click();
+};
+
+async function copyToClipboard() {
+    let canvas = document.getElementById('myCanvas');
+    const dataUrl = canvas.toDataURL('image/png');
+    const blob = await fetch(dataUrl).then(res => res.blob());
+    const item = new ClipboardItem({'image/png': blob});
+    await navigator.clipboard.write([item]);
+}
+
+function saveState() {
+    let imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    undoStack.push(imageData);
+}
+
+function undo() {
+    if (undoStack.length > 0) {
+        let lastState = undoStack.pop();
+        ctx.putImageData(lastState, 0, 0);
+    }
+}
+
+clearCanvas();
+
+</script> 
+</div>
+
+
+<div>
+<button type="button" onclick="undo()">Oups !</button>
+<button type="button" onclick="clearCanvas()">Tout r'commencer</button>
+<button type="button" onclick="saveImage()">Télécharger le fabuleux dessin</button>
+<button type="button" onclick="copyToClipboard()">Copier</button>
+</div>
+</body>
+</html>

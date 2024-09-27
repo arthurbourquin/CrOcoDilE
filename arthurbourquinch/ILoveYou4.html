@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Page Title</title>
+<style>
+body {
+margin: 0px;
+}
+#BOT {
+position: absolute;
+}
+#VAL {
+font-family: courier;
+}
+</style>
+</head>
+<body>
+<h1 id="BOT">I love you</h1>
+<h3 id="VAL"></h3>
+<canvas id="myCaca"></canvas>
+<script>
+
+let POS = [window.innerWidth/2, window.innerHeight/2];
+let TARGET = [0, 0];
+
+addEventListener('mousemove', UPDATEPOS);
+
+function UPDATEPOS(){
+	TARGET = [event.clientX, event.clientY];
+}
+
+function TextTransform(){
+	DIR = Math.atan2(TARGET[1] - POS[1], TARGET[0] - POS[0]);
+    OFFSET = [BOT.offsetWidth/2, BOT.offsetHeight];
+    MOVE = [Math.cos(DIR), Math.sin(DIR)];
+    SPEED = 1;
+    POS[0] = POS[0] + MOVE[0] * SPEED;
+    POS[1] = POS[1] + MOVE[1] * SPEED;
+	document.getElementById('BOT').style.left = POS[0] + 'px';
+	document.getElementById('BOT').style.top = POS[1] + 'px';
+	document.getElementById('BOT').style.transform = 'translate(-50%, -50%) rotate(' + (DIR * 180 / Math.PI) + 'deg)'
+
+	ctx.clearRect(0, 0, canvas.width, canvas.height);
+	ctx.fillStyle() = 'red';
+	ctx.beginPath();
+	ctx.arc()
+    
+    document.getElementById('VAL').innerText =
+    	'element pos x: ' + POS[0].toFixed(0) + '\n' +
+    	'element pos y: ' + POS[1].toFixed(0) + '\n' +
+    	'target pos x: ' + POS[0].toFixed(0) + '\n' +
+    	'target pos y: ' + POS[1].toFixed(0) + '\n' +	
+    	'direction rad: ' + DIR.toFixed(2) + '\n' +
+    	'direction deg: ' + (DIR * (180 / Math.PI)).toFixed(0) + '\n' +
+    	'move x: ' + MOVE[0].toFixed(0) + '\n' +
+    	'move y: ' + MOVE[1].toFixed(0) + '\n' +
+    	'speed: ' + SPEED.toFixed(0)
+
+}
+setInterval(TextTransform, 40);
+
+
+let canvas = document.getElementById('myCaca');
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+let ctx = canvas.getContext('2d');
+
+
+
+</script>
+</body>
+</html>
+
+

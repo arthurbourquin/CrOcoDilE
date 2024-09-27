@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+	<title>Cursor Game</title>
+<style>
+    body {
+        margin: 0;
+        display: flex;
+        overflow: hidden;
+        position: relative;
+        background-color: #222;
+    }
+    canvas{
+    position: absolute;
+    }
+</style>
+</head>
+<body>
+
+<canvas id="Board"></canvas>
+
+<script>
+
+let time = 0;
+let BoardSize = Math.min(window.innerWidth, window.innerHeight) * 0.8;
+
+setInterval(run, 50);
+addEventListener('mousemove', draw);
+addEventListener('resize', draw);
+
+
+function worldToScreen(a) {
+    return ;
+}
+
+function run(){
+
+}
+
+function draw(){
+		let BoardSize = Math.min(window.innerWidth, window.innerHeight) * 0.8;
+        var canvas = document.getElementById('Board');
+        canvas.width = BoardSize;
+        canvas.height = BoardSize;
+        canvas.style.top = (window.innerHeight - BoardSize) / 2 + 'px';
+        canvas.style.left = (window.innerWidth - BoardSize) / 2 + 'px';
+        canvas.style.border = '1px solid blanchedalmond';
+}
+
+</script>
+
+</body>
+</html>

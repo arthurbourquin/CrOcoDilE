@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Page Title</title>
+    <style>
+        body {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+  <h1>This is a Heading</h1>
+  <p>This is a paragraph.</p>
+  <h2>Ouais</h2>
+  <p>eghhw6 j5 jw j<br> w5jm5wjerwj<br>srj tj dbf g <br>njzf baerstn<br>std mndtz</p>
+
+<script>
+  let elements = document.querySelectorAll('h1, h2, p');
+  let rand = [];
+  let offset = 0;
+
+  	for ( let i = 0; i < elements.length; i++){
+	rand.push({
+      x: (Math.random() - 0.5) * 2,
+      y: (Math.random() - 0.5) * 2,
+      r: (Math.random() - 0.5) * 2})
+  	}
+
+    function move() {
+    	
+        offset += 1;
+        
+    	for (i = 0; i < elements.length; i++) {
+          elements[i].style.transform =`
+              translate(
+              ${(offset * rand[i].x)}px,
+              ${(offset * rand[i].y)}px)
+              rotate(${offset * rand[i].r}deg)`;
+        }
+    }
+
+    setInterval(move, 40);
+  </script>
+</body>
+</html>

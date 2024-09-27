@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+
+    <title>LaTeX</title>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+      body, #latexInput, #output, a {
+        font-family: Roboto Slab;
+        font-size: 20px;
+        color: #ddd;
+        background: #222;
+        margin: 20px;
+        padding: 10px;
+      }      
+      #latexInput {
+        width: 90%;
+        border: 1px solid #ddd;
+      }
+      #output {
+        font-size: 40px;
+      }
+      .link, a {
+        color: steelblue;
+      }
+      a:hover {
+        color: #ddd;
+      }
+    </style>
+  </head>
+  <body>
+    <p>Enter LaTeX Formula:</p>
+    <textarea type="text" id="latexInput">\sum_{i=0}^{n}(\frac{\pi}{3})</textarea><br>
+    <span id="output"></span><br><br><br><br>
+    <div class="link">Editeur plus mieux bien :<a href="https://latexeditor.lagrida.com/">latexeditor.lagrida.com</a></div>
+
+    <script>
+      function renderLatex() {
+        const input = document.getElementById('latexInput').value;
+        const output = document.getElementById('output');
+        output.innerHTML = `\\(${input}\\)`;
+        MathJax.typesetPromise();
+      }
+      document.getElementById('latexInput').addEventListener('input', renderLatex);
+      renderLatex();
+    </script>
+  </body>
+</html>

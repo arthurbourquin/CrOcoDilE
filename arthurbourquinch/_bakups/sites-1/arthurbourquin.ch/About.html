@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sine Wave Animation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            color: gold;
+            background-color: #222;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .sine-wave-text {
+            font-size: 24px;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <div class="sine-wave-text">Je pensais que j'étais bizarre, mais en réalité je le suis toujours.</div>
+
+    <script>
+        const textElement = document.querySelector('.sine-wave-text');
+        function animateSineWave(a) {
+            const y = Math.sin(a * 0.001) * 50;
+            const r = Math.cos(a * 0.001) * 20;
+            textElement.style.transform = `translate(${0}px, ${y}px) rotate(${r}deg)`;
+            requestAnimationFrame(animateSineWave);
+        }
+
+        requestAnimationFrame(animateSineWave);
+    </script>
+</body>
+</html>

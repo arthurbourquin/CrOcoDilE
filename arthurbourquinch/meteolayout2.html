@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet">
+<title>Scroll Me</title>
+<style>
+body {
+font-family: roboto slab;
+}
+#scrollButton {
+width: 150px;
+text-align: center;
+}
+.listClass {
+padding: 0px 10px;
+}
+</style>
+</head>
+<body>
+
+<div id="SelectorsDivId">
+Usless Dropdown menu name :<br>
+<input id="Input" type="text">
+<br>
+<button id="Create" onclick="CreateSelector()">Create Dropdown menu</button>
+<br><br>
+
+</div>
+<script>
+
+function CreateSelector() {
+    let name = document.getElementById('Input').value;
+    let SelectElement = document.createElement('select');
+    for( let i = 0; i < 10; i++) {
+        let OptionElement = document.createElement('option');
+        OptionElement.innerText = name + ' ' + i;
+        SelectElement.appendChild(OptionElement);
+    }
+    let SeletorsDiv = document.getElementById('SelectorsDivId');
+    SeletorsDiv.appendChild(SelectElement);
+}
+
+</script>
+</body>
+</html>

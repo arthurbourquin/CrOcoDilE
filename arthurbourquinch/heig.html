@@ -1,0 +1,134 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=windows-1252">
+	<TITLE></TITLE>
+	<META NAME="GENERATOR" CONTENT="OpenOffice 4.1.14  (Win32)">
+	<META NAME="AUTHOR" CONTENT="Laurianne Roldan">
+	<META NAME="CREATED" CONTENT="20240820;17130655">
+	<META NAME="CHANGEDBY" CONTENT="Laurianne Roldan">
+	<META NAME="CHANGED" CONTENT="20240821;8010911">
+	<META NAME="CHANGEDBY" CONTENT="Laurianne Roldan">
+	<STYLE TYPE="text/css">
+	<!--
+		@page { margin: 2cm }
+		P { margin-bottom: 0.21cm }
+	-->
+	</STYLE>
+</HEAD>
+<BODY LANG="fr-CH" DIR="LTR">
+<P STYLE="margin-bottom: 0cm">&lt;!DOCTYPE html&gt;</P>
+<P STYLE="margin-bottom: 0cm">&lt;html lang=&quot;fr&quot;&gt;</P>
+<P STYLE="margin-bottom: 0cm">&lt;head&gt;</P>
+<P STYLE="margin-bottom: 0cm">&lt;meta charset=&quot;UTF-8&quot;&gt;</P>
+<P STYLE="margin-bottom: 0cm">&lt;meta name=&quot;viewport&quot;
+content=&quot;width=device-width, initial-scale=1.0&quot;&gt;</P>
+<P STYLE="margin-bottom: 0cm">&lt;title&gt;Rotating Background with
+Centered Content&lt;/title&gt;</P>
+<P STYLE="margin-bottom: 0cm">&lt;link rel=&quot;stylesheet&quot;
+href=&quot;styles.css&quot;&gt;</P>
+<P STYLE="margin-bottom: 0cm">&lt;style&gt;</P>
+<P STYLE="margin-bottom: 0cm">body, html {</P>
+<P STYLE="margin-bottom: 0cm">margin: 0;</P>
+<P STYLE="margin-bottom: 0cm">padding: 0;</P>
+<P STYLE="margin-bottom: 0cm">height: 100%;</P>
+<P STYLE="margin-bottom: 0cm">overflow: hidden;</P>
+<P STYLE="margin-bottom: 0cm">font-family: Arial, sans-serif;</P>
+<P STYLE="margin-bottom: 0cm">}</P>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm">#backgroundCanvas {</P>
+<P STYLE="margin-bottom: 0cm">position: fixed;</P>
+<P STYLE="margin-bottom: 0cm">top: 0;</P>
+<P STYLE="margin-bottom: 0cm">left: 0;</P>
+<P STYLE="margin-bottom: 0cm">width: 100%;</P>
+<P STYLE="margin-bottom: 0cm">height: 100%;</P>
+<P STYLE="margin-bottom: 0cm">}</P>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm">#content {</P>
+<P STYLE="margin-bottom: 0cm">position: relative;</P>
+<P STYLE="margin-bottom: 0cm">z-index: 10;</P>
+<P STYLE="margin-bottom: 0cm">display: flex;</P>
+<P STYLE="margin-bottom: 0cm">flex-direction: column;</P>
+<P STYLE="margin-bottom: 0cm">align-items: center;</P>
+<P STYLE="margin-bottom: 0cm">justify-content: center;</P>
+<P STYLE="margin-bottom: 0cm">height: 100%;</P>
+<P STYLE="margin-bottom: 0cm">text-align: center;</P>
+<P STYLE="margin-bottom: 0cm">}</P>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm">button {</P>
+<P STYLE="margin-bottom: 0cm">margin: 10px;</P>
+<P STYLE="margin-bottom: 0cm">padding: 10px 20px;</P>
+<P STYLE="margin-bottom: 0cm">font-size: 16px;</P>
+<P STYLE="margin-bottom: 0cm">cursor: pointer;</P>
+<P STYLE="margin-bottom: 0cm">}</P>
+<P STYLE="margin-bottom: 0cm">&lt;/style&gt;</P>
+<P STYLE="margin-bottom: 0cm">&lt;/head&gt;</P>
+<P STYLE="margin-bottom: 0cm">&lt;body&gt;</P>
+<P STYLE="margin-bottom: 0cm">&lt;canvas
+id=&quot;backgroundCanvas&quot;&gt;&lt;/canvas&gt;</P>
+<P STYLE="margin-bottom: 0cm">&lt;div id=&quot;content&quot;&gt;</P>
+<P STYLE="margin-bottom: 0cm">&lt;h1&gt;Menu&lt;/h1&gt;</P>
+<P STYLE="margin-bottom: 0cm">&lt;button onclick=&quot;alert('En
+travaux, j\'ai toujours pas r&eacute;ussi')&quot;&gt;Aide &agrave; la
+Connexion (en travaux, j'ai toujours pas r&eacute;ussi)&lt;/button&gt;</P>
+<P STYLE="margin-bottom: 0cm">&lt;button
+onclick=&quot;window.location.href='#'&quot;&gt;Entrainement
+Trigo&lt;/button&gt;</P>
+<P STYLE="margin-bottom: 0cm">&lt;button
+onclick=&quot;window.location.href='#'&quot;&gt;Entrainement
+Binaire&lt;/button&gt;</P>
+<P STYLE="margin-bottom: 0cm">&lt;button
+onclick=&quot;window.location.href='#'&quot;&gt;Visualiseur Binaire
+8bit&lt;/button&gt;</P>
+<P STYLE="margin-bottom: 0cm">&lt;/div&gt;</P>
+<P STYLE="margin-bottom: 0cm">&lt;script&gt;</P>
+<P STYLE="margin-bottom: 0cm">const canvas =
+document.getElementById('backgroundCanvas');</P>
+<P STYLE="margin-bottom: 0cm">const ctx = canvas.getContext('2d');</P>
+<P STYLE="margin-bottom: 0cm">canvas.width = window.innerWidth;</P>
+<P STYLE="margin-bottom: 0cm">canvas.height = window.innerHeight;</P>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm">const image = new Image();</P>
+<P STYLE="margin-bottom: 0cm">image.src =
+'https://arthurbourquin.ch/OuaisLesMedias/heig.png';</P>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm">let angle = 0;</P>
+<P STYLE="margin-bottom: 0cm">let speed = 0.2;</P>
+<P STYLE="margin-bottom: 0cm">let rotationRate = 0.01;</P>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm">image.onload = () =&gt; {</P>
+<P STYLE="margin-bottom: 0cm">function draw() {</P>
+<P STYLE="margin-bottom: 0cm">ctx.save();</P>
+<P STYLE="margin-bottom: 0cm">ctx.translate(canvas.width / 2,
+canvas.height / 2);</P>
+<P STYLE="margin-bottom: 0cm">ctx.rotate(angle);</P>
+<P STYLE="margin-bottom: 0cm">ctx.scale(0.1, 0.1);</P>
+<P STYLE="margin-bottom: 0cm">ctx.drawImage(image, -image.width / 2,
+-image.height / 2);</P>
+<P STYLE="margin-bottom: 0cm">ctx.restore();</P>
+<P STYLE="margin-bottom: 0cm">angle += speed;</P>
+<P STYLE="margin-bottom: 0cm">speed *= rotationRate;</P>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm">requestAnimationFrame(draw);</P>
+<P STYLE="margin-bottom: 0cm">}</P>
+<P STYLE="margin-bottom: 0cm">draw();</P>
+<P STYLE="margin-bottom: 0cm">};</P>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm">window.addEventListener('resize', () =&gt;
+{</P>
+<P STYLE="margin-bottom: 0cm">canvas.width = window.innerWidth;</P>
+<P STYLE="margin-bottom: 0cm">canvas.height = window.innerHeight;</P>
+<P STYLE="margin-bottom: 0cm">});</P>
+<P STYLE="margin-bottom: 0cm">&lt;/script&gt;</P>
+<P STYLE="margin-bottom: 0cm">&lt;/body&gt;</P>
+<P STYLE="margin-bottom: 0cm">&lt;/html&gt;</P>
+</BODY>
+</HTML>

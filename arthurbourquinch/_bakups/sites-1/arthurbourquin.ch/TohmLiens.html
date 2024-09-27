@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Arthur</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playwrite+NG+Modern:wght@100..400&family=Roboto+Slab:wght@100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+<style>
+    body {
+        background-color: #ffc300;
+        color: #222222;
+        font-family: Roboto Slab, sans-serif;
+        padding: 20px; /* Adjust padding for smaller screens */
+        line-height: 1.6;
+    }
+
+    .title {
+        font-size: 24px; /* Adjust font size for smaller screens */
+        font-weight: 700;
+    }
+
+    .description {
+        font-size: 14px; /* Adjust font size for smaller screens */
+    }
+
+    .date {
+        font-size: 14px;
+        font-weight: 700;
+        color: #EA498B;
+    }
+
+    .credits {
+        font-size: 12px;
+        font-style: italic;
+        font-weight: 300;
+    }
+
+    .grid-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+    }
+
+    .content {
+        padding: 20px;
+    }
+
+    .video-container {
+        position: relative;
+        padding-bottom: 56.25%; /* 16:9 aspect ratio */
+        height: 0;
+        overflow: hidden;
+        margin-bottom: 15px;
+    }
+
+    .video-container iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    .text-container {
+        padding: 10px 0;
+    }
+
+    .video-link a {
+        color: #222222;
+        text-decoration: none;
+    }
+
+    .video-link a:hover {
+        text-decoration: underline;
+    }
+
+    @media screen and (max-width: 1920px) {
+        .grid-container {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+
+    @media screen and (max-width: 1200px) {
+        .grid-container {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @media screen and (max-width: 600px) {
+        .grid-container {
+            grid-template-columns: repeat(1, 1fr);
+        }
+    }
+</style>
+
+</head>
+<body>
+<body>
+    <div id="content-container" class="grid-container"></div>
+    <!-- Rest of your HTML -->
+</body>
+    <div id="content-container"></div>
+
+    <script>
+        // Data array representing your content
+        const data = [
+["Unil", "Après l'Unil", "2018", "Tohm Studio, Benohit Prod, Unicom, SOC, Unil", "https://www.youtube.com/embed/D5NxsleKgPg"],
+["Showreel 2023", "Showreel", "2023", "Tohm Studio", "https://www.youtube.com/embed/d5sdqU6XnP8"],
+["Hoot", "Montre, Octarine, and CallNight.", "2020", "Hoot, Montre, Octarine, CallNight", "https://www.youtube.com/embed/5iHlYIECJw"],
+["PMI Onboarding", "Onboarding video for PMI.", "2019", "PMI", "https://www.youtube.com/embed/oh2Lsorg298"],
+["tl (Transports Lausannois)", "Project for Transports Lausannois.", "2019", "Transports Lausannois", "https://www.youtube.com/embed/Qd9yo6J3V3Y"],
+["Tipee1", "First Tipee project.", "2018", "Tipee", "https://www.youtube.com/embed/BQ3REYLuj_s"],
+["Tipee2", "Second Tipee project.", "2018", "Tipee", "https://www.youtube.com/embed/lhlSbgEKMoU"],
+["TFT", "Project for TFT.", "2020", "TFT", "https://www.youtube.com/embed/xEbXkxEQCFo"],
+["Smart Pet Care", "Project for Smart Pet Care.", "2019", "Smart Pet Care", "https://www.youtube.com/embed/zgUBlcSir8Q"],
+["Région Dents Du Midi", "Project for the Région Dents Du Midi.", "2021", "Région Dents Du Midi", "https://www.youtube.com/embed/cQW0SE4Q3qo"],
+["Carte de Voeux Raiffeisen", "Raiffeisen's greeting card project.", "2020", "Raiffeisen", "https://www.youtube.com/embed/Gx7v-uBp3gk"],
+["Odience", "Project for Odience.", "2021", "Odience", "https://www.youtube.com/embed/0eGShTdua4w"],
+["Ketl", "Project Ketl.", "2019", "Ketl", "https://youtube.com/shorts/37mqOt0A7v0?feature=share"],
+["FICC Best Practices", "Best practices before departure by FICC.", "2019", "FICC", "https://www.youtube.com/embed/8AcbeE-Pmmc"],
+["Feng Shui", "Project on Feng Shui.", "2018", "Feng Shui", "https://www.youtube.com/embed/TYs29OsioJY"],
+["Le Farinet", "Project for Le Farinet.", "2020", "Le Farinet", "https://www.youtube.com/embed/llldVODijAc"],
+["La Cité Des Métiers 1", "First video for La Cité Des Métiers.", "2019", "La Cité Des Métiers", "https://www.youtube.com/embed/FaPNlJCw-2Q"],
+["La Cité Des Métiers 2", "Second video for La Cité Des Métiers.", "2019", "La Cité Des Métiers", "https://www.youtube.com/embed/40Kgsu0n-hs"],
+["La Cité Des Métiers 3", "Third video for La Cité Des Métiers.", "2019", "La Cité Des Métiers", "https://www.youtube.com/embed/llxPGopM72s"],
+["La Cité Des Métiers 4", "Fourth video for La Cité Des Métiers.", "2019", "La Cité Des Métiers", "https://www.youtube.com/embed/Kps_nTaXu4Y"],
+["Vagabond - Car Postal", "Project for Vagabond by Car Postal.", "2020", "Car Postal", "https://www.youtube.com/embed/Z5sY9V9SLu0"],
+["BCVs - histoire 1", "First story for BCVs.", "2020", "BCVs", "https://www.youtube.com/embed/hPhpp4zrfjo"],
+["BCVs - histoire 2", "Second story for BCVs.", "2020", "BCVs", "https://youtube.com/shorts/5ZG7TbnVwKk?feature=share"],
+["BCVs", "Project for BCVs.", "2020", "BCVs", "https://youtube.com/shorts/9nDcRM-7HoM?feature=share"],
+["Association Sécurité Riviera", "Project for Association Sécurité Riviera.", "2019", "Association Sécurité Riviera", "https://www.youtube.com/embed/4Hl1to1aJck"],
+["Campagne Enfants Sans Tabac", "Anti-tobacco campaign for children.", "2021", "Enfants Sans Tabac", "https://www.youtube.com/embed/pXNxjOzfDao"],
+["HES-SO 01", "First video for HES-SO.", "2020", "HES-SO", "https://www.youtube.com/embed/zmrEgCidwNg"],
+["HES-SO 02", "Second video for HES-SO.", "2020", "HES-SO", "https://www.youtube.com/embed/PV2gQFnc-aI"],
+["HES-SO 03", "Third video for HES-SO.", "2020", "HES-SO", "https://www.youtube.com/embed/-t7l6AyevVw"],
+["HES-SO 04", "Fourth video for HES-SO.", "2020", "HES-SO", "https://www.youtube.com/embed/-7gLLd9b1DQ"],
+["HES-SO 05", "Fifth video for HES-SO.", "2020", "HES-SO", "https://www.youtube.com/embed/vYUJL-MrmRE"],
+["HES-SO 06", "Sixth video for HES-SO.", "2020", "HES-SO", "https://www.youtube.com/embed/CS8S43ZCgsk"],
+["HES-SO 07", "Seventh video for HES-SO.", "2020", "HES-SO", "https://www.youtube.com/embed/e74Zlh3Q38A"],
+["HES-SO 08", "Eighth video for HES-SO.", "2020", "HES-SO", "https://www.youtube.com/embed/BBtPEHeVx4A"],
+["HES-SO 09", "Ninth video for HES-SO.", "2020", "HES-SO", "https://www.youtube.com/embed/NG4LXmxD07U"],
+["HES-SO 10", "Tenth video for HES-SO.", "2020", "HES-SO", "https://www.youtube.com/embed/E6MfpCTvMaE"],
+["HES-SO 11", "Eleventh video for HES-SO.", "2020", "HES-SO", "https://www.youtube.com/embed/_Gn1eSAl8FE"],
+["HES-SO 12", "Twelfth video for HES-SO.", "2020", "HES-SO", "https://www.youtube.com/embed/3R9VLFGDt9k"],
+["HES-SO 13", "Thirteenth video for HES-SO.", "2020", "HES-SO", "https://www.youtube.com/embed/RKQryYgQHr8"],
+["HES-SO 14", "Fourteenth video for HES-SO.", "2020", "HES-SO", "https://www.youtube.com/embed/ozn2VdNQ94Q"],
+["HES-SO 15", "Fifteenth video for HES-SO.", "2020", "HES-SO", "https://www.youtube.com/embed/aszNZpCeb9Y"],
+["Super Dépanneur 5", "The fifth episode of Super Dépanneur.", "2021", "Super Dépanneur", "https://vimeo.com/356840023?share=copy"],
+["Super Dépanneur 4", "The fourth episode of Super Dépanneur.", "2021", "Super Dépanneur", "https://vimeo.com/356837925?share=copy"],
+["Super Dépanneur 3", "The third episode of Super Dépanneur.", "2021", "Super Dépanneur", "https://vimeo.com/356836443?share=copy"],
+["Super Dépanneur 2", "The second episode of Super Dépanneur.", "2021", "Super Dépanneur", "https://vimeo.com/267378375?share=copy"],
+["Super Dépanneur 1", "The first episode of Super Dépanneur.", "2021", "Super Dépanneur", "https://vimeo.com/267377649?share=copy"],
+["Un Classeur", "Project titled 'Un Classeur'.", "2021", "Tohm Studio", "https://www.youtube.com/watch?v=nDdZ9_tMwi0"],
+["Les Tutos de Jacky", "Jacky's tutorials series.", "2021", "Jacky", "https://www.youtube.com/watch?v=1WeiUK4mEAs&list=PLbuo-NvxrWswfkmC0I7rfSdsrxtKuRB8W"],
+["Les Cosmorégulateurs", "Project 'Les Cosmorégulateurs'.", "2021", "Tohm Studio", "https://www.youtube.com/watch?v=CFcFmURJ3Dk&t=153s"],
+["La Faille Spatiotemporelle", "Project 'La Faille Spatiotemporelle'.", "2021", "Tohm Studio", "https://www.youtube.com/embed/ELXdMZi6B1Y"],
+["Galaxien Coprophage", "Project 'Galaxien Coprophage'.", "2021", "Tohm Studio", "https://www.youtube.com/embed/hQpSbub2up4"],
+["Les Psychosmonautes", "Project 'Les Psychosmonautes'.", "2021", "Tohm Studio", "https://www.youtube.com/embed/xpQeG5-oqww"],
+["Joyeux Noël masqué", "Masked Christmas project.", "2021", "Tohm Studio", "https://www.youtube.com/embed/ztKWNLZKn3I"],
+["Samegif 8", "The eighth project in the Samegif series.", "2021", "Samegif", "https://www.youtube.com/embed/L7mODMamxWw"],
+["Samegif 3", "The third project in the Samegif series.", "2021", "Samegif", "https://www.youtube.com/embed/ubAuNToXdGY"],
+["Samegif Zombies attack", "Project 'Samegif Zombies attack'.", "2021", "Samegif", "https://www.youtube.com/embed/IQ8w7fdgdJE"],
+["Samegif Paint", "Project 'Samegif Paint'.", "2021", "Samegif", "https://www.youtube.com/embed/tBaC5Z92qCQ"],
+["Rust", "Project 'Rust'.", "2021", "Tohm Studio", "https://www.youtube.com/embed/Na-WFPK-Ots"],
+["3D Chip", "Project '3D Chip'.", "2021", "Tohm Studio", "https://www.youtube.com/embed/jIZVuhQAXNs"],
+["Drink Or Drive", "Project 'Drink Or Drive'.", "2021", "Tohm Studio", "https://www.youtube.com/embed/qX0_ObdpZ5Y"],
+["ATST", "Project 'ATST'.", "2021", "Tohm Studio", "https://www.youtube.com/embed/-9S3ek9R_cQ"],
+["Mr. Inconscient, Morgensters", "Project 'Mr. Inconscient, Morgensters'.", "2021", "Tohm Studio", "https://www.youtube.com/embed/Pp9GRlHalTY"]
+        ];
+
+        // Function to create HTML from data array
+        function createHtmlFromData(data) {
+            const container = document.getElementById('content-container');
+            data.forEach((item, index) => {
+                const div = document.createElement('div');
+                div.classList.add('content');
+                div.innerHTML = `
+                    <div class="video-container">
+                        <iframe src="${item[4]}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
+                    <div class="text-container">
+                        <div class="title">${index + 1}. ${item[0]}</div>
+                        <div class="description">${item[1]}</div>
+                        <div class="date">${item[2]}</div>
+                        <div class="credits">${item[3]}</div>
+                    </div>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        // Call the function to generate HTML content
+        createHtmlFromData(data);
+    </script>
+</body>
+</html>

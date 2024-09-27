@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Image Blending with Canvas</title>
+<style>
+#container {
+text-align: center;
+}
+canvas {
+border: 1px solid #000;
+margin: 5px;
+}
+.input-field {
+margin: 10px;
+width: 600px;
+}
+</style>
+</head>
+<body>
+<div id="container">
+<input type="text" id="url1" class="input-field" value="https://www.arthurbourquin.ch/OuaisLesMedias/PhoTohm.png" /><br>
+<input type="text" id="url2" class="input-field" value="https://www.arthurbourquin.ch/OuaisLesMedias/XWing.png" /><br>
+<select id="blend-mode">
+<option value="normal">Normal</option>
+<option value="multiply">Multiply</option>
+<option value="screen">Screen</option>
+<option value="overlay">Overlay</option>
+<option value="darken">Darken</option>
+<option value="lighten">Lighten</option>
+<option value="color-dodge">Color Dodge</option>
+<option value="color-burn">Color Burn</option>
+<option value="hard-light">Hard Light</option>
+<option value="soft-light">Soft Light</option>
+<option value="difference">Difference</option>
+<option value="exclusion">Exclusion</option>
+</select>
+<button onclick="blendImages()">Blend Images</button>
+<button onclick="test()">test</button>
+<br>
+<canvas id="canvas1" width="200" height="200"></canvas>
+<canvas id="canvas2" width="200" height="200"></canvas>
+<canvas id="resultCanvas" width="200" height="200"></canvas>
+<canvas id="myCanvas" width="200" height="200"></canvas>
+</div><script>
+function blendImages() {
+const canvas1 = document.getElementById('canvas1');
+const canvas2 = document.getElementById('canvas2');
+const resultCanvas = document.getElementById('resultCanvas');
+const ctx1 = canvas1.getContext('2d');
+const ctx2 = canvas2.getContext('2d');
+const resultCtx = resultCanvas.getContext('2d');
+const url1 = document.getElementById('url1').value;
+const url2 = document.getElementById('url2').value;
+const blendMode = document.getElementById('blend-mode').value;
+if (!url1 || !url2) {return;}
+const img1 = new Image();
+const img2 = new Image();
+img2.src = url2;
+img1.src = url1;
+ctx1.clearRect(0, 0, canvas1.width, canvas1.height);
+ctx1.drawImage(img1, 0, 0, canvas1.width, canvas1.height);
+ctx2.clearRect(0, 0, canvas2.width, canvas2.height);
+ctx2.drawImage(img2, 0, 0, canvas2.width, canvas2.height);
+resultCtx.clearRect(0, 0, resultCanvas.width, resultCanvas.height);
+resultCtx.drawImage(canvas1, 0, 0);
+resultCtx.globalCompositeOperation = blendMode;
+resultCtx.drawImage(canvas2, 0, 0);
+}
+function test(){
+const canvas = document.getElementById('myCanvas');
+const ctx = canvas.getContext('2d');
+const img = new Image();
+img.src = document.getElementById('url1').value;;
+img.onload = function() {
+ctx.drawImage(img, 0, 0, 200, 200);
+};}
+</script>
+</body>
+</html>

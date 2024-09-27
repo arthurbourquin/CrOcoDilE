@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+<title>Apprendre</title>
+<style>
+body {
+font-family: 'Roboto Mono', monospace;
+color: #ddd;
+background: #222;
+text-align: center; /* Center-align the contents of the body */
+}
+USERINPUT {
+line-height: 2em;
+color: #ddd;
+background: #222;
+border: 1px solid #ddd;
+border-radius: 10px;
+padding: 10px;
+display: inline-block; /* Center the USERINPUT */
+}
+#IDTABLE, table, th, td {
+border: 1px solid #ddd;
+background: #222;
+}
+#IDTABLE {
+border-collapse: collapse;
+margin: 0 auto;
+}
+th {
+padding: 10px;
+text-align: left;
+word-wrap: break-word;
+}
+td {
+padding: 10px;
+text-align: left;
+word-wrap: break-word;
+}
+.i {
+margin: 10px;
+width: 24px;
+color: white;
+background: steelblue;
+border: 1px solid white;
+border-radius: 5px;
+}
+.infos {
+font-family: Roboto Slab;
+display: none;
+position: absolute;
+text-align: left;
+margin: 20px;
+padding: 20px;
+background: #333;
+z-index: 1;
+border: 1px solid #ddd;
+border-radius: 10px;
+}
+.i:hover ~ .infos {
+display: block;
+}
+button {
+font-family: Roboto Slab;
+color: #ddd;
+background: #222;
+margin: 10px;
+padding: 10px;
+border: 1px solid white;
+border-radius: 5px;
+}
+button:hover{
+color: #222;
+background: #ddd;
+}
+#editMenu {
+margin: 10px;
+padding: 10px;
+border: 1px solid #ddd;
+border-radius: 10px;
+background: #333;
+}
+#Jeu {
+
+}
+</style>
+</head>
+<body>
+
+<!-- Info -->
+<div class="i">i</div>
+<div class="infos">
+Entrez les Rectos et Versos séparée par des ;;<br>
+Une paire <i>Recto;;Verso</i> par ligne<br>
+<br>
+-ou-<br>
+<br><b>
+Utilisez un tableur pour sauvegarder vos fiches avec :<br>
+colonne A = Recto<br>
+Colonne B = ;;<br>
+Colonne C = Verso<br>
+puis copiez-collez le tout dans le champs.
+<b></div>
+
+<!-- Jeu -->
+<div id="Jeu">
+<span id="Question">salut</span><br>
+<button id="Solution" conclick="displaySolution()">Solution</button>
+<button id="Correct" onclick="isCorrect()">Correct</button>
+<button id="Faux" onclick="isWrong()">Faux</button>
+</div>
+
+<!-- Edition -->
+<div id="editMenu">
+<!-- Edition Button -->
+<button id="edit" onclick="EDIT()">Editer les cartons</button>
+<!-- Edition Field -->
+<div id="IDFORM">
+<form>
+<textarea id="IDUSERINPUT" rows="10" cols="50">
+a;;b
+</textarea><br><br>
+</form>
+</div>
+<br>
+<!-- Edition Table -->
+<div id="table">
+<table id="IDTABLE">
+</table>
+</div>
+</div>
+
+<script>
+
+
+
+
+let CARTONS = ['ouais','salut','caca'];
+
+function GENERATETABLE(){
+let i = 0; let j = 0;
+const USERINPUT = document.getElementById('IDUSERINPUT');
+const table = document.getElementById('IDTABLE');
+const lines = USERINPUT.value.split('\n'); // Split input by lines
+table.innerHTML = '';
+lines.forEach(line => {
+i++;
+const row = document.createElement('tr');
+const cells = line.split(';;'); // Split input
+cells.forEach(cell => {
+j++;
+const td = document.createElement('td');
+td.textContent = cell;
+row.appendChild(td);
+CARTONS[i][j] = 'OUAIS';
+});
+table.appendChild(row);
+});
+}
+document.getElementById('IDUSERINPUT').addEventListener('input', GENERATETABLE);
+GENERATETABLE();
+
+let EDITMODE = true;
+function EDIT() {
+if (EDITMODE === true) {
+document.getElementById('IDFORM').style.display = 'none';
+document.getElementById('IDTABLE').style.display = 'none';
+EDITMODE = false;
+} else {
+document.getElementById('IDFORM').style.display = 'block';
+document.getElementById('IDTABLE').style.display = 'block';
+EDITMODE = true;
+}
+}
+
+function isCorrect(){
+ASK();
+}
+function isWrong(){
+ASK();
+}
+
+function ASK(){
+Question = CARTONS[Math.floor(Math.random() * CARTONS.length)][0];
+document.getElementById('Question').innerText = CARTONS;
+}
+
+function displaySolution(){
+
+}
+
+</script>
+</body>
+</html>

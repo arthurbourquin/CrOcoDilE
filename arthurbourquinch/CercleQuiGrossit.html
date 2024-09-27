@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Page Title</title>
+<style>
+body{
+background-color: #222;
+}
+</style>
+</head>
+<body>
+
+<svg width="5000" height="5000" xmlns="http://www.w3.org/2000/svg">
+  <circle id="boris" cx="300" cy="222" r="15" stroke="salmon" stroke-width="2" fill="#444" />
+</svg>
+
+<script>
+
+let time= 0;
+
+setInterval(updateTime, 50);
+function updateTime() {
+time++;
+}
+
+setInterval(updateBoris, 200);
+function updateBoris() {
+const boris = document.getElementById('boris');
+boris.setAttribute('r', time);
+}
+
+
+
+</script>
+
+</body>
+</html>
+
+

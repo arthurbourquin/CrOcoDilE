@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sine Wave Animation</title>
+<style>
+body {
+    color: gold;
+    background-color: #222;
+    margin: 0;
+}
+canvas {
+    border: 1px solid wheat;
+}
+</style>
+</head>
+<body>
+
+<canvas id="cacan"></canvas>
+<script>
+
+// own library
+function map(x, fromA, fromB, toA, toB) {
+    let from = fromB - fromA;
+    let to = toB - toA;
+    return (x - fromA) * (from / to) + fromB;
+}
+
+function map2D(x, y, fromA, fromB, toA, toB) {
+    let a = map(x, fromA, fromB, toA, toB);
+    let b = map(y, fromA, fromB, toA, toB);
+    return {x: a, y: b};
+}
+
+
+
+let pos = {x: 0, y: 0};
+
+addEventListener('mousemove', UPDATEPOS);
+
+function UPDATEPOS(){
+	pos.x = event.clientX;
+    pos.y = event.clientY;
+}
+
+let c = document.getElementById('cacan');
+c.width = window.innerWidth;
+c.height = window.innerHeight;
+let ctx = c.getContext('2d');
+function OUAIS() {
+
+ctx.clearRect(0, 0, c.width, c.height);
+
+ctx.fillStyle = 'wheat';
+ctx.beginPath();
+ctx.arc(pos.x, pos.y, 3, 0, 2 * Math.PI)
+ctx.fill();
+
+ctx.fillStyle = 'tomato';
+ctx.beginPath();
+let p = map2D(pos.x, pos.y, 0, 300, 100, 300);
+ctx.arc(p.x, p.y, 3, 0, 2 * Math.PI)
+ctx.fill();
+
+}
+setInterval(OUAIS, 1000 / 60);
+
+
+</script>
+</body>
+</html>

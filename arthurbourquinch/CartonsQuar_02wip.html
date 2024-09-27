@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+<title>Cartons</title>
+<style>
+body {
+font-family: Roboto Slab;
+font-weight: 300;
+color: #ddd;
+background: #222;
+} b {font-weight: 700
+}
+textarea, button, #DispRecto, #DispVerso, #DispInfos, table {
+font-family: Roboto Slab;
+font-weight: 700;
+color: #ddd;
+background: #222;
+border: 1px solid #ddd;
+border-radius: 10px;
+margin: 5px;
+padding: 20px;
+}
+#DispUserInput {
+height: 200px;
+}
+#BtnInfos, #DispInfos {
+    color: steelblue;
+    border: 1px solid steelblue;
+}
+#BtnEdit {
+width: 200px;
+}
+#BtnInfos {
+font-weight: 900;
+}
+#DispInfos {
+    position: absolute;
+    left: 60px; /* Adjust as needed to align with the button */
+    display: none; /* Hidden by default */
+    z-index: 10; /* Positioned above other elements */
+}
+#DispRecto, #DispVerso {
+display: inline-block; /* Ensures the min width and height are respected */
+min-width: 300px;
+min-height: 150px;
+vertical-align: top;
+}
+table {
+border-collapse: collapse;
+text-align: center;
+vertical-align: middle;
+border: unset;
+}
+tr, th, td {
+border: 1px solid #ddd;
+padding: 15px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- Infos -->
+<div id="DivInfos">
+<button id="BtnInfos" onclick="ShowInfos()">i</button>
+<button id="BtnStart" onclick="Ask()">Commencer</button>
+<button id="BtnReset" onclick="ResetScores()">Reset</button>
+<button id="BtnEdit" onclick="SwitchMode()">Editer les cartons</button>
+<span id="DispInfos">
+    Utilisez un tableur pour sauvegarder vos fiches comme ça :<br><br>
+    <table>
+        <tr style="background-color: #444"><th></th><th>A</th><th>B</th><th>C</th><th>D</th></tr>
+        <tr><th style="background-color: #444">1</th><td>Recto 1</td><td>;;</td><td>Verso 1</td><td></td></tr>
+        <tr><th style="background-color: #444">2</th><td>Recto 2</td><td>;;</td><td>Verso 2</td><td></td></tr>
+        <tr><th style="background-color: #444">3</th><td>Recto 3</td><td>;;</td><td>Verso 3</td><td></td></tr>
+        <tr><th style="background-color: #444">4</th><td></td><td></td><td></td><td></td></tr>
+    </table><br>
+    puis copiez-collez le tout dans le champs.<br>
+    <br>
+    -ou-<br>
+    <br>
+    Entrez directement les Rectos et Versos séparée par des ;; dans le champs.
+</div>
+
+<!-- Cartons -->
+<div id="DivCartons">
+<span id="DispRecto">Recto</span>
+<span id="DispVerso">Verso</span>
+</div>
+
+<!-- Juste / Faux -->
+<div id="DivCheck">
+<button id="BtnDispVerso" onclick="Answer()">Montrer</button>
+<button id="BtnCorrect" onclick="IsCorrect()">Juste</button>
+<button id="BtnWrong" onclick="IsWrong()">Faux</button>
+</div>
+
+<!-- Edition -->
+<form style="margin: 0; padding: 0;"><textarea id="DispUserInput" style="width: 100%; box-sizing: border-box;">
+(a-b)^2 ;; (a+b)(a-b)
+1 + 3 ;; 4</textarea></form>
+<table id="DispTable"></table>
+
+<script>
+
+// Show / Hide Infos
+function ShowInfos(){
+    const dispInfos = document.getElementById('DispInfos');
+    dispInfos.style.display = (dispInfos.style.display === 'none' || dispInfos.style.display === '') ? 'inline' : 'none';
+}
+
+// Toggle between Edit Mode and Game
+let EditMode = true;
+function SwitchMode(){
+    let DivCheck = document.getElementById('DivCheck');
+    let BtnEdit = document.getElementById('BtnEdit');
+    let Recto = document.getElementById('DispRecto'); // Updated ID
+    let Verso = document.getElementById('DispVerso'); // Updated ID
+    let BtnCorrect = document.getElementById('BtnCorrect');
+    let BtnWrong = document.getElementById('BtnWrong');
+    let InputField = document.getElementById('DispUserInput');
+    let Table = document.getElementById('DispTable');
+    if (EditMode) {
+        EditMode = false;
+        Recto.style.display = 'inline-block';
+        Verso.style.display = 'inline-block';
+        DivCheck.style.display = 'inline';
+        InputField.style.display = 'none';
+        Table.style.display = 'none';
+    } else {
+          EditMode = true;
+          Recto.style.display = 'none';
+          Verso.style.display = 'none';
+          DivCheck.style.display = 'none';
+        InputField.style.display = 'inline';
+        Table.style.display = 'inline';
+    }
+}
+
+// Update Cartons
+let Cartons = [];
+document.getElementById('DispUserInput').addEventListener('input', Update);
+function Update(){
+UpdateRectosVersos();
+UpdateTable();
+}
+
+/////////////////////////
+
+function FormatUserInput(){
+    let RawUserInput = document.getElementById('DispUserInput').value;
+    let FormattedInput = RawUserInput.split('\n').map(line => line.split(';;'));
+
+    // Create an array of objects
+    let Cartons = FormattedInput.map((entry) => {
+        return {
+            Recto: entry[0]?.trim() || "",  // Handle potential undefined entry
+            Verso: entry[1]?.trim() || "",  // Handle potential undefined entry
+            State: null, // Initialize default state
+            Good: 0, // Initialize good count
+            Bad: 0,  // Initialize bad count
+            Score: 0  // Initialize score
+        };
+    });
+
+    return Cartons;  // Return the array of objects
+}
+
+function UpdateCartons() {
+    for(let i = 0; i < Cartons.length; i++){
+        Cartons[i][0] = FormattedInput[i][0]; // Recto
+        Cartons[i][1] = FormattedInput[i][1]; // Verso
+    }
+}
+
+
+function UpdateRectosVersos() {
+    let RawInput = document.getElementById('DispUserInput').value;
+    let FormattedInput = RawInput.split('\n').map(line => line.split(';;'));
+    for(let i = 0; i < Cartons.length; i++){
+        Cartons[i][0] = FormattedInput[i][0]; // Recto
+        Cartons[i][1] = FormattedInput[i][1]; // Verso
+    }
+}
+
+///////////////////////
+
+function UpdateScores(a) {
+    if(a) {
+        Cartons[CurrentCarton][2] += 1;
+    } else {
+        Cartons[CurrentCarton][3] += 1;
+    }
+    Cartons[CurrentCarton][3] = Cartons[CurrentCarton][2] / Cartons[CurrentCarton][3];
+}
+function UpdateTable(){
+let table = document.getElementById('DispTable');
+table.innerHTML = '';
+for(let i = 0; i < Cartons.length; i++){
+let newRow = document.createElement('tr');
+for(let j = 0; j < 6; j++){
+    let newColumn = document.createElement('td');
+    newColumn.innerText = Cartons[i][j];
+    newRow.appendChild(newColumn);
+}
+table.appendChild(newRow);
+}
+}
+
+
+// Game
+let CurrentCarton = 0;
+function Ask(){
+    CurrentCarton = Math.floor(Math.random() * Cartons.length);
+    document.getElementById('DispRecto').innerText = Cartons[CurrentCarton][0];
+    document.getElementById('DispVerso').innerText = '';
+}
+function Answer(){
+    document.getElementById('DispVerso').innerText = Cartons[CurrentCarton][1];
+}
+function IsCorrect(){
+    Cartons[CurrentCarton][3] += 1;
+    Cartons[5] = Cartons[CurrentCarton][3] / Cartons[CurrentCarton][4];
+    Ask();
+}
+function IsWrong(){
+    Cartons[CurrentCarton][4] += 1;
+    Cartons[5] = Cartons[CurrentCarton][3] / Cartons[CurrentCarton][4];
+    Ask();
+}
+
+function ResetScores(){
+    for(let i = 0; i < Cartons.length; i++
+        Cartons[i][2] = false;
+        Cartons[i][3] = 6;
+        Cartons[i][4] = 7;
+        Cartons[i][5] = 13.7;
+    }
+    document.getElementById('BtnReset').style.color = 'red';
+}
+
+Update();
+SwitchMode();SwitchMode(); // moche
+ShowInfos(); ShowInfos(); // moche
+
+</script>
+
+</body>
+</html>

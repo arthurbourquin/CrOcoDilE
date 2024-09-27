@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+<title>Calculette</title>
+<style>
+body, textarea, .output {
+    font-family: Roboto Slab;
+    font-size: 20px;
+    color: #ddd;
+    background: #222;
+    margin: 5px;
+    padding: 5px;
+}
+textarea, .output {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    display: block;
+    margin: 10px;
+}
+.calculator, button {
+    border: 3px solid #ddd;
+    border-radius: 17px;
+    display: block;
+    margin: 10px;
+}
+button {
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+    font-weight: 700;
+    align-items: center;
+    align-content: center;
+    text-align: center;
+    text-justify: auto;
+    justify-content: center;
+    justify-items: center;
+    color: #ddd;
+    background-color: #222;
+}
+</style>
+</head>
+<body>
+
+<!-- Container to hold all calculators -->
+<div id="calculatorsContainer">
+    <!-- Initial Calculator -->
+    <div class="calculator">
+        <textarea class="input" type="text">1+1</textarea><br>
+        <span class="output">2</span>
+    </div>
+</div>
+
+<!-- Button to create a new calculator -->
+<button id="addCalculatorButton">+</button>
+
+<span id="test">ouais</span>
+
+<script>
+function RefreshCalculator(inputElement, outputElement) {
+    let input = inputElement.value;
+    try {
+        let result = eval(input);
+        outputElement.innerText = result;
+    } catch (e) {
+        outputElement.innerText = 'Error';
+    }
+}
+
+function CreateNewCalculator() {
+    // Create a new calculator container
+    let calculatorContainer = document.createElement('div');
+    calculatorContainer.className = 'calculator';
+    
+    // Create a new textarea for input
+    let newInput = document.createElement('textarea');
+    newInput.className = 'input';
+    newInput.type = 'text';
+    newInput.value = '1+1';  // Default value
+
+    // Create a new span for output
+    let newOutput = document.createElement('span');
+    newOutput.className = 'output';
+    newOutput.innerText = '2';  // Default output for '1+1'
+    
+    // Append input and output to the calculator container
+    calculatorContainer.appendChild(newInput);
+    calculatorContainer.appendChild(newOutput);
+    
+    // Append the new calculator container to the main container
+    document.getElementById('calculatorsContainer').appendChild(calculatorContainer);
+    
+    // Add input event listener for real-time calculation
+    newInput.addEventListener('input', function() {
+        RefreshCalculator(newInput, newOutput);
+    });
+
+    // Call the refresh function to initialize the output
+    RefreshCalculator(newInput, newOutput);
+}
+
+// Event listener for the "+" button
+document.getElementById('addCalculatorButton').addEventListener('click', CreateNewCalculator);
+
+// Initialize the first calculator
+document.querySelectorAll('.input').forEach(inputElement => {
+    let outputElement = inputElement.nextElementSibling;
+    inputElement.addEventListener('input', function() {
+        RefreshCalculator(inputElement, outputElement);
+    });
+    RefreshCalculator(inputElement, outputElement);
+});
+
+document.querySelectorAll('.input').addEventListener('hover', Ouais());
+Ouais(){
+    
+}
+</script>
+</body>
+</html>

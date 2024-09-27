@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Page Title</title>
+<style>
+body{
+background-color: #222;
+}
+</style>
+</head>
+<body>
+
+<svg id="svg" width="5000" height="5000" xmlns="http://www.w3.org/2000/svg">
+  <circle id="boris" cx="300" cy="222" r="15" stroke="salmon" stroke-width="2" fill="#444" />
+</svg>
+
+<script>
+
+const gridSize = [50,50];
+
+document.getElementById("svg").addEventListener("mousemove", snap);
+function snap(e) {
+const boris = document.getElementById('boris');
+boris.setAttribute('cx', Math.floor(e.clientX / gridSize[0]) * gridSize[0]);
+boris.setAttribute('cy', Math.floor(e.clientY / gridSize[1]) * gridSize[1]);
+}
+
+</script>
+
+</body>
+</html>
+
+

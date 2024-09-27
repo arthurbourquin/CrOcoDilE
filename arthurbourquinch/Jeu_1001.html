@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+<title>JeuV2</title>
+<style>
+body {
+    position: relative;
+    font-family: Roboto Slab;
+    font-weight: 600;
+    color: #ddd;
+    background: #222;
+    margin: 0px;
+}
+canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+</style>
+</head>
+<body>
+<span id="DispTimer" class="DispScore">Timer defalut</span>
+<span id="DispScore" class="DispScore">Score defalut</span>
+<span id="DispHealth" class="DispScore">Health defalut</span>
+<canvas id="Canvas"></canvas>
+<span id="test"></span>
+<script>
+
+
+let canvas = document.getElementById('Canvas');
+let WindowWidth;
+let WindowHeight;
+let MaxSize;
+let Zoom = 0.75;
+canvas.style.border = '1px solid #ddd';
+let ctx = canvas.getContext('2d');
+let FPS = 60;
+let FrameDuration = 1 / FPS;
+let Time = 0
+let Frame = 0;
+let Timer = 0;
+let Score = 0;
+
+let Player = [{posX: 20, posY: 20, size: 0.02, health: 3, color: '#ffd300'}];
+let Enemies = [];
+let MaxEnemies = 20;
+let Collectables = [];
+let CollectableBirth = 0;
+
+/*
+function test() {
+    document.getElementById('test').innerText =
+        'pX: ' + Player[0].posX.toFixed(2) + '\n' +
+        'pY: ' + Player[0].posY.toFixed(2) + '\n' +
+        '\n' +
+        'enemies: ' + Enemies.length + '\n' +
+        'collectables: ' + Collectables.length + '\n' +
+        'Score: ' + Score + '\n' +
+        'Health: ' + Player[0].health + '\n' +
+        'Time: ' + Timer
+        ;
+}
+*/
+
+function UpdateScores() {
+    document.getElementById('DispTimer').innerText = Timer;
+    document.getElementById('DispScore').innerText = Score;
+    document.getElementById('DispHealth').innerText = Player[0].health;
+}
+
+function UpdateTime() {
+    Time += FrameDuration; 
+    Timer = Math.floor(Time);
+    Frame = Time * FrameDuration;
+}
+
+function UpdatePlayerPosition(){
+    let p = ScreenToGameSpace(event.clientX - 30, event.clientY - 30);
+    Player[0].posX = Math.min(Math.max(p.x, 0), 1);
+    Player[0].posY = Math.min(Math.max(p.y, 0), 1);
+}
+
+addEventListener('mousemove', UpdatePlayerPosition);
+
+function AddEnemy(){
+    if (Enemies.length < Time && Enemies.length < MaxEnemies) {
+        let x = Math.random();
+        let y = Math.random();
+        let s = 0.04;
+        let d = Math.random() * 2 * Math.PI;
+        let sp = Math.random() * 0.002 + 0.005;
+        let r = Math.random();
+        let c = '#ea498b';
+        let NewEnemy = {posX: x, posY: y, size: s, dir: d, speed: sp, color: c, rand: r, dist: 0};
+        Enemies.push(NewEnemy);
+        EnemiesCount++;
+    }
+}
+function UpdateEnemies(){
+    let kill = [];
+    for(let i = 0; i < Enemies.length; i++) {
+        let e = Enemies[i];
+        let x = e.posX + Math.cos(e.dir) * e.speed;
+        let y = e.posY + Math.sin(e.dir) * e.speed;
+        Enemies[i].posX = x - Math.floor(x);
+        Enemies[i].posY = y - Math.floor(y); 
+        Enemies[i].dir = e.dir + Math.sin((Time + e.rand) / 2) / 50;
+        Enemies[i].speed = e.speed + Time * 0.0000001;
+        Enemies[i].dist = Math.sqrt(
+            Math.pow(Enemies[i].posX - Player[0].posX, 2) +
+            Math.pow(Enemies[i].posY - Player[0].posY, 2)
+        );
+        if (e.dist < (e.size + Player[0].size) / 2) {
+            kill.push(i);
+            Player[0].health = Math.max(Player[0].health - 1, 0);
+            Hit();
+        }
+        if (Player[0].health < 1) {
+            EndGame();
+        }
+    }
+    for (let i = kill.length - 1; i >= 0; i--) {
+        Enemies.splice(kill[i], 1);
+    }
+}
+function Hit() {
+    let ct = 1000;
+    const interval = setInterval(() => {
+        if (ct <= 0) {
+            clearInterval(interval);
+        } else {
+            ct -= 50;
+            let a = Math.floor(255 * (ct / 1000));
+            let hex = a.toString(16).padStart(2, '0');
+            canvas.style.backgroundColor = `#ea498b${hex}`;
+        }
+    }, 50);
+}
+
+function AddCollectable(){
+    if(Collectables.length < 3) {
+        let x = Math.random();
+        let y = Math.random();
+        let s = Math.random() * 0.05 + 0.025;
+        let d = Math.random() * 2 * Math.PI;
+        let c = '#67ae40';
+        let col = {posX: x, posY: y, size: s, color: c, dist: 0};
+        Collectables.push(col);
+    }
+    CollectableBirth
+}
+function UpdateCollectables() {
+    let kill = [];
+    for (let i = 0; i < Collectables.length; i++) {
+        let c = Collectables[i];
+        c.dist = Math.sqrt(
+            Math.pow(c.posX - Player[0].posX, 2) +
+            Math.pow(c.posY - Player[0].posY, 2)
+        );
+        if (c.dist < (c.size + Player[0].size) / 2) {
+            kill.push(i);
+            Score += Math.floor(c.size * 100);
+        }
+    }
+    for (let i = kill.length - 1; i >= 0; i--) {
+        Collectables.splice(kill[i], 1);
+    }
+}
+
+function PlaceElements(){
+    WindowWidth = window.innerWidth;
+    WindowHeight = window.innerHeight;
+    MaxSize = Math.min(WindowWidth, WindowHeight);
+    canvas.width = MaxSize * Zoom;
+    canvas.height = MaxSize * Zoom;
+    canvas.style.marginLeft = (WindowWidth - MaxSize * Zoom) / 2 + 'px';
+    canvas.style.marginTop = (WindowHeight - MaxSize * Zoom) / 2 + 'px';
+    let ds = document.getElementById('DispScore');
+    ds.style.position = 'absolute';
+    ds.style.left = WindowWidth / 2 + 'px';
+    ds.style.top = (WindowHeight - MaxSize * (1 + Zoom) / 2) / 2 + 'px';
+    ds.style.transform = 'translate(-50%, -50%)';
+    ds.style.fontSize = MaxSize / 10 + 'px';
+    ds.style.color = '#67ae40';
+    let dt = document.getElementById('DispTimer');
+    dt.style.position = 'absolute';
+    dt.style.left = WindowWidth - MaxSize * (1 - Zoom) / 2 + 'px';
+    dt.style.top = (WindowHeight - MaxSize * (1 + Zoom) / 2) / 2 + 'px';
+    dt.style.transform = 'translate(-100%, -50%)';
+    dt.style.fontSize = MaxSize / 20 + 'px';
+    dt.style.color = '#ddd';
+    let dh = document.getElementById('DispHealth');
+    dh.style.position = 'absolute';
+    dh.style.left = MaxSize * (1 - Zoom) / 2 + 'px';
+    dh.style.top = (WindowHeight - MaxSize * (1 + Zoom) / 2) / 2 + 'px';
+    dh.style.transform = 'translate(0, -50%)';
+    dh.style.fontSize = MaxSize / 20 + 'px';
+    dh.style.color = '#ffd300';
+}
+addEventListener('resize', PlaceElements);
+PlaceElements();
+
+
+// Space Conversions par GPT
+function ScreenToGameSpace(x, y) {
+    const gameX = (x - (WindowWidth - MaxSize * Zoom) / 2) / (MaxSize * Zoom);
+    const gameY = (y - (WindowHeight - MaxSize * Zoom) / 2) / (MaxSize * Zoom);
+    return { x: gameX, y: gameY };
+}
+function GameToScreenSpace(x, y) {
+    const screenX = x * MaxSize * Zoom + (WindowWidth - MaxSize * Zoom) / 2;
+    const screenY = y * MaxSize * Zoom + (WindowHeight - MaxSize * Zoom) / 2;
+    return { x: screenX, y: screenY };
+}
+function ScreenToCanvasSpace(x, y) {
+    const canvasX = x - (WindowWidth - MaxSize * Zoom) / 2;
+    const canvasY = y - (WindowHeight - MaxSize * Zoom) / 2;
+    return { x: canvasX, y: canvasY };
+}
+function CanvasToScreenSpace(x, y) {
+    const screenX = x + (WindowWidth - MaxSize * Zoom) / 2;
+    const screenY = y + (WindowHeight - MaxSize * Zoom) / 2;
+    return { x: screenX, y: screenY };
+}
+function CanvasToGameSpace(x, y) {
+    const gameX = x / (MaxSize * Zoom);
+    const gameY = y / (MaxSize * Zoom);
+    return { x: gameX, y: gameY };
+}
+function GameToCanvasSpace(x, y) {
+    const canvasX = x * MaxSize * Zoom;
+    const canvasY = y * MaxSize * Zoom;
+    return { x: canvasX, y: canvasY };
+}
+
+function GAME(){
+    UpdateTime();
+    UpdateEnemies();
+    UpdateCollectables();
+    AddEnemy();
+    AddCollectable();
+    ClearCanvas();
+    DrawItems(Collectables);
+    DrawItems(Enemies);
+    DrawItems(Player);
+    UpdateScores();
+    test();
+}
+function ClearCanvas() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+}
+function DrawItems(items){
+    for(let i = 0; i < items.length; i++){
+        let item = items[i];
+        let pos = GameToCanvasSpace(item.posX, item.posY);
+        let x = pos.x
+        let y = pos.y
+        let s = item.size * (MaxSize * Zoom);
+        ctx.fillStyle = item.color;
+        ctx.beginPath();
+        ctx.arc(x, y, s / 2, 0, Math.PI * 2);
+        ctx.fill();
+    }
+}
+
+const GAMERUNNING = setInterval(GAME, (1 / FPS) * 1000);
+
+function EndGame() {
+    clearInterval(GAMERUNNING);
+    document.getElementById('DispHealth').innerText = 0; // fix
+}
+
+
+</script>
+</body>
+</html>

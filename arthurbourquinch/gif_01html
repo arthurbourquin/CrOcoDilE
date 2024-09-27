@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Box Layout</title>
+    <style>
+        .row, .line {
+            box-sizing: border-box;
+            border: 1px solid #222;
+            text-align: center;
+        }
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 10px;
+            margin: 10px;
+        }
+        .line {
+            flex: 1;
+            padding: 10px;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="line" style="border: 2px solid tomato">
+	<div class="row" style="border: 2px solid seagreen">
+      <div class="row" style="border: 2px solid steelblue">
+      	<canvas id="canvas1">
+        </canvas>
+      </div>
+      <div class="row" style="border: 2px solid steelblue">
+      	<canvas id="canvas2">
+        </canvas>
+      </div>
+      <div class="row" style="border: 2px solid steelblue">
+      	<canvas id="canvas3">
+        </canvas>
+      </div>
+      <div class="row" style="border: 2px solid steelblue">
+      	<canvas id="canvas4">
+        </canvas>
+      </div>
+	</div>
+	<div class="row" style="border: 2px solid seagreen">
+      <div class="line" style="border: 2px solid steelblue">
+        <div class="row" style="border: 2px solid violet">
+        </div>
+        <div class="row" style="border: 2px solid violet">
+        </div>
+      </div>
+      <div class="line" style="border: 2px solid steelblue">
+        <div class="row" style="border: 2px solid violet">
+        </div>
+        <div class="row" style="border: 2px solid violet">
+        </div>
+        <div class="row" style="border: 2px solid violet">
+        </div>
+        <div class="row" style="border: 2px solid violet">
+        </div>
+      </div>
+      <div class="line" style="border: 2px solid steelblue">
+        <div class="row" style="border: 2px solid violet">
+        </div>
+        <div class="row" style="border: 2px solid violet">
+        </div>
+      </div>
+	</div>
+	<div class="row" style="border: 2px solid seagreen">
+      <div class="row" style="border: 2px solid steelblue">
+      </div>
+      <div class="row" style="border: 2px solid steelblue">
+      </div>
+      <div class="row" style="border: 2px solid steelblue">
+      </div>
+      <div class="row" style="border: 2px solid steelblue">
+      </div>
+      <div class="row" style="border: 2px solid steelblue">
+      </div>
+      <div class="row" style="border: 2px solid steelblue">
+      </div>
+      <div class="row" style="border: 2px solid steelblue">
+      </div>
+      <div class="row" style="border: 2px solid steelblue">
+      </div>
+      <div class="row" style="border: 2px solid steelblue">
+      </div>
+      <div class="row" style="border: 2px solid steelblue">
+      </div>
+	</div>
+
+
+
+
+</div>
+
+<script>
+// Function to change the size of canvases
+function changeCanvasSize(width, height) {
+  // Iterate through canvas IDs starting from 1
+  let i = 1;
+  while (true) {
+    let canvas = document.getElementById('canvas' + i);
+    // If the canvas element does not exist, break the loop
+    if (!canvas) break;
+    // Change the width and height of the canvas
+    canvas.width = width;
+    canvas.height = height;
+    i++;
+  }
+}
+
+// Example usage: change all canvases to 800x600
+changeCanvasSize(64, 64);
+
+
+</script>
+
+
+</body>
+</html>

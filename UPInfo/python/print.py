@@ -1,0 +1,1 @@
+print("ouais, c'est un fichier crée depuis VSCode")

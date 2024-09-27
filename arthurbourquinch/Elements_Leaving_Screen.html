@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Page Title</title>
+<style>
+body {
+text-align: center;
+}
+</style>
+</head>
+<body>
+
+  <h1>This is a Heading</h1>
+  <p>This is a paragraph.</p>
+  <h2>Ouais</h2>
+  <p>eghhw6 j5 jw j<br> w5jm5wjerwj<br>srj tj dbf g <br>njzf baerstn<br>std mndtz</p>
+
+<script>
+let elements = document.querySelectorAll('h1, h2, p');
+let elementAtIndex = elements[0];
+let offset = 0;
+
+function move(){
+  for (let i = 0; i < elements.length; i++) {
+  offset += 50 / 1000;
+    elements[i].style.transform = `translate(${offset * i}px, ${offset * i}px) rotate(${offset * i}deg)`;
+  }
+}
+
+setInterval(move, 50);
+
+</script>
+
+</body>
+</html>
+
+

@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playwrite+NG+Modern:wght@100..400&family=Roboto+Slab:wght@100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+  <title>After Effects</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
+  
+<style>
+  body {
+    background: #222222;
+    color: #dddddd;
+    font-family: 'Roboto Slab', serif;
+    text-align: center;
+  }
+  table {
+    text-align: left;
+    margin: auto;
+    border-collapse: collapse;
+  }
+  th {
+    font-size: 18px;
+    padding: 10px 20px;
+    border: 1px solid #ddd;
+  }
+  td {
+    font-size: 14px;
+    padding: 10px 20px;
+    border: 1px solid #ddd;
+  }
+  th:first-child, td:first-child {
+    width: 200px;
+  }
+  th:nth-child(2), td:nth-child(2) {
+    width: 500px;
+  }
+  #col1 {color: #e4202e;}
+  #col2 {color: #67ae40;}
+  #col3 {color: #424dec;}
+  #col4 {color: #a161cb;}
+  #col5 {color: #ffc300;}
+  #col6 {color: #30bcd1;}
+  #col7 {color: #f78d90;}
+  #col8 {color: #7a4b38;}
+  #col9 {color: #f16d00;}
+</style>
+</head>
+
+<body>
+
+  <h1>After Effects</h1>
+  <h2>Expressions</h2>
+  
+  <table>
+    <tr>
+      <th>Wiggle(<span id="col1"> 10</span>, <span id="col2"> 50</span>)</th>
+      <th>Tremble <span id="col1"> 10</span> fois par secondes de <span id="col2"> 50</span> pixels maximum</th>
+    </tr>
+    <tr>
+      <td>Moyen</td>
+      <td><code>wiggle(10,10)</code></td>
+    </tr>
+    <tr>
+      <td>Frénétique</td>
+      <td><code>wiggle(25,10)</code></td>
+    </tr>
+    <tr>
+      <td>Lent</td>
+      <td><code>wiggle(1,10)</code></td>
+    </tr>
+    <tr>
+      <td>Mal de mer</td>
+      <td><code>wiggle(2,1000)</code></td>
+    </tr>
+    <tr>
+  </table><br>
+  <table>
+      <th>Animation en boucle</th>
+      <th></th>
+    </tr>
+    <tr>
+      <td>Simple</td>
+      <td><code>loopOut()</code></td>
+    </tr>
+    <tr>
+      <td>Fixe le problème de la première image vide dans une boule avec remappage temporel</td>
+      <td><code>if(loopOut() == comp(thisLayer.source.name).duration){0}else{loopOut()}</code></td>
+    <tr>
+    <tr>
+      <td>Pareil mais moins bien</td>
+      <td><code>c = comp(thisLayer.source.name); d = c.duration; r = c.frameDuration; Math.min(loopOut(), d - r)</code></td>
+    <tr>
+	<tr>
+      <td>Boucle sur un masque ou un tracé.<br>
+          Attention : impossible d'éditer le tracé par la suite...<br>
+          (Ouais... Adobe shit...)</td>
+      <td><code>if (numKeys >1 && time > key(numKeys).time) {
+ t1 = key(1).time;
+ t2 = key(numKeys).time;
+ span = t2 - t1;
+ delta = time - t2;
+ t = delta%span;
+ valueAtTime(t1 + t)
+} else {
+	value
+}
+</code></td>
+    </tr>
+  </table>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<h3>Vieux cheni qui faut que je range...</h3>
+<pre>
+<code>
+IF ELSE
+Logical connectors
+<
+>
+<=
+>=
+==  equal
+||  and(?)
+&&  or
+if(rotation < 180) 100
+if(rotation < 180) {100} else {50}
+if(rotation<90 || rotation>270) 100 else 50
+if(rotation<90 || rotation>180 && rotation<270) 100 else 50
+
+
+
+NOMBRE DE CHIFFRES AVANT LA VIRGULE
+Math.floor(12354.23423).toString().length
+
+
+
+Colors in expressions
+When expression on a color parameter :
+[a,b,c,d]
+a = red
+b = green
+c = blue
+d = alpha
+hslToRgb([a,b,c,d])
+a = hue
+b = saturation
+c = luminance
+d = alpha
+
+
+
+
+SPLIT
+Composition name : "Full Name – Title"
+thisComp.name.split(" - ")[0] // results in "Full Name"
+thisComp.name.split(" - ")[1] // results in "Title"
+
+
+
+thisComp.layer("cheval").sourceRectAtTime().width
+
+
+
+PATH
+expression sur la position d'un calque :
+thisComp.layer("Calque de forme 1").toComp(thisComp.layer("Calque de forme 1").content("Forme 1").content("Tracé 1").path.pointOnPath(time))
+
+
+
+RANDOM
+random()                   // number between 0 and 1
+random(6)                  // number between 0 and 6
+random(-2,4)               // number between -2 and 4
+random([3,4,5])            // vector between [0,0,0] and [3,4,5]
+random([3,4,5],[6,7,8])    // vector between [3,4,5] and [6,7,8]
+random([0,0],[1910,1080])  // random position in FullHD
+seedRandom(3);
+random()
+permet uniquement de choisir la "valeur random n°3", mais elle sera quand même à chaque fois différentes ( si elle est appliquée sur plusieurs paramètres différents)
+Donc pas possible d'appliquer une séquence random identique à deux paramètres ( à moins de passer par un curseur source, évidemment)
+
+
+
+MARKER
+thisLayer.
+thisLayer.marker.key(1)
+thisLayer.marker.key("Cheval")
+thisLayer.marker.nearestKey(time).time   //time value of the nearest marker
+thisLayer.marker.numKeys                 //number of keyframes
+thisLayer.marker.nearestKey(time)
+.time
+.duration
+.index
+.comment
+.chapte
+.url
+.frameTarget
+.cuePointName
+.eventCuePoint
+.parameters
+.parameters[param]
+
+
+
+NEARESTKEY
+key index : première key = 1 (pas 0)
+thisLayer.transform.position = position
+1 calque avec 1 slider :
+slider:
+position.key(1).index                  // ne fais aucun sens
+position.key(1).value[0]               // valeur x de la première clé de position
+position.key(1).time                   // position temporelle de la première clé de position
+position.nearestKey(time).index        // numéro de clé de position la plus proche
+position.nearestKey(time).value[0]     // valeur x de la clé de position la plus proche
+position.nearestKey(time).time         // position temporelle de la clé de position la plus proche
+
+
+
+MAXIMUM/MINIMUM
+Math.max( "Val" , "ValMin" )
+Math.min( "Val" , "ValMax" )
+Math.min(Math.max("Val","ValMin"),"ValMax")
+Empeche de sortir de la comp de 500 x 500 :
+expression dans la position:
+x=Math.max(Math.min(position[0], 500),0);
+y=Math.max(Math.min(position[1], 500),0);
+[x,y]
+
+
+
+
+INTERPOLATION
+exemple :
+linear ( time , 200 , 600 )
+0sec > 200
+1sec > 600
+expression dans la position :
+linear(
+effect("DebutFin")("Curseur"), 
+thisComp.layer("Source").transform.position.valueAtTime(effect("ValeurDebut")("Curseur")), 
+thisComp.layer("Source").transform.position.valueAtTime(effect("ValeurFin")("Curseur"))
+)
+Curseurs:
+DebutFin keyframe 0 à 1 dans la timeline pour
+position 1
+position 2
+thisComp.layer(index+1).transform.position.nearestKey(time).value
+
+INTERPOLATION TRICK
+procédure :
+-entrer les valeurs de début et de fin d'une propriété sur les deux premières images de la composition
+-ajouter un curseur/slider nommé "t"
+(-animer le curseur de 0 à 1 dans la timeline)
+ajouter l'expression sur la (les) propriétés à animer :
+1:
+linear(effect("t")("Curseur"),valueAtTime(0),valueAtTime(thisComp.frameDuration))
+2:
+if(time<thisComp.frameDuration*2) value else
+linear(effect("t")("Curseur"),valueAtTime(0),valueAtTime(thisComp.frameDuration))
+les deux premières images de la timeline servent à ajuster le début à la fin de l'animation.
+1, pour "voir ce qui se passe", décocher le "="
+2, masque le calque sur les deux premières images
+
+
+FIT COMP WITH CONSTANT PROPORTION / RESPONSIVE FOOTAGE
+put expression below in scale property
+function IF(a,b,c,d){
+if(a>b) return c else return d}
+val=IF(thisComp.width/thisComp.height,16/9,(thisComp.width/width)*100,(thisComp.height/height)*100);
+[val,val]
+
+
+
+SAMPLEIMAGE
+expression in color slider of a comp:
+sampleImage([width,height]/2,[width,height])
+expression in colour of fill effect of null (100x100px) :
+thisComp.layer("LAYER").sampleImage(transform.position,transform.scale)
+
+
+sourceRectAtTime()
+thisComp.layer(1).sourceRectAtTime().width
+
+
+loopOut() sur un tracé on path mask masque
+
+foireux marche même pas :
+valueAtTime(time % key(numKeys).time )
+
+foireux impossible d'éditer le path par la suite :
+// loop path keyframes. Behaves like loopOut('cycle')
+if (numKeys >1 && time > key(numKeys).time) {
+ t1 = key(1).time;
+ t2 = key(numKeys).time;
+ span = t2 - t1;
+ delta = time - t2;
+ t = delta%span;
+ valueAtTime(t1 + t)
+} else {
+	value
+}
+
+
+</code>
+</pre>
+
+</body>
+
+</html>

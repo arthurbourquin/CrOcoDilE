@@ -1,0 +1,32 @@
+<!DOCTYPE html><html><head><style>body{margin:0px;}</style></head>
+<body>
+<canvas id="CANVAS" width="300" height="100" style="border:0px solid black;">
+</canvas>
+<script>
+const CANVAS = document.getElementById("CANVAS");
+let WW = window.innerWidth; let WW2 = WW / 2;
+let WH = window.innerHeight; let WH2 = WH / 2;
+let X = [0,      0,    0,    0,   0];
+let Y = [0,   -100, -150, -100, -50];
+let S = [1000, 500,  250,  125, 110];
+let R = [ 135, 155,  175,  195, 215];
+let I = new Image(); I.src = 'https://arthurbourquin.ch/OuaisLesMedias/heig.png'; let IW = 1; let IH = 1 * (I.height / I.width);
+CANVAS.width = WW;
+CANVAS.height = WH;
+const CTX = CANVAS.getContext("2d");
+let i = 0;
+function DRAW() {
+i++;
+CTX.resetTransform();
+CTX.translate(WW / 2, WH / 2);
+CTX.scale(S[i], S[i]);
+CTX.translate(X[i] / S[i], Y[i] / S[i]);
+CTX.rotate(R[i] * Math.PI * 2 / 360);
+CTX.drawImage(I, -IW/2, -IH/2, IW, IH);
+CTX.resetTransform();
+if(i > X.length) clearInterval(RUN);
+}
+let RUN = setInterval('DRAW()', 1000 / 24);
+</script>
+</body>
+</html>

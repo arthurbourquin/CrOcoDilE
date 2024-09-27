@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Jeu</title>
+<style>
+body {
+margin: 0px;
+background: #222;
+}
+canvas {
+display: block;
+image-rendering: pixelated;
+border: 1px solid #ddd;
+}
+</style>
+</head>
+<body>
+<canvas id="C"></canvas>
+<script>
+
+let C = document.getElementById('C');
+let GAMESIZE = 128;
+let T = 0;
+let FPS = 30;
+C.width = GAMESIZE;
+C.height = GAMESIZE;
+let W = window.innerWidth;
+let H = window.innerHeight;
+let MARGIN = 0.8;
+let DISPLAYSIZE = MARGIN * Math.min(W, H);
+let ctx = C.getContext('2d');
+let EXCITEMENT = 0;
+let ENEMY = [];
+for(let i = 0; i < 20; i++){
+ENEMY.push({
+pos: [Math.random() * GAMESIZE, Math.random() * GAMESIZE],
+dir: Math.random() * Math.PI * 2,
+speed: Math.random() * 2 + 1,
+rand: Math.random()})
+}
+
+
+function GAME() {
+W = window.innerWidth;
+H = window.innerHeight;
+ctx.fillStyle = '#222';
+ctx.fillRect(0, 0, GAMESIZE, GAMESIZE);
+T += 1 / FPS;
+EXCITEMENT = T / 100;
+
+// ENEMIES
+for(let i = 0; i < ENEMY.length; i++){
+ctx.beginPath();
+ctx.fillStyle = 'tomato';
+ENEMY[i].dir = ENEMY[i].dir + EXCITEMENT * Math.sin(T * EXCITEMENT + ENEMY[i].rand * Math.PI * 2);
+let x = ENEMY[i].pos[0] + Math.sin(ENEMY[i].dir) * ENEMY[i].speed * (1 + EXCITEMENT * 2);
+let y = ENEMY[i].pos[1] + Math.cos(ENEMY[i].dir) * ENEMY[i].speed * (1 + EXCITEMENT * 2);
+x = ((x / GAMESIZE) - Math.floor(x / GAMESIZE)) * GAMESIZE;
+y = ((y / GAMESIZE) - Math.floor(y / GAMESIZE)) * GAMESIZE;
+ENEMY[i].pos[0] = x;
+ENEMY[i].pos[1] = y;
+ctx.arc(x, y, 2, 0, Math.PI * 2);
+ctx.fill();
+}
+
+C.style.width = DISPLAYSIZE + 'px';
+C.style.height = DISPLAYSIZE + 'px';
+C.style.marginLeft = (W - DISPLAYSIZE) / 2 + 'px';
+C.style.marginTop = (H - DISPLAYSIZE) / 2 + 'px';
+}
+
+setInterval(GAME, 1000 / FPS);
+</script>
+</body>
+</html>
+
+

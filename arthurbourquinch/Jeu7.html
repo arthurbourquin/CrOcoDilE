@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+	<title>Cursor Game</title>
+<style>
+    body {
+        margin: 0;
+        display: flex;
+        overflow: hidden;
+        position: relative;
+        background-color: #222;
+    }
+    canvas{
+    position: absolute;
+    }
+    a {
+    font-family: Roboto Slab;
+    font-weight: 600;
+    text-align:center;
+    position: absolute;
+    color: #222;
+    background-color: blanchedalmond;
+    }
+</style>
+</head>
+<body>
+
+<canvas id="Board"></canvas>
+<a id="healthCounter" style="opacity: 0.75">0</a>
+<a id="timeCounter" style="opacity: 0.75">0</a>
+<a id="scoreCounter" style="opacity: 0.75">0</a>
+
+<script>
+
+let health = 3;
+let time = 0;
+let score = 0;
+let gameRate = 50;
+
+let boardSize = Math.min(window.innerWidth, window.innerHeight) * 0.8;
+let margin = [0, 0];
+let counterSize = 0.2;
+
+let player = [0, 0];
+let enemies = [];
+let enemySize = 0.05;
+
+setInterval(run, gameRate);
+setInterval(draw, gameRate);
+setInterval(addEnemy, 1000);
+
+
+function addEnemy(){
+	enemies.push({
+    	pos: [Math.random() * 2 - 1, Math.random() * 2 - 1],
+        dir: Math.random() * Math.PI * 2,
+        speed: Math.random() * 0.05 + 0.01 ,
+        dist: 0,
+        rand: Math.random()
+        ,});
+}
+
+
+function run(){
+  time += gameRate / 1000;
+    for (let i = 0; i < enemies.length; i++) {
+   	return enemies[i].pos[0] = enemies[i].pos[0] + Math.sin(enemies[i].dir * enemies[i].speed * gameRate);
+   	return enemies[i].pos[1] = enemies[i].pos[1] + Math.cos(enemies[i].dir * enemies[i].speed * gameRate);
+	}
+
+}
+
+function draw(){
+
+    boardSize = Math.min(window.innerWidth, window.innerHeight) * 0.8;
+    margin = [(window.innerWidth - boardSize) / 2, (window.innerHeight - boardSize) / 2];
+
+    var canvas = document.getElementById('Board');
+    canvas.width = boardSize;
+    canvas.height = boardSize;
+    canvas.style.left = margin[0] + 'px';
+    canvas.style.top = margin[1] + 'px';
+    canvas.style.border = '1px solid blanchedalmond';
+
+    var healthCounter = document.getElementById('healthCounter');
+    healthCounter.style.width = boardSize * counterSize + 'px';
+    healthCounter.style.height = boardSize / 20 + 'px';
+    healthCounter.style.fontSize = boardSize / 30 + 'px';
+    healthCounter.style.left = margin[0] + 'px';
+    healthCounter.style.top = margin[1] + 'px';
+    healthCounter.textContent = 'Health: ' + health;
+
+    var timeCounter = document.getElementById('timeCounter');
+    timeCounter.style.width = boardSize * counterSize + 'px';
+    timeCounter.style.height = boardSize / 20 + 'px';
+    timeCounter.style.fontSize = boardSize / 30 + 'px';
+    timeCounter.style.left = window.innerWidth / 2 - (boardSize * counterSize / 2) + 'px';
+    timeCounter.style.top = margin[1] + 'px';
+    timeCounter.textContent = 'Time: ' + Math.floor(time);
+
+    var scoreCounter = document.getElementById('scoreCounter');
+    scoreCounter.style.width = boardSize * counterSize + 'px';
+    scoreCounter.style.height = boardSize / 20 + 'px';
+    scoreCounter.style.fontSize = boardSize / 30 + 'px';
+    scoreCounter.style.left = window.innerWidth - margin[0] - (boardSize * counterSize) + 'px';
+    scoreCounter.style.top = margin[1] + 'px';
+    scoreCounter.textContent = 'Score: ' + Math.floor(score);
+    
+    
+    let ctx = canvas.getContent('2d');
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    
+    
+
+    for (let i = 0; i < enemies.length; i++) {
+      ctx.beginPath();
+      ctx.arc(0, 0, enemySize * boardSize, 0, Math.PI * 2);
+      ctx.fillStyle = 'blanchedAlmond';
+      ctx.fill();
+	}
+
+}
+
+</script>
+
+</body>
+</html>

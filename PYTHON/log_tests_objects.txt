@@ -1,0 +1,203 @@
+Last login: Wed Sep 25 17:26:33 on ttys000
+
+The default interactive shell is now zsh.
+To update your account to use zsh, please run `chsh -s /bin/zsh`.
+For more details, please visit https://support.apple.com/kb/HT208050.
+Gunter-LeMacBookPro2014:PYTHON Gunter$ ls
+ArabicPersianFarsi_Conversion	robot_test.cpp
+PythonBIFunc.pdf		yes-nano-terminal.py
+mementopython3.pdf
+Gunter-LeMacBookPro2014:PYTHON Gunter$ nano yes-nano-terminal.py 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Gunter-LeMacBookPro2014:PYTHON Gunter$ python3
+Python 3.12.6 (main, Sep 14 2024, 21:57:26) [Clang 12.0.5 (clang-1205.0.22.11)] on darwin
+Type "help", "copyright", "credits" or "license" for more information.
+>>> a = [1,2,3]
+>>> a
+[1, 2, 3]
+>>> a[0]
+1
+>>> b = {a}
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: unhashable type: 'list'
+>>> b = {1, 2, 3}
+>>> b
+{1, 2, 3}
+>>> b[0]
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: 'set' object is not subscriptable
+>>> b = {a:2}
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: unhashable type: 'list'
+>>> b = {}
+>>> b
+{}
+>>> b={,}
+  File "<stdin>", line 1
+    b={,}
+       ^
+SyntaxError: invalid syntax
+>>> b
+{}
+>>> sum(a)
+6
+>>> b = {"clé":"valeur"}
+>>> c = {1:"un",3:"trois",2:"deux",3.14:"π"}
+>>> c
+{1: 'un', 3: 'trois', 2: 'deux', 3.14: 'π'}
+>>> c.1
+  File "<stdin>", line 1
+    c.1
+     ^^
+SyntaxError: invalid syntax
+>>> c.un
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+AttributeError: 'dict' object has no attribute 'un'
+>>> c[0]
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+KeyError: 0
+>>>     c
+  File "<stdin>", line 1
+    c
+IndentationError: unexpected indent
+>>> c
+{1: 'un', 3: 'trois', 2: 'deux', 3.14: 'π'}
+>>> c{1}
+  File "<stdin>", line 1
+    c{1}
+     ^
+SyntaxError: invalid syntax
+>>> c.1
+  File "<stdin>", line 1
+    c.1
+     ^^
+SyntaxError: invalid syntax
+>>> c:1
+>>> c
+{1: 'un', 3: 'trois', 2: 'deux', 3.14: 'π'}
+>>> a = [2,4,2,3,4,6,7,8,6,4,3,1]
+>>> sorted(a)
+[1, 2, 2, 3, 3, 4, 4, 4, 6, 6, 7, 8]
+>>> a
+[2, 4, 2, 3, 4, 6, 7, 8, 6, 4, 3, 1]
+>>> a
+[2, 4, 2, 3, 4, 6, 7, 8, 6, 4, 3, 1]
+>>> a[1]
+4
+>>> a = sorted(a)
+>>> a
+[1, 2, 2, 3, 3, 4, 4, 4, 6, 6, 7, 8]
+>>> type(c)
+<class 'dict'>
+>>> type(b)
+<class 'dict'>
+>>> exit()
+Gunter-LeMacBookPro2014:PYTHON Gunter$ touch ouais-un-objet.py
+Gunter-LeMacBookPro2014:PYTHON Gunter$ nano ouais-un-objet.py 
+Gunter-LeMacBookPro2014:PYTHON Gunter$ python3 ouais-un-objet.py 
+Gunter-LeMacBookPro2014:PYTHON Gunter$ nano ouais-un-objet.py 
+Gunter-LeMacBookPro2014:PYTHON Gunter$ car1
+-bash: car1: command not found
+Gunter-LeMacBookPro2014:PYTHON Gunter$ car1.display()
+> salf
+-bash: syntax error near unexpected token `salf'
+Gunter-LeMacBookPro2014:PYTHON Gunter$ car1.display() salf
+-bash: syntax error near unexpected token `salf'
+Gunter-LeMacBookPro2014:PYTHON Gunter$ car1
+-bash: car1: command not found
+Gunter-LeMacBookPro2014:PYTHON Gunter$ car1.display()
+> 
+> make
+-bash: syntax error near unexpected token `make'
+Gunter-LeMacBookPro2014:PYTHON Gunter$ car1.display()
+> 
+> 
+> 
+> 
+> 
+> a
+-bash: syntax error near unexpected token `a'
+Gunter-LeMacBookPro2014:PYTHON Gunter$ touch john-36.py
+Gunter-LeMacBookPro2014:PYTHON Gunter$ nano john-36.py 
+Gunter-LeMacBookPro2014:PYTHON Gunter$ p1
+-bash: p1: command not found
+Gunter-LeMacBookPro2014:PYTHON Gunter$ p1.name
+-bash: p1.name: command not found
+Gunter-LeMacBookPro2014:PYTHON Gunter$ python3
+Python 3.12.6 (main, Sep 14 2024, 21:57:26) [Clang 12.0.5 (clang-1205.0.22.11)] on darwin
+Type "help", "copyright", "credits" or "license" for more information.
+>>> p1
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'p1' is not defined
+>>> p1.name
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'p1' is not defined
+>>> print(p1.name)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'p1' is not defined
+>>> p1
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'p1' is not defined
+>>> exit()
+Gunter-LeMacBookPro2014:PYTHON Gunter$ p1
+-bash: p1: command not found
+Gunter-LeMacBookPro2014:PYTHON Gunter$ python3 john-36.py 
+John
+36
+Gunter-LeMacBookPro2014:PYTHON Gunter$ 
+Display all 1827 possibilities? (y or n)
+Gunter-LeMacBookPro2014:PYTHON Gunter$ p1
+-bash: p1: command not found
+Gunter-LeMacBookPro2014:PYTHON Gunter$ p1 = 2
+-bash: p1: command not found
+Gunter-LeMacBookPro2014:PYTHON Gunter$ python3
+Python 3.12.6 (main, Sep 14 2024, 21:57:26) [Clang 12.0.5 (clang-1205.0.22.11)] on darwin
+Type "help", "copyright", "credits" or "license" for more information.
+>>> p1
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'p1' is not defined
+>>> p1 = 2
+>>> p1
+2
+>>> class Person:
+...   def __init__(self, name, age):
+...     self.name = name
+...     self.age = age
+... 
+>>> p1
+2
+>>> class Person:
+...   def __init__(self, name, age):
+...     self.name = name
+...     self.age = age
+... 
+>>> p1 = Person("John", 36)
+>>> p1
+<__main__.Person object at 0x10f569400>
+>>> p1.name
+'John'
+>>> def __init__(a, b, c):
+... 

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Game</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background: #222;
+        }
+        canvas {
+            display: block;
+        }
+        #score {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            color: white;
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="gameCanvas"></canvas>
+    <div id="score">Score: 0</div>
+    <script>
+        const canvas = document.getElementById('gameCanvas');
+        const context = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const player = {
+            x: canvas.width / 2,
+            y: canvas.height / 2,
+            radius: 20,
+            color: 'royalblue'
+        };
+
+        const enemies = [];
+        const collectables = [];
+        let score = 0;
+
+        function getRandomPosition() {
+            return {
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height
+            };
+        }
+
+        function spawnEnemy() {
+            const position = getRandomPosition();
+            enemies.push({
+                x: position.x,
+                y: position.y,
+                radius: 15,
+                color: 'tomato',
+                dx: (Math.random() - 0.5) * 2,
+                dy: (Math.random() - 0.5) * 2
+            });
+        }
+
+        function spawnCollectable() {
+            const position = getRandomPosition();
+            collectables.push({
+                x: position.x,
+                y: position.y,
+                radius: 10,
+                color: 'gold'
+            });
+        }
+
+        function updatePlayerPosition(event) {
+            player.x = event.clientX;
+            player.y = event.clientY;
+        }
+
+        function updateEnemies() {
+            enemies.forEach(enemy => {
+                enemy.x += enemy.dx;
+                enemy.y += enemy.dy;
+
+                if (enemy.x < 0) enemy.x = canvas.width;
+                if (enemy.x > canvas.width) enemy.x = 0;
+                if (enemy.y < 0) enemy.y = canvas.height;
+                if (enemy.y > canvas.height) enemy.y = 0;
+            });
+        }
+
+        function checkCollisions() {
+            collectables.forEach((collectable, index) => {
+                const dx = player.x - collectable.x;
+                const dy = player.y - collectable.y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+
+                if (distance < player.radius + collectable.radius) {
+                    collectables.splice(index, 1);
+                    score += 10;
+                    document.getElementById('score').textContent = `Score: ${score}`;
+                }
+            });
+        }
+
+        function drawPlayer() {
+            context.beginPath();
+            context.arc(player.x, player.y, player.radius, 0, Math.PI * 2);
+            context.fillStyle = player.color;
+            context.fill();
+            context.closePath();
+        }
+
+        function drawEnemies() {
+            enemies.forEach(enemy => {
+                context.beginPath();
+                context.arc(enemy.x, enemy.y, enemy.radius, 0, Math.PI * 2);
+                context.fillStyle = enemy.color;
+                context.fill();
+                context.closePath();
+            });
+        }
+
+        function drawCollectables() {
+            collectables.forEach(collectable => {
+                context.beginPath();
+                context.arc(collectable.x, collectable.y, collectable.radius, 0, Math.PI * 2);
+                context.fillStyle = collectable.color;
+                context.fill();
+                context.closePath();
+            });
+        }
+
+        function gameLoop() {
+            context.clearRect(0, 0, canvas.width, canvas.height);
+
+            drawPlayer();
+            drawEnemies();
+            drawCollectables();
+            updateEnemies();
+            checkCollisions();
+
+            requestAnimationFrame(gameLoop);
+        }
+
+        window.addEventListener('mousemove', updatePlayerPosition);
+
+        setInterval(spawnEnemy, 1000);
+        setInterval(spawnCollectable, 5000);
+
+        gameLoop();
+    </script>
+</body>
+</html>

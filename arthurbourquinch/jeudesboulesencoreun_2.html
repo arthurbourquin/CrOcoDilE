@@ -1,0 +1,165 @@
+        const canvas = document.getElementById('gameCanvas');
+        const context = canvas.getContext('2d');
+        let boardSize = Math.min(window.innerWidth, window.innerHeight);
+        canvas.width = boardSize;
+        canvas.height = boardSize;
+        let margin = [
+          (window.innerWidth - boardSize) / 2,
+          (window.innerHeight - boardSize) / 2
+        ];
+        const board = {
+            x: margin[0] / 2,
+            y: margin[1] / 2,
+            width: boardSize,
+            height: boardSize,
+            }
+        const player = {
+            x: window.innerWidth / 2,
+            y: window.innerHeight / 2,
+            size: 0.03,
+            color: '#ffd300'
+        };
+        const enemies = [];
+        const enemiesAtStart = 20 ;
+        const collectables = [];
+        let score = 0;
+
+        function clamp(x) {
+          return Math.min(Math.max(x, 0), 1);
+        }
+        function subFloor(x) {
+          return x - Math.floor(x);
+        }
+
+        function uVtoScreen(a) {
+            return {
+                x: (a.x * boardSize + margin[0]) * 0.75,
+                y: (a.y * boardSize + margin[1]) * 0.75,
+                size: a.size * boardSize
+            }
+        }
+        function screenToUv(a) {
+            return {
+                x: (a.x - margin[0]) / boardSize,
+                y: (a.y - margin[1]) / boardSize
+            }
+        }
+ 
+        function getRandomPosition() {
+            return {
+                x: Math.random(),
+                y: Math.random()
+            };
+        }
+
+        function spawnEnemy() {
+            const position = getRandomPosition();
+            enemies.push({
+                x: position.x,
+                y: position.y,
+                size: 0.02,
+                color: '#ddd',
+                dir: (Math.random() - 0.5) * 2 * Math.PI,
+                speed: Math.random() * 0.005 + 0.0025
+            });
+        }
+        function spawnCollectable() {
+            const position = getRandomPosition();
+            collectables.push({
+                x: position.x,
+                y: position.y,
+                radius: Math.random() * 5 + 10,
+                color: 'gold'
+            });
+        }
+
+        function updatePlayerPosition(event) {
+            let xy = screenToUv({
+              x: event.clientX,
+              y: event.clientY
+            })
+            player.x = xy.x;
+            player.y = xy.y;
+        }
+        function move(a) {
+          dx = Math.sin(a.dir) * a.speed;
+          dy = Math.cos(a.dir) * a.speed;
+          a.x = subFloor(a.x + dx);
+          a.y = subFloor(a.y + dy);
+        }
+        function updateEnemies() {
+            enemies.forEach(move);
+        }
+
+        function checkCollisions() {
+            collectables.forEach((collectable, index) => {
+                const dx = player.x - collectable.x;
+                const dy = player.y - collectable.y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+
+                if (distance < player.radius + collectable.radius) {
+                    collectables.splice(index, 1);
+                    score += 10;
+                    document.getElementById('score').textContent = `Score: ${score}`;
+                }
+            });
+        }
+
+        function drawBoard() {
+            context.beginPath();
+            let scale = uVtoScreen(board);
+            context.strokeRect(scale.x, scale.y , scale.width, scale.height);
+            context.lineWidth = 1;
+            context.strokeStyle = '#ddd';
+            context.closePath();
+        }
+        function drawPlayer() {
+            context.beginPath();
+            let scale = uVtoScreen(player);
+            context.arc(scale.x, scale.y , scale.size / 2, 0, Math.PI * 2);
+            context.fillStyle = player.color;
+            context.fill();
+            context.closePath();
+        }
+        function drawEnemies() {
+            enemies.forEach(enemy => {
+                context.beginPath();
+                let scale = uVtoScreen(enemy);
+                context.arc(scale.x, scale.y, scale.size / 2, 0, Math.PI * 2);
+                context.fillStyle = enemy.color;
+                context.fill();
+                context.closePath();
+            });
+        }
+        function drawCollectables() {
+            collectables.forEach(collectable => {
+                context.beginPath();
+                context.arc(collectable.x, collectable.y, collectable.radius, 0, Math.PI * 2);
+                context.fillStyle = collectable.color;
+                context.fill();
+                context.closePath();
+            });
+        }
+
+        function gameLoop() {
+            context.clearRect(0, 0, canvas.width, canvas.height);
+
+            drawPlayer();
+            drawEnemies();
+            drawCollectables();
+            updateEnemies();
+            checkCollisions();
+
+            requestAnimationFrame(gameLoop);
+        }
+
+        window.addEventListener('mousemove', updatePlayerPosition);
+
+        for (let i = 0; i < enemiesAtStart; i++) {
+          spawnEnemy();
+        }
+
+//        setInterval(spawnEnemy, 1000);
+        setInterval(spawnCollectable, 5000);
+
+        gameLoop();

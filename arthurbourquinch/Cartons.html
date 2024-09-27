@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+<title>Apprendre</title>
+<style>
+body {
+    font-family: 'Roboto Mono', monospace;
+    color: #ddd;
+    background: #222;
+    text-align: center; /* Center-align the contents of the body */
+}
+
+textarea {
+    color: #ddd;
+    background: #222;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 10px;
+    display: inline-block; /* Center the textarea */
+}
+
+table {
+    border-collapse: collapse;
+    margin: 0 auto; /* Center the table */
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    width: 200px;
+    max-width: 200px;
+    padding: 8px;
+    text-align: left;
+    word-wrap: break-word;
+}
+
+</style>
+</head>
+<body>
+
+<form id="inputForm">
+<textarea id="multiLineInput" name="multiLineInput" rows="10" cols="50">
+sin(a+b);;sin(a)*cos(b)+cos(a)*cos(b)
+a^2-b^2;;(a+b)*(a-b)
+</textarea><br><br>
+</form>
+<br>
+
+<table style="font-weight: 900"><tr><td>
+Recto</td><td>
+Verso</td></tr>
+</table>
+
+<table id="outputTable">
+</table>
+
+
+<script>
+function generateTable() {
+const textarea = document.getElementById('multiLineInput');
+const table = document.getElementById('outputTable');
+const lines = textarea.value.split('\n'); // Split input by lines
+table.innerHTML = '';
+lines.forEach(line => {
+const row = document.createElement('tr');
+const cells = line.split(';;'); 
+cells.forEach(cell => {
+const td = document.createElement('td');
+td.textContent = cell;
+row.appendChild(td);
+});
+table.appendChild(row);
+});
+}
+document.getElementById('multiLineInput').addEventListener('input', generateTable);
+generateTable();
+</script>
+
+</body>
+</html>
