@@ -9,6 +9,6 @@ int main() {
     for (const int& s : s) {
         std::cout << s << " ";
     }
-    std::cout << std::endl;
+    cout << endl;
     return 0;
 }
