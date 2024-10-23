@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playwrite+NG+Modern:wght@100..400&family=Roboto+Slab:wght@100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+    <title>Math Symbols</title>
+    <style>
+      body {
+        margin: 20px;
+      }
+      body, textarea {
+        font-family: Roboto Mono;
+        color: #ddd;
+        background: #222;
+      }
+      button {
+        color: #222;
+        background: #ddd;
+        width: 30px;
+        height: 30px;
+        border: 0px;
+        border-radius: 5px;
+        margin: 1px;
+      }
+      button:hover {
+        color: white;
+        background: steelblue;
+        cursor: pointer;
+      }
+      .copyTextarea {
+        font-family: Roboto Slab;
+        width: auto;
+      }
+      textarea {
+        width: 100%;
+        height: 100px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+      }
+      .group {
+        background: #fff3;
+        margin: 2px;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        padding: 2px;
+        border-radius: 5px;
+      }
+      .special {
+        background-color: #ffc300;
+      }
+    </style>
+  </head>
+  <body>
+    <h3>Cliquer sur un bouton ajoute le symbole dans le presse-papier et dans le champ</h3>
+    <div class="group">
+      <div class="group">
+        <div class="group">
+          <!-- opérateurs arithmétiques -->
+          <div class="group">
+            <button onclick="insertSymbol('=')">=</button>
+            <button onclick="insertSymbol('≠')">≠</button>
+            <button onclick="insertSymbol('≈')">≈</button>
+            <button onclick="insertSymbol('>')">></button>
+            <button onclick="insertSymbol('<')"><</button>
+            <button onclick="insertSymbol('≥')">≥</button>
+            <button onclick="insertSymbol('≤')">≤</button>
+          </div>
+          <div class="group">
+            <button onclick="insertSymbol('∩')">∩</button>
+            <button onclick="insertSymbol('∪')">∪</button>
+            <button onclick="insertSymbol('⊆')">⊆</button>
+            <button onclick="insertSymbol('⊂')">⊂</button>
+            <button onclick="insertSymbol('⊄')">⊄</button>
+            <button onclick="insertSymbol('⊇')">⊇</button>
+            <button onclick="insertSymbol('⊃')">⊃</button>
+            <button onclick="insertSymbol('⊅')">⊅</button>
+          </div>
+          <div class="group">
+            <button onclick="insertSymbol('∈')">∈</button>
+            <button onclick="insertSymbol('∉')">∉</button>
+          </div>
+          <div class="group">
+            <button onclick="insertSymbol('∅')">∅</button>
+          </div>
+        </div>
+        <div class="group">
+          <!-- opérateurs de comparaison -->
+          <div class="group">
+            <button onclick="insertSymbol('+')">+</button>
+            <button onclick="insertSymbol('−')">−</button>
+            <button onclick="insertSymbol('±')">±</button>
+            <button onclick="insertSymbol('*')">*</button>
+            <button onclick="insertSymbol('×')">×</button>
+            <button onclick="insertSymbol('⋅')">⋅</button>
+            <button onclick="insertSymbol('÷')">÷</button>
+            <button onclick="insertSymbol('/')">/</button>
+            <button onclick="insertSymbol('√')">√</button>
+            <button onclick="insertSymbol('²')">²</button>
+            <button onclick="insertSymbol('³')">³</button>
+            <button onclick="insertSymbol('%')">%</button>
+            <button onclick="insertSymbol('‰')">‰</button>
+          </div>
+          <div class="group">
+            <button onclick="insertSymbol('∧')">∧</button>
+            <button onclick="insertSymbol('∨')">∨</button>
+            <button onclick="insertSymbol('Δ')">Δ</button>
+          </div>
+          <div class="group">
+            <button onclick="insertSymbol('+')">+</button>
+            <button onclick="insertSymbol('•')">•</button>
+            <button onclick="insertSymbol('⊕')">⊕</button>
+            <button onclick="insertSymbol('⊙')">⊙</button>
+          </div>
+        </div>
+      </div>
+      <div class="group">
+        <button onclick="insertSymbol('∞')">∞</button>
+        <button onclick="insertSymbol('e')">e</button>
+        <button onclick="insertSymbol('ƒ')">ƒ</button>
+      </div>
+      <div class="group">
+        <button onclick="insertSymbol('𝓟')">𝓟</button>
+      </div>
+      <div class="group">
+        <button onclick="insertSymbol('ℕ')">ℕ</button>
+        <button onclick="insertSymbol('ℤ')">ℤ</button>
+        <button onclick="insertSymbol('𝔻')">𝔻</button>
+        <button onclick="insertSymbol('ℚ')">ℚ</button>
+        <button onclick="insertSymbol('ℝ')">ℝ</button>
+        <button onclick="insertSymbol('ℂ')">ℂ</button>
+      </div>
+      <div class="group">
+        <div class="group">
+          <button onclick="insertSymbol('α')">α</button>
+          <button onclick="insertSymbol('β')">β</button>
+          <button onclick="insertSymbol('γ')">γ</button>
+          <button onclick="insertSymbol('δ')">δ</button>
+          <button onclick="insertSymbol('ε')">ε</button>
+          <button onclick="insertSymbol('ζ')">ζ</button>
+          <button onclick="insertSymbol('η')">η</button>
+          <button onclick="insertSymbol('θ')">θ</button>
+          <button onclick="insertSymbol('ι')">ι</button>
+          <button onclick="insertSymbol('κ')">κ</button>
+          <button onclick="insertSymbol('λ')">λ</button>
+          <button onclick="insertSymbol('μ')">μ</button>
+          <button onclick="insertSymbol('ν')">ν</button>
+          <button onclick="insertSymbol('ξ')">ξ</button>
+          <button onclick="insertSymbol('ο')">ο</button>
+          <button onclick="insertSymbol('π')" class="special">π</button>
+          <button onclick="insertSymbol('ρ')">ρ</button>
+          <button onclick="insertSymbol('σ')">σ</button>
+          <button onclick="insertSymbol('τ')">τ</button>
+          <button onclick="insertSymbol('υ')">υ</button>
+          <button onclick="insertSymbol('φ')">φ</button>
+          <button onclick="insertSymbol('χ')">χ</button>
+          <button onclick="insertSymbol('ψ')">ψ</button>
+          <button onclick="insertSymbol('ω')">ω</button>
+        </div>
+        <div class="group">
+          <button onclick="insertSymbol('Α')">Α</button>
+          <button onclick="insertSymbol('Β')">Β</button>
+          <button onclick="insertSymbol('Γ')">Γ</button>
+          <button onclick="insertSymbol('Δ')">Δ</button>
+          <button onclick="insertSymbol('Ε')">Ε</button>
+          <button onclick="insertSymbol('Ζ')">Ζ</button>
+          <button onclick="insertSymbol('Η')">Η</button>
+          <button onclick="insertSymbol('Θ')">Θ</button>
+          <button onclick="insertSymbol('Ι')">Ι</button>
+          <button onclick="insertSymbol('Κ')">Κ</button>
+          <button onclick="insertSymbol('Λ')">Λ</button>
+          <button onclick="insertSymbol('Μ')">Μ</button>
+          <button onclick="insertSymbol('Ν')">Ν</button>
+          <button onclick="insertSymbol('Ξ')">Ξ</button>
+          <button onclick="insertSymbol('Ο')">Ο</button>
+          <button onclick="insertSymbol('Π')">Π</button>
+          <button onclick="insertSymbol('Ρ')">Ρ</button>
+          <button onclick="insertSymbol('Σ')">Σ</button>
+          <button onclick="insertSymbol('Τ')">Τ</button>
+          <button onclick="insertSymbol('Υ')">Υ</button>
+          <button onclick="insertSymbol('Φ')">Φ</button>
+          <button onclick="insertSymbol('Χ')">Χ</button>
+          <button onclick="insertSymbol('Ψ')">Ψ</button>
+          <button onclick="insertSymbol('Ω')">Ω</button>
+        </div>
+      </div>
+    </div>
+
+    <textarea id="textarea" placeholder="Type here..."></textarea>
+    <br>
+    <button class="copyTextarea"onclick="copyTextarea()">Tout copier dans le presse-papier</button>
+
+    <script>
+      function insertSymbol(symbol) {
+        const textarea = document.getElementById('textarea');
+        const start = textarea.selectionStart;
+        const end = textarea.selectionEnd;
+        const text = textarea.value;
+
+        // Insert symbol at cursor position
+        textarea.value = text.substring(0, start) + symbol + text.substring(end);
+        textarea.selectionStart = textarea.selectionEnd = start + symbol.length;
+
+        // Copy symbol to clipboard
+        navigator.clipboard.writeText(symbol);
+      }
+
+      function copyTextarea() {
+        const textarea = document.getElementById('textarea');
+        textarea.select();
+        document.execCommand('copy');
+        alert('Textarea copied to clipboard!');
+      }
+    </script>
+
+  </body>
+</html>
