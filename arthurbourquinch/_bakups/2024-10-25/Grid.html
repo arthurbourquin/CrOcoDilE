@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto+Slab:wght@100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+</head>
+<body>
+<style>
+body {
+margin: 0px;
+background: #222;
+font-family: Roboto Mono;
+font-weight: 300;
+color: #ddd;
+}
+b {
+font-weight: 700;
+}
+canvas {
+margin: 20px;
+}
+label {
+color: #ddd;
+margin: 0px 5px 0px 20px;
+}
+button {
+font-family: Roboto Mono;
+font-weight: 700;
+color: #222;
+background-color: #ddd;
+margin: 20px 0px 20px 0px;
+padding: 10px;
+border: none;
+}
+button:hover {
+background-color: tomato;
+}
+</style>
+<h1>Générateur de grille</h1>
+<p>
+Changer les valeurs avec la molette de la souris en plaçant le curseur sur un champs<br>
+Appuyer sur <b>Shift</b> pour changer les valeurs <b>10x plus</b><br>
+Appuyer sur <b>Ctrl</b> pour changer les valeurs <b>100x plus</b><br>
+Si jamais un A4 (à 300dpi) ça fait <b>2480</b> par <b>3580</b>
+</p>
+<label>.............width</label><input id="w" type="number" value="512" step="1">
+<label>............height</label><input id="h" type="number" value="512" step="1"><br>
+<label>.width subdivision</label><input id="sw" type="number" value="32" step="1">
+<label>height subdivision</label><input id="sh" type="number" value="32" step="1"><br>
+<label>........point size</label><input id="s" type="number" value="3" step="1"><br>
+<button id="save" type="button" onclick="saveCanvas()">Save</button>
+<button id="copy" type="button" onclick="copyToClipboard()">Copy to clipboard</button><br>
+<canvas id="myCanvas" width="33" height="33" ></canvas>
+<script>
+
+
+
+function draw() {
+	
+let w = parseFloat(document.getElementById('w').value); // width
+let h = parseFloat(document.getElementById('h').value); // height
+let sw = parseFloat(document.getElementById('sw').value); // width subdivision
+let sh = parseFloat(document.getElementById('sh').value); // height subdivision
+let dw = w / sw; // width spacing
+let dh = h / sh; // height spacing
+let s = parseFloat(document.getElementById('s').value); // size
+
+const canvas = document.getElementById("myCanvas");
+canvas.width = w;
+canvas.height = h;
+
+const ctx = canvas.getContext("2d"	);
+
+for (let i = 0; i <= sw; i++){
+for (let j = 0; j <= sh; j++){
+ctx.fillStyle = "wheat";
+ctx.fillRect(i * dw - s / 2, j * dh - s / 2, s, s);
+}
+}
+
+}
+
+
+
+const inputElements = document.querySelectorAll('input[type="number"]');
+
+inputElements.forEach(function(inputElement) {
+  inputElement.addEventListener('wheel', function(event) {
+    event.preventDefault();
+
+    let step = 1;
+
+    // Check if the Shift key is pressed
+    if (event.shiftKey) {
+      step = 10;
+    }
+    
+    if (event.ctrlKey) {
+      step = 100;
+    }
+
+    if (event.deltaY < 0) {
+      inputElement.stepUp(step);
+    } else {
+      inputElement.stepDown(step);
+    }
+  });
+});
+
+addEventListener('wheel', draw);
+
+
+// Save canvas as an image
+function saveCanvas() {
+    const canvas = document.getElementById("myCanvas");
+    const link = document.createElement("a");
+    link.download = "canvas_image.png";
+    link.href = canvas.toDataURL();
+    link.click();
+}
+
+// Copy canvas to clipboard
+function copyToClipboard() {
+    const canvas = document.getElementById("myCanvas");
+    canvas.toBlob(function(blob) {
+        const item = new ClipboardItem({ "image/png": blob });
+        navigator.clipboard.write([item]);
+    });
+}
+
+
+
+
+draw();
+
+</script>
+
+</body>
+</html>
+

@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+	<title>Jeu</title>
+<style>
+    body {
+        margin: 0;
+        display: flex;
+        overflow: hidden;
+        position: relative;
+        background-color: #222;
+    }
+    canvas{
+    position: absolute;
+    }
+    a {
+    font-family: Roboto Slab;
+    font-weight: 600;
+    text-align:center;
+    position: absolute;
+    color: steelblue;
+    background-color: transparent;
+    border: 1px solid steelblue;
+    }
+</style>
+</head>
+<body>
+
+<canvas id="Board"></canvas>
+<a id="healthCounter">0</a>
+<a id="timeCounter">0</a>
+<a id="scoreCounter">0</a>
+
+<script>
+
+function newScore(name, score){
+    const formData = new FormData();
+
+    formData.append('name', name);
+    formData.append('score', score);
+
+    fetch('scores.php', {
+      method: 'POST',
+      body: formData,
+    })
+    .then(response => response.text())
+    .then(data => {
+      console.log(data);
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+}
+
+let names = ['ouais', 'salut', 'caca', 'cheval', 'cacahuète', 'jesus', 'kiwi'];
+let name = [];
+let health = 3;
+let currentTime = 0;
+let score = 0;
+
+let gameRate = 30;
+let zoom = 0.8;
+let boardSize = Math.min(window.innerWidth, window.innerHeight) * zoom;
+let margin = [(window.innerWidth - boardSize) / 2, (window.innerHeight - boardSize) / 2]
+let counterStyle = {
+        size: [0.2, 0.05],
+        fontSize: 0.0333,
+        fontColor: '#222',
+        offset: [0, 0.01]}
+let canvas = document.getElementById('Board');
+let player = {
+        pos: [boardSize / 2, boardSize / 2],
+        size: 0.01,
+        shield: {
+            size: 0.02,
+            thickness: 0.004,
+            length: 0.9,
+            speed: 5
+            },
+        color: 'gold'};
+let enemies = [];
+let ups = [];
+let enemyMax = 50;
+
+function map(value, fromMin, fromMax, toMin, toMax) {
+  return toMin + (((value - fromMin) * (toMax - toMin)) / (fromMax - fromMin));
+}
+function WC(a){
+return [map(a[0], -1, 1, 0, boardSize), map(a[1], -1, 1, 0, boardSize)];
+}
+function CW(a){
+return [map(a[0], 0, boardSize, -1, 1), map(a[1], 0, boardSize, -1, 1)];
+}
+
+
+function addEnemy(){
+	if (enemies.length < enemyMax) {
+      enemies.push({
+          pos: [Math.random() * 2 - 1, Math.random() * 2 - 1],
+          dir: Math.random() * Math.PI * 2,
+          speed: Math.random() * 0.25 + 0.5,
+          size: 0.015,
+          dist: 0,
+          rand: Math.random(),
+          excit: 0.1
+          });
+	}
+}
+
+setInterval(addEnemy, 1000);
+
+function addUps(){
+	ups.push({
+    	pos: [Math.random() * 2 - 1, Math.random() * 2 - 1],
+        size: 0.02,
+        rand: Math.random(),
+        });
+    }
+    
+setInterval(addUps, 5000);
+
+function Hud(){
+
+    boardSize = Math.min(window.innerWidth, window.innerHeight) * zoom;
+    margin = [(window.innerWidth - boardSize) / 2, (window.innerHeight - boardSize) / 2]
+
+    canvas.width = boardSize;
+    canvas.height = boardSize;
+    canvas.style.left = margin[0] + 'px';
+    canvas.style.top = margin[1] + 'px';
+    canvas.style.border = '1px solid steelblue';
+
+    let healthCounter = document.getElementById('healthCounter');
+    healthCounter.style.width = counterStyle.size[0] * boardSize + 'px';
+    healthCounter.style.height = counterStyle.size[1] * boardSize + 'px';
+    healthCounter.style.fontSize = counterStyle.fontSize * boardSize + 'px';
+    healthCounter.style.left = margin[0] + 'px';
+    healthCounter.style.top = margin[1] - (counterStyle.size[1] + counterStyle.offset[1]) * boardSize + 'px';
+    healthCounter.textContent = 'Health: ' + health;
+
+    let timeCounter = document.getElementById('timeCounter');
+    timeCounter.style.width = counterStyle.size[0] * boardSize + 'px';
+    timeCounter.style.height = counterStyle.size[1] * boardSize + 'px';
+    timeCounter.style.fontSize = counterStyle.fontSize * boardSize + 'px';
+    timeCounter.style.left = window.innerWidth / 2 - (boardSize * counterStyle.size[0] / 2) + 'px';
+    timeCounter.style.top = margin[1] - (counterStyle.size[1] + counterStyle.offset[1]) * boardSize + 'px';
+    timeCounter.textContent = 'Time: ' + Math.floor(currentTime);
+
+    let scoreCounter = document.getElementById('scoreCounter');
+    scoreCounter.style.width = counterStyle.size[0] * boardSize + 'px';
+    scoreCounter.style.height = counterStyle.size[1] * boardSize + 'px';
+    scoreCounter.style.fontSize = counterStyle.fontSize * boardSize + 'px';
+    scoreCounter.style.left = margin[0] + boardSize - (boardSize * counterStyle.size[0]) + 'px';
+    scoreCounter.style.top = margin[1] - (counterStyle.size[1] + counterStyle.offset[1]) * boardSize + 'px';
+    scoreCounter.textContent = 'Score: ' + Math.floor(score);
+
+}
+
+Hud();
+
+
+function updatePlayerPosition(event) {
+    let rect = canvas.getBoundingClientRect();
+    let x = event.clientX - rect.left;
+    let y = event.clientY - rect.top;
+
+    player.pos[0] = map(x, 0, boardSize, -1, 1);
+    player.pos[1] = map(y, 0, boardSize, -1, 1);
+}
+
+canvas.addEventListener("mousemove", updatePlayerPosition);
+
+
+function game(){
+
+      currentTime += gameRate / 1000;
+      timeCounter.textContent = 'Time: ' + Math.floor(currentTime);
+    
+      boardSize = Math.min(window.innerWidth, window.innerHeight) * zoom;
+      margin = [(window.innerWidth - boardSize) / 2, (window.innerHeight - boardSize) / 2];  
+      let ctx = canvas.getContext('2d');
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+    
+      // player
+      let p = WC(player.pos);
+      ctx.beginPath();
+      ctx.arc(p[0], p[1], player.size * boardSize, 0, Math.PI * 2);
+      ctx.fillStyle = player.color;
+      ctx.fill();
+      ctx.beginPath();
+      ctx.arc(
+      	p[0] + 0.5,
+        p[1] + 0.5,
+        player.shield.size * boardSize,
+        0 * (Math.PI * 2 / 3) + currentTime * player.shield.speed,
+        0 * (Math.PI * 2 / 3) + currentTime * player.shield.speed + Math.PI * (health / 3) * player.shield.length / 1.5
+        );
+      ctx.lineWidth = player.shield.thickness * boardSize;
+      ctx.strokeStyle = player.color;
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.arc(
+      	p[0] + 0.5,
+        p[1] + 0.5,
+        player.shield.size * boardSize,
+        1 * (Math.PI * 2 / 3) + currentTime * player.shield.speed,
+        1 * (Math.PI * 2 / 3) + currentTime * player.shield.speed + Math.PI * (health / 3) * player.shield.length / 1.5
+        );
+      ctx.lineWidth = player.shield.thickness * boardSize;
+      ctx.strokeStyle = player.color;
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.arc(
+      	p[0],
+        p[1],
+        player.shield.size * boardSize,
+        2 * (Math.PI * 2 / 3) + currentTime * player.shield.speed,
+        2 * (Math.PI * 2 / 3) + currentTime * player.shield.speed + Math.PI * (health / 3) * player.shield.length / 1.5
+        );
+      ctx.lineWidth = player.shield.thickness * boardSize;
+      ctx.strokeStyle = player.color;
+      ctx.stroke();
+
+		// enemies
+        for (let i = 0; i < enemies.length; i++) {
+
+        enemies[i].dir = enemies[i].dir + Math.sin(currentTime + enemies[i].rand) * 0.1;
+        enemies[i].speed = enemies[i].speed;
+
+		let move = [
+			enemies[i].pos[0] + Math.sin(enemies[i].dir) * enemies[i].speed * gameRate / 1000,
+            enemies[i].pos[1] + Math.cos(enemies[i].dir) * enemies[i].speed * gameRate / 1000
+            ]
+
+            for (let i = 0; i < 2; i++) {
+              move[i] = map(move[i], -1, 1, 0, 1);
+              move[i] = move[i] - Math.floor(move[i]);
+              move[i] = map(move[i], 0, 1, -1, 1);
+            }
+
+        enemies[i].pos[0] = move[0];
+        enemies[i].pos[1] = move[1];
+
+        enemies[i].dist = Math.sqrt((Math.pow((enemies[i].pos[0] - player.pos[0]), 2) + Math.pow((enemies[i].pos[1] - player.pos[1]), 2) ));
+        
+        if (enemies[i].dist < enemies[i].size * 2) {
+            health = Math.max(health - 1, 0);
+            healthCounter.textContent = 'Health: ' + health;
+            enemies.splice(i, 1)
+            }
+
+        ctx.beginPath();
+        ctx.arc(
+            map(enemies[i].pos[0], -1, 1, 0, boardSize),
+            map(enemies[i].pos[1], -1, 1, 0, boardSize),
+            enemies[i].size * boardSize,
+            0,
+            Math.PI * 2);
+        ctx.fillStyle = 'tomato';
+        ctx.fill();
+        }
+        
+        // ups
+        for (let i = 0; i < ups.length; i++){
+        	ups[i].dist = Math.sqrt(Math.pow(ups[i].pos[0] - player.pos[0], 2) + Math.pow(ups[i].pos[1] - player.pos[1], 2));
+
+        	if ( ups[i].dist < ups[i].size * 3) {
+            score += 1;
+            scoreCounter.textContent = 'Score: ' + score;
+            ups.splice(i, 1);
+            }
+
+            ctx.beginPath();
+            ctx.arc(map(ups[i].pos[0], -1, 1, 0, boardSize),
+            map(ups[i].pos[1], -1, 1, 0, boardSize),
+            (ups[i].size + Math.sin((currentTime + ups[i].rand) * 5) / 200) * boardSize ,
+            0,
+            Math.PI * 2);
+            ctx.fillStyle = 'gold';
+            ctx.fill();
+        }
+		
+        if (health == 0) {
+        newScore(names[Math.floor(Math.random() * names.length)], score);
+        clearInterval(intervalId);
+        }
+
+}
+
+let intervalId = setInterval(game, gameRate);
+
+</script>
+
+</body>
+</html>
