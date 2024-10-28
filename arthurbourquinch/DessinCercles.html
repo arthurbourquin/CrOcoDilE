@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas Rectangle with Circles</title>
+    <style>
+      body {background: #222}
+    </style>
+  </head>
+  <body>
+    <canvas id="myCanvas" width="150" height="100"></canvas>
+
+    <script>
+      const canvas = document.getElementById('myCanvas');
+      const ctx = canvas.getContext('2d');
+
+      ctx.fillStyle = '#ddd';
+      ctx.strokeStyle = '#ddd';
+      ctx.lineWidth = 4;
+      ctx.strokeRect(0, 0, 150, 100);
+
+      ctx.lineWidth = 2;
+      ctx.strokeStyle = '#ddd';
+
+      ctx.beginPath();
+      ctx.arc(50, 50, 45, 0, Math.PI * 2);
+      ctx.fillStyle = '#ddd';
+//      ctx.fill();
+      ctx.stroke();
+
+      ctx.beginPath();
+      ctx.arc(100, 50, 45, 0, Math.PI * 2);
+      ctx.fillStyle = '#ddd';
+//      ctx.fill();
+      ctx.stroke();
+    </script>
+  </body>
+</html>

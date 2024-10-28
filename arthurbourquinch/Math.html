@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playwrite+NG+Modern:wght@100..400&family=Roboto+Slab:wght@100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
+    <title>Math</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css"
+        integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"
+        integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz"
+        crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"
+        integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+
+    <style>
+        body {
+            background: #222;
+            color: #ddd;
+            font-family: Roboto slab;
+            line-height: 1.5em;
+            text-align: center;
+            font-weight: 300;
+        }
+
+        .b {
+            font-weight: 700
+        }
+
+        h1 {
+            font-size: 40px;
+            margin: 100px 0px;
+        }
+
+        h2 {
+            font-size: 24px;
+            margin: 100px 0px 25px;
+        }
+
+        h3 {
+            font-size: 18px;
+        }
+
+        table {
+            font-family: courier new;
+            text-align: center;
+            margin: auto;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            padding: 10px;
+            /* top right bottom left */
+            border: 1px solid #ddd;
+        }
+
+        .crispImg {
+            image-rendering: pixelated;
+            image-rendering: crisp-edges;
+        }
+
+        .FlexRowWrap {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .boxA {
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin: 2px;
+            border-radius: 5px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <h1>Math</h1>
+    <h3>Notes de mathématiques de Arthur.<br>Attention, il y a peut-être des fautes !</h3>
+
+    <h2>Opérateurs logiques</h2>
+
+    <table>
+        <tr>
+            <th>Set</th>
+            <th>Set</th>
+            <th>Math</th>
+            <th>Logic</th>
+            <th>Prog</th>
+            <th>Bool</th>
+            <th>door</th>
+            <th>table</th>
+        </tr>
+        <tr>
+            <td>∩</td>
+            <td><img src="https://www.arthurbourquin.ch/OuaisLesMedias/Ensembles/ABC_AND.png" style="width: 50px"></td>
+            <td>∧</td>
+            <td>AND</td>
+            <td>&&</td>
+            <td>•</td>
+            <td><img src="https://www.arthurbourquin.ch/OuaisLesMedias/Portes/porteAND.png" style="width: 50px"></td>
+            <td>00 0<br>01 0<br>10 0<br>11 1</td>
+        </tr>
+        <tr>
+            <td>∪</td>
+            <td><img src="https://www.arthurbourquin.ch/OuaisLesMedias/Ensembles/ABC_OR.png" style="width: 50px"></td>
+            <td>∨</td>
+            <td>OR</td>
+            <td>||</td>
+            <td>+</td>
+            <td><img src="https://www.arthurbourquin.ch/OuaisLesMedias/Portes/porteOR.png" style="width: 50px"></td>
+            <td>00 0<br>01 1<br>10 1<br>11 1</td>
+        </tr>
+        <tr>
+            <td>Δ</td>
+            <td><img src="https://www.arthurbourquin.ch/OuaisLesMedias/Ensembles/ABC_XOR.png" style="width: 50px"></td>
+            <td>⊖</td>
+            <td>XOR</td>
+            <td></td>
+            <td>⊕</td>
+            <td><img src="https://www.arthurbourquin.ch/OuaisLesMedias/Portes/porteXOR.png" style="width: 50px"></td>
+            <td>00 0<br>01 1<br>10 1<br>11 0</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><img src="https://www.arthurbourquin.ch/OuaisLesMedias/Ensembles/ABC_XNOR.png" style="width: 50px"></td>
+            <td></td>
+            <td>XNOR</td>
+            <td></td>
+            <td>⊙</td>
+            <td><img src="https://www.arthurbourquin.ch/OuaisLesMedias/Portes/porteXNOR.png" style="width: 50px"></td>
+            <td>00 1<br>01 0<br>10 0<br>11 1</td>
+        </tr>
+    </table>
+
+    <h2>Karnaugh</h2>
+    <div>
+        <tr>
+            <th>
+                <table style="display: inline-block; vertical-align: middle; margin: 10px;">
+                    <tr>
+                        <th>0</th>
+                        <th>1</th>
+                    </tr>
+                    <tr>
+                        <th>2</th>
+                        <th>3</th>
+                    </tr>
+                </table>
+            </th>
+            <th>
+                <table style="display: inline-block; vertical-align: middle; margin: 10px;">
+                    <tr>
+                        <th>0</th>
+                        <th>1</th>
+                        <th>3</th>
+                        <th>2</th>
+                    </tr>
+                    <tr>
+                        <th>4</th>
+                        <th>5</th>
+                        <th>7</th>
+                        <th>6</th>
+                    </tr>
+                </table>
+            </th>
+            <th>
+                <table style="display: inline-block; vertical-align: middle; margin: 10px;">
+                    <tr>
+                        <th>0</th>
+                        <th>1</th>
+                        <th>3</th>
+                        <th>2</th>
+                    </tr>
+                    <tr>
+                        <th>4</th>
+                        <th>5</th>
+                        <th>7</th>
+                        <th>6</th>
+                    </tr>
+                    <tr>
+                        <th>12</th>
+                        <th>13</th>
+                        <th>15</th>
+                        <th>14</th>
+                    </tr>
+                    <tr>
+                        <th>8</th>
+                        <th>9</th>
+                        <th>11</th>
+                        <th>10</th>
+                    </tr>
+                </table>
+            </th>
+        </tr>
+    </div>
+
+
+    <h2>Dérivées</h2>
+    <table>
+        <tr>
+            <th>Fonction</th>
+            <th>Dérivée</th>
+        </tr>
+        <tr>
+            <td>\[f(x) = ax^b + c\]</td>
+            <td>\[f'(x) = abx^{b-1} \]</td>
+        </tr>
+        <tr>
+            <td>\[f(x)=e^x\]</td>
+            <td>\[f'(x)=e^x\]</td>
+        </tr>
+        <tr>
+            <td>\[f(x)=sin(x)\]</td>
+            <td>\[f'(x)=cos(x)\]</td>
+        </tr>
+        <tr>
+            <td>\[f(x)=cos(x)\]</td>
+            <td>\[f'(x)=-sin(x)\]</td>
+        </tr>
+        <tr>
+            <td>\[f(x)=tan(x)\]</td>
+            <td>\[f'(x)=\frac{1}{cos^2(x)}=1+tan^2(x)\]</td>
+        </tr>
+    </table>
+    <br>
+    <table>
+        <tr>
+            <td>\[f(x)\green±g(x)\]</td>
+            <td>\[f'(x)\green±g'(x)\]</td>
+        </tr>
+        <tr>
+            <td>\[f(x)⋅g(x)\]</td>
+            <td>\[f'(x)⋅g(x)+f(x)⋅g'(x)\]</td>
+        </tr>
+        <tr>
+            <td>\[\frac{f(x)}{g(x)}\]</td>
+            <td>\[\frac{f'(x)⋅g(x)-f(x)⋅g'(x)}{(g(x))^2}\]</td>
+        </tr>
+        <tr>
+            <td>\[f(g(x))\]</td>
+            <td>\[f'(g(x))⋅g'(x)\]</td>
+        </tr>
+        <tr style="color: grey">
+            <td>\[ f(g(h(x))) \]</td>
+            <td>\[ f'(g(h(x))) \cdot g'(h(x)) \cdot h'(x) \]</td>
+        </tr>
+    </table>
+    <br><br>
+
+    <h2>Ensembles</h2>
+
+    A = {1,2,3} ; |A| = 3<br><br>
+    B = 𝓟(A)={{∅},{1},{2},{3},{1,2},{1,3},{2,3},{1,2,3}}<br><br>
+    |𝓟(A)| = 8 = 2^|A| = 2³<br><br>
+    C = {1,2} ; D = {{1},{2}}<br><br>
+    C ⊂ A ; C ⊄ B ; C ∈ B ; C ∉ A<br><br>
+    D ⊄ A ; D ⊂ B ; D ∉ B ; D ∉ A<br><br>
+    <br>
+    𝓟(A) sous forme de table de vérité
+    <table>
+        <tr><td></td><td></td><td></td><td>{}</td></tr>
+        <tr><td></td><td></td><td>3</td><td>{3}</td></tr>
+        <tr><td></td><td>2</td><td></td><td>{2}</td></tr>
+        <tr><td></td><td>2</td><td>3</td><td>{2,3}</td></tr>
+        <tr><td>1</td><td></td><td></td><td>{1}</td></tr>
+        <tr><td>1</td><td></td><td>3</td><td>{1,3}</td></tr>
+        <tr><td>1</td><td>2</td><td></td><td>{1,2}</td></tr>
+        <tr><td>1</td><td>2</td><td>3</td><td>{}</td></tr>
+    </table>
+    <br>
+    \(\mathbb{N}\) : Entiers Naturels ; Natural Numbers<br><br>
+    \(\mathbb{Z}\) : Entiers Relatifs ; Integers<br><br>
+    \(\mathbb{D}\) : Décimaux<br><br>
+    \(\mathbb{Q}\) : Rationnels ; Rational Numbers<br><br>
+    \(\mathbb{R}\) : Réels ; Reals<br><br>
+    <br><br>
+
+    <h2>Domaine de définition</h2>
+    \[f(x)=e^x\]<br>
+    \[D(f)=\mathbb{R} \quad;\quad Im(f)=\mathbb{R}_+^* \quad;\quad D(f)=\left\{x∈ℝ\right\}\]<br>
+
+    <h2>Trigonométrie</h2>
+    <div class="boxA">
+        <img width="500px" src="http://www.arthurbourquin.ch/OuaisLesMedias/Circle-trig6white.png">
+    </div>
+
+    <body>
+        <div class="FlexRowWrap">
+            <div class="boxA">\[c^2=a^2+b^2-2ab\,cos\theta \]</div>
+            <div class="boxA">\[\frac{A}{sin\,α}=\frac{B}{sin\,ß}=\frac{C}{sin\,\gamma} \]</div>
+        </div>
+        <div class="FlexRowWrap">
+            <div class="boxA">\[
+                sin(0)=0 \quad;\quad
+                sin(\frac{π}{6})=\frac{{1}}{2} \quad;\quad
+                sin(\frac{π}{4})=\frac{\sqrt{2}}{2} \quad;\quad
+                sin(\frac{π}{3})=\frac{\sqrt{3}}{2} \quad;\quad
+                sin(\frac{π}{2})=1 \quad;\quad
+                sin(\pi)=0
+                \]</div>
+            <div class="boxA">\[
+                sin(0)=0 \quad;\quad
+                cos(\frac{π}{6})=\frac{\sqrt{3}}{2} \quad;\quad
+                cos(\frac{π}{4})=\frac{\sqrt{2}}{2} \quad;\quad
+                cos(\frac{π}{3})=\frac{{1}}{2} \quad;\quad
+                cos(\frac{π}{2})=1 \quad;\quad
+                cos(\pi)=0
+                \]</div>
+        </div>
+        <div class="FlexRowWrap">
+            <div class="boxA">\[sin(a\green±b)=sin\,a\cdot cos\,b\;\green±\;cos\,a\cdot sin\,b \]</div>
+            <div class="boxA">\[cos(a\green±b)=cos\,a\cdot cos\,b\;\red∓\;sin\,a\cdot sin\,b \]</div>
+            <div class="boxA">\[tan\,\theta=\frac{sin\,\theta}{cos\,\theta} \]</div>
+            <div class="boxA">\[tan(a\green±b)=\frac{tan\,a\green±tan\,b}{1\red∓tan\,a\cdot tan\,b} \]</div>
+            <div class="boxA">\[(sin\,\theta)^2+(cos\,\theta)^2=1 \]</div>
+        </div>
+        <div class="FlexRowWrap">
+            <div class="boxA">\[sin(\theta)=-cos(\theta+\frac{π}{2}) \]</div>
+            <div class="boxA">\[cos(\theta)=sin(\theta+\frac{π}{2}) \]</div>
+            <div class="boxA">\[sin(\theta)=-sin(-\theta)=sin(-\theta\green±\pi) \]</div>
+            <div class="boxA">\[-sin(\theta)=sin(-\theta)=sin(\theta\green±\pi) \]</div>
+            <div class="boxA">\[cos(\theta)=cos(-\theta)=-cos(\green±\theta\green±\pi) \]</div>
+            <div class="boxA">\[-cos(\theta)=-cos(-\theta)=cos(\green±\theta\green±\pi) \]</div>
+        </div>
+        <br><br>
+        <h2>Vecteurs</h2>
+        \[a•b=x_1x_2+y_1y_2+z_1z_2\]<br>
+        \[a\times b=(a_yb_z-a_zb_y,a_zb_x-a_xb_z,a_xb_y-a_yb_x)\]<br>
+        \[s=||a||cos\,\theta=a\cdot \hat{b}\]<br>
+        <br><br>
+
+        <h2>Identités remarquables</h2>
+        \[(a+b)(a-b)=a^2-b^2\]
+        \[(a\green±b)=a^2\green±2ab+b^2\]
+        \[ax^2+bx+c=0\\\]
+        \[a^3\green±b^3=(a\green±b)(a^2\red∓ab+b^2)\]
+        \[x=\frac{-b\green±\sqrt{b^2-4ac}}{2a}\]
+        \[Discriminant:b^2-4ac\]
+        <br><br>
+
+        <h2>Logarithmes</h2>
+        \[log_x(x)=1 \quad;\quad log_x(x^y)=y \quad;\quad log_x(y^z)=z*log_x(y)\]<br>
+        \[a^{b}=c \quad;\quad log_a\,c=b=\frac{log_x\,c}{log_x\,a} \quad;\quad log_x\;c=b\cdot log_x\;a\]<br>
+        \[log(a\cdot b)=log\;a+log\;b\]<br>
+        \[log(\frac{a}{b})=log\;a-log\;b\]<br>
+        \[log_{a}(\frac{1}{b^a})=-b\]<br>
+        <br><br>
+
+        <h2>Euler et nombres complexes</h2>
+        \[e^{i\theta}=cos\theta+i\sin\theta\]<br>
+        \[e^{i\pi}+1=0\]<br>
+        \[e^{i2k\pi}=1\]<br>
+        \[e^{i\pi}\cdot e^{i2k\pi}=0\]<br>
+        \[(a+ib)(c+id)=ac-bd+i(bc+ad)\]<br>
+        \[(a+ib)+(c+id)=(a+c)+i(b+d)\]<br>
+        \[(a+ib)-(c+id)=(a+c)-i(b+d)\]<br>
+        <br><br>
+
+        <h2>Taux d'intérêt</h2>
+        \[A=P*(1+r)^{n}\]<br>
+        \[P=\frac{A}{(1+r)^n}\]<br>
+        \[r=\sqrt[n]{\frac{A}{P}}-1\]<br>
+        \[n=\frac{log\frac{A}{P}}{log(1+r)}\]<br>
+        <br><br>
+
+        <h2>Statistiques</h2>
+        <table>
+            <tr>
+                <th>Ensemble</th>
+                <th>Set</th>
+                <th>{1, 3, 4, 7}</th>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Somme</td>
+                <td>Sum</td>
+                <td>15</td>
+                <td>\[\sum_{i=1}^{n}x_i\]</td>
+            </tr>
+            <tr>
+                <td>Moyenne</td>
+                <td>Average</td>
+                <td>3.75</td>
+                <td>\[\bar{x} = \frac{1}{n} \sum_{i=1}^{n} x_i\]</td>
+            </tr>
+            <tr>
+                <td>Mode</td>
+                <td>Mode</td>
+                <td>nul</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Etendue</td>
+                <td>Range</td>
+                <td>6</td>
+                <td>\[x_{max}- x_{min}\]</td>
+            </tr>
+            <tr>
+                <td>Ecart Moyen</td>
+                <td>Mean Deviation</td>
+                <td>1.75</td>
+                <td>\[\frac{1}{n} \sum_{i=1}^{n} |x_i - \bar{x}|\]</td>
+            </tr>
+            <tr>
+                <td>Variance</td>
+                <td>Variance</td>
+                <td>
+                <td>\[V = \frac{1}{n} \sum_{i=1}^{n} (x_i - \bar{x})^2\]</td>
+            </tr>
+            <tr>
+                <td>Ecart Type</td>
+                <td>Standard Deviation</td>
+                <td></td>
+                <td>\[\sigma = \sqrt{V} = \sqrt{\frac{1}{n} \sum_{i=1}^{n} (x_i - \bar{x})^2}\]</td>
+            </tr>
+            <tr>
+                <th>Autres</th>
+                <th></th>
+                <th></th>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Somme des Ecarts</td>
+                <td>Sum of Deviations</td>
+                <td></td>
+                <td>\[\sum_{i=1}^{n} |x_i - \bar{x}|=0\]</td>
+            </tr>
+            <tr>
+                <td>Somme des Carres des Ecarts</td>
+                <td>Sum of Squared Deviations</td>
+                <td></td>
+                <td>\[\sum_{i=1}^{n} (x_i - \bar{x})^2\]</td>
+            </tr>
+        </table>
+
+
+
+    </body>
+
+</html>

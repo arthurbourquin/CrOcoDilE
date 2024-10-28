@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playwrite+NG+Modern:wght@100..400&family=Roboto+Slab:wght@100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <title>Brush</title>
+    <style>
+      body {
+        background-color: #222;
+        margin: 0;
+        height: 100vh;
+        overflow: hidden;
+      }
+      .container {
+        poition: absolute;
+        display: flex;
+        justify-content: center;
+        margin: 20px;
+      }
+      canvas {
+        position: absolute;
+        left: 50vw;
+        transform: translate(-50%, 0);
+      }
+      #gridCanvas {
+        display: none;
+      }
+      button {
+        font-family: Roboto Slab;
+        font-weight: 600;
+        border: none;
+        color: #222;
+        background-color: blanchedalmond;
+        padding: 10px;
+        text-decoration: none;
+        font-size: 16px;
+        margin: 1px;
+        cursor: pointer;
+      }
+      button:hover {
+        background-color: tomato;
+      }
+      button:active {
+        background-color: seagreen;
+      }
+      button:visited {
+        background-color: gold;
+      }
+      #test {
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <button type="button" onclick="undo()">Oups !</button>
+      <button type="button" onclick="clearCanvas()">Tout r'commencer</button>
+      <button type="button" onclick="saveImage()">Télécharger le fabuleux dessin</button>
+      <button type="button" onclick="copyToClipboard()">Copier</button>
+      <button id="BtnGrid" type="button" onclick="ToggleGrid()">Grille</button>
+    </div>
+    <div class="container">
+      <canvas id="myCanvas" width="200" height="100"></canvas>
+      <canvas id="gridCanvas" width="200" height="100"></canvas>
+    </div>
+
+
+    <script>
+
+      let prevPos = [];
+      let distance = 0;
+      let steps = 4;
+      let sizeFactor = 5;
+      let size = 10;
+      let colors = ['wheat', 'steelblue', 'tomato', 'seagreen'];
+      let color = colors[0];
+      let isDrawing = false;
+      let undoStack = [];
+      let Grid = false;
+      let GridSize = 25;
+
+      let gridCanvas = document.getElementById('gridCanvas');
+      gridCanvas.width = 500;
+      gridCanvas.height = 500;
+      gridCanvas.style.zIndex = -2;
+      document.body.appendChild(gridCanvas);
+      let gctx = gridCanvas.getContext("2d");
+      gctx.fillStyle = 'steelblue';
+      gctx.globalAlpha = 0.1;
+      for (let i = 0; i < 21; i++){
+        gctx.fillRect(0, i * GridSize, 500, 2);
+        gctx.fillRect(i * GridSize, 0, 2, 500);
+      }
+
+
+      let canvas = document.getElementById('myCanvas');
+      canvas.id = 'myCanvas';
+      canvas.width = 500;
+      canvas.height = 500;
+      gridCanvas.style.zIndex = -1;
+      canvas.style.border = '1px solid blanchedalmond';
+      document.body.appendChild(canvas);
+      let ctx = canvas.getContext("2d");
+
+
+      function ToggleGrid() {
+        if(Grid === true){
+          Grid = false;
+          document.getElementById('BtnGrid').style.backgroundColor = 'blanchedalmond';
+          document.getElementById('gridCanvas').style.display = 'none';
+        }else{
+          Grid = true
+          document.getElementById('BtnGrid').style.backgroundColor = 'steelblue';
+          document.getElementById('gridCanvas').style.display = 'inline';
+        }
+      }
+
+
+      function computeDistance(a, b) {
+        return Math.pow(
+          Math.pow(b[0] - a[0], 2) + Math.pow(b[1] - a[1], 2), 
+          0.5
+        );
+      }
+
+      canvas.addEventListener('mousedown', function(e) {
+        if (e.button === 0) {
+          saveState();
+          isDrawing = true;
+        }
+      });
+
+      canvas.addEventListener('mousemove', function(e) {
+        if (e.buttons === 1) {
+          draw(e);
+        }
+      });
+
+      function Snap(x, every) {
+        x = x - x % every;
+        return x;
+      }
+
+
+      function draw(event) {
+        let canvas = event.target;
+        let rect = canvas.getBoundingClientRect();
+
+        let currentPos =[,];
+        if(Grid === false){
+          currentPos = [event.clientX - rect.left, event.clientY - rect.top];
+        } else {
+          currentPos = [Snap(event.clientX + GridSize / 2 -rect.left, GridSize), Snap(event.clientY + GridSize / 2 - rect.top, GridSize)];
+        }
+        distance = computeDistance(currentPos, prevPos);
+        steps = distance;
+        size = (1 - (Math.atan(distance / 5))/(Math.PI / 2)) * sizeFactor + 1;
+
+        ctx.save();
+        for (let i = 0; i < steps; i++) {
+          let x = currentPos[0] * (i / steps) + prevPos[0] * (1 - i / steps);
+          let y = currentPos[1] * (i / steps) + prevPos[1] * (1 - i / steps);
+
+          ctx.save();
+          ctx.translate(x, y);
+          ctx.rotate(Math.random() * Math.PI * 2);
+          ctx.beginPath();
+          ctx.rect(-size / 2, -size / 2, size, size);
+          ctx.fillStyle = color;
+          ctx.fill();
+          ctx.restore();
+        }
+        ctx.restore();
+
+        prevPos[0] = currentPos[0];
+        prevPos[1] = currentPos[1];
+      }
+
+      function clearCanvas() {
+        ctx.clearRect(0, 0, 500, 500);
+        prevPos = [];
+      }
+
+      canvas.addEventListener('mouseup', function(e) {
+        resetPrevPos(e);
+      });
+
+      function resetPrevPos() {
+        prevPos = [];
+      }
+
+      function saveImage() {
+        let canvas = document.getElementById('myCanvas');
+        let dataURL = canvas.toDataURL('image/png');
+        let link = document.createElement('a');
+        link.href = dataURL;
+        link.download = 'Fabuleux_Dessin.png';
+        link.click();
+      };
+
+      async function copyToClipboard() {
+        let canvas = document.getElementById('myCanvas');
+        const dataUrl = canvas.toDataURL('image/png');
+        const blob = await fetch(dataUrl).then(res => res.blob());
+        const item = new ClipboardItem({'image/png': blob});
+        await navigator.clipboard.write([item]);
+      }
+
+      function saveState() {
+        let imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        undoStack.push(imageData);
+      }
+
+      function undo() {
+        if (undoStack.length > 0) {
+          let lastState = undoStack.pop();
+          ctx.putImageData(lastState, 0, 0);
+        }
+      }
+
+      clearCanvas();
+
+
+      let number = 0;
+
+      window.addEventListener('wheel', (event) => {
+        if (event.deltaY < 0) {
+          number++;
+        } else {
+          number--;
+        }
+        let numMod = Math.abs(number % colors.length);
+        color = colors[numMod];
+        document.getElementById('myCanvas').style.borderColor = color;
+      });
+
+    </script> 
+
+
+  </body>
+</html>

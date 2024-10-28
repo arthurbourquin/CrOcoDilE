@@ -6,84 +6,395 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
-<title>Apprendre</title>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<title>Cartons</title>
 <style>
+:root {
+    --InfoColor: #ea498b;
+    --GameColor: #ddd;
+    --EditionColor: #ffc300;
+    --StateColor: #67ae40;
+    --DefaultColor: #ddd;
+    --BGColor: #222;
+}
+/* Tohm Colors
+red #e4202e   vert #67ae40   bleu #424dec   violet #a161cb   jaune #ffc300
+cyan #30bcd1   rose #f78d90   brun #7a4b38   orange #f16d00   rose2 #ea498b
+grisf #222222
+*/
 body {
-    font-family: 'Roboto Mono', monospace;
-    color: #ddd;
-    background: #222;
-    text-align: center; /* Center-align the contents of the body */
+font-family: Roboto Slab, Tahoma;
+font-weight: bold, 300;
+display: flex;
+flex-direction: column;
+color: var(--DefaultColor);
+background-color: var(--BGColor);
+margin: 30px;
+} b {font-weight: 600;}
+button {
+font-family: Roboto Slab, Tahoma;
+font-weight: bold, 300;
+color: var(--DefaultColor);
+background-color: var(--BGColor);	
+border: 1px solid var(--DefaultColor);
+border-radius: 10px;
+padding: 10px;
 }
-
+button:hover {
+border: 3px solid yellow, 1px solid red;
+}
 textarea {
-    color: #ddd;
-    background: #222;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    padding: 10px;
-    display: inline-block; /* Center the textarea */
+color: var(--EditionColor);
+background: var(--BGColor);
+border: 1px solid var(--EditionColor);
+width: 100%;
+height: 300px;
 }
-
+.Center {
+text-align: center;
+}
+.Infos {
+color: var(--InfoColor);
+border-color: var(--InfoColor);
+}
+#DivCartons {
+align-items: center;
+}
+#DispDeck {
+font-size: 2em;
+}
+.Cartons {
+color: var(--GameColor);
+border-color: var(--GameColor);
+}
+.State {
+color: var(--StateColor);
+border-color: var(--StateColor);
+}
 table {
-    border-collapse: collapse;
-    margin: 0 auto; /* Center the table */
+border-collapse: collapse;
+margin: 10px;
 }
-
-table, th, td {
-    border: 1px solid #ddd;
-}
-
 th, td {
-    width: 200px;
-    max-width: 200px;
-    padding: 8px;
-    text-align: left;
-    word-wrap: break-word;
+border: 1px solid var(--DefaultColor);
+padding: 8px;
+text-align: left;
+}
+.InfoTable th, .InfoTable td {
+color: var(--InfoColor);
+border-color: var(--InfoColor);
+}
+.StateTable th, .StateTable td {
+color: var(--StateColor);
+border-color: var(--StateColor);
+}
+#DispRecto, #DispVerso {
+    border: 1px solid var(--GameColor);
+    border-radius: 5px;
+    height: 100px;
+    width: fit-content;
+    min-width: 200px;
+    display: flex; /* Enable Flexbox */
+    align-items: center; /* Center vertically */
+    justify-content: center; /* Center horizontally */
+    padding: 20px;;
+    margin: 10px;
 }
 
+#BtnDispVerso, #BtnCorrect, #BtnWrong {
+color: var(--GameColor);
+border-color: var(--GameColor);
+}
+.Edition {
+color: var(--EditionColor);
+border-color: var(--EditionColor);
+}
+#Bravo {
+display: none;
+position: absolute;
+border-radius: 10px;
+left: 50%;
+top: 50%;
+z-index: 10;
+}
+a {color: dodgeblue;}
+a:hover {color: var(--DefaultColor);}
+a:visited {color: var(--InfoColor);}
+a:active {color: var(--DefaultColor);}
 </style>
 </head>
+
 <body>
 
-<form id="inputForm">
-<textarea id="multiLineInput" name="multiLineInput" rows="10" cols="50">
-sin(a+b);;sin(a)*cos(b)+cos(a)*cos(b)
-a^2-b^2;;(a+b)*(a-b)
-</textarea><br><br>
-</form>
+<!-- Display Buttons -->
+<div class="Center">
+<button id="BtnInfos" class="Infos" onclick="DisplayHide('DivInfos')">i</button>
+<button id="BtnCartons" class="Cartons" onclick="DisplayHide('DivCartons')">Cartons</button>
+<button id="BtnEditon" class="Edition" onclick="DisplayHide('DivEdition')">Edition</button>
+<button id="BtnState" class="State" onclick="DisplayHide('DivState')">Etat</button>
+</div>
+
+<!-- Infos -->
+<div id="DivInfos" class="Infos">
+<span id="DispInfos">
+Utilisez un <b>tableur</b> pour sauvegarder vos fiches comme ça :<br><br>
+<table class="InfoTable">
+<tr style="opacity: 0.5;"><th></th><th>A</th><th>B</th><th>C</th><th>D</th></tr>
+<tr><th style="opacity: 0.5;">1</th><td>Recto 1</td><td>;;</td><td>Verso 1</td><td></td></tr>
+<tr><th style="opacity: 0.5;">2</th><td>Recto 2</td><td>;;</td><td>Verso 2</td><td></td></tr>
+<tr><th style="opacity: 0.5;">3</th><td>Recto 3</td><td>;;</td><td>Verso 3</td><td></td></tr>
+<tr><th style="opacity: 0.5;">4</th><td></td><td></td><td></td><td></td></tr>
+</table><br>
+puis <b>copiez-collez</b> le tout dans le champ.<br>
+Vous pouvez récupérer les Cartons d'Arthur <a href="https://docs.google.com/spreadsheets/d/1FDN_2jw026OxPOH7A7IwU-lXUbfRHs6mJ6y7N5BcvOM/edit?gid=0#gid=0">ici</a>
+<br><br>
+-ou-<br>
 <br>
+Entrez directement les Rectos et Versos séparée par des ;; dans le champ.
+</span>
+</div>
 
-<table style="font-weight: 900"><tr><td>
-Recto</td><td>
-Verso</td></tr>
-</table>
+<!-- Cartons -->
+<div id="DivCartons" class="Cartons Center">
+<span id="DispDeck">...</span>
+<span id="DispRecto">Recto</span><br>
+<span id="DispVerso">Verso</span><br>
+<div style="flex-direction: column;">
+<button id="BtnDispVerso" onclick="Answer()">Montrer</button>
+<button id="BtnCorrect" onclick="GameUpdate(1, 0)">Juste</button>
+<button id="BtnWrong" onclick="GameUpdate(0, 1)">Faux</button>
+</div>
+</div>
 
-<table id="outputTable">
-</table>
+<!-- Edition -->
+<div id="DivEdition" class="Edition"><br>
+Collez les cartons édités depuis un tableur ici :
+<form ><textarea id="DispUserInput">
+\sin^2 \theta + \cos^2 \theta =	;;	1
+1 + \tan^2 \theta =	;;	\sec^2 \theta
+1 + \cot^2 \theta =	;;	\csc^2 \theta
+\tan \theta =	;;	\frac{\sin \theta}{\cos \theta}
+\sin (\alpha \pm \beta) =	;;	\sin \alpha \cos \beta \pm \cos \alpha \sin \beta
+\cos (\alpha \pm \beta) =	;;	\cos \alpha \cos \beta \mp \sin \alpha \sin \beta
+\text{3D vector; }\quad a•b =	;;	a_1a_2+b_1b_2+c_1c_2
+\text{3D vector; }\quad a\times b =	;;	(a_yb_z-a_zb_y,\quad a_zb_x-a_xb_z,\quad a_xb_y-a_yb_x)
+(a+b)(a-b) =	;;	a^2-b^2
+(a±b)^2 =	;;	a^2±2ab+b^2
+ax^2+bx+cx;\quad x =	;;	\frac{-b±\sqrt{b^2-4ac}}{2a}
+ax^2+bx+c;\quad Discriminant =	;;	b^2-4ac</textarea>
+</form>
+<button id="BtnLatex" class="Edition" onclick="ToggleLatex(), UpdateUserInput()">LaTeX MathJax : ?</button>
+</div>
+
+<!-- State -->
+<div id="DivState" class="State">
+<table id="DispTable" class="StateTable"><tr><th>defaule empty table...</th></tr></table><br>
+</div>
+
+<!-- Bravo -->
+<img id="Bravo" src="https://arthurbourquin.ch/OuaisLesMedias/BravoAdventureTime.gif"></span>
 
 
 <script>
-function generateTable() {
-const textarea = document.getElementById('multiLineInput');
-const table = document.getElementById('outputTable');
-const lines = textarea.value.split('\n'); // Split input by lines
+
+// VARIABLES
+let Cartons = [['Recto', 'Verso', true, 0, 0, 0]];
+let RawUserInput = ''; // Raw input field data
+let FormattedUserInput = [['Recto', 'Verso', true, 0, 0, 0]];
+let CurrentCarton = 0;
+let Latex = true;
+
+
+// FUNCTIONS
+
+// Display / Hide
+function DisplayHide(a) {
+const element = document.getElementById(a);
+if (element.style.display === 'none' || element.style.display === '') {
+element.style.display = 'flex';
+element.style.flexDirection = 'column';
+} else {
+element.style.display = 'none';
+}
+}
+
+// Update Cartons
+document.getElementById('DispUserInput').addEventListener('input', UpdateUserInput);
+function UpdateUserInput(){
+FormatUserInput();
+ResetCartons();
+UpdateTable();
+}
+function FormatUserInput(){
+RawUserInput = document.getElementById('DispUserInput').value;
+FormattedUserInput = RawUserInput.split('\n').map(line => line.split(';;'));
+}
+function TypeOf(a){
+let type = [];
+if (typeof a === "boolean") {
+type.push('boolean');
+} else if (typeof a === "number") {
+type.push('number');
+if (a === 0) {
+type.push('zero');
+} else if (a % 1 === 0) {
+type.push('integer');
+} else {
+type.push('float');
+}
+if (a > 0) {
+type.push('positive')
+} else {
+type.push('negative')
+}
+} else if (typeof(a) === "string") {
+type.push('string');
+} else {
+type.push('undefined');
+}
+return type;
+}
+function ToggleLatex(){
+let btn = document.getElementById('BtnLatex');
+if (Latex === true) {
+Latex = false;
+btn.innerText = 'LaTex MathJax INACTIF'
+btn.style.color = 'var(--EditionColor)';
+btn.style.backgroundColor = 'var(--BGColor)';
+} else {
+Latex = true
+btn.innerText = 'LaTex MathJax ACTIF'
+btn.style.color = 'var(--BGColor)';
+btn.style.backgroundColor = 'var(--EditionColor)';
+}
+}
+function ResetCartons() {
+Cartons = [];
+
+for (let i = 0; i < FormattedUserInput.length; i++) {
+let row = FormattedUserInput[i];
+if (!row || row.length < 2) continue;
+
+let carton = [row[0] || '', row[1] || '', row[2] !== 'false', 0, 0, 0];
+
+carton[0] = row[0]
+carton[1] = row[1]
+
+if (row[3] && !isNaN(row[3]) && Number(row[3]) >= 0) {
+carton[3] = parseInt(row[3]);
+}
+if (row[4] && !isNaN(row[4]) && Number(row[4]) >= 0) {
+carton[4] = parseInt(row[4]);
+}
+if (row[5] && !isNaN(row[5])) {
+carton[5] = parseInt(row[5]);
+}
+
+Cartons.push(carton);
+}
+}
+function GameUpdate(good, bad) {
+Cartons[CurrentCarton][3] += good;
+Cartons[CurrentCarton][4] += bad;
+Cartons[CurrentCarton][5] = Cartons[CurrentCarton][3] - Cartons[CurrentCarton][4];
+if(Cartons[CurrentCarton][3] == 1) {Cartons[CurrentCarton][2] = false};
+UpdateTable();
+UpdateDeck();
+Ask();
+}
+function UpdateTable() {
+let table = document.getElementById('DispTable');
 table.innerHTML = '';
-lines.forEach(line => {
-const row = document.createElement('tr');
-const cells = line.split(';;'); 
-cells.forEach(cell => {
-const td = document.createElement('td');
-td.textContent = cell;
-row.appendChild(td);
+Cartons.forEach(carton => {
+let newRow = document.createElement('tr');
+if (carton[2] === false) newRow.style.opacity = 0.3;
+carton.forEach((cell, index) => {
+let newColumn = document.createElement('td');
+if (Latex && index < 2) {
+newColumn.innerHTML = `\\(${cell}\\)`;
+MathJax.typesetPromise([newColumn]);
+} else {
+newColumn.innerText = cell;
+}
+newRow.appendChild(newColumn);
 });
-table.appendChild(row);
+table.appendChild(newRow);
 });
 }
-document.getElementById('multiLineInput').addEventListener('input', generateTable);
-generateTable();
+
+function UpdateDeck() {
+let IN = ''; let OUT = '';
+for(let i = 0; i < Cartons.length; i++) {
+if (Cartons[i][2] === true) {
+IN = IN + '-';
+} else {
+OUT = OUT + '-';
+}
+}
+let d = document.getElementById('DispDeck');
+d.innerText = IN + ' ' + OUT;
+}
+
+// Game
+function Ask() {
+let Left = 0;
+for (i = 0; i < Cartons.length; i++) {
+if (Cartons[i][2] === true) { Left += 1 }
+}
+if (Left == 0) {
+Bravo();
+} else {
+CurrentCarton = Math.floor(Math.random() * Cartons.length);
+while (Cartons[CurrentCarton][2] !== true) { CurrentCarton = Math.floor(Math.random() * Cartons.length); }
+let rectoElement = document.getElementById('DispRecto');
+if (Latex === true) {
+rectoElement.innerHTML = `\\(${Cartons[CurrentCarton][0]}\\)`;
+MathJax.typesetPromise([rectoElement])
+.catch((err) => console.log(err));
+} else {
+rectoElement.innerText = Cartons[CurrentCarton][0];
+}
+document.getElementById('DispVerso').innerText = '';
+document.getElementById('DispVerso').style.opacity = 0;
+}
+}
+function Answer() {
+let versoElement = document.getElementById('DispVerso');
+if (Latex === true) {
+versoElement.innerHTML = `\\(${Cartons[CurrentCarton][1]}\\)`;
+MathJax.typesetPromise([versoElement])
+.catch((err) => console.log(err));
+} else {
+versoElement.innerText = Cartons[CurrentCarton][1];
+}
+document.getElementById('DispVerso').style.opacity = 1;
+}
+function Bravo() {
+document.getElementById('Bravo').style.display = 'inline'; 
+let i = 0;
+function animate() {
+let translateY = Math.sin(i / 30) * 80;
+let rotate = Math.sin(i / 20) * 20;
+document.getElementById('Bravo').style.transform = `translate(-50%, -50%) translate(0, ${translateY}px) rotate(${rotate}deg)`;
+i++;
+requestAnimationFrame(animate);
+}
+animate();
+}
+
+
+UpdateUserInput();
+ResetCartons();
+UpdateDeck();
+Ask();
+DisplayHide('DivInfos'); DisplayHide('DivInfos');
+DisplayHide('DivCartons');
+DisplayHide('DivEdition'); DisplayHide('DivEdition');
+DisplayHide('DivState'); DisplayHide('DivState');
+ToggleLatex(); ToggleLatex();
+
+
 </script>
 
 </body>

@@ -20,8 +20,8 @@ const TohmWorks = [
             vfx: false,
             drawing: true
         },
-        header: "Après l'Unil",
-        description: "Vidéo de présentatio du Service d'Orientation et Carrière (SOC) de l'Unil, Université de lausanne.",
+        header: "AprÃ¨s l'Unil",
+        description: "VidÃ©o de prÃ©sentatio du Service d'Orientation et CarriÃ¨re (SOC) de l'Unil, UniversitÃ© de lausanne.",
         year: 2018,
         client: "Unil",
         prod: "Benohit",
@@ -52,7 +52,7 @@ const TohmWorks = [
             drawing: true
         },
         header: "Showreel",
-        description: "Bande démo de Tohm",
+        description: "Bande dÃ©mo de Tohm",
         year: 2023,
         client: "",
         prod: "",
@@ -83,13 +83,13 @@ const TohmWorks = [
             drawing: false
         },
         header: "",
-        description: "présentation de services en prise vidéo, retouche numlriques, effets visuels numériques, montage, motion design, graphisme, habillage sonore et composition musicale",
+        description: "prÃ©sentation de services en prise vidÃ©o, retouche numlriques, effets visuels numÃ©riques, montage, motion design, graphisme, habillage sonore et composition musicale",
         year: 2020,
         client: "Hoot",
         prod: "Tohm",
         creative: "Tohm, Octarine, CallNight",
         intervenant: "",
-        link: [{ host: "youtube", link: "https://www.youtube.com/embed/5iHlYIECJw" }],
+        link: [{ host: "youtube", link: "https://www.youtube.com/embed/-5iHlYIECJw" }],
         ranking: 4 / 5
     },
     {
@@ -145,7 +145,7 @@ const TohmWorks = [
             drawing: true
         },
         header: "",
-        description: "Présentation de la plateforme Tipee sous forme de court-métrage humoristique.",
+        description: "PrÃ©sentation de la plateforme Tipee sous forme de court-mÃ©trage humoristique.",
         year: 2018,
         client: "Tipee",
         prod: "Tohm, Benohit",
@@ -176,7 +176,7 @@ const TohmWorks = [
             drawing: true
         },
         header: "",
-        description: "Présentation de la plateforme Tipee sous forme de tutoriels avec visuels réels de l'application animés.",
+        description: "PrÃ©sentation de la plateforme Tipee sous forme de tutoriels avec visuels rÃ©els de l'application animÃ©s.",
         year: 2018,
         client: "Tipee",
         prod: "Tohm, Benohit",
@@ -238,7 +238,7 @@ const TohmWorks = [
             drawing: true
         },
         header: "",
-        description: "Présentation du concept et prototype Smart Pet Care.",
+        description: "PrÃ©sentation du concept et prototype Smart Pet Care.",
         year: 2019,
         client: "",
         prod: "",
@@ -248,7 +248,7 @@ const TohmWorks = [
         ranking: 3 / 5
     },
     {
-        title1: "Région Dents Du Midi",
+        title1: "RÃ©gion Dents Du Midi",
         cat: {
             explicative: true,
             promo: false,
@@ -269,9 +269,9 @@ const TohmWorks = [
             drawing: true
         },
         header: "",
-        description: "Présentation de la réforme régionnale pour tous les partenaires impliqués.",
+        description: "PrÃ©sentation de la rÃ©forme rÃ©gionnale pour tous les partenaires impliquÃ©s.",
         year: 2021,
-        client: "Région Dents Du Midi",
+        client: "RÃ©gion Dents Du Midi",
         prod: "Benohit, Tohm",
         creative: "",
         intervenant: "",
@@ -300,7 +300,7 @@ const TohmWorks = [
             drawing: true
         },
         header: "",
-        description: "Carte de voeus, mettant en avant tous les endroits clés en lien avec la Raiffeisen.",
+        description: "Carte de voeus, mettant en avant tous les endroits clÃ©s en lien avec la Raiffeisen.",
         year: 2020,
         client: "Raiffeisen",
         prod: "Tohm",
@@ -331,7 +331,7 @@ const TohmWorks = [
             drawing: false
         },
         header: "",
-        description: "Publicité pour le lancement de l'application.",
+        description: "PublicitÃ© pour le lancement de l'application.",
         year: 2021,
         client: "Odience",
         prod: "",
@@ -362,7 +362,7 @@ const TohmWorks = [
             drawing: false
         },
         header: "",
-        description: "Présentation succinte de l'application Ketl",
+        description: "PrÃ©sentation succinte de l'application Ketl",
         year: 2019,
         client: "Ketl",
         prod: "",
@@ -424,7 +424,7 @@ const TohmWorks = [
             drawing: true
         },
         header: "",
-        description: "Partie narrée de le vidéo de promotion d'une méthode Feng Shui.",
+        description: "Partie narrÃ©e de le vidÃ©o de promotion d'une mÃ©thode Feng Shui.",
         year: 2018,
         client: "",
         prod: "",
@@ -455,7 +455,7 @@ const TohmWorks = [
             drawing: true
         },
         header: "",
-        description: "Présentation de la monnaie comlémentaire locale, son utilité et son fonctionnement.",
+        description: "PrÃ©sentation de la monnaie comlÃ©mentaire locale, son utilitÃ© et son fonctionnement.",
         year: 2016,
         client: "Le Farinet",
         prod: "",
@@ -465,7 +465,7 @@ const TohmWorks = [
         ranking: 5 / 5
     },
     {
-        title1: "La Cité Des Métiers 1",
+        title1: "La CitÃ© Des MÃ©tiers 1",
         cat: {
             explicative: true,
             promo: false,
@@ -488,7 +488,7 @@ const TohmWorks = [
         header: "",
         description: "",
         year: 2015,
-        client: "La Cité Des Métiers du Grand Genève",
+        client: "La CitÃ© Des MÃ©tiers du Grand GenÃ¨ve",
         prod: "",
         creative: "Benohit, Tohm",
         intervenant: "",
@@ -567,7 +567,7 @@ const TohmWorks = [
         ranking: 4 / 5
     },
     {
-        title1: "Association Sécurité Riviera",
+        title1: "Association SÃ©curitÃ© Riviera",
         cat: {
             explicative: false,
             promo: false,
@@ -587,10 +587,10 @@ const TohmWorks = [
             vfx: false,
             drawing: true
         },
-        header: "Carte de voeux de fin d'année.",
+        header: "Carte de voeux de fin d'annÃ©e.",
         description: "",
         year: 2019,
-        client: "Association Sécurité Riviera",
+        client: "Association SÃ©curitÃ© Riviera",
         prod: "",
         creative: "Tohm",
         intervenant: "",
@@ -650,7 +650,7 @@ const TohmWorks = [
             drawing: true
         },
         header: "HES-SO.",
-        description: "Réalisation de 15 vidéos courtes présentant les filières de la HES-SO.",
+        description: "RÃ©alisation de 15 vidÃ©os courtes prÃ©sentant les filiÃ¨res de la HES-SO.",
         year: 2020,
         client: "HES-SO",
         prod: "Tohm, Benohit",
@@ -677,7 +677,7 @@ const TohmWorks = [
 
     },
     {
-        title1: "Super Dépanneur 5",
+        title1: "Super DÃ©panneur 5",
         cat: {
             explicative: false,
             promo: true,
@@ -700,7 +700,7 @@ const TohmWorks = [
         header: "",
         description: "",
         year: 2021,
-        client: "La Maison du Dépannage",
+        client: "La Maison du DÃ©pannage",
         prod: "",
         creative: "Benohit, Tohm",
         intervenant: "",
@@ -776,7 +776,7 @@ const TohmWorks = [
         ranking: 5 / 5
     },
     {
-        title1: "Les Cosmorégulateurs",
+        title1: "Les CosmorÃ©gulateurs",
         cat: {
             explicative: false,
             promo: false,
@@ -900,7 +900,7 @@ const TohmWorks = [
         ranking: 3 / 5
     },
     {
-        title1: "Joyeux Noël masqué",
+        title1: "Joyeux NoÃ«l masquÃ©",
         cat: {
             explicative: false,
             promo: false,
@@ -1154,7 +1154,7 @@ const TohmWorks = [
         ranking: 5 / 5
     },
     {
-        title1: "Un Eté Etouffant",
+        title1: "Un EtÃ© Etouffant",
         cat: {
             explicative: false,
             promo: false,
@@ -1185,7 +1185,7 @@ const TohmWorks = [
         ranking: 5 / 5
     },
     {
-        title1: "Un für tuts, tutti pour uno",
+        title1: "Un fÃ¼r tuts, tutti pour uno",
         cat: {
             explicative: false,
             promo: false,
@@ -1243,7 +1243,7 @@ const TohmWorks = [
         prod: "",
         creative: "30 Seconds Late",
         intervenant: "48 Hour Film Festival",
-        link: [{ host: "youtube", link: "https://www.youtube.com/embed/UsBaUCicGxc&t=4s" }],
+        link: [{ host: "youtube", link: "https://www.youtube.com/embed/UsBaUCicGxc" }],
         ranking: 3 / 5
     },
     {
@@ -1309,7 +1309,7 @@ const TohmWorks = [
         ranking: 4 / 5
     },
     {
-        title1: "Stress - Terre Brûlée",
+        title1: "Stress - Terre BrÃ»lÃ©e",
         cat: {
             explicative: false,
             promo: false,
@@ -1392,7 +1392,7 @@ const TohmWorks = [
             drawing: true
         },
         header: "",
-        description: "Présentation de la Vision 2025 des Transports Lausannois, notamment avec la 'tl touch'. Attention : c'est visionnaire...",
+        description: "PrÃ©sentation de la Vision 2025 des Transports Lausannois, notamment avec la 'tl touch'. Visionnaire.",
         year: 2019,
         client: "tl",
         prod: "Tohm, Benohit",
@@ -1400,5 +1400,36 @@ const TohmWorks = [
         intervenant: "",
         link: [{ host: "youtube", link: "https://www.youtube.com/embed/Qd9yo6J3V3Y" }],
         ranking: 2 / 5
+    },
+    {
+        title1: "Rainbow Fish",
+        cat: {
+            explicative: false,
+            promo: false,
+            motionlivevfx: false,
+            illustration: false,
+            catcourtmetrge: true,
+            exercice: false
+        },
+        tag: {
+            mandat: false,
+            tagcourtmetrage: true,
+            corpo: false,
+            offbeat: false,
+            friendly: false,
+            live: true,
+            motiondesign: false,
+            vfx: false,
+            drawing: false
+        },
+        header: "",
+        description: "Court-métrage",
+        year: 2014,
+        client: "tl",
+        prod: "Tohm",
+        creative: "",
+        intervenant: "DOP: Steven Blatter, Actor: F. Milliou, Electro: Mathieu Werlen, Assistant: Valentin Graf, Music: Tohm, Mix&Mastering: Shiverland",
+        link: [{ host: "youtube", link: "https://www.youtube.com/embed/NENsJWO3Iog" }],
+        ranking: 5 / 5
     }
 ];
