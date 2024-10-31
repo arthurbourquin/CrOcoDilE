@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playwrite+NG+Modern:wght@100..400&family=Roboto+Slab:wght@100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
+    <title>Math</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css"
+        integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"
+        integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz"
+        crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"
+        integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+
+    <style>
+        body {
+            background: #222;
+            color: #ddd;
+            font-family: Roboto slab;
+            line-height: 1.5em;
+            text-align: center;
+            font-weight: 300;
+        }
+        input {
+            width: 15px;
+            background: #222;
+            color: #ddd;
+            font-family: Roboto slab;
+            border: 0px;
+        }
+    </style>
+</head>
+
+<body>
+    <button onclick="ask(1)">avec x</button>
+    <button onclick="ask(2)">avec 2x</button><br><br>
+    <span id="question">question</span><br><br>
+    <button onclick="check()">submit</button><br><br>
+    <span id="answer">answer</span><br><br>
+    <script>
+        let a; let b; let c;
+        function getRandomNumber() {
+            
+        }
+        b = Math.floor(Math.random() * 7 - 4);
+            c = Math.floor(Math.random() * 7 - 4);
+
+        function ask(a) {
+            document.getElementById("answer").innerHTML = "";
+            document.getElementById("question").innerHTML =
+                a + "x² + " + (a * c + b) + "x + " + b * c;
+                // (ax + b)(x + c) = ax² + acx + bx + bc
+        }
+        function check(){
+            document.getElementById("answer").innerHTML =
+            "(" + a + "x + " + b + ")(x + " + c + ")"
+        }
+        </script>
+</body>
