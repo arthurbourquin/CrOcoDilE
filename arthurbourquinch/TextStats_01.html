@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playwrite+NG+Modern:wght@100..400&family=Roboto+Slab:wght@100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto+Slab:wght@100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Analyzer</title>
+    <style>
+        body,
+        textarea,
+        input {
+            font-family: Roboto Slab;
+            color: #ddd;
+            background: #222;
+        }
+
+        body {
+            margin: 50px auto;
+            max-width: 600px;
+        }
+
+        textarea {
+            width: 100%;
+            height: 150px;
+            margin-bottom: 20px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        input {
+            border: 1px solid #ddd;
+            padding: 5px;
+            border-radius: 5px;
+        }
+
+        .result {
+            font-size: 18px;
+            margin-top: 10px;
+        }
+
+        .value {
+            color: #ddd;
+        }
+
+        .unit {
+            color: #999;
+        }
+        .box {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin: 10px 0px;
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Estimationneur de temps de voix off</h1>
+    <textarea id="inputText" placeholder="Entrez votre texte ici..."
+        oninput="analyzeText()">Voici Paul. Paul évite de s'asseoir car Paul a un petit inconfort... Il n'aime pas trop en parler, car c'est gênant... En effet, Paul à mal à un endroit intime...</textarea>
+    Vitesse de dire <input type="number" id="speed" value="850" style="width: 70px"> caractères par minute (850 c'est pas mal).
+    <div class="result">
+        <span id="wordCount" class="value">0</span><span class="unit"> mots</span><br>
+        <span id="charCount" class="value">0</span><span class="unit"> caractères</span><br>
+        <span id="charsWithSpaces" class="value">0</span><span class="unit"> caractères sans espaces</span><br>
+        <span id="spaceCount" class="value">0</span><span class="unit"> espaces</span><br>
+        <div class="box">
+            <span id="minutes" class="value">0</span><span class="unit"> min</span>
+            <span id="secondes" class="value">0</span><span class="unit"> sec</span><br>
+        </div>
+    </div>
+
+    <script>
+        function analyzeText() {
+            const text = document.getElementById("inputText").value;
+
+            const words = text.trim().split(/\s+/).filter(Boolean).length;
+            const spaces = (text.match(/\s/g) || []).length;
+            const charsWithSpaces = text.length;
+            const charsWithoutSpaces = text.replace(/\s/g, '').length;
+            const speed = parseFloat(document.getElementById("speed").value);
+            const totalTimeInMinutes = charsWithoutSpaces / speed;
+            const minutes = Math.floor(totalTimeInMinutes);
+            const seconds = Math.round((totalTimeInMinutes - minutes) * 60);
+
+            document.getElementById("wordCount").textContent = words;
+            document.getElementById("charCount").textContent = charsWithoutSpaces;
+            document.getElementById("charsWithSpaces").textContent = charsWithSpaces;
+            document.getElementById("spaceCount").textContent = spaces;
+            document.getElementById("minutes").textContent = minutes;
+            document.getElementById("secondes").textContent = seconds;
+        }
+        window.onload = analyzeText;
+        document.getElementById("speed").addEventListener('input', analyzeText);
+
+    </script>
+</body>
+
+</html>

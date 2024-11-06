@@ -15,13 +15,13 @@
         body {
             font-family: Roboto Mono;
             font-size: 12px;
-            line-height: 1.5em;;
+            line-height: 1.5em;
             color: #ddd;
             background: #222;
         }
 
         .b {
-            font-weight: 800;
+            font-weight: 900;
         }
 
         h1 {
@@ -29,6 +29,7 @@
         }
 
         table {
+            margin: 20px 0px 40px;
             border-collapse: collapse;
             text-align: left;
         }
@@ -45,7 +46,7 @@
 
         td,
         tr {
-            font-weight: 200;
+            font-weight: 400;
         }
 
         .colw100 {
@@ -99,6 +100,61 @@
     </script>
 
     <h1>notes Arthur sur C++</h1><br><br>
+    <h2>Types</h2>
+    <table>
+        <tr>
+            <td> signed short int </td>
+            <td style="color: grey"> signed short char </td>
+            <td style="color: grey"> signed short float </td>
+            <td style="color: grey"> signed short double </td>
+        </tr>
+        <tr>
+            <td> signed int </td>
+            <td> signed char </td>
+            <td> signed float </td>
+            <td> signed double </td>
+        </tr>
+        <tr>
+            <td> signed long int </td>
+            <td style="color: grey"> signed long char </td>
+            <td style="color: grey"> signed long float </td>
+            <td style="color: grey"> signed long double </td>
+        </tr>
+        <tr>
+            <td> signed long long int </td>
+            <td style="color: grey"> signed long long char </td>
+            <td style="color: grey"> signed long long float </td>
+            <td style="color: grey"> signed long long double </td>
+        </tr>
+        <tr>
+            <td> unsigned short int </td>
+            <td style="color: grey"> unsigned short char </td>
+            <td style="color: grey"> unsigned short float </td>
+            <td style="color: grey"> unsigned short double </td>
+        </tr>
+        <tr>
+            <td> unsigned int </td>
+            <td> unsigned char </td>
+            <td> unsigned float </td>
+            <td> unsigned double </td>
+        </tr>
+        <tr>
+            <td> unsigned long int </td>
+            <td style="color: grey"> unsigned long char </td>
+            <td style="color: grey"> unsigned long float </td>
+            <td style="color: grey"> unsigned long double </td>
+        </tr>
+        <tr>
+            <td> unsigned long long int </td>
+            <td style="color: grey"> unsigned long long char </td>
+            <td style="color: grey"> unsigned long long float </td>
+            <td style="color: grey"> unsigned long long double </td>
+        </tr>
+
+    </table>
+
+
+
 
     <h3>Exemple de structure de mémoire</h3><br>
     <script>
@@ -134,9 +190,9 @@
   `);
     </script><br><br>
 
-<h3>Exemple de l'évolution de l'état d'un système 2</h3><br>
-<script>
-    table(`
+    <h3>Exemple de l'évolution de l'état d'un système 2</h3><br>
+    <script>
+        table(`
 temps,instruction,0x12,0x13,0x14,0x15,0x16
 t1,int a = 10;,(a) 10,-,-,-,-
 t2,int* p = &a;,(a) 10,(*p) 0x12,-,-,-
@@ -149,17 +205,17 @@ t8,*q = 15;,(a) 99,(*p) 0x12,(b) 15,■ (q) 0x14, ■ (c) 5
 t9,int& r = a;,(a r) 99,(*p) 0x12,(b) 15,■ (q) 0x14, ■ (c) 5
 t10,r = 20;,(a r) 20,(*p) 0x12,(b) 15,■ (q) 0x14, ■ (c) 5
 `);
-</script><br>
+    </script><br>
 
-<script>
-    table(`
+    <script>
+        table(`
 Note,int a = 1;<br>int&b = a;,et,int b = 1;<br>int& a = b;,ont exactement le même comportement
 C'est un peu comme de dire,Un grand bateau,et,Un bateau grand,le sens est le même`);
-</script><br>
-Note : une référence c'est (souvent comme) un pointeur constant.
-<br><br>
+    </script><br>
+    Note : une référence c'est (souvent comme) un pointeur constant.
+    <br><br>
 
-<h1>Pointeurs</h1>
+    <h1>Pointeurs</h1>
     <table>
         <tr>
             <th class="colw100">a</th>
