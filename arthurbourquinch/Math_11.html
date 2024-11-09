@@ -1,4 +1,4 @@
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -358,11 +358,13 @@
     </table>
 
     <h2>Produits</h2>
-    <h3>Désambiguïsation</h3><br>
+    <h3>Désambiguïsation des produits</h3><br>
+    \[ \text{Où} \quad a^2 \neq A^2 \neq M^2 \neq R^2 \quad = \text{et c'est super !} \]
     <table>
         <tr>
             <th>Français</th>
             <th>English</th>
+            <th></th>
             <th></th>
             <th>a</th>
             <th>c</th>
@@ -374,6 +376,7 @@
             <td>Produit de scalaires</td>
             <td>Scalar product</td>
             <td>\[a⋅b\]</td>
+            <td>\[ a^2 \]</td>
             <td>✔</td>
             <td>✔</td>
             <td>∞</td>
@@ -384,6 +387,7 @@
             <td>Produit scalaire</td>
             <td>Dot Product</td>
             <td>\[|a|⋅|b|⋅cos(θ)\]</td>
+            <td></td>
             <td>✔</td>
             <td>✔</td>
             <td>2</td>
@@ -394,6 +398,7 @@
             <td>Produit matriciel</td>
             <td>Matrix product</td>
             <td>\[M×N\]</td>
+            <td>\[ M^2 \]</td>
             <td>✔</td>
             <td></td>
             <td>!</td>
@@ -404,6 +409,7 @@
             <td>Produit cartésien</td>
             <td>Cartesian product</td>
             <td>\[A×B\]</td>
+            <td>\[ A^2 \]</td>
             <td>✔</td>
             <td></td>
             <td>∞</td>
@@ -414,6 +420,7 @@
             <td>Composition de relations</td>
             <td>Composition of relations</td>
             <td>\[R○S\]</td>
+            <td>\[ R^2 \]</td>
             <td>✔</td>
             <td></td>
             <td>∞</td>
@@ -424,9 +431,10 @@
             <td>Produit vectoriel</td>
             <td>Cross product</td>
             <td>\[ \hat{a} × \hat{b} \]</td>
+            <td>"Ô"</td>
             <td></td>
             <td>✔</td>
-            <td>2</td>
+            <td>∞</td>
             <td>vecteur n dim</td>
             <td>vecteur</td>
         </tr>
@@ -498,56 +506,42 @@
                 </table>
             </td>
         </tr>
-        <tr>
-            <td>
-                <table>Transitivité
-                    <tr>
-                        <td></td>
-                        <td>1</td>
-                        <td>1!</td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td>1</td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                </table>
-            </td>
-        </tr>
-        <td>
-            <table>
-                <span>
-                    Réflexivié +<br>
-                    Symétrie +<br>
-                    Antisymétrie
-                </span>
-                <tr>
-                    <td>1</td>
-                    <td>0</td>
-                    <td>0</td>
-                </tr>
-                <tr>
-                    <td>0</td>
-                    <td>1</td>
-                    <td>0</td>
-                </tr>
-                <tr>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>1</td>
-                </tr>
-            </table>
-        </td>
-        </tr>
+
     </table><br>
-    <p>
-        Relation d'ordre = Réflexivité + Antisymétrie + Transitivité = soit ordre partiel soit ordre total
-    </p>
+    <table>
+        <tr>
+            <th></th>
+            <th>Refl.</th>
+            <th>Sym.</th>
+            <th>Ant.</th>
+            <th>Tran.</th>
+            <th>\[ R^2 \subseteq R \]</th>
+        </tr>
+        <tr>
+            <td>relation d'ordre totale</td>
+            <td>✔</td>
+            <td></td>
+            <td>✔</td>
+            <td>✔</td>
+            <td>✔</td>
+        </tr>
+        <tr>
+            <td>relation d'ordre partielle</td>
+            <td>✔</td>
+            <td></td>
+            <td>✔</td>
+            <td>✔</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>relation d'équivalence</td>
+            <td>✔</td>
+            <td>✔</td>
+            <td></td>
+            <td>✔</td>
+            <td></td>
+        </tr>
+    </table>
     <br><br>
 
 
@@ -600,18 +594,25 @@
         <tr>
             <td>\[f(g(x))\]</td>
             <td>\[f'(g(x))⋅g'(x)\]</td>
+            <td>\[ (f \circ g)(x) \]</td>
         </tr>
-        <tr style="color: grey">
+        <td style="padding: 2px"></td>
+        <tr>
             <td>\[ f(g(h(x))) \]</td>
             <td>\[ f'(g(h(x))) \cdot g'(h(x)) \cdot h'(x) \]</td>
+            <td>\[ (f \circ g \circ h)(x) \]</td>
+        </tr>
+        <tr>
+            <td>\[ a(b(...n(x)...)) \]</td>
+            <td>\[ a'(b(...n(x)...)) \ \cdot \ b'(c(...n(x)...)) \ \cdot \ ...\ \cdot \ n'(x) \]</td>
+            <td>\[ (a \circ b \circ c \circ \ ... \ \circ n)(x) \]</td>
         </tr>
     </table>
     <br><br>
 
     <h2>Ensembles</h2>
-    <p>
-        \[ A= \{a, b, c\} \]
-    </p>
+    \[ A= \{a, b, c\} \]
+    \[ |A|=3 \]
     <table>
         <tr>
             <td style="width: 20px;">
@@ -624,17 +625,9 @@
                 c
             </td>
         </tr>
-    </table>
-    <p>
-        \[ |A|=3 \]
-        \[ |A^2| = 3*3 = 9 \]<br>
-        <br>
-    </p>
-    <br>
-
-    <p>
+    </table><br>
         \[ A×A = A^2 = \{(a, a), (a, b), (a, c), (b, a), (b, b,), (b, c), (c, a), (c, b), (c, c)\} \]
-    </p>
+        \[ |A^2| = 3*3 = 9 \]
     <table>
         <tr>
             <th></th>
@@ -660,11 +653,9 @@
             <td>(c,b)</td>
             <td>(c,c)</td>
         </tr>
-    </table>
-    <br>
-    <p>
-        \[ \mathscr{P}(A) = \{\emptyset, \{a\}, \{b\}, \{c\}, \{a, b\}, \{a, c\}, \{b, c\}, \{a, b, c\}\} \]
-    </p>
+    </table><br>
+    \[ \mathscr{P}(A) = \{\emptyset, \{a\}, \{b\}, \{c\}, \{a, b\}, \{a, c\}, \{b, c\}, \{a, b, c\}\} \]
+    \[| \mathscr{P}(A) | = 2^{|A|} = 2^3 = 8 \]
     <table>
         <tr>
             <th>a</th>
@@ -721,10 +712,20 @@
             <td>{a, b, c}</td>
         </tr>
     </table>
-    <p>
-        \[| \mathscr{P}(A) | = 2^{|A|} = 2^3 = 8 \]
-    </p>
-    <br><br><br><br>
+    <br><br>
+    <table>
+        <tr>
+            <td>\[ \in \]</td>
+            <td>apparient</td>
+            <td>est un élément de</td>
+        </tr>
+        <tr>
+            <td>\[ \subset \]</td>
+            <td>est inclus dans</td>
+            <td>avec les éléments de B on peut représenter tous les élléments de A</td>
+        </tr>
+    </table>
+    <br><br>
 
     <div class="boxA">
         \[A = \{1, 2, 3\} \quad ; \quad B = \mathscr{P}(A)\]
