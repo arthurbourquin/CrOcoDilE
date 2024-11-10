@@ -177,6 +177,13 @@
         </div>
         <div class="boxB">
             <div class="boxA">
+                <h2>Des Musiques</h2>
+                <a href="http://www.arthurbourquin.ch/MidiToJson">Midi to json</a>
+                <a href="http://www.arthurbourquin.ch/MidiExtractionJson">Midi extraction</a>
+            </div>
+        </div>
+        <div class="boxB">
+            <div class="boxA">
                 <h2>Des Contact</h2>
                 <a href="http://www.arthurbourquin.ch/Contact">Contact</a>
                 <a href="http://www.arthurbourquin.ch/About">À propos</a>
@@ -201,7 +208,7 @@
         }
 
         function update() {
-            time += 40 / 1000;
+            time += 10 / 1000;
             var scaleF = (Math.sin(time / 2) / 5 + 1) * 1.5;
             var ctx = canvas.getContext('2d');
 
