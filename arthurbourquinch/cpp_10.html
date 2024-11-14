@@ -11,7 +11,7 @@
         rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap"
         rel="stylesheet">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css"
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css"
         integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"
         integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz"
@@ -95,6 +95,38 @@
     </script>
 
     <h1>notes Arthur sur C++</h1><br><br>
+
+    <table>
+        <tr>
+            <td colspan="4">Puissances de 2 familières</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>4</td>
+            <td>8</td>
+            <td>16</td>
+        </tr>
+        <tr>
+            <td>32</td>
+            <td>64</td>
+            <td>128</td>
+            <td>256</td>
+        </tr>
+        <tr>
+            <td>512</td>
+            <td>1'024</td>
+            <td>2'048</td>
+            <td>4'096</td>
+        </tr>
+        <tr>
+            <td>8'192</td>
+            <td>16'384</td>
+            <td>32'768</td>
+            <td>65'536</td>
+        </tr>
+    </table>
+
+
     <h2>Types</h2>
     <table id="tableauDesTypes" style="text-align: right;">
         <tr>
@@ -149,14 +181,14 @@
         <tr>
             <td> long int </td>
             <td> 32/64 </td>
-            <td>  </td>
-            <td>  </td>
-            <td>  </td>
-            <td>  </td>
-            <td>  </td>
+            <td> </td>
+            <td> </td>
+            <td> </td>
+            <td> </td>
+            <td> </td>
         </tr>
         <tr>
-            <td> long long int </td>
+            <td> size_t (long long int)</td>
             <td> 64 </td>
             <td> </td>
             <td> </td>
@@ -164,37 +196,38 @@
             <td> </td>
             <td> </td>
         </tr>
-        <tr"><td style="padding: 2px;""></td></tr>
+        <tr">
+            <td style="padding: 2px;""></td></tr>
         <tr>
             <td> float </td>
             <td> 32 </td>
             <td> \[ 10^{9} \]</td>
-            <td colspan="4"> \[ ±10^{±38} \]</td>
-        </tr>
-        <tr>
-            <td> double </td>
-            <td> 64 </td>
-            <td> </td>
-            <td colspan="4"> \[ ±10^{±308} \]</td>
-        </tr>
-        <tr>
-            <td> long double </td>
-            <td> 80/128 </td>
-            <td> </td>
-            <td colspan="4"> </td>
-        </tr>
-        <tr>
-            <td> </td>
-            <td> 80 </td>
-            <td> </td>
-            <td colspan="4"> \[ ±10^{±?} \]</td>
-        </tr>
-        <tr>
-            <td> </td>
-            <td> 128 </td>
-            <td> </td>
-            <td colspan="4"> \[ ±10^{±4932} \]</td>
-        </tr>
+            <td colspan=" 4"> \[ ±10^{±38} \]</td>
+            </tr>
+            <tr>
+                <td> double </td>
+                <td> 64 </td>
+                <td> </td>
+                <td colspan="4"> \[ ±10^{±308} \]</td>
+            </tr>
+            <tr>
+                <td> long double </td>
+                <td> 80/128 </td>
+                <td> </td>
+                <td colspan="4"> </td>
+            </tr>
+            <tr>
+                <td> </td>
+                <td> 80 </td>
+                <td> </td>
+                <td colspan="4"> \[ ±10^{±?} \]</td>
+            </tr>
+            <tr>
+                <td> </td>
+                <td> 128 </td>
+                <td> </td>
+                <td colspan="4"> \[ ±10^{±4932} \]</td>
+            </tr>
     </table>
 
 
@@ -262,68 +295,68 @@ C'est un peu comme de dire,Un grand bateau,et,Un bateau grand,le sens est le mê
     <h1>Pointeurs</h1>
     <table>
         <tr>
-            <th class="colw100">a</th>
-            <th class="colw200">*p</th>
-            <th class="col_c">ok?</th>
-            <th class="colall">explication</th>
+            <th>a</th>
+            <th>*p</th>
+            <th>ok?</th>
+            <th>explication</th>
         </tr>
         <tr>
-            <td class="colw100">const int a;</td>
-            <td class="colw200">const int* const p = &a;</td>
-            <td class="col_c">oui</td>
-            <td class="colall">Rien ne peut changer.</td>
+            <td>const int a;</td>
+            <td>const int* const p = &a;</td>
+            <td>oui</td>
+            <td>Rien ne peut changer.</td>
         </tr>
         <tr>
-            <td class="colw100">int a;</td>
-            <td class="colw200">const int* const p = &a;</td>
-            <td class="col_c">oui</td>
-            <td class="colall">La variable peut être modifiée mais pas par le pointeur qui est non modifiable.</td>
+            <td>_____ int a;</td>
+            <td>const int* const p = &a;</td>
+            <td>oui</td>
+            <td>La variable peut être modifiée mais pas par le pointeur qui est non modifiable.</td>
         </tr>
         <tr>
-            <td class="colw100">const int a;</td>
-            <td class="colw200">const int* p = &a;</td>
-            <td class="col_c">oui</td>
-            <td class="colall">Le pointeur peut être redirigé mais ne peut modifier la valeur de l’entier constant.</td>
+            <td>const int a;</td>
+            <td>const int* _____ p = &a;</td>
+            <td>oui</td>
+            <td>Le pointeur peut être redirigé mais ne peut modifier la valeur de l’entier constant.</td>
         </tr>
         <tr>
-            <td class="colw100">int a;</td>
-            <td class="colw200">const int* p = &a;</td>
-            <td class="col_c">oui</td>
-            <td class="colall">Le pointeur peut être redirigé et ne peut pas modifier pas la valeur de l’entier qui peut
+            <td>_____ int a;</td>
+            <td>const int* _____ p = &a;</td>
+            <td>oui</td>
+            <td>Le pointeur peut être redirigé et ne peut pas modifier pas la valeur de l’entier qui peut
                 être
                 modifiée ailleurs.</td>
         </tr>
         <tr class="non-valide">
-            <td class="colw100">const int a;</td>
-            <td class="colw200">int* const p = &a;</td>
-            <td class="col_c">non</td>
-            <td class="colall">Un pointeur vers un entier non constant ne peut pas pointer vers une constante.</td>
+            <td>const int a;</td>
+            <td>_____ int* const p = &a;</td>
+            <td>non</td>
+            <td>Un pointeur vers un entier non constant ne peut pas pointer vers une constante.</td>
         </tr>
         <tr>
-            <td class="colw100">int a;</td>
-            <td class="colw200">int* const p = &a;</td>
-            <td class="col_c">oui</td>
-            <td class="colall">Le pointeur constant vers un entier modifiable ne peut pas être redirigé mais peut
+            <td>_____ int a;</td>
+            <td>_____ int* const p = &a;</td>
+            <td>oui</td>
+            <td>Le pointeur constant vers un entier modifiable ne peut pas être redirigé mais peut
                 modifier
                 la
                 valeur pointée.</td>
         </tr>
         <tr class="non-valide">
-            <td class="colw100">const int a;</td>
-            <td class="colw200">int* p = &a;</td>
-            <td class="col_c">non</td>
-            <td class="colall">Un pointeur modifiable vers un entier non constant ne peut pas pointer vers une
+            <td>const int a;</td>
+            <td>_____ int* _____ p = &a;</td>
+            <td>non</td>
+            <td>Un pointeur modifiable vers un entier non constant ne peut pas pointer vers une
                 constante.
             </td>
         </tr>
         <tr>
-            <td class="colw100">int a;</td>
-            <td class="colw200">int* p = &a;</td>
-            <td class="col_c">oui</td>
-            <td class="colall">Tout est modifiable.</td>
+            <td>_____ int a;</td>
+            <td>_____ int* _____ p = &a;</td>
+            <td>oui</td>
+            <td>Tout est modifiable.</td>
         </tr>
     </table>
-
+    Pointeur constant : c'est le pointeur qui est constant
 
 </body>
 
