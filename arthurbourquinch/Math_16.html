@@ -46,15 +46,6 @@
             font-weight: 400;
         }
 
-        .katex {
-            text-align: left;
-            text-justify: inherit;
-            align-items: end;
-            align-content: end;
-            justify-content: end;
-            text-align: left;
-        }
-
         h1,
         h2,
         h3,
@@ -133,6 +124,18 @@
             border: 1px solid #ddd;
             padding: 15px;
             border-radius: 5px;
+        }
+
+        .Bloc_MPB {
+            margin: 5px;
+            padding: 20px 50px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            width: fit-content;
+        }
+
+        .Bloc_mpb {
+            width: fit-content;
         }
 
         .alignLeft {
@@ -434,13 +437,18 @@
     </p>
 
     <h2>Matrices de Relations</h2>
-    \[ A = \{ a,b,c \} \]
-    \[ B = \{ x,y \} \]
-    \[ R = \{ (b,x),(c,x),(c,y) \} \]
-    \[ R \subseteq A \times B \]
+    <div class="Bloc_mpb">
+        \[ \begin{aligned}
+        & A = \{ a,b,c \} \\[0.5em]
+        & B = \{ x,y \} \\[0.5em]
+        & R = \{ (b,x),(c,x),(c,y) \} \\[0.5em]
+        & R \subseteq A \times B
+        \end{aligned}
+        \]
+    </div>
     <table>
         <tr>
-            <th></th>
+            <th>\[ R \]</th>
             <th>x</th>
             <th>y</th>
         </tr>
@@ -460,10 +468,13 @@
             <td>✔</td>
         </tr>
     </table>
-    \[ R \subseteq A \times B \]
-    \[ S \subseteq B \times C \]
-    \[ S \circ R \subseteq A \times C \]
-
+    <div class="Bloc_mpb">
+        \[ \begin{aligned}
+        & R \subseteq A \times B \\[0.5em]
+        & S \subseteq B \times C \\[0.5em]
+        & S \circ R \subseteq A \times C
+        \end{aligned}\]
+    </div>
     <div class="Slab" style="font-size: 14px; line-height: 16px;">
         <span style="">0 c'est 0 _ 1 c'est 1 _ vide c'est égal</span><br>
         <span>Si plein = 0 alors vide = 1 (et vice versa)</span><br>
@@ -539,93 +550,23 @@
 
     <div class=" box">
             <span class="Slab">Transitivité</span>
-            <table class="TablePacked">
+            <table id="ProprieteRelations" style="color: steelblue;">
                 <tr>
-                    <td>
-                    </td>
-                    <td>
-                        <table style="color: steelblue;">
-                            <tr>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td>1</td>
-                                <td>1</td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td>1</td>
-                            </tr>
-                        </table>
-                    </td>
-                    <td>
-                    </td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>1</td>
                 </tr>
                 <tr>
-                    <td>
-                        <table style="color: steelblue;">
-                            <tr>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td>1</td>
-                                <td>1</td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td>1</td>
-                            </tr>
-                        </table>
-                    </td>
-                    <td>
-                        <table style="color: steelblue;">
-                            <tr>
-                                <td>1</td>
-                                <td>2</td>
-                                <td>3</td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td>1</td>
-                                <td>3</td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td>1</td>
-                            </tr>
-                        </table>
-                    </td>
-                    <td>
-                        <table style="color: steelblue;">
-                            <tr>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td>1</td>
-                                <td>1</td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td>1</td>
-                            </tr>
-                        </table>
-                    </td>
+                    <td></td>
+                    <td>1</td>
+                    <td>1</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td>1</td>
                 </tr>
             </table>
-            \[ aRbRc \Leftrightarrow aRc \]
             \[ R^2 \subseteq R \]
     </div>
 
@@ -648,11 +589,11 @@
                 <td>1</td>
             </tr>
         </table>
-        \[ \]
+        \[ - \]
     </div>
 
     <div class="box">
-        <span class="Slab">Ordre total</span>
+        <span class="Slab">Ordre total (1)</span>
         <table id="ProprieteRelations">
             <tr>
                 <td>1</td>
@@ -670,7 +611,28 @@
                 <td>1</td>
             </tr>
         </table>
-        \[ \]
+        \[ M(R_{ot1}) \]
+    </div>
+    <div class="box">
+        <span class="Slab">Ordre total (2)</span>
+        <table id="ProprieteRelations">
+            <tr>
+                <td>1</td>
+                <td>1</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>1</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>1</td>
+                <td>1</td>
+            </tr>
+        </table>
+        \[ M(R_{ot2}) \]
     </div>
 
     </table><br>
@@ -1053,55 +1015,79 @@
         <br><br>
 
         <h2>Vecteurs</h2>
-        \[a•b=x_1x_2+y_1y_2+z_1z_2\]<br>
-        \[a\times b=(a_yb_z-a_zb_y,a_zb_x-a_xb_z,a_xb_y-a_yb_x)\]<br>
-        \[s=||a||cos(\theta)=a\cdot \hat{b}\]<br>
-        <br><br>
-
-        <h2>Identités remarquables</h2><br>
-        \[(a+b)(a-b)=a^2-b^2\]
-        \[(a\green±b)^2=a^2\green±2ab+b^2\]<br>
-        \[a^3\green±b^3=(a\green±b)(a^2\red∓ab+b^2)\]
-        \[(a\green±b)^3=a^3\green±3a^2b+3ab^2\green±b^3\]<br>
-        \[ax^2+bx+c=0\\\]
-        \[x=\frac{-b\green±\sqrt{b^2-4ac}}{2a}\]
-        \[a(x-x_1)(x-x_2)\]
-        \[Discriminant:b^2-4ac\]
-        <br><br>
-
-        <h2>Logarithmes</h2>
-        <div style="color: grey;">
+        <div class="Bloc_MPB">
             \[
-            \begin{aligned}
-            & log_x(x)=1 \\
-            & log_x(x^y)=y \\
-            &log_x(y^z)=z*log_x(y) \\
-            \end{aligned}
+            a \cdot b = a_x b_x + a_y b_2 + a_z b_z \\[1.5em]
+            a \times b = (a_y b_z - a_z b_y, \quad a_z b_x - a_x b_z, \quad a_x b_y - a_y b_x) \\[1.5em]
+            s = ||a|| cos(\theta) = a \cdot \hat{b} \\[1.5em]
             \]
         </div>
-        \[a^{b}=c \quad;\quad log_a\,(c)=b=\frac{log_x\,(c)}{log_x(a)} \quad;\quad log_x\,(c)=b\cdot
-        log_x\,(a)\]<br>
-        \[log(a\cdot b)=log(a)+log(b)\]<br>
-        \[log(\frac{a}{b})=log(a)-log(b)\]<br>
-        \[log_{a}(\frac{1}{b^a})=-b\]<br>
-        <br><br>
+
+        <h2>Identités remarquables</h2>
+        <div class="Bloc_MPB">
+            \[ \begin{aligned}
+            (a \green± b)^2 &= a^2 \green±2 ab + b^2 \\[1.5em]
+            a^2 - b^2 &= (a + b) \cdot (a - b) \\[1.5em]
+            (a \green± b)^3 &= a^3 \green± 3 a^2 b + 3 a b^2 \green± b^3 \\[1.5em]
+            a^3 \green± b^3 &= (a \green± b)(a^2 \red∓ ab + b^2)
+            \end{aligned} \]
+        </div>
+        <div class="Bloc_MPB">
+            \[
+            ax^2 + bx + c = 0 \\[1.5em]
+            x = \frac{-b \green± \sqrt{b^2 - 4ac}}{2a} \\[1.5em]
+            a(x - x_1)(x - x_2) \\[1.5em]
+            Discriminant : b^2 - 4ac
+            \]
+        </div>
+
+        <h2>Logarithmes</h2>
+        <div class="Bloc_MPB" style="color: grey; border-color: grey;">
+            \[
+            x = a^{log_a(x)} \\[1.5em]
+            log_x(x) = 1 \\[1.5em]
+            log_x(x^y) = y \\[1.5em]
+            log_x(y^z) = z*log_x(y)
+            \]
+        </div>
+        <div class="Bloc_MPB">
+            \[
+            a^{b}=c \\[1.5em]
+            log_a\,(c)=b=\frac{log_x\,(c)}{log_x(a)} \\[1.5em]
+            log_x \, (c) = b \cdot log_x\,(a)
+            \]
+        </div>
+        <div class="Bloc_MPB">
+            \[
+            log(a \cdot b) = log(a) + log(b) \\[1.5em]
+            log(\frac{a}{b}) = log(a) - log(b) \\[1.5em]
+            log_{a}(\frac{1}{b^a}) = -b
+            \]
+        </div>
 
         <h2>Euler et nombres complexes</h2>
-        \[e^{i\theta}=cos\theta+i\sin\theta\]<br>
-        \[e^{i\pi}+1=0\]<br>
-        \[e^{i2k\pi}=1\]<br>
-        \[e^{i\pi}\cdot e^{i2k\pi}=0\]<br>
-        \[(a+ib)(c+id)=ac-bd+i(bc+ad)\]<br>
-        \[(a+ib)+(c+id)=(a+c)+i(b+d)\]<br>
-        \[(a+ib)-(c+id)=(a+c)-i(b+d)\]<br>
-        <br><br>
+        <div class="Bloc_MPB">
+            \[
+            e^{i\theta}=cos\theta+i\sin\theta \\[1.5em]
+            e^{i\pi}+1=0 \\[1.5em]
+            e^{i2k\pi}=1 \\[1.5em]
+            e^{i\pi}\cdot e^{i2k\pi}=0 \\[1.5em]
+            (a+ib)(c+id)=ac-bd+i(bc+ad) \\[1.5em]
+            (a+ib)+(c+id)=(a+c)+i(b+d) \\[1.5em]
+            (a+ib)-(c+id)=(a+c)-i(b+d)
+            \]
+        </div>
+
 
         <h2>Taux d'intérêt</h2>
-        \[A=P*(1+r)^{n}\]<br>
-        \[P=\frac{A}{(1+r)^n}\]<br>
-        \[r=\sqrt[n]{\frac{A}{P}}-1\]<br>
-        \[n=\frac{log\frac{A}{P}}{log(1+r)}\]<br>
-        <br><br>
+        <div class="Bloc_MPB">
+            \[
+            A = P*(1 + r)^{n} \\[1.5em]
+            P = \frac{A}{(1 + r)^n} \\[1.5em]
+            r = \sqrt[n]{\frac{A}{P}} - 1 \\[1.5em]
+            n = \frac{log \frac{A}{P}}{log(1 + r)} \\[1.5em]
+            \]
+        </div>
 
         <h2>Statistiques</h2>
         <table>

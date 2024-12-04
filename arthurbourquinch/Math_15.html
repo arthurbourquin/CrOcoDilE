@@ -135,6 +135,14 @@
             border-radius: 5px;
         }
 
+        .Bloc_MPB {
+            margin: 5px;
+            padding: 5px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            width: fit-content;
+        }
+
         .alignLeft {
             text-align: left;
         }
@@ -1070,17 +1078,21 @@
         <br><br>
 
         <h2>Logarithmes</h2>
-        <div style="color: grey;">
+        <div class="Bloc_MPB" style="color: grey;">
             \[
-            \begin{aligned}
-            & log_x(x)=1 \\
-            & log_x(x^y)=y \\
-            &log_x(y^z)=z*log_x(y) \\
-            \end{aligned}
+            x = a^{log_a(x)} \\
+            log_x(x) = 1 \\
+            log_x(x^y) = y \\
+            log_x(y^z) = z*log_x(y)
             \]
         </div>
-        \[a^{b}=c \quad;\quad log_a\,(c)=b=\frac{log_x\,(c)}{log_x(a)} \quad;\quad log_x\,(c)=b\cdot
-        log_x\,(a)\]<br>
+        <div class="Bloc_MPB">
+            \[
+            a^{b}=c \\
+            log_a\,(c)=b=\frac{log_x\,(c)}{log_x(a)} \\
+            log_x \, (c) = b \cdot log_x\,(a) \\
+            \]
+        </div>
         \[log(a\cdot b)=log(a)+log(b)\]<br>
         \[log(\frac{a}{b})=log(a)-log(b)\]<br>
         \[log_{a}(\frac{1}{b^a})=-b\]<br>

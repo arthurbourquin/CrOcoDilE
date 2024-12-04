@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap"
+    rel="stylesheet">
+
+  <title>LaTeX</title>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <style>
+    body,
+    #userInput,
+    #output,
+    a {
+      font-family: Roboto Slab;
+      font-size: 16px;
+      font-weight: 300;
+      color: #ddd;
+      background: #222;
+    }
+
+    #userInput {
+      border: 1px solid #ddd;
+    }
+
+    #output {
+      font-size: 14px;
+      margin: 0px 00px 0px 20px;
+    }
+
+    a {
+      color: steelblue;
+    }
+
+    a:hover {
+      color: #ddd;
+    }
+
+    button,
+    #changeSize {
+      font-family: Roboto Slab;
+      text-align: center;
+      border: 0px;
+      border-radius: 5px;
+      margin: 0px 20px;
+      padding: 5px 10px;
+    }
+
+    #changeSize {
+      color: #ddd;
+      background-color: #222;
+      border: 1px solid #ddd;
+      width: 50px;
+    }
+
+    button {
+      color: #222;
+      background-color: #ddd;
+    }
+
+    button:hover {
+      background-color: steelblue;
+    }
+
+    .customFlex {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      margin: 10px;
+    }
+
+    .header {
+      margin: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="header">
+    <span>Size</span>
+    <input type="number" value="14" id="changeSize">
+    <a href="https://latexeditor.lagrida.com/">latexeditor.lagrida.com</a>
+    <button id="layout" onclick="changeFlexDirection()">Formula(s) under input box</button>
+  </div>
+
+  <div class="customFlex">
+    <textarea type="text" id="userInput">T_n(x) = \sum_{k=0}^{n} \frac{f^{(k)}(x_0)}{k!} (x - x_0)^k</textarea>
+    <span id="output"></span>
+  </div>
+
+  <script>
+    function renderLatex() {
+      let input = document.getElementById('userInput').value;
+      input = input.replace(/   /g, '\\quad ');
+      input = input.replace(/  /g, '\\; ');
+      input = input.split('\n').map(line => '& ' + line.trim() + ' \\\\[1em]').join('\n');
+      input = `\\begin{aligned}\n${input}\n\\end{aligned}`;
+      document.getElementById('output').innerHTML = `\\(${input}\\)`;
+      MathJax.typesetPromise();
+    }
+
+    function updateSize() {
+      const size = document.getElementById('changeSize').value;
+      document.getElementById('output').style.fontSize = `${size}px`;
+    }
+
+    let currentFlexDirection = 'row'; // Default direction
+
+    function changeFlexDirection() {
+      // Toggle flex-direction
+      if (currentFlexDirection === 'row') {
+        currentFlexDirection = 'column';
+      } else {
+        currentFlexDirection = 'row';
+      }
+
+      // Apply the new direction to the container
+      document.querySelector('.customFlex').style.flexDirection = currentFlexDirection;
+    }
+
+    document.getElementById('userInput').addEventListener('input', renderLatex);
+    document.getElementById('changeSize').addEventListener('input', updateSize);
+
+    // Initial rendering
+    renderLatex();
+    updateSize();
+  </script>
+</body>
+
+</html>

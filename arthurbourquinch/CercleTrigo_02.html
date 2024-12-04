@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playwrite+NG+Modern:wght@100..400&family=Roboto+Slab:wght@100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto+Slab:wght@100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cercle Trigo</title>
+    <style>
+        body,
+        input {
+            font-family: Roboto Slab;
+            font-weight: 300;
+            text-align: center;
+            margin: 20px;
+            color: #ddd;
+            background: #222;
+        }
+
+        b {
+            font-weight: 600;
+        }
+
+        h1 {
+            font-size: 30px;
+        }
+
+        h2 {
+            font-size: 22px;
+        }
+
+        img {
+            max-width: 80%;
+            height: auto;
+            margin: 20px 0;
+        }
+
+        input {
+            width: 100px;
+            padding: 5px;
+            font-size: 16px;
+            text-align: center;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .legends {
+            display: flex;
+            flex-direction: row;
+        }
+
+        .legend,
+        .legendbold {
+            padding: 10px;
+            margin: 0px 10px;
+            border: 1px solid;
+            border-radius: 10px;
+        }
+
+        .legendbold {
+            font-weight: bold;
+            border-width: 3px;
+        }
+
+        .values {
+            font-family: Roboto Mono;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Cercle Trigo</h1><br>
+
+    <input type="number" id="imageNumber" value="0" step="1" oninput="updateImage()" />
+
+    <h2><span id="angle">0</span>π</h2>
+
+    <div class="legends">
+        <div class="legendbold" style="color: #DD423E">
+            sinus
+            <span class="values" id="sin">0</span>
+        </div>
+        <div class="legend" style="color: #DD423E">
+            cosinus
+            <span class="values" id="cos">0</span>
+        </div>
+        <div class="legendbold" style="color: #3F913D">
+            tangente
+            <span class="values" id="tan">0</span>
+        </div>
+        <div class="legend" style="color: #3F913D">
+            cotangente
+            <span class="values" id="cot">0</span>
+        </div>
+        <div class="legendbold" style="color: #5D89FF">
+            secante
+            <span class="values" id="sec">0</span>
+        </div>
+        <div class="legend" style="color: #5D89FF">
+            cosecante
+            <span class="values" id="csc">0</span>
+        </div>
+    </div>
+
+    <img id="displayImage" src="https://arthurbourquin.ch/OuaisLesMedias/CercleTrigo_0040001.png" alt="Selected Image">
+
+    <script>
+        // Function to calculate GCD (Greatest Common Divisor) to simplify the fraction
+        function gcd(a, b) {
+            while (b) {
+                let temp = b;
+                b = a % b;
+                a = temp;
+            }
+            return a;
+        }
+
+        function updateImage() {
+            const baseUrl = "https://arthurbourquin.ch/OuaisLesMedias/CercleTrigo_004/";
+            let imageNumber_int = parseInt(document.getElementById('imageNumber').value);
+            imageNumber_int = imageNumber_int - (Math.floor(imageNumber_int / 96) * 96);
+
+            // Calculate the fraction part
+            let numerator = imageNumber_int * 2;
+            let denominator = 96;
+
+            // Simplify the fraction
+            let divisor = gcd(numerator, denominator);
+            let simplifiedNumerator = numerator / divisor;
+            let simplifiedDenominator = denominator / divisor;
+
+            // Display fraction
+            let quotient = simplifiedNumerator + '/' + simplifiedDenominator;
+
+            document.getElementById('angle').innerHTML = quotient;
+
+            imageNumber_str = imageNumber_int.toString().padStart(4, '0');  // Format to 4 digits with leading zeros
+            const newImageUrl = `${baseUrl}${imageNumber_str}.png`;
+
+            const imgElement = document.getElementById('displayImage');
+            imgElement.src = newImageUrl;
+            imgElement.alt = `Image number ${imageNumber_str}`;
+
+            let sin = Math.sin((imageNumber_int / 96) * 2 * Math.PI);
+            let cos = Math.cos((imageNumber_int / 96) * 2 * Math.PI);
+            let tan = Math.tan((imageNumber_int / 96) * 2 * Math.PI);
+            let cot = sin / cos;
+            let sec = 1 / cos;
+            let csc = 1 / sin;
+            document.getElementById('sin').innerText = sin.toFixed(3)
+            document.getElementById('cos').innerText = cos.toFixed(3)
+            document.getElementById('tan').innerText = tan > 1000 ? 99999 : tan.toFixed(3)
+            document.getElementById('cot').innerText = cot > 1000 ? 99999 : cot.toFixed(3)
+            document.getElementById('sec').innerText = sec > 1000 ? 99999 : sec.toFixed(3)
+            document.getElementById('csc').innerText = csc > 1000 ? 99999 : csc.toFixed(3)
+        }
+        updateImage();
+    </script>
+</body>
+
+</html>

@@ -21,7 +21,7 @@
         onload="renderMathInElement(document.body);"></script>
     <style>
         body {
-            font-family: Roboto Mono;
+            font-family: Roboto Mono, 'courier';
             font-size: 12px;
             line-height: 1.5em;
             color: #ddd;
@@ -44,19 +44,27 @@
 
         th,
         td {
-            border: 1px solid #ddd;
+            border: 1px solid #999;
             padding: 10px;
         }
 
         th,
-        table tr:nth-child(1),
-        #tableauDesTypes td:nth-child(1),
-        #tableauDesTypes tr:nth-child(3) {
+        table tr:nth-child(1) {
             background-color: #333;
             font-weight: 900;
         }
 
-        #tableauDesTypes th {
+        #tableauDesTypes td:nth-child(1),
+        #tableauDesTypes td:nth-child(2),
+        #tableauDesTypes td:nth-child(3),
+        #tableauDesTypes td:nth-child(3),
+        #tableauDesTypes td:nth-child(7) {
+            background-color: #333;
+        }
+
+        #tableauDesTypes tr,
+        #tableauDesTypes th,
+        #tableauDesTypes td {
             text-align: center;
         }
 
@@ -166,164 +174,216 @@
     <h2>Types</h2>
     <table id="tableauDesTypes" style="text-align: right;">
         <tr>
-            <th> </th>
-            <th> </th>
-            <th> </th>
-            <th colspan="4"> plage </th>
+            <th>B</th>
+            <th>b</th>
+            <th>entiers </th>
+            <th>u +</th>
+            <th>s -</th>
+            <th>s +</th>
+            <th>réels</th>
+            <th>domaine</th>
+            <th>........ S-E-M</th>
+            <th>exemple</th>
         </tr>
         <tr>
-            <th> </th>
-            <th> </th>
-            <th> </th>
-            <th colspan="2"> non signé </th>
-            <th colspan="2"> signé </th>
+            <td>1</td>
+            <td>8</td>
+            <td>char</td>
+            <td>255</td>
+            <td>-128</td>
+            <td>127</td>
+            <th></th>
+            <th></th>
+            <th></th>
+            <td>0x3e</td>
         </tr>
         <tr>
-            <th> .........type</th>
-            <th> bits </th>
-            <th> possibilités </th>
-            <th> de </th>
-            <th> à </th>
-            <th> de </th>
-            <th> à </th>
+            <td>2</td>
+            <td>16</td>
+            <td>short</td>
+            <td>65'535</td>
+            <td>-32'768</td>
+            <td>32'767</td>
+            <th></th>
+            <th></th>
+            <th></th>
+            <td>0x3ec4</td>
         </tr>
         <tr>
-            <td> char </td>
-            <td> 8 </td>
-            <td> \[ 10^{2} \] </td>
-            <td> 0 </td>
-            <td> 255 </td>
-            <td> -128</td>
-            <td> 127</td>
+            <td>4</td>
+            <td>32</td>
+            <td>int</td>
+            <td>4 mrd<br>u</td>
+            <td>-2 mrd</td>
+            <td>2 mrd</td>
+            <td>float</td>
+            <td>\[ ±10^{±38} \]f</td>
+            <td>1-8-23</td>
+            <td>0x3ec47bc9</td>
         </tr>
         <tr>
-            <td> short int </td>
-            <td> 16 </td>
-            <td> \[ 10^{5} \] </td>
-            <td> 0 </td>
-            <td> 65'535 </td>
-            <td> -32'768</td>
-            <td> 32'765</td>
+            <td></td>
+            <td></td>
+            <td>long int</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
         </tr>
         <tr>
-            <td> int </td>
-            <td> 32 </td>
-            <td> \[ 10^{9} \]</td>
-            <td> 0</td>
-            <td> 4 mrds</td>
-            <td> -2 mrds</td>
-            <td> 2 mrds</td>
+            <td>8</td>
+            <td>64</td>
+            <td>long long int</td>
+            <td>\[ 10^{19} \]ull</td>
+            <td>\[ -10^{18} \]ll</td>
+            <td>\[ 10^{18} \]ll</td>
+            <td>double </td>
+            <td>\[ ±10^{±308} \]</td>
+            <td>1-11-52</td>
+            <td>0x3ec47bc96d4610a7</td>
         </tr>
         <tr>
-            <td> long int </td>
-            <td> 32/64 </td>
-            <td> </td>
-            <td> </td>
-            <td> </td>
-            <td> </td>
-            <td> </td>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <td>long double</td>
+            <td>\[ ±10^{±bcp} \]L</td>
+            <td>?</td>
+            <td>?</td>
         </tr>
-        <tr>
-            <td> long long int</td>
-            <td> 64 </td>
-            <td> \[ 10^{19} \] </td>
-            <td> </td>
-            <td> </td>
-            <td> </td>
-            <td> </td>
-        </tr>
-        <tr">
-            <td style="padding: 2px;""></td></tr>
-        <tr>
-            <td> float </td>
-            <td> 32 </td>
-            <td> \[ 10^{9} \]</td>
-            <td colspan=" 4"> \[ ±10^{±38} \]</td>
-            </tr>
-            <tr>
-                <td> double </td>
-                <td> 64 </td>
-                <td> \[ 10^{19} \] </td>
-                <td colspan="4"> \[ ±10^{±308} \]</td>
-            </tr>
-            <tr>
-                <td> long double </td>
-                <td> 80/128 </td>
-                <td> </td>
-                <td colspan="4"> </td>
-            </tr>
-            <tr>
-                <td> </td>
-                <td> 80 </td>
-                <td> </td>
-                <td colspan="4"> \[ ±10^{±?} \]</td>
-            </tr>
-            <tr>
-                <td> </td>
-                <td> 128 </td>
-                <td> </td>
-                <td colspan="4"> \[ ±10^{±4932} \]</td>
-            </tr>
     </table>
+    <div>
+        Integer to Real lossless conversion
+        <table>
+            <tr>
+                <td>type</td>
+                <td>\[ 2^{mantissa + 1} \]</td>
+                <td></td>
+                <td>char</td>
+                <td>short</td>
+                <td>int</td>
+                <td>long long</td>
+            </tr>
+            <tr>
+                <td>float</td>
+                <td>\[ 2^{23 + 1} \]</td>
+                <td>16'777'216</td>
+                <td>✔</td>
+                <td>✔</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>double</td>
+                <td>\[ 9^{52 + 1} \]</td>
+                <td>\[ \sim 9^{15} \]</td>
+                <td>✔</td>
+                <td>✔</td>
+                <td>✔</td>
+                <td></td>
+            </tr>
+        </table>
+    <br><br><br>
 
-
-
-
-    <h3>Exemple de structure de mémoire</h3><br>
-    <script>
-        table(`
-            Adresse,Valeur
-            0x7ffee4933868,0110 1001 1011 0110
-            0x7ffee4933869,1111 1011 0110 1010
-            0x7ffee4933870,1001 0110 0110 0001
-            0x7ffee4933871,1001 0101 0001 0111
-            0x7ffee4933872,1010 0011 0101 1110
-            0x7ffee4933873,0010 0111 0010 0100
-        `);
-    </script><br><br>
+    <h3>Exemple de structure de mémoire</h3>
+    <p>
+        a = 0x1234, short, 2 bytes<br>
+        b = 0x11223344, int, 4 bytes<br>
+        c = 0x56, char, 1 byte<br>
+        adresses en 8 bytes
+    </p>
+    <table>
+        <tr>
+            <th>Adresse</th>
+            <th>Valeur du byte</th>
+            <th>Variable</th>
+        </tr>
+        <tr>
+            <td>0x1af47ffee4933868</td>
+            <td>0x12</td>
+            <td>a(1)</td>
+        </tr>
+        <tr>
+            <td>0x1af47ffee4933869</td>
+            <td>0x34</td>
+            <td>a(2)</td>
+        </tr>
+        <tr>
+            <td>0x1af47ffee493386a</td>
+            <td>0x11</td>
+            <td>b(1)</td>
+        </tr>
+        <tr>
+            <td>0x1af47ffee493386b</td>
+            <td>0x22</td>
+            <td>b(2)</td>
+        </tr>
+        <tr>
+            <td>0x1af47ffee493386c</td>
+            <td>0x33</td>
+            <td>b(3)</td>
+        </tr>
+        <tr>
+            <td>0x1af47ffee493386d</td>
+            <td>0x44</td>
+            <td>b(4)</td>
+        </tr>
+        <tr>
+            <td>0x1af47ffee493386e</td>
+            <td>0x56</td>
+            <td>c</td>
+        </tr>
+    </table>
+    <br><br>
 
     <h3>Références et pointeurs</h3>
     <script>
         table(`
-        item,sigle associé,possibilité,exemple
-        Adresse,<b>&</b>,Accès en <u>lecture</u><br>via <b>&a</b> ou <b>p</b> ,0x7ffee4933868
-        Valeur,<b>*</b>, Accès en <u>lecture</u><br>et/ou <u>écriture</u><br>via <b>a</b> ou <b>*p</b>, 0110 1000 0010 1010
-    `);
+            item,sigle associé,possibilité,exemple
+            Adresse,<b>&</b>,Accès en <u>lecture</u><br>via <b>&a</b> ou <b>p</b> ,0x1af47ffee4933868
+            Valeur,<b>*</b>, Accès en <u>lecture</u><br>et/ou <u>écriture</u><br>via <b>a</b> ou <b>*p</b>, 0110 1000 0010 1010
+        `);
     </script><br><br>
 
     <h3>Exemple de l'évolution de l'état d'un système 1</h3><br>
     <script>
         table(`
-    temps,instruction,0x12,0x13,0x14,0x15,0x15
-    t1,int a = 10;,10,-,-,-,-
-    t2,int* p = &a;,10,0x12,-,-,-
-    t3,*p = 7;,7,0x12,-,-,-
-    t4,int b = 12;,7,0x12,12,-,-
-    t5,a = 99;,99,0x12,12,-,-
-  `);
+        temps,instruction,0x12,0x13,0x14,0x15,0x15
+        t1,int a = 10;,10,-,-,-,-
+        t2,int* p = &a;,10,0x12,-,-,-
+        t3,*p = 7;,7,0x12,-,-,-
+        t4,int b = 12;,7,0x12,12,-,-
+        t5,a = 99;,99,0x12,12,-,-
+    `);
     </script><br><br>
 
     <h3>Exemple de l'évolution de l'état d'un système 2</h3><br>
     <script>
         table(`
-temps,instruction,0x12,0x13,0x14,0x15,0x16
-t1,int a = 10;,(a) 10,-,-,-,-
-t2,int* p = &a;,(a) 10,(*p) 0x12,-,-,-
-t3,*p = 7;,(a) 7,(*p) 0x12,-,-,-
-t4,int b = 12;,(a) 7,(*p) 0x12,(b) 12,-,-
-t5,a = 99;,(a) 99,(*p) 0x12,(b) 12,-,-
-t6,const int c = 5;,(a) 99,(*p) 0x12,(b) 12,-,■ (c) 5
-t7,int* const q = &b;,(a) 99,(*p) 0x12,(b) 12,■ (q) 0x14,■ (c) 5
-t8,*q = 15;,(a) 99,(*p) 0x12,(b) 15,■ (q) 0x14, ■ (c) 5
-t9,int& r = a;,(a r) 99,(*p) 0x12,(b) 15,■ (q) 0x14, ■ (c) 5
-t10,r = 20;,(a r) 20,(*p) 0x12,(b) 15,■ (q) 0x14, ■ (c) 5
-`);
+    temps,instruction,0x12,0x13,0x14,0x15,0x16
+    t1,int a = 10;,(a) 10,-,-,-,-
+    t2,int* p = &a;,(a) 10,(*p) 0x12,-,-,-
+    t3,*p = 7;,(a) 7,(*p) 0x12,-,-,-
+    t4,int b = 12;,(a) 7,(*p) 0x12,(b) 12,-,-
+    t5,a = 99;,(a) 99,(*p) 0x12,(b) 12,-,-
+    t6,const int c = 5;,(a) 99,(*p) 0x12,(b) 12,-,■ (c) 5
+    t7,int* const q = &b;,(a) 99,(*p) 0x12,(b) 12,■ (q) 0x14,■ (c) 5
+    t8,*q = 15;,(a) 99,(*p) 0x12,(b) 15,■ (q) 0x14, ■ (c) 5
+    t9,int& r = a;,(a r) 99,(*p) 0x12,(b) 15,■ (q) 0x14, ■ (c) 5
+    t10,r = 20;,(a r) 20,(*p) 0x12,(b) 15,■ (q) 0x14, ■ (c) 5
+    `);
     </script><br>
 
     <script>
         table(`
-Note,int a = 1;<br>int&b = a;,et,int b = 1;<br>int& a = b;,ont exactement le même comportement
-C'est un peu comme de dire,Un grand bateau,et,Un bateau grand,le sens est le même`);
+    Note,int a = 1;<br>int& b = a;,et,int b = 1;<br>int& a = b;,ont exactement le même comportement
+    C'est un peu comme de dire,Un grand bateau,et,Un bateau grand,le sens est le même`);
     </script><br>
     Note : une référence c'est (souvent comme) un pointeur constant.
     <br><br>

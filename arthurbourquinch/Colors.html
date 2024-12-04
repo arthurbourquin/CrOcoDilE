@@ -1,51 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Color Squares</title>
     <style>
-    body{background:#222}
-        .container {
+        body {
+            background: #222
+        }
+
+        .palette {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(75px, 0fr));
             justify-content: center;
         }
-        .color-square {
-            width: 75px;
-            height: 75px;
+
+        .coloredSquare {
+            width: 25px;
+            height: 25px;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
             font-size: 14px;
+            margin: 50px;
         }
+
+        .coloredText {}
+
+        .lightText {}
+
+        .darkText {}
     </style>
 </head>
+
 <body>
-    <div class="container" id="colorContainer"></div>
+    <div class="palette" id="colorpalette"></div>
 
     <script>
         const colors = [
-['red','#e4202e'],['vert','#67ae40'],['bleu','#424dec'],['violet','#a161cb'],['jaune','#ffc300'],['cyan','#30bcd1'],['rose','#f78d90'],['brun','#7a4b38'],['orange','#f16d00'],['rose2','#ea498b'],['gris foncé','#222222']];
+            ['red', '#e4202e'], ['vert', '#67ae40'], ['bleu', '#424dec'], ['violet', '#a161cb'], ['jaune', '#ffc300'], ['cyan', '#30bcd1'], ['rose', '#f78d90'], ['brun', '#7a4b38'], ['orange', '#f16d00'], ['rose2', '#ea498b'], ['gris foncé', '#222222']];
 
         function createColorSquare(name, color) {
             const div = document.createElement('div');
-            div.className = 'color-square';
+            div.className = 'coloredSquare';
+            div.style.backgroundColor = color;
+            div.innerHTML = `${name}<br>${color}`;
+            return div;
+        }
+
+        function createColorText(name, color) {
+            const div = document.createElement('div');
+            div.className = 'coloredSquare';
+            div.style.backgroundColor = color;
+            div.innerHTML = `${name}<br>${color}`;
+            return div;
+        }
+
+        function createColorBackground(name, color) {
+            const div = document.createElement('div');
+            div.className = 'coloredSquare';
             div.style.backgroundColor = color;
             div.innerHTML = `${name}<br>${color}`;
             return div;
         }
 
         function displayColors(colors) {
-            const container = document.getElementById('colorContainer');
+            const palette = document.getElementById('colorpalette');
             colors.forEach(color => {
                 const colorSquare = createColorSquare(color[0], color[1]);
-                container.appendChild(colorSquare);
+                palette.appendChild(colorSquare);
             });
         }
 
         displayColors(colors);
     </script>
 </body>
+
 </html>

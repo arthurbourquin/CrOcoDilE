@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas Function Plotter</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        canvas {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <h1>Function Plotter</h1>
+    <canvas id="functionCanvas" width="256" height="256"></canvas>
+    <script>
+        // User-defined function f(x) = y
+        function expression(x) {
+            return Math.pow(x, 2); // Modify this function to plot your desired expression
+        }
+
+        // Setup canvas and context
+        const canvas = document.getElementById('functionCanvas');
+        const ctx = canvas.getContext('2d');
+
+        const canvasWidth = canvas.width;
+        const canvasHeight = canvas.height;
+
+        // Define the range of x and y
+        const xMin = -2, xMax = 2;
+        const yMin = -2, yMax = 2;
+
+        // Convert from mathematical space to canvas space
+        function toCanvasX(x) {
+            return ((x - xMin) / (xMax - xMin)) * canvasWidth;
+        }
+
+        function toCanvasY(y) {
+            return canvasHeight - ((y - yMin) / (yMax - yMin)) * canvasHeight;
+        }
+
+        // Draw function on canvas
+        function drawFunction() {
+            ctx.clearRect(0, 0, canvasWidth, canvasHeight); // Clear the canvas
+
+            ctx.beginPath();
+            ctx.strokeStyle = 'blue';
+            ctx.lineWidth = 2;
+
+            let firstPoint = true;
+
+            for (let i = 0; i < canvasWidth; i++) {
+                // Map canvas x-coordinate to mathematical x
+                const x = xMin + (i / canvasWidth) * (xMax - xMin);
+                const y = expression(x);
+
+                // Check if y is within the visible range
+                if (y >= yMin && y <= yMax) {
+                    const canvasX = toCanvasX(x);
+                    const canvasY = toCanvasY(y);
+
+                    if (firstPoint) {
+                        ctx.moveTo(canvasX, canvasY);
+                        firstPoint = false;
+                    } else {
+                        ctx.lineTo(canvasX, canvasY);
+                    }
+                }
+            }
+
+            ctx.stroke();
+        }
+
+        // Draw axes
+        function drawAxes() {
+            ctx.beginPath();
+            ctx.strokeStyle = 'black';
+            ctx.lineWidth = 1;
+
+            // Y-axis
+            const canvasX0 = toCanvasX(0);
+            ctx.moveTo(canvasX0, 0);
+            ctx.lineTo(canvasX0, canvasHeight);
+
+            // X-axis
+            const canvasY0 = toCanvasY(0);
+            ctx.moveTo(0, canvasY0);
+            ctx.lineTo(canvasWidth, canvasY0);
+
+            ctx.stroke();
+        }
+
+        // Draw everything
+        drawAxes();
+        drawFunction();
+    </script>
+</body>
+</html>

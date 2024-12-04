@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Blending with Multiply Mode</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin: 0;
+        }
+        .drop-zone, canvas {
+            border: 2px dashed #aaa;
+            margin: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        #downloadBtn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        #downloadBtn:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>Image Blending with Multiply Mode</h1>
+    
+    <div class="drop-zone" id="dropZone1">
+        <span>Drop Image 1 Here</span>
+        <input type="file" id="uploadImage1" style="display: none;">
+    </div>
+    
+    <div class="drop-zone" id="dropZone2">
+        <span>Drop Image 2 Here</span>
+        <input type="file" id="uploadImage2" style="display: none;">
+    </div>
+
+    <button id="downloadBtn">Download Merged Image</button>
+
+    <canvas id="canvas"></canvas>
+
+    <script>
+        const dropZone1 = document.getElementById('dropZone1');
+        const dropZone2 = document.getElementById('dropZone2');
+        const uploadImage1 = document.getElementById('uploadImage1');
+        const uploadImage2 = document.getElementById('uploadImage2');
+        const canvas = document.getElementById('canvas');
+        const downloadBtn = document.getElementById('downloadBtn');
+        let image1 = null;
+        let image2 = null;
+
+        // Handle file selection for Image 1
+        dropZone1.addEventListener('click', () => uploadImage1.click());
+        uploadImage1.addEventListener('change', (event) => {
+            loadImage(event.target.files[0], 'image1');
+        });
+
+        // Handle file selection for Image 2
+        dropZone2.addEventListener('click', () => uploadImage2.click());
+        uploadImage2.addEventListener('change', (event) => {
+            loadImage(event.target.files[0], 'image2');
+        });
+
+        // Load image and display it
+        function loadImage(file, imageType) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                const img = new Image();
+                img.src = e.target.result;
+                img.onload = () => {
+                    if (imageType === 'image1') {
+                        image1 = img;
+                        dropZone1.innerHTML = ''; // Clear text
+                        dropZone1.appendChild(img);
+                    } else if (imageType === 'image2') {
+                        image2 = img;
+                        dropZone2.innerHTML = ''; // Clear text
+                        dropZone2.appendChild(img);
+                    }
+                    if (image1 && image2) {
+                        mergeImages();
+                    }
+                };
+            };
+            reader.readAsDataURL(file);
+        }
+
+        // Merge images with Multiply mode
+        function mergeImages() {
+            const ctx = canvas.getContext('2d');
+            canvas.width = Math.max(image1.width, image2.width);
+            canvas.height = Math.max(image1.height, image2.height);
+            
+            // Draw the first image
+            ctx.drawImage(image1, 0, 0);
+
+            // Set the globalCompositeOperation to "multiply"
+            ctx.globalCompositeOperation = 'multiply';
+
+            // Draw the second image with the multiply blending mode
+            ctx.drawImage(image2, 0, 0);
+        }
+
+        // Download merged image
+        downloadBtn.addEventListener('click', () => {
+            if (canvas.toBlob) {
+                canvas.toBlob((blob) => {
+                    const link = document.createElement('a');
+                    link.href = URL.createObjectURL(blob);
+                    link.download = 'merged-image.png';
+                    link.click();
+                });
+            } else {
+                const dataUrl = canvas.toDataURL('image/png');
+                const link = document.createElement('a');
+                link.href = dataUrl;
+                link.download = 'merged-image.png';
+                link.click();
+            }
+        });
+    </script>
+</body>
+</html>

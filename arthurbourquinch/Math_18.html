@@ -1,0 +1,1424 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playwrite+NG+Modern:wght@100..400&family=Roboto+Slab:wght@100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto+Slab:wght@100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
+    <title>Math</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css"
+        integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"
+        integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz"
+        crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"
+        integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+
+    <style>
+        body {
+            background: #222;
+            color: #ddd;
+            font-family: Roboto Mono;
+            line-height: 1.5em;>
+            font-weight: 300;
+            margin: 50px;
+        }
+
+        .b {
+            font-weight: 700;
+        }
+
+        .Slab {
+            font-family: Roboto Slab;
+            font-weight: 400;
+        }
+
+        .Mono {
+            font-family: Roboto Mono;
+            font-weight: 400;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: Roboto Slab;
+        }
+
+        h1 {
+            font-size: 40px;
+            margin: 100px 0px;
+        }
+
+        h2 {
+            font-size: 24px;
+            margin: 100px 0px 25px;
+        }
+
+        h3 {
+            font-size: 18px;
+        }
+
+        table {
+            font-family: Roboto Slab;
+            text-align: center;
+            margin: 0px;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+
+        th,
+        .thh {
+            background: #303030;
+            font-weight: bold;
+        }
+
+        .TablePacked {
+            margin: 0px;
+            padding: 0;
+            border-collapse: collapse;
+        }
+
+        .TablePacked td,
+        .TablePacked tr,
+        .TablePacked th {
+            margin: 0;
+            padding: 0;
+            vertical-align: middle;
+            min-width: 35px;
+            height: 35px;
+        }
+
+        #ProprieteRelations td {
+            width: 35px;
+            height: 35px;
+            padding: 0px;
+            font-weight: bold;
+            vertical-align: middle;
+        }
+
+        .blocAvecCadre,
+        .blocAvecCadre {
+            display: inline-block;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 5px;
+            padding: 10px 15px;
+            width: fit-content;
+        }
+
+        .blocAvecCadre {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .alignLeft {
+            text-align: left;
+        }
+
+        .small {
+            font-size: 12px;
+        }
+
+        p {
+            font-family: Roboto Slab;
+            text-align: left;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <h1>Math</h1>
+    <h3>Notes de mathématiques de Arthur.<br>Attention, il y a peut-être des fautes !</h3>
+
+    <h2>Opérateurs logiques</h2>
+
+    <table>
+        <tr>
+            <th>Set</th>
+            <th>(3)Set</th>
+            <th>Math</th>
+            <th>Logic</th>
+            <th>Prog</th>
+            <th>Bool</th>
+            <th>door</th>
+            <th>table</th>
+        </tr>
+        <tr>
+            <td>∩</td>
+            <td><img src="https://www.arthurbourquin.ch/OuaisLesMedias/Ensembles/ABC_AND.png" style="width: 50px"></td>
+            <td>∧</td>
+            <td>AND</td>
+            <td>&&</td>
+            <td>•</td>
+            <td><img src="https://www.arthurbourquin.ch/OuaisLesMedias/Portes/porteAND.png" style="width: 50px"></td>
+            <td class="Mono">00 0<br>01 0<br>10 0<br>11 1</td>
+        </tr>
+        <tr>
+            <td>∪</td>
+            <td><img src="https://www.arthurbourquin.ch/OuaisLesMedias/Ensembles/ABC_OR.png" style="width: 50px"></td>
+            <td>∨</td>
+            <td>OR</td>
+            <td>||</td>
+            <td>+</td>
+            <td><img src="https://www.arthurbourquin.ch/OuaisLesMedias/Portes/porteOR.png" style="width: 50px"></td>
+            <td class="Mono">00 0<br>01 1<br>10 1<br>11 1</td>
+        </tr>
+        <tr>
+            <td>Δ</td>
+            <td><img src="https://www.arthurbourquin.ch/OuaisLesMedias/Ensembles/ABC_XOR.png" style="width: 50px"></td>
+            <td>⊖</td>
+            <td>XOR</td>
+            <td></td>
+            <td>⊕</td>
+            <td><img src="https://www.arthurbourquin.ch/OuaisLesMedias/Portes/porteXOR.png" style="width: 50px"></td>
+            <td class="Mono">00 0<br>01 1<br>10 1<br>11 0</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><img src="https://www.arthurbourquin.ch/OuaisLesMedias/Ensembles/ABC_XNOR.png" style="width: 50px"></td>
+            <td></td>
+            <td>XNOR</td>
+            <td></td>
+            <td>⊙</td>
+            <td><img src="https://www.arthurbourquin.ch/OuaisLesMedias/Portes/porteXNOR.png" style="width: 50px"></td>
+            <td class="Mono">00 1<br>01 0<br>10 0<br>11 1</td>
+        </tr>
+    </table>
+    <br>
+
+    <h2>Karnaugh</h2>
+    <div>
+        <tr>
+            <th>
+                <table style="display: inline-block; vertical-align: middle; margin: 10px;">
+                    <tr>
+                        <th>0</th>
+                        <th>1</th>
+                    </tr>
+                    <tr>
+                        <th>2</th>
+                        <th>3</th>
+                    </tr>
+                </table>
+            </th>
+            <th>
+                <table style="display: inline-block; vertical-align: middle; margin: 10px;">
+                    <tr>
+                        <th>0</th>
+                        <th>1</th>
+                        <th>3</th>
+                        <th>2</th>
+                    </tr>
+                    <tr>
+                        <th>4</th>
+                        <th>5</th>
+                        <th>7</th>
+                        <th>6</th>
+                    </tr>
+                </table>
+            </th>
+            <th>
+                <table style="display: inline-block; vertical-align: middle; margin: 10px;">
+                    <tr>
+                        <th>0</th>
+                        <th>1</th>
+                        <th>3</th>
+                        <th>2</th>
+                    </tr>
+                    <tr>
+                        <th>4</th>
+                        <th>5</th>
+                        <th>7</th>
+                        <th>6</th>
+                    </tr>
+                    <tr>
+                        <th>12</th>
+                        <th>13</th>
+                        <th>15</th>
+                        <th>14</th>
+                    </tr>
+                    <tr>
+                        <th>8</th>
+                        <th>9</th>
+                        <th>11</th>
+                        <th>10</th>
+                    </tr>
+                </table>
+            </th>
+        </tr>
+    </div>
+
+    <h2>Fonctions</h2>
+    <h3>Définition</h3>
+
+    <div class="blocAvecCadre">
+        \[
+        \begin{aligned}
+        & f: && A && \to && B \\
+        & && x && \mapsto && f(x) \\[1em]
+        \end{aligned}
+        \newline
+        \begin{aligned}
+        x & \in A \\
+        f(x) & \in B \\
+        x? & \in A \\
+        \end{aligned}
+        \]
+    </div>
+    <div class="blocAvecCadre">
+        \[
+        \begin{aligned}
+        & fonction: && domaine && \to && codomaine \\
+        & && variable \;/\; préimage && \mapsto && image \\[1em]
+        \end{aligned}
+        \newline
+        \begin{aligned}
+        variable & \in domaine \\
+        image & \in codomaine \\
+        préimage & \in domaine \\
+        \end{aligned}
+        \]
+    </div>
+    <div class="blocAvecCadre">
+        \[
+        \begin{aligned}
+        & Im(f) = f(A) \quad \subseteq A \\
+        & A \text{ et } B \text{ sont des ensembles}
+        \end{aligned}
+        \]
+    </div>
+    <br><br><br>
+
+    <h3>"Inverses"</h3>
+    <br>
+    <table>
+        <tr>
+            <td style="width: 300px">
+                fonction
+                \[ f(x) \]
+                <img style="width: 120px"
+                    src="https://www.arthurbourquin.ch/OuaisLesMedias/FonctionsInverses/g_g-de-x.png">
+                <span class="small">
+                    \[ x^2-2x+1 \]
+                    \[ D(f)=\mathbb{R} \quad;\quad Im(f)=\mathbb{R}_+ \]
+                </span>
+            </td>
+            <td style="width: 300px">
+                opposée
+                \[ -f(x) \]
+                <img style="width: 120px"
+                    src="https://www.arthurbourquin.ch/OuaisLesMedias/FonctionsInverses/g_moins-g-de-x.png">
+                <span class="small">
+                    \[ -(x^2-2x+1) \]
+                    \[ D(-f)=\mathbb{R} \quad;\quad Im(f)=\mathbb{R}_- \]
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td style="width: 300px">
+                ?
+                \[ f(-x) \]
+                <img style="width: 120px"
+                    src="https://www.arthurbourquin.ch/OuaisLesMedias/FonctionsInverses/g_g-de-moins-x.png">
+                <span class="small">
+                    \[ (-x)^2-(-2x)+1 \]
+                    \[ D(?)=\mathbb{R} \quad;\quad Im(?)=\mathbb{R}_+ \]
+                </span>
+            </td>
+            <td style="width: 300px">
+                réciproque (inverse)
+                \[f^{-1}(x)\]
+                <img style="width: 120px"
+                    src="https://www.arthurbourquin.ch/OuaisLesMedias/FonctionsInverses/g_g-moins-un-de-x.png">
+                <span class="small">
+                    \[
+                    \left\{ \begin{array}{ll}
+                    x \ge 0 \quad 1 + \sqrt{x} \\
+                    x \le 0 \quad 1 - \sqrt{x}
+                    \end{array} \right.
+                    \]
+                    \[
+                    \left\{ \begin{array}{ll}
+                    D(f^{-1})=\mathbb{R_+} \quad;\quad Im(f^{-1})=[1, \infty[ \\
+                    D(f^{-1})=\mathbb{R_+} \quad;\quad Im(f^{-1})=]-\infty , 1]
+                    \end{array} \right.
+                    \]
+                </span>
+            </td>
+        </tr>
+    </table>
+    <div class="blocAvecCadre">
+        \[ \begin{aligned}
+        & f(x) = \text{fonction de } x \\[0.5em]
+        & D(f) = \text{domaine (de définition) de } f \\[0.5em]
+        & Im(f) = f(\mathbb{R}^*)? = \text{image de } f \\[0.5em]
+        & \text{le préimage est typiquement x ?} \\[0.5em]
+        & \text{image réciproque = image de la réciproque ? c'est pas le domaine de définition ? } \\[0.5em]
+        \end{aligned}\]
+    </div><br>
+
+    <h3>injectivité, surjectivité, bijective</h3>
+    <div class="blocAvecCadre">
+        <table>
+            <tr class="thh">
+                <td>
+                    \[ f(x) \]
+                </td>
+                <td style="width: 200px;">
+                </td>
+                <td style="width: 200px;">
+                    Injective
+                </td>
+            </tr>
+            <tr>
+                <td class="thh">
+                </td>
+                <td>
+                    <div class="blocSansCadre">
+                        \[ x^2 \]
+                        <img width="100px" src="http://www.arthurbourquin.ch/OuaisLesMedias/Fonctions/x-carre">
+                    </div>
+                </td>
+                <td>
+                    <div class="blocSansCadre">
+                        \[ e^x \]
+                        <img width="100px" src="http://www.arthurbourquin.ch/OuaisLesMedias/Fonctions/e-x">
+                </td>
+            </tr>
+            <tr>
+                <td class="thh">
+                    Surjective
+                </td>
+                <td>
+                    <div class="blocSansCadre">
+                        \[ ln(x) \]
+                        <img width="100px" src="http://www.arthurbourquin.ch/OuaisLesMedias/Fonctions/ln-x">
+                    </div>
+                </td>
+                <td>
+                    <div class="blocSansCadre">
+                        \[ x^3 \]
+                        <img width="100px" src="http://www.arthurbourquin.ch/OuaisLesMedias/Fonctions/x-cube">
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <table>
+        <tr class="thh">
+            <td>Exemple de fonction</td>
+            <td style="padding: 2px;"></td>
+            <td>nulle</td>
+            <td>constante</td>
+            <td>linéraire</td>
+            <td>affine</td>
+            <td style="padding: 2px;"></td>
+            <td>monotone</td>
+            <td style="padding: 2px;"></td>
+            <td>injective</td>
+            <td>surjective</td>
+            <td>bijective</td>
+        </tr>
+        <tr>
+            <td>\[ f(x) \]</td>
+            <td style="padding: 2px;"></td>
+            <td>\[ 0 \]</td>
+            <td>\[ 3.7 \]</td>
+            <td>\[ 2x \]</td>
+            <td>\[ 3x + 4 \]</td>
+            <td style="padding: 2px;"></td>
+            <td>\[ x \]</td>
+            <td style="padding: 2px;"></td>
+            <td>\[ e^x \]</td>
+            <td>\[ x^3 -x \]</td>
+            <td>\[ x^3 \]</td>
+        </tr>
+    </table>
+
+    <h2>Produits</h2>
+    <h3>Désambiguïsation des produits</h3><br>
+    <div class="blocAvecCadre">
+        \[ a^2 \neq A^2 \neq M^2 \neq R^2 \quad \text{et c'est super !} \]
+    </div>
+    <table>
+        <tr>
+            <th>Français</th>
+            <th>English</th>
+            <th></th>
+            <th></th>
+            <th>a</th>
+            <th>c</th>
+            <th>m</th>
+            <th>type des arguments</th>
+            <th>type du résultat</th>
+        </tr>
+        <tr>
+            <td>produit de scalaires</td>
+            <td>scalar product</td>
+            <td>\[a⋅b\]</td>
+            <td>\[ a^2 \]</td>
+            <td>✔</td>
+            <td>✔</td>
+            <td>∞</td>
+            <td>scalaire</td>
+            <td>scalaire</td>
+        </tr>
+        <tr>
+            <td>produit scalaire</td>
+            <td>dot product</td>
+            <td>\[|a|⋅|b|⋅cos(θ)\]</td>
+            <td></td>
+            <td>-</td>
+            <td>✔</td>
+            <td>2</td>
+            <td>vecteur n dim</td>
+            <td>scalaire</td>
+        </tr>
+        <tr>
+            <td>produit matriciel</td>
+            <td>matrix product</td>
+            <td>\[M×N\]</td>
+            <td>\[ M^2 \]</td>
+            <td>✔</td>
+            <td></td>
+            <td>!</td>
+            <td>matrice n dim</td>
+            <td>matrice</td>
+        </tr>
+        <tr>
+            <td>produit cartésien</td>
+            <td>cartesian product</td>
+            <td>\[A×B\]</td>
+            <td>\[ A^2 \]</td>
+            <td>✔</td>
+            <td></td>
+            <td>∞</td>
+            <td>ensemble</td>
+            <td>ensemble de relations</td>
+        </tr>
+        <tr>
+            <td>composition de relations</td>
+            <td>composition of relations</td>
+            <td>\[R○S\]</td>
+            <td>\[ R^2 \]</td>
+            <td>✔</td>
+            <td></td>
+            <td>∞</td>
+            <td>relation</td>
+            <td>ensemble de relations</td>
+        </tr>
+        <tr>
+            <td>produit vectoriel</td>
+            <td>cross product</td>
+            <td>\[ \hat{a} × \hat{b} \]</td>
+            <td> \[ \hat{v} \]</td>
+            <td>-</td>
+            <td></td>
+            <td>2</td>
+            <td>vecteur 3D</td>
+            <td>vecteur 3D</td>
+        </tr>
+        <tr>
+            <td style="padding: 2px;"></td>
+        </tr>
+        <tr>
+            <td>composition de fonction</td>
+            <td>function composition</td>
+            <td>\[ f \circ g \]</td>
+            <td>\[ h \]</td>
+            <td></td>
+            <td></td>
+            <td>∞</td>
+            <td>fonction</td>
+            <td>fonction</td>
+        </tr>
+    </table>
+    <p>
+        a = associatif, c = commutatif, m = nombre maximum d'éléments
+    </p>
+
+    <h2>Ensembles</h2>
+
+    <div class="blocAvecCadre">
+        \[
+        \begin{aligned}
+        Les \; & \blue{\mathbb{N}}aturels \\
+        Les \; & \blue{\mathbb{Z}}'entiers \\
+        Les \; & \blue{\mathbb{Q}}uotiens \\
+        Les \; & \blue{\mathbb{R}}éels \\
+        Les \; & \blue{\mathbb{C}}omplexes
+        \end{aligned}
+        \]
+    </div>
+    <br>
+
+    <div class="blocAvecCadre">
+
+        <div class="blocAvecCadre">
+            \[ \begin{aligned}
+            & A = \{a, b, c\} \\[0.5em]
+            & |A| = 3
+            \end{aligned} \]
+            <table>
+                <tr>
+                    <td style="width: 20px;">
+                        a
+                    </td>
+                    <td style="width: 20px;">
+                        b
+                    </td>
+                    <td style="width: 20px;">
+                        c
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="blocAvecCadre">
+            \[ \begin{aligned}
+            & A×A = A^2 = \{(a, a), (a, b), ..., (c, c)\} \\[0.5em]
+            & |A|^2 = 9 \\
+            \end{aligned} \]
+            <table>
+                <tr>
+                    <th></th>
+                    <th>a</th>
+                    <th>b</th>
+                    <th>c</th>
+                </tr>
+                <tr>
+                    <td class="thh">a</td>
+                    <td>(a,a)</td>
+                    <td>(a,b)</td>
+                    <td>(a,c)</td>
+                </tr>
+                <tr>
+                    <td class="thh">b</td>
+                    <td>(b,a)</td>
+                    <td>(b,b)</td>
+                    <td>(b,c)</td>
+                </tr>
+                <tr>
+                    <td class="thh">c</td>
+                    <td>(c,a)</td>
+                    <td>(c,b)</td>
+                    <td>(c,c)</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="blocAvecCadre">
+            \[ \begin{aligned}
+            & \mathscr{P}(A) = \{\emptyset, \{a\}, ..., \{a, b, c\}\} \\
+            & \mathscr{P}(A) | = 2^{|A|} = 2^3 = 8
+            \end{aligned} \]
+            <table>
+                <tr>
+                    <th>a</th>
+                    <th>b</th>
+                    <th>c</th>
+                    <th></th>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>∅</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td>✔</td>
+                    <td>{c}</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>✔</td>
+                    <td></td>
+                    <td>{b}</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>✔</td>
+                    <td>✔</td>
+                    <td>{b, c}</td>
+                </tr>
+                <tr>
+                    <td>✔</td>
+                    <td></td>
+                    <td></td>
+                    <td>{a}</td>
+                </tr>
+                <tr>
+                    <td>✔</td>
+                    <td></td>
+                    <td>✔</td>
+                    <td>{a, c}</td>
+                </tr>
+                <tr>
+                    <td>✔</td>
+                    <td>✔</td>
+                    <td></td>
+                    <td>{a, b}</td>
+                </tr>
+                <tr>
+                    <td>✔</td>
+                    <td>✔</td>
+                    <td>✔</td>
+                    <td>{a, b, c}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+
+    <table>
+        <tr>
+            <td>\[ A \in B \]</td>
+            <td>apparient</td>
+            <td>Il y a l'élément <b>A</b> dans l'ensemble <b>B</b></td>
+        </tr>
+        <tr>
+            <td>\[ A \subseteq B \]</td>
+            <td>inclus dans</td>
+            <td>avec les éléments de l'ensemble <b>B</b> on peut représenter tous les éléments de l'ensemble <b>A</b>
+            </td>
+        </tr>
+    </table>
+    <br><br>
+
+    <div class="blocAvecCadre">
+        \[ \begin{aligned}
+        & A = \{a, b, c\} \quad ; \quad B = \mathscr{P}(A) \\[0.5em]
+        & C = \{a, b\} \quad ; \quad D = \{\{a\}, \{b\}\} \\[1.5em]
+        & C \subset A \quad;\quad C \nsubseteq B \quad;\quad C \in B \quad;\quad C \notin A \\[0.5em]
+        & D \nsubseteq A \quad;\quad D \subset B \quad;\quad D \notin B \quad;\quad D \notin A \\
+        \end{aligned} \]
+    </div>
+    </div>
+    <br><br>
+
+    <h2>Matrices de Relations</h2>
+    <div class="blocAvecCadre">
+        <div class="blocAvecCadre">
+            \[ \begin{aligned}
+            & A = \{ a,b,c \} \\[0.5em]
+            & B = \{ x,y \} \\[0.5em]
+            & R = \{ (b,x),(c,x),(c,y) \} \\[0.5em]
+            & R \subseteq A \times B
+            \end{aligned}
+            \]
+        </div>
+        <div class="blocAvecCadre">
+            <table>
+                <tr>
+                    <th>\[ R \]</th>
+                    <th>x</th>
+                    <th>y</th>
+                </tr>
+                <tr>
+                    <th>a</th>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th>b</th>
+                    <td>✔</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th>c</th>
+                    <td>✔</td>
+                    <td>✔</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <br><br>
+
+    <div class="blocAvecCadre">
+        <div class=blocAvecCadre>
+            <span class="Slab">Réflexivité</span>
+            <td>
+                <table id="ProprieteRelations">
+                    <tr>
+                        <td>1</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>1</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td>1</td>
+                    </tr>
+                </table>
+                \[ aRa \]
+        </div>
+
+        <div class=blocAvecCadre>
+            <span class="Slab">Symétrie</span>
+            <table id="ProprieteRelations">
+                <tr>
+                    <td></td>
+                    <td>●</td>
+                    <td>▲</td>
+                </tr>
+                <tr>
+                    <td>●</td>
+                    <td></td>
+                    <td>■</td>
+                </tr>
+                <tr>
+                    <td>▲</td>
+                    <td>■</td>
+                    <td></td>
+                </tr>
+            </table>
+            \[ aRb \Leftrightarrow bRa \]
+        </div>
+
+        <div class=blocAvecCadre>
+            <span class="Slab">Antisymétrie</span>
+            <table id="ProprieteRelations" style="color: yellowgreen"">
+            <tr>
+                <td></td>
+                <td>●</td>
+                <td>▲</td>
+            </tr>
+            <tr>
+                <td>○</td>
+                <td></td>
+                <td>■</td>
+            </tr>
+            <tr>
+                <td>△</td>
+                <td>□</td>
+                <td></td>
+            </tr>
+        </table>
+        \[ aRb \Leftrightarrow b\cancel{R}a \]
+    </div>
+
+    <div class=" blocAvecCadre">
+                <span class="Slab">Transitivité</span>
+                <table id="ProprieteRelations" style="color: steelblue;">
+                    <tr>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>1</td>
+                    </tr>
+                </table>
+                \[ R^2 \subseteq R \]
+        </div>
+
+        <div class=blocAvecCadre>
+            <span class="Slab">Ordre partiel</span>
+            <table id="ProprieteRelations" style="color: steelblue;">
+                <tr>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>1</td>
+                </tr>
+            </table>
+            \[ - \]
+        </div>
+
+        <div class=blocAvecCadre>
+            <span class="Slab">Ordre total ?</span>
+            <table id="ProprieteRelations">
+                <tr>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>1</td>
+                </tr>
+                <tr>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>1</td>
+                </tr>
+                <tr>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>1</td>
+                </tr>
+            </table>
+            \[ - \]
+        </div>
+        <div class=blocAvecCadre>
+            <span class="Slab">Equivalence</span>
+            <table id="ProprieteRelations" style="color: steelblue;">
+                <tr>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>1</td>
+                </tr>
+            </table>
+            <span style="color: steelblue;">\[ [a]_R \;,\; [b]_R \]</span>
+        </div>
+        <br><br>
+        <div class="blocAvecCadre">
+            <span class="Slab">Exemple de calcul de la transitivité ("vide" = 0 pour la lisibilité)</span><br>
+            <div class="blocAvecCadre">
+                \[ \begin{aligned}
+                & R^2 \subseteq R
+                \end{aligned} \]
+            </div>
+            <br>
+            <div class="blocAvecCadre" style="color: steelblue;">
+                <table id="ProprieteRelations">
+                    <tr>
+                        <td>1</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td></td>
+                        <td></td>
+                        <td>1</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td></td>
+                        <td>1</td>
+                    </tr>
+                </table>
+                \[ M(R) \\[0.5em]
+                - \]
+            </div>
+            <div class="blocAvecCadre" style="color: steelblue;">
+                <table id="ProprieteRelations">
+                    <tr>
+                        <td>1</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>2</td>
+                        <td>2</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>2</td>
+                        <td>2</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td></td>
+                        <td></td>
+                        <td>1</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>3</td>
+                        <td>3</td>
+                        <td></td>
+                        <td>1</td>
+                    </tr>
+                </table>
+                \[ M(R)^2 \\[0.5em]
+                - \]
+            </div>
+            <div class="blocAvecCadre" style="color: steelblue;">
+                <table id="ProprieteRelations">
+                    <tr>
+                        <td>1</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td></td>
+                        <td></td>
+                        <td>1</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td></td>
+                        <td>1</td>
+                    </tr>
+                </table>
+                \[ M(R^2) \\[0.5em]
+                M(R \circ R) \]
+            </div>
+        </div>
+        <div class="blocAvecCadre" style="font-size: 14px; line-height: 16px;">
+            <span style="">0 c'est 0 _ 1 c'est 1 _ vide c'est égal</span><br>
+            <span>Si plein = 0 alors vide = 1 (et vice versa)</span><br>
+            <span style="color: yellowgreen;">Valeur ou 0</span><br>
+            <span style="color: steelblue;">Valeur exemple</span><br>
+        </div>
+    </div>
+
+    <table>
+        <tr>
+            <th></th>
+            <th>Refl.</th>
+            <th>Sym.</th>
+            <th>Ant.</th>
+            <th>Tran.</th>
+            <th>exemple</th>
+        </tr>
+        <tr>
+            <td>relation d'ordre totale</td>
+            <td>✔</td>
+            <td></td>
+            <td>✔</td>
+            <td>✔</td>
+            <td>\[ \le \]</td>
+        </tr>
+        <tr>
+            <td>relation d'ordre partielle</td>
+            <td>✔</td>
+            <td></td>
+            <td>✔</td>
+            <td>✔</td>
+            <td>\[ \subseteq \]</td>
+        </tr>
+        <tr>
+            <td>relation d'équivalence</td>
+            <td>✔</td>
+            <td>✔</td>
+            <td></td>
+            <td>✔</td>
+            <td>\[ = \]</td>
+        </tr>
+    </table>
+    <br><br>
+
+
+    <h2>Dérivées</h2>
+    <table>
+        <tr>
+            <th>Fonction</th>
+            <th>Dérivée</th>
+        </tr>
+        <tr>
+            <td colspan="2" style="padding: 2px"></td>
+        </tr>
+        <tr>
+            <td>\[ f(\blue{x}) = a \blue{x}^b + c \]</td>
+            <td>\[ f'(\blue{x}) = b a \blue{x}^{b - 1} \]</td>
+        </tr>
+        </tr>
+        <tr>
+            <td>\[ f(\blue{x}) = ab^{c\blue{x} + d} + e \]</td>
+            <td>\[ f'(\blue{x}) = cab^{c\blue{x} +d} ln(a) \]</td>
+        </tr>
+        <tr>
+            <td colspan="2" style="padding: 2px"></td>
+        </tr>
+        <tr>
+            <td>\[ f( \blue{x} ) = log_a( \blue{x} ) \]</td>
+            <td>\[ f'( \blue{x} ) = \frac{1}{ \blue{x} ln(a)} \]</td>
+        </tr>
+        <tr>
+            <td colspan="2" style="padding: 2px"></td>
+        </tr>
+        <tr>
+            <td>\[ f(\blue{x}) = sin(\blue{x}) \]</td>
+            <td>\[ f'(\blue{x}) = cos(\blue{x}) \]</td>
+        </tr>
+        <tr>
+            <td>\[ f(\blue{x}) =cos(\blue{x}) \]</td>
+            <td>\[ f'(\blue{x} )=-sin(\blue{x} )\]</td>
+        </tr>
+        <tr>
+            <td>\[ f(\blue{x}) = tan(\blue{x}) \]</td>
+            <td>\[ f'(\blue{x}) = 1 + tan^2(\blue{x}) \]</td>
+            <td>\[ f'(\blue{x}) = \frac{1}{cos^2(\blue{x})}\]</td>
+        </tr>
+        <tr>
+            <td colspan="2" style="padding: 2px "></td>
+        </tr>
+        <tr>
+            <td>\[ f(\blue{x}) = a \green{co} sin(\blue{x}) \]</td>
+            <td>\[ f'(\blue{x}) = \frac{\green{-}1}{\sqrt{1 - x^2}} \]</td>
+        </tr>
+        <tr>
+            <td>\[ f(\blue{x}) = atg(\blue{x}) \]</td>
+            <td>\[ f'(\blue{x}) = \frac{1}{1 + \blue{x}^2} \]</td>
+        </tr>
+        <tr>
+            <td colspan="2" style="padding: 2px "></td>
+        </tr>
+        <tr>
+            <td>\[ f(\blue{x} )\green±g(\blue{x} )\]</td>
+            <td>\[ f'(\blue{x} )\green±g'(\blue{x} )\]</td>
+        </tr>
+        <tr>
+            <td>\[ f(\blue{x}) \cdot g(\blue{x}) \]</td>
+            <td>\[ f'(\blue{x}) \cdot g(\blue{x}) + f(\blue{x}) \cdot g'(\blue{x} )\]</td>
+        </tr>
+        <tr>
+            <td>\[ \frac{f(\blue{x})}{g(\blue{x})} \]</td>
+            <td>\[ \frac{f'(\blue{x}) g(\blue{x}) - f(\blue{x}) g'(\blue{x})}{(g(\blue{x}))^2} \]</td>
+        </tr>
+        <tr>
+            <td>\[ f(g(h(\blue{x}))) \]</td>
+            <td>\[ f'(g(h(\blue{x}))) \cdot g'(h(\blue{x})) \cdot h'(\blue{x}) \]</td>
+            <td>\[ (f \circ g \circ h)(\blue{x}) \]</td>
+        </tr>
+        <tr>
+            <td colspan="2" style="padding: 2px "></td>
+        </tr>
+        <tr>
+            <td>\[ f(\blue{x}) = ln(\blue{x}) \]</td>
+            <td>\[ f'(\blue{x}) = \frac{1}{\blue{x}} \]</td>
+        </tr>
+        <tr>
+            <td>\[ f(\blue{x}) = \blue{x}^{\blue{x}} \]</td>
+            <td>\[ f'(\blue{x}) = \blue{x}^{\blue{x}}ln(\blue{x} + 1) \]</td>
+        </tr>
+        <tr>
+            <td colspan="2" style="padding: 2px "></td>
+        </tr>
+        <tr>
+            <td>\[ f(\blue{x}) \]</td>
+            <td>\[ t(\blue{x}) = f(x_0) + f'(x_0) \cdot (\blue{x} - x_0) \]</td>
+            <td>
+                \[ \begin{aligned}
+                & \text{linéarisation en } x_0 \\
+                & \text{fonction de la tangente en } x_0
+                \end{aligned}\]
+            </td>
+        </tr>
+        <tr>
+            <td>\[ T_n(x) \]</td>
+            <td>\[ T_n(\blue{x}) = \sum_{k=0}^{n} \frac{f^{(k)}(x_0)}{k!} (\blue{x} - x_0)^k \]</td>
+            <td>\[ \text{Taylor-Young} \]</td>
+        </tr>
+    </table>
+    <br><br>
+
+    <h2>Trigonométrie</h2>
+    <br>
+    <div class="blocAvecCadre">
+        <img width="500px" src="http://www.arthurbourquin.ch/OuaisLesMedias/Circle-trig6white.png">
+    </div>
+    <br><br>
+
+    <table>
+        <tr>
+            <td>
+            </td>
+            <td>\[ 0 \]</td>
+            <td>\[ \frac{\tau}{12 }\]</td>
+            <td>\[ \frac{\tau}{8} \]</td>
+            <td>\[ \frac{\tau}{6} \]</td>
+            <td>\[ \frac{\tau}{4} \]</td>
+        </tr>
+        <tr>
+            <td>
+            </td>
+            <td>\[ 0 \]</td>
+            <td>\[ \frac{\pi}{6} \]</td>
+            <td>\[ \frac{\pi}{4} \]</td>
+            <td>\[ \frac{\pi}{3} \]</td>
+            <td>\[ \frac{\pi}{2} \]</td>
+        </tr>
+        <tr>
+            <td>\[ sin\]</td>
+            <td>\[ \frac{\sqrt{\green{0}}}{2} \]</td>
+            <td>\[ \frac{\sqrt{\green{1}}}{2} \]</td>
+            <td>\[ \frac{\sqrt{\green{2}}}{2} \]</td>
+            <td>\[ \frac{\sqrt{\green{3}}}{2} \]</td>
+            <td>\[ \frac{\sqrt{\green{4}}}{2} \]</td>
+        </tr>
+        <tr>
+            <td>\[ cos \]</td>
+            <td>\[ \frac{\sqrt{\green{4}}}{2} \]</td>
+            <td>\[ \frac{\sqrt{\green{3}}}{2} \]</td>
+            <td>\[ \frac{\sqrt{\green{2}}}{2} \]</td>
+            <td>\[ \frac{\sqrt{\green{1}}}{2} \]</td>
+            <td>\[ \frac{\sqrt{\green{0}}}{2} \]</td>
+        </tr>
+        <tr>
+            <td>\[ tan \]</td>
+            <td>\[ 0 \]</td>
+            <td>\[ \frac{1}{\sqrt{{3}}} \]</td>
+            <td>\[ 1 \]</td>
+            <td>\[ \sqrt{3} \]</td>
+            <td>\[ / \]</td>
+        </tr>
+    </table>
+
+    <div class="blocAvecCadre">
+        <h3>Angles</h3><br>
+        \[ \begin{aligned}
+        & c^2 = a^2 + b^2 - 2ab\,cos(\theta) \\[1.5em]
+        & \frac{A}{sin(\alpha)} = \frac{B}{sin(\beta)} = \frac{C}{sin(\gamma)}
+        \end{aligned} \]
+    </div>
+    <div class="blocAvecCadre">
+        <h3>Sommes</h3><br>
+        \[ \begin{aligned}
+        & sin(\alpha \green± \beta) = sin(\alpha)cos(\beta) \; \green± \; cos(\alpha)sin(\beta) \\[1.5em]
+        & \rightarrow \quad sin( 2\alpha) = 2sin(\alpha)cos(\alpha) \\[2.5em]
+        & cos(\alpha \green± \beta) = cos(\alpha)cos(\beta) \; \red∓ \; sin(\alpha)sin(\beta) \\[1.5em]
+        & \rightarrow \quad cos(2 \alpha) = cos^2(\alpha) - sin^2(\alpha) \\[2.5em]
+        & tan(\alpha \green± \beta) = \frac{tan(\alpha) \green± tan(\beta)}{1 \red∓ tan(\alpha)tan(\beta)} \\[1.5em]
+        & \rightarrow \quad tan(2\alpha) = \frac{2tan(\alpha)}{1 - tan^2(\alpha)}
+        \end{aligned} \]
+    </div>
+    <div class="blocAvecCadre">
+        <h3>Quotients</h3><br>
+        \[ \begin{aligned}
+        & \frac{sin}{cos} = \frac{tan}{1} = \frac{1}{cot} = \frac{sec}{csc} \\[1.5em]
+        \end{aligned} \]
+    </div>
+    <div class="blocAvecCadre">
+        <h3>Pythagore</h3><br>
+        \[ \begin{aligned}
+        & sin^2(\theta) + cos^2(\theta) = 1 \\[1.5em]
+        & \blue{co}sec^2(\theta) - \blue{co}tan^2(\theta) = 1
+        \end{aligned} \]
+    </div>
+
+    <h2>Vecteurs</h2>
+    <div class="blocAvecCadre">
+        \[
+        \hat{a} \cdot \hat{b} = a_x b_x + a_y b_2 + a_z b_z \\[1.5em]
+        \hat{a} \times \hat{b} = (a_y b_z - a_z b_y, \quad a_z b_x - a_x b_z, \quad a_x b_y - a_y b_x) \\[1.5em]
+        s = ||a|| cos(\theta) = a \cdot \hat{b} \\[1.5em]
+        \]
+    </div>
+
+    <h2>Identités remarquables</h2>
+    <div class="blocAvecCadre">
+        \[ \begin{aligned}
+        (a \green± b)^2 &= a^2 \green±2 ab + b^2 \\[1.5em]
+        a^2 - b^2 &= (a + b) \cdot (a - b) \\[1.5em]
+        (a \green± b)^3 &= a^3 \green± 3 a^2 b + 3 a b^2 \green± b^3 \\[1.5em]
+        a^3 \green± b^3 &= (a \green± b)(a^2 \red∓ ab + b^2)
+        \end{aligned} \]
+    </div>
+    <div class="blocAvecCadre">
+        \[
+        ax^2 + bx + c = 0 \\[1.5em]
+        x = \frac{-b \green± \sqrt{b^2 - 4ac}}{2a} \\[1.5em]
+        a(x - x_1)(x - x_2) = 0 \\[1.5em]
+        Discriminant : b^2 - 4ac
+        \]
+    </div>
+
+    <h2>Logarithmes</h2>
+    <div class="blocAvecCadre" style="color: grey; border-color: grey;">
+        \[
+        x = a^{log_a(x)} \\[1.5em]
+        log_x(x) = 1 \\[1.5em]
+        log_x(x^y) = y \\[1.5em]
+        log_x(y^z) = z*log_x(y)
+        \]
+    </div>
+    <div class="blocAvecCadre">
+        \[
+        a^{b}=c \\[1.5em]
+        log_a\,(c)=b=\frac{log_x\,(c)}{log_x(a)} \\[1.5em]
+        log_x \, (c) = b \cdot log_x\,(a)
+        \]
+    </div>
+    <div class="blocAvecCadre">
+        \[
+        log(a \cdot b) = log(a) + log(b) \\[1.5em]
+        log(\frac{a}{b}) = log(a) - log(b) \\[1.5em]
+        log_{a}(\frac{1}{b^a}) = -b
+        \]
+    </div>
+
+    <h2>Euler et nombres complexes</h2>
+    <div class="blocAvecCadre">
+        \[
+        e^{i\theta}=cos\theta+i\sin\theta \\[1.5em]
+        e^{i\pi}+1=0 \\[1.5em]
+        e^{i2k\pi}=1 \\[1.5em]
+        e^{i\pi}\cdot e^{i2k\pi}=0 \\[1.5em]
+        (a+ib)(c+id)=ac-bd+i(bc+ad) \\[1.5em]
+        (a+ib)+(c+id)=(a+c)+i(b+d) \\[1.5em]
+        (a+ib)-(c+id)=(a+c)-i(b+d)
+        \]
+    </div>
+
+
+    <h2>Taux d'intérêt</h2>
+    <div class="blocAvecCadre">
+        \[
+        A = P*(1 + r)^{n} \\[1.5em]
+        P = \frac{A}{(1 + r)^n} \\[1.5em]
+        r = \sqrt[n]{\frac{A}{P}} - 1 \\[1.5em]
+        n = \frac{log \frac{A}{P}}{log(1 + r)} \\[1.5em]
+        \]
+    </div>
+
+    <h2>Statistiques</h2>
+    <table>
+        <tr>
+            <th>Ensemble</th>
+            <th>Set</th>
+            <th style="width: 70px;">{1, 3, 4, 7}</th>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Somme</td>
+            <td>Sum</td>
+            <td>15</td>
+            <td>\[\sum_{i=1}^{n}x_i\]</td>
+        </tr>
+        <tr>
+            <td>Moyenne</td>
+            <td>Average</td>
+            <td>3.75</td>
+            <td>\[\bar{x} = \frac{1}{n} \sum_{i=1}^{n} x_i\]</td>
+        </tr>
+        <tr>
+            <td>Mode</td>
+            <td>Mode</td>
+            <td>nul</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Etendue</td>
+            <td>Range</td>
+            <td>6</td>
+            <td>\[x_{max}- x_{min}\]</td>
+        </tr>
+        <tr>
+            <td>Ecart Moyen</td>
+            <td>Mean Deviation</td>
+            <td>1.75</td>
+            <td>\[\frac{1}{n} \sum_{i=1}^{n} |x_i - \bar{x}|\]</td>
+        </tr>
+        <tr>
+            <td>Variance</td>
+            <td>Variance</td>
+            <td>
+            <td>\[V = \frac{1}{n} \sum_{i=1}^{n} (x_i - \bar{x})^2\]</td>
+        </tr>
+        <tr>
+            <td>Ecart Type</td>
+            <td>Standard Deviation</td>
+            <td></td>
+            <td>\[\sigma = \sqrt{V} = \sqrt{\frac{1}{n} \sum_{i=1}^{n} (x_i - \bar{x})^2}\]</td>
+        </tr>
+        <tr>
+            <th>Autres</th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+        <tr>
+            <td>Somme des Ecarts</td>
+            <td>Sum of Deviations</td>
+            <td></td>
+            <td>\[\sum_{i=1}^{n} |x_i - \bar{x}|=0\]</td>
+        </tr>
+        <tr>
+            <td>Somme des Carres des Ecarts</td>
+            <td>Sum of Squared Deviations</td>
+            <td></td>
+            <td>\[\sum_{i=1}^{n} (x_i - \bar{x})^2\]</td>
+        </tr>
+    </table>
+</body>
+
+</html>
