@@ -12,6 +12,11 @@
             font-family: Arial, sans-serif;
         }
 
+        .set {
+            border: 1px solid #ddd;
+            border-radius: 10px;
+        }
+
         .palette {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(75px, 1fr));
@@ -34,39 +39,43 @@
 </head>
 
 <body>
-    <script>
-        const colors = [
-            ['rouge', 'd32'], ['vert', '691'], ['bleu', '06e'], ['magenta', 'f58'], ['jaune', 'ea0'],
-            ['cyan', '3bd'], ['rose', 'f89'], ['brun', '743'], ['orange', 'e61'], ['violet', 'a6c']
-        ];
 
-        function createPalette(name, bgColorArray, textColorArray) {
-            const container = document.createElement('div');
-            container.id = name;
-            container.className = 'palette';
+    <div id="TohmColorsSet" class="set">
+        <script>
+            const TohmColors = [
+                ['rouge', 'd32'], ['vert', '691'], ['bleu', '06e'], ['magenta', 'f38'], ['jaune', 'ea0'],
+                ['cyan', '3bd'], ['rose', 'f89'], ['brun', '743'], ['orange', 'e61'], ['violet', 'a6c']
+            ];
 
-            for (let i = 0; i < colors.length; i++) {
-                const [label, hex] = colors[i];
-                const element = document.createElement('div');
-                element.className = 'element';
-                element.innerHTML = label + '<br>' + hex;
+            function createPalette(set, name, bgColorArray, textColorArray) {
+                const container = document.createElement('div');
+                container.id = name;
+                container.className = 'palette';
 
-                // Background color logic
-                element.style.backgroundColor = Array.isArray(bgColorArray) ? '#' + bgColorArray[i][1] : '#' + bgColorArray;
+                for (let i = 0; i < TohmColors.length; i++) {
+                    const [label, hex] = TohmColors[i];
+                    const element = document.createElement('div');
+                    element.className = 'element';
+                    element.innerHTML = hex;
 
-                // Text color logic
-                element.style.color = Array.isArray(textColorArray) ? '#' + textColorArray[i][1] : '#' + textColorArray;
-            container.appendChild(element);
+                    // Background color logic
+                    element.style.backgroundColor = Array.isArray(bgColorArray) ? '#' + bgColorArray[i][1] : '#' + bgColorArray;
+
+                    // Text color logic
+                    element.style.color = Array.isArray(textColorArray) ? '#' + textColorArray[i][1] : '#' + textColorArray;
+                    container.appendChild(element);
+                }
+
+                document.getElementById(set).appendChild(container);
             }
 
-            document.body.appendChild(container);
-        }
+            createPalette('TohmColorsSet', 'squares', TohmColors, TohmColors);
+            createPalette('TohmColorsSet', 'texts', '#222', TohmColors);
+            createPalette('TohmColorsSet', 'textsOnDark', TohmColors, '222');
+            createPalette('TohmColorsSet', 'textsOnLight', TohmColors, 'ddd');
+        </script>
+    </div>
 
-        createPalette('squares', colors, colors);
-        createPalette('texts', '#222', colors);
-        createPalette('textsOnDark', colors, '#222');
-        createPalette('textsOnLight', colors , '#ddd');
-    </script>
 </body>
 
 </html>

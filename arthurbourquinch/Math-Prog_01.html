@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playwrite+NG+Modern:wght@100..400&family=Roboto+Slab:wght@100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto+Slab:wght@100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
+    <title>Math Prog</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css"
+        integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"
+        integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz"
+        crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"
+        integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+
+    <style>
+        body {
+            background: #222;
+            color: #ddd;
+            font-family: Roboto Slab;
+            line-height: 1.5em;
+            font-weight: 200;
+            margin: 100px;
+        }
+
+        b {
+            font-weight: 500;
+        }
+
+        .mono {
+            font-family: Roboto Mono;
+            font-weight: 300;
+        }
+
+        h1 {
+            font-size: 30px;
+        }
+
+        h2 {
+            font-size: 24px;
+        }
+
+        h3 {
+            font-size: 16px;
+            font-weight: 400;
+        }
+
+        .row {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: 20px 20px;
+        }
+
+        .box {
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            width: fit-content;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+        }
+
+        th {
+            font-weight: bold;
+            background-color: #303030;
+        }
+
+        .conversionTable th,
+        .conversionTable td {
+            font-weight: 600;
+            width: 50px;
+            height: 50px;
+            text-align: center;
+            vertical-align: middle;
+            border-color: #303030;
+        }
+
+        .conversionTable td:nth-child(1),
+        .conversionTable tr:nth-child(1) {
+            color: #ddd;
+            background-color: #303030;
+        }
+
+        p {
+            margin: 20px 0px;
+            max-width: 500px;
+        }
+
+        a {
+            color: dodgerblue;
+            font-weight: 600;
+            text-decoration: underline;
+        }
+
+        a:hover {
+            color: goldenrod;
+            text-decoration: underline;
+        }
+    </style>
+
+<body>
+
+    <br><br>
+    <h1>Math et Prog</h1>
+    <br>
+    <p>Parallèles entre cours de Math et cours de Prog à la HEIG</p>
+    <p>Rejoindre le <a target="_blank" rel="noopener noreferrer" href="https://discord.gg/CVKSmHAJyh">serveur Discord de
+            Arthur Bourquin</a>, essentiellement dédié à la HEIG.</p>
+    <br><br><br>
+
+    <h2>Promotions de type C++</h2>
+    <br>
+    <div class="row">
+        <div>
+            <p>
+                Les promotions de types en C++ garantissent qu'il n'y aura aucune perte de précision lors de la
+                conversion du type d'une variable. Cette conversion — qu'on pourrait appeler "lossless" — n'est pas
+                seulement vraie pour les promotions mais aussi pour les conversions suivantes.
+            </p>
+            <p>
+                Ci-dessous un diagramme de Hasse présentant deux relations entre les types C++. La relation <span
+                    style="color: #28ae7b;"><b>C</span></b> est la <span style="color: #28ae7b;"><b>conversions
+                        garanties
+                        sans pertes</span></b> entre deux types. La relation <span
+                    style="color: #6595ed;"><b>P</span></b>
+                est la <span style="color: #6595ed;"><b>promotion de type</span></b> définie par C++. La relation P est
+                incluse dans la relation C.
+            </p>
+            <div class="latex">
+                \[ \blue{P} \subset \green{C} \]
+            </div>
+            <div>
+                <p>C comme P sont <b>réflexives</b> car pour chaque confrontation d'un type avec lui-même ce type
+                    ressort.</p>
+                <p>C comme P sont <b>antisymétriques</b> car si un type l'emporte sur l'autre, alors l'autre ne
+                    l'emportera jamais
+                    sur le premier.</p>
+                <p>C comme P sont <b>transitives</b> car si a l'emporte sur b et b l'emporte sur c alors a l'emporte sur
+                    c.</p>
+                <p>C comme P sont donc des <b>relations d'ordre</b> et peuvent être représentées sour forme d'un
+                    <b>diagramme de Hasse</b>.
+                </p>
+            </div>
+        </div>
+        <img width="500px" src="https://www.arthurbourquin.ch/OuaisLesMedias/ConversionPromotion_002.png">
+        <p>Le type <b>long int</b> est hors du diagramme car il est identique à <b>int</b> ou <b>long long int</b> selon
+            les systèmes. Il en
+            va de même pour <b>unsigned long int</b>.</p>
+    </div>
+    <table class="conversionTable" style="color: #28ae7b;">
+        <tr>
+            <td></td>
+            <td>b</td>
+            <td>uc</td>
+            <td>c</td>
+            <td>us</td>
+            <td>s</td>
+            <td>ui</td>
+            <td>i</td>
+            <td>ull</td>
+            <td>ll</td>
+            <td>f</td>
+            <td>h</td>
+            <td>lh</td>
+        </tr>
+        <tr>
+            <td>b</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td style="color: #6595ed;">1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>uc</td>
+            <td></td>
+            <td>1</td>
+            <td></td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td style="color: #6595ed;">1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>c</td>
+            <td></td>
+            <td></td>
+            <td>1</td>
+            <td></td>
+            <td>1</td>
+            <td>1</td>
+            <td style="color: #6595ed;">1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>us</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>1</td>
+            <td></td>
+            <td>1</td>
+            <td style="color: #6595ed;">1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>s</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>1</td>
+            <td></td>
+            <td style="color: #6595ed;">1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>ui</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>1</td>
+            <td></td>
+            <td>1</td>
+            <td>1</td>
+            <td></td>
+            <td>1</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>i</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>1</td>
+            <td></td>
+            <td>1</td>
+            <td></td>
+            <td>1</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>ull</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>1</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>ll</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>1</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>f</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>1</td>
+            <td style="color: #6595ed;">1</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>d</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>1</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>ld</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>1</td>
+        </tr>
+    </table>
+    <br><br><br><br><br>
+
+    <br><br><br>
+
+    <h2>Modulo(s)</h2><br>
+
+    <div class="row">
+
+        <div class="box" style="border-color: steelblue;">
+            <b>Math → Floored modulo</b><br><br>
+                <div class="mono">
+                    5 mod 2 = 1<br>
+                    -5 mod 2 = 1<br>
+                    5 mod -2 = -1<br>
+                    -5 mod -2 = -1
+                </div>
+        </div>
+
+        <div class="box" style="border-color: orange;">
+            <b>Prog → Truncated modulo</b><br><br>
+                <div class="mono">
+                    5 mod 2 = 1<br>
+                    -5 mod 2 = -1<br>
+                    5 mod -2 = -1<br>
+                    -5 mod -2 = 1
+                </div>
+        </div>
+
+        <div class="box" style="border-color: steelblue;">
+            \[ \begin{aligned}
+            & (a) \; mod \; (b) = k \cdot b + r \quad;\quad && a, b, k \in \mathbb{Z} \;,\; r \in \mathbb{N}
+            \end{aligned} \]
+        </div>
+
+        <div class="box" style="border-color: steelblue;">
+            \[ \begin{aligned}
+            & r = a - \left\lfloor \frac{a}{b} \right\rfloor \cdot b \quad;\quad && a, b \in \mathbb{R}
+            \end{aligned} \]
+        </div>
+
+        <div class="box" style="border-color: steelblue;">
+            \[ \begin{aligned}
+            & (x) \; mod \; (2) \quad \gray{x - \left\lfloor \frac{x}{2} \right\rfloor \cdot 2}
+            \end{aligned} \]
+            <img width="300px" src="http://www.arthurbourquin.ch/OuaisLesMedias/Fonctions/floored-modulo-pos.png">
+        </div>
+
+        <div class="box" style="border-color: steelblue;">
+            \[ \begin{aligned}
+            & (x) \; mod \; (-2) \quad \gray{x - \left\lfloor \frac{x}{-2} \right\rfloor \cdot (-2)}
+            \end{aligned} \]
+            <img width="300px" src="http://www.arthurbourquin.ch/OuaisLesMedias/Fonctions/floored-modulo-neg.png">
+        </div>
+
+        <div class="box" style="border-color: orange;">
+            <span class="mono"> x % 2 = x % -2</span><br>
+            <img width="300px" src="http://www.arthurbourquin.ch/OuaisLesMedias/Fonctions/truncated-modulo.png">
+        </div>
+
+    </div>
+    <br><br>
+
+    <h2>Logarithme</h2>
+    <br>
+    <div class="row">
+        <div class="box">
+            <b>Mathématiques</b><br>
+            \[ \begin{aligned}
+            & log(a) = log_{10}(a)
+            \end{aligned} \]
+        </div>
+        <div class="box">
+            <b>Programmation</b><br><br>
+            <span class="mono">log(a) = ln(a)</span><br><br>
+            *du moins dans la plupart des languages dont C++, JavaScript et Python.
+        </div>
+    </div>
+</body>
