@@ -23,12 +23,17 @@
         onload="renderMathInElement(document.body);"></script>
 
     <style>
+        html {
+            scroll-behavior: auto;
+        }
+
         body {
             background: #222;
             color: #ddd;
             font-family: Roboto Slab;
             line-height: 1.5em;
             font-weight: 300;
+            margin: 40px;
         }
 
         .b {
@@ -68,6 +73,7 @@
         td {
             padding: 10px;
             border: 1px solid #ddd;
+            vertical-align: middle;
         }
 
         .karnaughLetter {
@@ -90,6 +96,11 @@
             vertical-align: middle;
             min-width: 35px;
             height: 35px;
+        }
+
+        .TableLatex td,
+        .TableLatex th {
+            padding: 20px 40px;
         }
 
         .TableCarree td,
@@ -131,6 +142,13 @@
             padding: 10px 40px;
             border: 1px solid #ddd;
             border-radius: 5px;
+            width: fit-content;
+            margin: 10px 0px;
+            ;
+        }
+
+        .latex {
+            width: fit-content;
         }
     </style>
 
@@ -205,53 +223,101 @@
     </div>
 
     <h2>Karnaugh</h2>
-    <table class="TableCarree">
-        <tr>
-            <td style="border: 0px;"></td>
-            <td colspan="2" class="karnaughLetter">A</td>
-            <td style="border: 0px;"></td>
-            <td style="border: 0px;"></td>
-            <td style="border: 0px;"></td>
-        </tr>
-        <tr>
-            <td rowspan="2" class="karnaughLetter">B</td>
-            <td>0</td>
-            <td>1</td>
-            <td>3</td>
-            <td>2</td>
-            <td style="border: 0px;"></td>
-        </tr>
-        <tr>
-            <td>4</td>
-            <td>5</td>
-            <td>7</td>
-            <td>6</td>
-            <td rowspan="2" class="karnaughLetter">D</td>
-        </tr>
-        <tr>
-            <td style="border: 0px;"></td>
-            <td>12</td>
-            <td>13</td>
-            <td>15</td>
-            <td>14</td>
-        </tr>
-        <tr>
-            <td style="border: 0px;"></td>
-            <td>8</td>
-            <td>9</td>
-            <td>11</td>
-            <td>10</td>
-            <td style="border: 0px;"></td>
-        </tr>
-        <tr>
-            <td style="border: 0px;"></td>
-            <td style="border: 0px;"></td>
-            <td colspan="2" class="karnaughLetter">C</td>
-            <td style="border: 0px;"></td>
-            <td style="border: 0px;"></td>
-        </tr>
-    </table>
-
+    <div class="row">
+        <table class="TableCarree">
+            <tr>
+                <td style="border: 0px;"></td>
+                <td style="border: 0px;"></td>
+                <td class="karnaughLetter">A</td>
+            </tr>
+            <tr>
+                <td style="border: 0px;"></td>
+                <td>0</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td class="karnaughLetter">B</td>
+                <td>2</td>
+                <td>3</td>
+            </tr>
+        </table>
+        <br>
+        <table class="TableCarree">
+            <tr>
+                <td style="border: 0px;"></td>
+                <td style="border: 0px;"></td>
+                <td style="border: 0px;"></td>
+                <td colspan="2" class="karnaughLetter">A</td>
+            </tr>
+            <tr>
+                <td style="border: 0px;"></td>
+                <td>0</td>
+                <td>2</td>
+                <td>3</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td class="karnaughLetter">C</td>
+                <td>4</td>
+                <td>6</td>
+                <td>7</td>
+                <td>5</td>
+            </tr>
+            <tr>
+                <td style="border: 0px;"></td>
+                <td style="border: 0px;"></td>
+                <td colspan="2" class="karnaughLetter">B</td>
+                <td style="border: 0px;"></td>
+            </tr>
+        </table>
+        <br>
+        <table class="TableCarree">
+            <tr>
+                <td style="border: 0px;"></td>
+                <td style="border: 0px;"></td>
+                <td style="border: 0px;"></td>
+                <td colspan="2" class="karnaughLetter">A</td>
+                <td style="border: 0px;"></td>
+            </tr>
+            <tr>
+                <td style="border: 0px;"></td>
+                <td>0</td>
+                <td>4</td>
+                <td>12</td>
+                <td>8</td>
+                <td style="border: 0px;"></td>
+            </tr>
+            <tr>
+                <td style="border: 0px;"></td>
+                <td>1</td>
+                <td>5</td>
+                <td>13</td>
+                <td>9</td>
+                <td rowspan="2" class="karnaughLetter">D</td>
+            </tr>
+            <tr>
+                <td rowspan="2" class="karnaughLetter">C</td>
+                <td>3</td>
+                <td>7</td>
+                <td>15</td>
+                <td>11</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>6</td>
+                <td>14</td>
+                <td>10</td>
+                <td style="border: 0px;"></td>
+            </tr>
+            <tr>
+                <td style="border: 0px;"></td>
+                <td style="border: 0px;"></td>
+                <td colspan="2" class="karnaughLetter">B</td>
+                <td style="border: 0px;"></td>
+                <td style="border: 0px;"></td>
+            </tr>
+        </table>
+    </div>
 
     <h2>Fonctions</h2>
     <div class="memoCard">
@@ -378,13 +444,13 @@
                         <span class="small">
                             \[
                             \left\{ \begin{array}{ll}
-                            x \ge 0 \quad 1 + \sqrt{x} \\
+                            x \ge 0 \quad 1 + \sqrt{x} \\[1em]
                             x \le 0 \quad 1 - \sqrt{x}
                             \end{array} \right.
                             \]
                             \[
                             \left\{ \begin{array}{ll}
-                            D(f^{-1})=\mathbb{R_+} \quad;\quad Im(f^{-1})=[1, \infty[ \\
+                            D(f^{-1})=\mathbb{R_+} \quad;\quad Im(f^{-1})=[1, \infty[ \\[1em]
                             D(f^{-1})=\mathbb{R_+} \quad;\quad Im(f^{-1})=]-\infty , 1]
                             \end{array} \right.
                             \]
@@ -525,6 +591,17 @@
                 <td>matrice</td>
             </tr>
             <tr>
+                <td>produit de Hadamard / produit élément par élément</td>
+                <td>Hadamard product / Element wise product</td>
+                <td>\[A \circ B\]</td>
+                <td>\[ A^{\circ 2} \]</td>
+                <td>✔</td>
+                <td>✔</td>
+                <td>!</td>
+                <td>matrice n dim</td>
+                <td>matrice</td>
+            </tr>
+            <tr>
                 <td>produit cartésien</td>
                 <td>cartesian product</td>
                 <td>\[A×B\]</td>
@@ -538,7 +615,7 @@
             <tr>
                 <td>composition de relations</td>
                 <td>composition of relations</td>
-                <td>\[R○S\]</td>
+                <td>\[R \circ S\]</td>
                 <td>\[ R^2 \]</td>
                 <td>✔</td>
                 <td></td>
@@ -592,7 +669,12 @@
             \end{aligned} \]
         </div>
     </div>
-
+    <div class="memoCard">
+        Ah oui :
+        <div class="latex" style="font-size: 2em;">
+            \[ \varnothing \subseteq \varnothing \]
+        </div>
+    </div>
     <div class="memoCard">
 
         <div class="col">
@@ -1121,6 +1203,283 @@
         </div>
     </div>
 
+    <h2>Suites</h2>
+    <table>
+        <tr>
+            <th>Suite arithmétique</th>
+            <td>
+                \[ \begin{aligned}
+                & a_k = a_0 + k \cdot r, \quad k = 0, 1, ... \\[1em]
+                &
+                \left\{ \begin{array}{ll}
+                a_k = a_{k - 1} + r, \quad k \ge 1 \\[1em]
+                a_0 \in \mathbb{R} \; donné
+                \end{array} \right.
+                \end{aligned}\]
+            </td>
+        </tr>
+        <tr>
+            <th>Suite géométrique</th>
+            <td>
+                \[ \begin{aligned}
+                & a_k = a_0 \cdot r, \quad k = 0, 1, ... \\[1em]
+                &
+                \left\{ \begin{array}{ll}
+                a_k = r \cdot a_{k - 1}, \quad k \ge 1 \\[1em]
+                a_0 \in \mathbb{R} \; donné
+                \end{array} \right.
+                \end{aligned}\]
+            </td>
+        </tr>
+        <tr>
+            <th>Suite arithmético-géométrique</th>
+            <td>
+                \[ \begin{aligned}
+                \left\{ \begin{array}{ll}
+                a_k = r \cdot a_{k - 1} + c, \quad k \ge 1 \\[1em]
+                a_0 \in \mathbb{R} \; donné
+                \end{array} \right.
+                \end{aligned}\]
+            </td>
+            <td>pas de raison</td>
+        </tr>
+    </table>
+    <div class="memoCard">
+        <div>
+            <h3>Rappels</h3>
+            <table>
+                <tr>
+                    <td>Associativité</td>
+                    <th>\[ (1 + 2) + 3 ~~=~~ 1 + (2 + 3) \]</th>
+                </tr>
+                <tr>
+                    <td>Commutativité<br><span style="color: grey">("Permutativité")</span></td>
+                    <th>\[ 1 + 2 + 3 ~~=~~ 3 + 1 + 2 \]</th>
+                </tr>
+                <tr>
+                    <td>Distributivté<br>Factorisation</td>
+                    <th>\[ 3(1 + 2) ~~=~~ 3 + 6 \]</th>
+                </tr>
+            </table>
+        </div>
+        <h3>Égalités <span style="color: grey;">et inégalités</span></h3>
+        <h3 style="color: orange;">En cours et à vérifier...</h3>
+        <div class="latex">
+            \[ \begin{aligned}
+            & \text{Choix de notation générale :} \\[1em]
+            & \bigoplus_{k=i}^{n} (f_{k}) \quad\quad \bigoplus_{i=i_0}^{m}\bigoplus_{j=j_0}^{n} (f_j g_j)
+            \end{aligned} \]
+        </div>
+        <div class="memoCard">
+            <table>
+                <tr>
+                    <td>
+                        \[ \begin{aligned}
+                        \sum_{k=\blue{m}}^{\orange{n}} (k)
+                        \end{aligned} \]
+                    </td>
+                    <td>
+                        \[ \begin{aligned}
+                        \sum_{k=1}^{\orange{n}-\blue{m}+1} (k + \blue{m} - 1)
+                        \end{aligned} \]
+                    </td>
+                    <td>
+                        \[ \begin{aligned}
+                        \sum_{k=1}^{\orange{n}} (k)
+                        -
+                        \sum_{k=1}^{\blue{m}-1} (k)
+                        \end{aligned} \]
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        \[ \begin{aligned}
+                        \prod_{k=\blue{m}}^{\orange{n}} (k)
+                        \end{aligned} \]
+                    </td>
+                    <td>
+                        \[ \begin{aligned}
+                        \prod_{k=1}^{\orange{n}-\blue{m}+1} (k + \blue{m} - 1)
+                        \end{aligned} \]
+                    </td>
+                    <td>
+                        \[ \begin{aligned}
+                        \prod_{k=1}^{\orange{n}} (k)
+                        \div
+                        \prod_{k=1}^{\blue{m}-1} (k)
+                        \end{aligned} \]
+                    </td>
+                </tr>
+            </table>
+            <div class="latex">\[ \text{valeurs test pour aider : } \blue{3} ~~ \orange{7} \]</div>
+        </div>
+        <table>
+            <tr>
+                <td>
+                    \[ \begin{aligned}
+                    \sum_{k=1}^n (c)
+                    \quad = \quad
+                    n \cdot c
+                    \end{aligned} \]
+                </td>
+                <td>
+                    \[ \begin{aligned}
+                    \prod_{k=1}^n (c)
+                    \quad = \quad
+                    n^c
+                    \end{aligned} \]
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    \[ \begin{aligned}
+                    \sum_{k=1}^n (k)
+                    \quad = \quad
+                    \frac{n \cdot (n+1)}{2}
+                    \end{aligned} \]
+                </td>
+                <td>
+                    \[ \begin{aligned}
+                    \prod_{k=1}^n (k)
+                    \quad = \quad
+                    n!
+                    \end{aligned} \]
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    \[ \begin{aligned}
+                    \sum_{k=1}^n (k + c)
+                    \quad = \quad
+                    \sum_{k=c+1}^{n+c} (k)
+                    \quad = \quad
+                    \frac{(n + c) \cdot ((n + c) + 1)}{2} - \frac{c \cdot (c - 1)}{2}
+                    \end{aligned} \]
+                </td>
+                <td>
+                    \[ \begin{aligned}
+                    \prod_{k=1}^n (k + c)
+                    \quad = \quad
+                    \prod_{k=c}^{n+c} (k)
+                    \quad = \quad
+                    \frac{n!}{c!}
+                    \end{aligned} \]
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    \[ \begin{aligned}
+                    \sum_{k=i}^n (a_k + c)
+                    \quad = \quad
+                    \sum_{k=i}^n (a_k) ~ + ~ (n-i) \cdot c
+                    \end{aligned} \]
+                </td>
+                <td>
+                    \[ \begin{aligned} \gray{
+                    \prod_{k=i}^n (a_k + c)
+                    } \end{aligned} \]
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    \[ \begin{aligned}
+                    \sum_{k=i}^n (a_k \cdot c)
+                    \quad = \quad
+                    \sum_{k=i}^n (a_k) ~ \cdot ~ c
+                    \end{aligned} \]
+                </td>
+                <td>
+                    \[ \begin{aligned}
+                    \prod_{k=i}^n (a_k \cdot c)
+                    \quad = \quad
+                    \prod_{k=i}^n (a_k) ~ \cdot ~ c^{n-i}
+                    \end{aligned} \]
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    \[ \begin{aligned}
+                    \sum_{k=i}^n (a_k + b_k)
+                    \quad = \quad
+                    \sum_{k=i}^n (a_k) ~ + ~ \sum_{k=i}^n (b_k)
+                    \end{aligned} \]
+                </td>
+                <td>
+                    \[ \begin{aligned} \gray{
+                    \prod_{k=i}^n (a_k + b_k)
+                    } \end{aligned} \]
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    \[ \begin{aligned} \gray{
+                    \sum_{k=i}^n (a_k \cdot b_k)
+                    } \end{aligned} \]
+                </td>
+                <td>
+                    \[ \begin{aligned}
+                    \prod_{k=i}^n (a_k \cdot b_k)
+                    \quad = \quad
+                    \prod_{k=i}^n (a_k) \cdot \prod_{k=i}^n (b_k)
+                    \end{aligned} \]
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    \[ \begin{aligned}
+                    \blue{\sum_{i=j}^k} \sum_{l=m}^n (a_{ij})
+                    \quad = \quad
+                    \sum_{l=m}^n \blue{\sum_{i=j}^k} (a_{ij})
+                    \end{aligned} \]
+                </td>
+                <td>
+                    \[ \begin{aligned}
+                    \blue{\prod_{i=j}^k} \prod_{l=m}^n (a_{ij})
+                    \quad = \quad
+                    \prod_{l=m}^n \blue{\prod_{i=j}^k} (a_{ij})
+                    \end{aligned} \]
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="height: 4px; padding: 0px;"></td>
+            </tr>
+            <tr>
+                <td>
+                    \[ \begin{aligned}
+                    & \sum_{i = 1}^n \sum_{\orange{j = i}}^n (a_{ij})
+                    \quad = \quad
+                    \sum_{j = 1}^n \sum_{i = 1}^\orange{j} (a_{ij})
+                    \end{aligned} \]
+                </td>
+                <td>
+                    \[ \begin{aligned}
+                    & \prod_{i = 1}^n \prod_{\orange{j = i}}^n (a_{ij})
+                    \quad = \quad
+                    \prod_{j = 1}^n \prod_{i = 1}^\orange{j} (a_{ij})
+                    \end{aligned} \]
+                </td>
+            </tr>
+        </table>
+        <h3>Autres notations non conventionnelles</h3>
+        <div class="row">
+            <div class="memoCard">
+                <div class="latex">
+                    \[ \begin{aligned}
+                    & \sum_{i \in I}^n \sum_{j = F(i)}^n (a_{ij})
+                    \end{aligned} \]
+                </div>
+            </div>
+            <div class="memoCard">
+                <div class="latex">
+                    \[ \begin{aligned}
+                    & f : && \mathbb{N} && \rightarrow && \mathbb{R} \\[1em]
+                    & && i && \mapsto && a_i
+                    \end{aligned} \]
+                </div>
+            </div>
+        </div>
+    </div>
+
     <h2>Dérivées</h2>
     <div class="row">
         <table>
@@ -1206,7 +1565,9 @@
         </table>
         <table>
             <tr>
-                <td>\[ f(\blue{x}) \]</td>
+                <th colspan="2">Taylor-Young et Maclaurin</th>
+            </tr>
+            <tr>
                 <td>\[ t(\blue{x}) = f(x_0) + f'(x_0)(\blue{x} - x_0) \]</td>
                 <td>
                     \[ \begin{aligned}
@@ -1216,9 +1577,18 @@
                 </td>
             </tr>
             <tr>
-                <td>\[ T_n(x) \]</td>
-                <td>\[ T_n(\blue{x}) \sum_{k=0}^{n} \frac{f^{(k)}(x_0)}{k!} (\blue{x} - x_0)^k \]</td>
-                <td>\[ \text{Taylor-Young} \]</td>
+                <td colspan="2">
+                    \[ \begin{aligned}
+                    & T_1(\blue{x}) = f(x_0) + f'(x_0)(\blue{x} - x_0) + o(x) \\[2em]
+                    & T_2(\blue{x}) = f(x_0) + f'(x_0)(\blue{x} - x_0) + \frac{f''(x_0)}{2!}(\blue{x}-x_0) + o(x^2)
+                    \\[2em]
+                    & T_3(\blue{x}) = f(x_0) + f'(x_0)(\blue{x} - x_0) + \frac{f''(x_0)}{2!}(\blue{x}-x_0) +
+                    \frac{f'''(x_0)}{3!}(\blue{x}-x_0) +o(x^3)
+                    \end{aligned}\]
+            </tr>
+            <tr>
+                <td>\[ T_n(\blue{x}) = \sum_{k=0}^{n} \frac{f^{(k)}(x_0)}{k!} (\blue{x} - x_0)^k + R_n(x) \]</td>
+                <td>Formule générale</td>
             </tr>
         </table>
         <div class="memoCard">
@@ -1305,7 +1675,7 @@
         <div class="memoCard">
             \[ \begin{aligned}
             (a \green± b)^2 &= a^2 \green±2 ab + b^2 \\[1.5em]
-            a^2 - b^2 &= (a + b) \cdot (a - b) \\[1.5em]
+            a^2 - b^2 &= (a + b)(a - b) \\[1.5em]
             (a \green± b)^3 &= a^3 \green± 3 a^2 b + 3 a b^2 \green± b^3 \\[1.5em]
             a^3 \green± b^3 &= (a \green± b)(a^2 \red∓ ab + b^2)
             \end{aligned} \]
@@ -1444,6 +1814,9 @@
             <td>\[\sum_{i=1}^{n} (x_i - \bar{x})^2\]</td>
         </tr>
     </table>
+
+
+
 </body>
 
 </html>

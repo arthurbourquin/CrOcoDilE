@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Collapsible Div</title>
+<style>
+  .collapsible {
+    cursor: pointer;
+    padding: 10px;
+    border: 1px solid #ccc;
+    background-color: #f0f0f0;
+    text-align: left;
+  }
+
+  .content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+
+  input[type="checkbox"] {
+    display: none;
+  }
+
+  input[type="checkbox"]:checked ~ .content {
+    max-height: 100px; /* Set this to the desired expanded height or 'none' for unlimited */
+  }
+</style>
+</head>
+<body>
+<label class="collapsible">
+  <input type="checkbox">
+  <span>Click to toggle content</span>
+  <div class="content">
+    <p>This is the collapsible content. It can be hidden or shown using pure CSS!</p>
+  </div>
+</label>
+</body>
+</html>

@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playwrite+NG+Modern:wght@100..400&family=Roboto+Slab:wght@100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto+Slab:wght@100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
+    <title>Math Prog</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css"
+        integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"
+        integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz"
+        crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"
+        integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+
+    <style>
+        body {
+            background: #222;
+            color: #ddd;
+            font-family: Roboto Slab;
+            line-height: 1.5em;
+            font-weight: 400;
+            margin: 50px;
+        }
+
+        b {
+            font-weight: 800;
+            color: lightcoral;
+        }
+
+        .mono {
+            font-family: Roboto Mono;
+            font-weight: 300;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-weight: 700;
+        }
+
+        h1 {
+            font-size: 40px;
+            margin: 30px 0px;
+        }
+
+        h2 {
+            font-size: 30px;
+            margin: 20px 0px;
+        }
+
+        h3 {
+            font-size: 20px;
+            margin: 10px 0px;
+        }
+
+        .article {
+            border-top: 1px dotted #ddd;
+            border-bottom: 1px dotted #ddd;
+            padding: 20px 0px;
+            margin: 40px 0px;
+            column-count: 2;
+            column-gap: 30px;
+        }
+
+        p {
+            text-indent: 10px;
+            margin-bottom: 20px;
+        }
+
+        .section {
+            border-left: 1px solid #ddd;
+            padding-left: 20px;
+            margin: 100px 0px;
+        }
+
+        .row {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: 20px 20px;
+            margin: 10px 0px;
+        }
+
+        .col {
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+            gap: 20px 20px;
+            margin: 10px 0px;
+        }
+
+        .box {
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            width: fit-content;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 10px;
+        }
+
+        th {
+            font-weight: bold;
+        }
+
+        .latexTableBofBof th,
+        .latexTableBofBof td {
+            width: fit-content;
+            ;
+            padding: 0px;
+            text-align: left;
+            align-items: left;
+            align-content: left;
+            vertical-align: middle;
+        }
+
+        .invisibleTable th,
+        .invisibleTable td {
+            border: 1px solid #0000;
+        }
+
+        .tightTable th,
+        .tightTable td {
+            padding: 0px;
+        }
+
+        .conversionTable th,
+        .conversionTable td {
+            font-weight: 600;
+            width: 50px;
+            height: 50px;
+            padding: 0px;
+            text-align: center;
+            vertical-align: middle;
+            border-color: #303030;
+        }
+
+        .conversionTable td:nth-child(1),
+        .conversionTable tr:nth-child(1) {
+            color: #ddd;
+            background-color: #303030;
+        }
+
+        a {
+            color: dodgerblue;
+            font-weight: 600;
+            text-decoration: underline;
+        }
+
+        a:hover {
+            color: gold;
+            text-decoration: underline;
+        }
+
+        .latex {
+            width: fit-content;
+            border: 1px solid #ddd;
+            border-radius: 15px;
+            padding: 10px 40px;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+        .credits {
+            font-size: 12px;
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+
+        .Math,
+        .MathD,
+        .Prog {
+            border-left: 3px solid;
+            padding-left: 10px;
+        }
+
+        .Math {
+            border-color: gold;
+        }
+
+        .MathD {
+            border-color: orange;
+        }
+
+        .Prog {
+            border-color: steelblue;
+        }
+    </style>
+
+<body>
+
+    <h1>Math et Prog</h1>
+    <p>Parallèles entre cours de Math et cours de Prog à la HEIG</p>
+    <p>Rejoindre le <a target="_blank" rel="noopener noreferrer" href="https://discord.gg/CVKSmHAJyh">serveur
+            Discord de
+            Arthur Bourquin</a>, essentiellement dédié à la HEIG.</p>
+
+
+    <div class="section">
+
+        <h2>Promotions de type C++</h2>
+
+        <div class="credits">
+            Merci à Fouad Hanna, Bastien Chaudet, Guo Yu Wu, pour l'aide et les vérifications.
+        </div>
+
+        <div class="article">
+            <p>
+                Les promotions de types en C++ garantissent qu'il n'y aura aucune perte de précision lors de la
+                conversion du type d'une variable. Cette conversion — qu'on pourrait appeler "lossless" — n'est pas
+                seulement vraie pour les promotions mais aussi pour les conversions suivantes.
+            </p>
+            <p>
+                Ci-dessous un diagramme de Hasse présentant deux relations entre les types C++. La relation <span
+                    style="color: #28ae7b;"><b>C</span></b> est la <span style="color: #28ae7b;"><b>conversions
+                        garanties sans pertes</span></b> entre deux types. La relation <span
+                    style="color: #6595ed;"><b>P</span></b> est la <span style="color: #6595ed;"><b>promotion de
+                        type</span></b> définie par C++. La relation P est incluse dans la relation C.
+            </p>
+            <div class="latex">
+                \[ \blue{P} \subset \green{C} \]
+            </div>
+            <p>
+                C comme P sont <b>réflexives</b> car pour chaque confrontation d'un type avec lui-même ce type
+                ressort.
+            </p>
+            <p>
+                C comme P sont <b>antisymétriques</b> car si un type l'emporte sur l'autre, alors l'autre ne l'emportera
+                jamais sur le premier.
+            </p>
+            <p>
+                C comme P sont <b>transitives</b> car si a l'emporte sur b et b l'emporte sur c alors a l'emporte sur
+                c.
+            </p>
+            <p>
+                C comme P sont donc des <b>relations d'ordre</b> et peuvent être représentées sous la forme d'un
+                <b>diagramme de Hasse</b>.
+            </p>
+            <p>
+                C comm P sont des <b>relationd d'ordre partiel</b> car dans les deux cas il existe des éléments non
+                comparables.<br>
+                Exemples :<br>
+                - (c, uc) ou n'importe quel type signé et son pendant non signé.<br>
+                - (int, float) ou n'importe quel relation entre un type entier et réel ne satisfaisant pas la condition
+                définie plus bas.<br>
+            </p>
+        </div>
+        <img width="400px" src="https://www.arthurbourquin.ch/OuaisLesMedias/ConversionPromotion_004.png">
+        <p>
+            La relation C peut être décrite ainsi :
+        </p>
+        <div class="latex">
+            \[ \begin{aligned}
+            & T_n = T_{\mathbb{N}} \cup T_{\mathbb{R}} \\[1em]
+            & \green{C} \subseteq T^2 \\[1em]
+            & T_n = \text{type nombre,} ~~ T_{\mathbb{N}} = \text{type entier,} ~~ T_{\mathbb{R}} = \text{type réel}
+            \end{aligned} \]
+        </div>
+        <div class="latex">
+            <table class="latexTableBofBof invisibleTable">
+                <tr>
+                    <td rowspan="3">\[ a \green{C} b ~~ \Leftrightarrow ~~ \]</td>
+                    <td rowspan="3">
+                        \[ \begin{aligned}
+                        \left\{ \begin{array}{ll}
+                        \\[5em] \\
+                        \end{array} \right.
+                        \end{aligned} \]
+                    </td>
+                    <td rowspan="2">
+                        \[ a_{max} \le b_{max} \\et\\ a_{min} \ge b_{min} \]
+                    </td>
+                    <td rowspan="2">
+                        \[ \begin{aligned}
+                        \left\{ \begin{array}{ll}
+                        \\[2em] \\
+                        \end{array} \right.
+                        \end{aligned} \]
+                    </td>
+                    <td>\[ \text{si} \quad (a, \; b) \; \in \; T_{\mathbb{N}}^2 \]</td>
+                </tr>
+                <tr>
+                    <td>\[ \text{si} \quad (a, \; b) \; \in \; T_{\mathbb{R}}^2 \]</td>
+                </tr>
+                <tr>
+                    <td>\[ a_{bits} \le b_{mant} + 1 \]</td>
+                    <td></td>
+                    <td>\[ \text{si} \quad (a, \; b) \; \in \; T_{\mathbb{N}} \times T_{\mathbb{R}} \]</td>
+                </tr>
+            </table>
+        </div>
+        <br>
+
+        <p>Exemples</p>
+
+        <div class="latex">
+            \[ \begin{aligned}
+            (short) ~~ & R ~~ (float) & 16 & \lt 23 + 1 \\
+            (int) ~~ & \cancel{R} ~~ (float) & 32 & \gt 23 + 1 \\
+            (int) ~~ & R ~~ (double) & 32 & \lt 53 + 1 \\
+            (long ~~ long ~~ int) ~~ & \cancel{R} ~~ (double) & 64 & \gt 23 + 1 \\
+            \end{aligned} \]
+        </div>
+        <p>
+            <a href="https://chatgpt.com/share/675da44b-0d48-8004-8ce3-cd7362e7f66f">Explications
+                avec GPT</a>
+        </p>
+        <p>
+            Le type <b>long int</b> est hors du diagramme car il est identique à <b>int</b>
+            ou <b>long long int</b> selon les systèmes.
+            Il en va de même pour <b>unsigned long int</b>.<br>
+            Le type <b>long double</b> aussi est différent selon les systèmes.
+        </p>
+        <table class="conversionTable" style="color: #28ae7b;">
+            <tr>
+                <td></td>
+                <td>b</td>
+                <td>uc</td>
+                <td>c</td>
+                <td>us</td>
+                <td>s</td>
+                <td>ui</td>
+                <td>i</td>
+                <td>ull</td>
+                <td>ll</td>
+                <td>f</td>
+                <td>d</td>
+            </tr>
+            <tr>
+                <td>b</td>
+                <td>1</td>
+                <td>1</td>
+                <td>1</td>
+                <td>1</td>
+                <td>1</td>
+                <td>1</td>
+                <td style="color: #6595ed;">1</td>
+                <td>1</td>
+                <td>1</td>
+                <td>1</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>uc</td>
+                <td></td>
+                <td>1</td>
+                <td></td>
+                <td>1</td>
+                <td>1</td>
+                <td>1</td>
+                <td style="color: #6595ed;">1</td>
+                <td>1</td>
+                <td>1</td>
+                <td>1</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>c</td>
+                <td></td>
+                <td></td>
+                <td>1</td>
+                <td></td>
+                <td>1</td>
+                <td>1</td>
+                <td style="color: #6595ed;">1</td>
+                <td>1</td>
+                <td>1</td>
+                <td>1</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>us</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>1</td>
+                <td></td>
+                <td>1</td>
+                <td style="color: #6595ed;">1</td>
+                <td>1</td>
+                <td>1</td>
+                <td>1</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>s</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>1</td>
+                <td></td>
+                <td style="color: #6595ed;">1</td>
+                <td>1</td>
+                <td>1</td>
+                <td>1</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>ui</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>1</td>
+                <td></td>
+                <td>1</td>
+                <td>1</td>
+                <td></td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>i</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>1</td>
+                <td></td>
+                <td>1</td>
+                <td></td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>ull</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>1</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>ll</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>1</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>f</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>1</td>
+                <td style="color: #6595ed;">1</td>
+            </tr>
+            <tr>
+                <td>d</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>1</td>
+            </tr>
+        </table>
+    </div>
+    </div>
+
+
+    <div class="section">
+        <h2>Modulo(s)</h2>
+
+        <div class="col">
+            <div class="row">
+                <div class="box" style="border-color: steelblue;">
+                    Mathématiques<br>
+                    → Floored modulo</b><br><br>
+                    <div class="mono">
+                        &nbsp5 mod &nbsp2 = &nbsp1<br>
+                        -5 mod &nbsp2 = &nbsp1<br>
+                        &nbsp5 mod -2 = -1<br>
+                        -5 mod -2 = -1
+                    </div><br>
+                    Le <b>modulus</b> donne le signe
+                </div>
+                <div class="box" style="border-color: steelblue;">
+                    \[ \begin{aligned}
+                    & (a) \; mod \; (2) \quad \gray{a - \left\lfloor \frac{a}{2} \right\rfloor \cdot 2}
+                    \end{aligned} \]
+                    <img width="200px"
+                        src="http://www.arthurbourquin.ch/OuaisLesMedias/Fonctions/floored-modulo-pos.png">
+                </div>
+                <div class="box" style="border-color: steelblue;">
+                    \[ \begin{aligned}
+                    & (a) \; mod \; (-2) \quad \gray{a - \left\lfloor \frac{a}{-2} \right\rfloor \cdot (-2)}
+                    \end{aligned} \]
+                    <img width="200px"
+                        src="http://www.arthurbourquin.ch/OuaisLesMedias/Fonctions/floored-modulo-neg.png">
+                </div>
+            </div>
+            <div class="row">
+                <div class="box" style="border-color: orange;">
+                    Programmation<br>
+                    → Truncated modulo</b><br><br>
+                    <div class="mono">
+                        &nbsp5 mod &nbsp2 = &nbsp1<br>
+                        -5 mod &nbsp2 = -1<br>
+                        &nbsp5 mod -2 = &nbsp1<br>
+                        -5 mod -2 = -1
+                    </div><br>
+                    Le <b>modulé</b> donne le signe
+                </div>
+                <div class="box" style="border-color: orange;">
+                    <span class="mono"> a % 2 = a % -2</span><br><br>
+                    <img width="200px" src="http://www.arthurbourquin.ch/OuaisLesMedias/Fonctions/truncated-modulo.png">
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <h3>Modulo en math dans Z</h3>
+            <div class="box" style="border-color: steelblue;">
+                \[ \begin{aligned}
+                a = k \cdot b + r
+                \quad;\quad
+                a, b, k \in \mathbb{Z} \;,\; r \in \mathbb{N}
+                \end{aligned} \]
+            </div>
+            <h3>Reste euclidien dans R</h3>
+            <div class="box" style="border-color: seagreen;">
+                \[ \begin{aligned}
+                r = a - \left\lfloor \frac{a}{b} \right\rfloor \cdot b
+                \quad;\quad
+                a, b \in \mathbb{R}^*_+
+                \end{aligned} \]
+            </div>
+            <h3>Modulo en prog</h3>
+            <div class="box mono" style="border-color: orange;">
+                a % b = ((a/b) - trunk(a/b)) * b
+            </div>
+        </div>
+
+    </div>
+    </div>
+
+    <div class="section">
+        <h2>Logarithme</h2>
+        <h3>"log ≠ log"</h3>
+        <p>
+            Implicitement, en mathématiques, un logarithme est en base <b>10</b>, alors qu'en
+            programmation, il est
+            en
+            base <i><b>e</b></i>.
+        </p>
+        <div class="row">
+            <div class="box">
+                <b>Mathématiques</b><br>
+                \[ \begin{aligned}
+                & log(a) & = \quad & log_{10}(a) \\[1em]
+                & ln(a) & = \quad & log_e(a) \\
+                \end{aligned} \]
+            </div>
+            <div class="box">
+                <b>Programmation</b><br><br>
+                <table class="mono invisibleTable">
+                    <tr>
+                        <td>log(a)</td>
+                        <td>=</td>
+                        <td>logarithme naturel de a</td>
+                    </tr>
+                    <tr>
+                        <td>log10(a)</td>
+                        <td>=</td>
+                        <td>logarithme en base 10 de a</td>
+                    </tr>
+                    <tr>
+                        <td>log2(a)</td>
+                        <td>=</td>
+                        <td>logarithme en base 2 de a</td>
+                    </tr>
+                </table>
+                <br>
+                Du moins dans la plupart des languages dont C++, JavaScript et Python.
+            </div>
+        </div>
+    </div>
+
+
+    <h1>Propositions d'exercices</h2>
+        <h3>Attention, certains exercices sont satyriques.</h3>
+        <div class="section">
+            <h2>La bouteille</h2>
+            <h3 class="MathD">Math D : séries</h3>
+            <div class="article">
+                <p>
+                    La HEIG-VD doit remplir une bouteille d'un litre avec 1,1 litre d'eau.
+                </p>
+                <p>
+                    Elle fait appel à un expert rémunéré 1'000 CHF/jour. Cet expert ne parvient pas à trouver de
+                    solution,
+                    si bien qu'un nouvel expert est engagé pour le lendemain (jour ouvré), rémunéré 15% plus que le
+                    premier.
+                </p>
+                <p>
+                    Chaque jour, un nouvel expert est ajouté au projet avec un salaire de 15% suppérieur au
+                    précédent.
+                </p>
+                <p>
+                    Quel sera le coût total pour la HEIG-VD au bout d'une année (240 jours ouvrés) ?
+                </p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Sommes</h2>
+            <h3 class="Prog">Prog : fonction récursive ?</h3>
+            <h3 class="MathD">Math D : Séries</h3>
+            <br>
+            <p>
+                Implémenter un script qui teste les égalités suivantes sur 1000 itérations avec des nombres
+                aléatoires.
+                \[
+                \sum_{k \in K} (a_k + b_k)
+                ~~ = ~~
+                \sum_{k \in K} (a_k) ~ + ~ \sum_{k \in K} (b_k)
+                \]
+                et
+                \[
+                \sum_{a = b}^c \sum_{x = y}^z (a_{ij})
+                ~~ = ~~
+                \sum_{x = y}^z \sum_{a = b}^c (a_{ij})
+                \]
+            </p>
+        </div>
+
+        <div class="section">
+            <h2>Labo 02 - Temps de trajet</h2>
+            <h3 class="Prog">Prog : Bases</h3>
+            <h3 class="Math">Math : Dérivées, optimisation</h3>
+
+            <div class="article">
+                <p>
+                    Implémenter une fonction qui optimise le temps de parcours d'un robot devant aller récupérer un
+                    objet
+                    sur un terrain tout en pouvant emprunter une route sur une distance arbitraire.
+                </p>
+                <p>
+                    La route est droite et le robot est dessus au début.
+                </p>
+            </div>
+            <p>
+                1. Trouver et implémenter la fonction retournant le temps de trajet du robot à l'objet :
+            </p>
+            <div class="latex">
+                \[ \begin{aligned}
+                &&& \text{Paramètres :} \\
+                \\
+                && D_x : ~~ & \text{Distance du robot au point de la route le plus proche de l'objet} \\
+                && D_y : ~~ & \text{Distance minimale de l'objet à la route} \\
+                && v_r : ~~ & \text{Vitesse du robot sur la route} \\
+                && v_t : ~~ & \text{Vitesse du robot sur le terrain} \\
+                && d_r : ~~ & \text{Distance parcourue sur la route} \\
+                && d_t : ~~ & \text{Distance parcourue sur le terrain} \\
+                \\
+                &&& \text{Inconnues :} \\
+                \\
+                && d_r : ~~ & \text{Distance parcourue sur la route} \\
+                && d_t : ~~ & \text{Distance parcourue sur le terrain} \\
+                \\
+                && d_x (=d_t) : ~~ & \text{distance à laquelle le robot quitte la route pour emprunter le terrain} \\
+                \\
+                &&& \text{Formules :} \\
+                \\
+                &&& \text{Temps de parcours :}~~ f(d_x) = \frac{d_x}{v_r} + \frac{d_t}{v_t} \\\\
+                &&& \text{Distance parcourue sur le terrain :}~~ d_t = \sqrt{(D_x - d_x)^2 + D_y^2} \\\\
+                &&& \text{Temps de parcours :}~~ f(d_x) = \frac{d_x}{v_r} + \frac{\sqrt{(D_x - d_x)^2 + D_y^2}}{v_t} \\
+                \end{aligned} \]
+            </div>
+            <p>
+                2. Trouver et implémenter la fonction d'optimisation,
+                soit la fonction qui retourne la distance optimale à laquelle le robot doit quitter la route :
+            <div class="latex">
+                \[
+                \text{Dérivée (pour extrémum) :} \\[2em]
+                f'(d_x) = \frac{1}{v_r} - \frac{D_x - d_x}{v_t \sqrt{(D_x - d_x)^2 + D_y^2}} \\[4em]
+                d_x ~ \text{tel que la dérivée } f'(x) = 0 ~~ \text{(minimum)} \\[2em]
+                d_x = D_x - \sqrt{\frac{D_y^2}{(\frac{v_r}{v_t})^2 - 1} }
+                \]
+            </div>
+</body>
