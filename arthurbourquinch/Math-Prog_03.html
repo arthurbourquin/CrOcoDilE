@@ -258,8 +258,7 @@
                 comparables.<br>
                 Exemples :<br>
                 - (c, uc) ou n'importe quel type signé et son pendant non signé.<br>
-                - (int, float) ou n'importe quel relation entre un type entier et réel ne satisfaisant pas la condition
-                définie plus bas.<br>
+                - (int, float)<br>
             </p>
         </div>
         <img width="400px" src="https://www.arthurbourquin.ch/OuaisLesMedias/ConversionPromotion_004.png">
@@ -621,7 +620,81 @@
 
 
     <h1>Propositions d'exercices</h2>
+
         <h3>Attention, certains exercices sont satyriques.</h3>
+
+        <div class="section">
+            <h2>Rotation 2D</h2>
+            <h3 class="Math">Math : trigo</h3>
+            <div class="article">
+                <p>
+                    Faire tourner une image.
+                </p>
+                <p>
+                    1. En faisant une opération sur les coordonnées de l'image, la faire tourner d'un angle arbitraire.
+                </p>
+                <p>
+                    2. Ajouter un point pour le centre autour duquel l'image tourne.
+                </p>
+            </div>
+            <div class="latex">
+                \[ \begin{aligned}
+                & \text{Formules à trouver :} \\[1em]
+                & \text{Point en coordonnées cartésiennes : } \\
+                & C(x, ~ y) \\
+                & \text{Point en coordonnées polaires : } \\
+                & P(\theta, ~ r) \\
+                \\
+                & \text{Conversion cart. à pol. :} \\
+                & \theta = (at2(x, ~ y)) \\
+                & r = \sqrt{x^2 + y^2} \\
+                \\
+                & \text{Conversion pol. à cart. :} \\
+                & x = cos(\theta) \cdot r \\
+                & y = sin(\theta) \cdot r \\
+                \\
+                & \text{Ajout de l'angle arbitraire (paramètre) :} \\
+                & x = cos(\theta \orange{+ \alpha}) \cdot r \\
+                & y = sin(\theta \orange{+ \alpha}) \cdot r \\
+                \\
+                & \text{Nouvelle coordonnée (cartésienne) :} \\
+                & C_2(x_2, ~ y_2) \\
+                & x_2 = cos(\theta + \alpha) \cdot r \\
+                & y_2 = sin(\theta + \alpha) \cdot r \\
+                \\
+                & \text{Formule intermédiaire :} \\
+                & x_2 = cos((at2(x, ~ y)) + \alpha) \cdot \sqrt{x^2 + y^2} \\
+                & y_2 = sin((at2(x, ~ y)) + \alpha) \cdot \sqrt{x^2 + y^2} \\
+                \\
+                & at2() = {...} \\
+                \\
+                & \text{Substitution / simplification :} \\
+                \\
+                & x_2 = cos(\theta + \alpha) \cdot r \\
+                & y_2 = sin(\theta + \alpha) \cdot r \\
+                \\
+                & \green{sin(\alpha + \beta) = cos(\alpha)sin(\beta) + sin(\alpha)cos(\beta)} \\
+                & \green{cos(\alpha + \beta) = cos(\alpha)cos(\beta) - sin(\alpha)sin(\beta)} \\
+                \\
+                & x_2 = (cos(\theta)cos(\alpha) - sin(\theta)sin(\alpha)) \cdot r \\
+                & y_2 = (cos(\theta)sin(\alpha) + sin(\theta)cos(\alpha)) \cdot r \\
+                \\
+                & x_2 = r \cdot cos(\theta) \cdot cos(\alpha) ~~ - ~~ r \cdot sin(\theta) \cdot sin(\alpha) \\
+                & y_2 = r \cdot cos(\theta) \cdot sin(\alpha) ~~ + ~~ r \cdot sin(\theta) \cdot cos(\alpha) \\
+                \\
+                & \text{Formule finale :} \\
+                & x_2 = x \cdot cos(\alpha) - y \cdot sin(\alpha) \\
+                & y_2 = x \cdot sin(\alpha) + y \cdot cos(\alpha) \\
+                \\
+                & \text{Formule avec l'origine :} \\
+                & O(x_o, ~ y_o) \\
+                & x_2 = (x - x_o) \cdot cos(\alpha) - (y - y_o) \cdot sin(\alpha) + x_o \\
+                & y_2 = (x - x_o) \cdot sin(\alpha) + (y - y_o) \cdot cos(\alpha) + y_o \\
+                \\
+                \end{aligned} \]
+            </div>
+        </div>
+
         <div class="section">
             <h2>La bouteille</h2>
             <h3 class="MathD">Math D : séries</h3>
