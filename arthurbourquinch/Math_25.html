@@ -40,6 +40,10 @@
             font-weight: 700;
         }
 
+        p {
+            text-align: left;
+        }
+
         h1 {
             font-size: 40px;
             margin: 40px 0px;
@@ -54,6 +58,8 @@
             font-size: 18px;
             margin: 18px 0px;
         }
+
+        h4 {}
 
         .small {
             font-size: 10px;
@@ -83,14 +89,16 @@
         }
 
         .TablePacked {
+            display: flex;
+            align-self: center;
             margin: 0px;
             padding: 0;
             border-collapse: collapse;
         }
 
-        .TablePacked td,
         .TablePacked tr,
-        .TablePacked th {
+        .TablePacked th,
+        .TablePacked td {
             margin: 0;
             padding: 0;
             vertical-align: middle;
@@ -98,17 +106,22 @@
             height: 35px;
         }
 
-        .TableLatex td,
-        .TableLatex th {
+        .TableLatex th,
+        .TableLatex td {
             padding: 20px 40px;
         }
 
-        .TableCarree td,
-        .TableCarree th {
+        .TableCarree {
+            display: flex;
+            align-self: center;
+        }
+
+        .TableCarree th,
+        .TableCarree td {
+            font-weight: bold;
             width: 35px;
             height: 35px;
             padding: 0px;
-            font-weight: bold;
             vertical-align: middle;
         }
 
@@ -118,16 +131,9 @@
             flex-wrap: wrap;
             width: fit-content;
             height: fit-content;
-            align-items: start;
-            gap: 20px 20px;
-        }
-
-        .rowAligned {
-            flex-direction: ro§w;
-        }
-
-        .colAligned {
-            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-start;
+            gap: 10px;
         }
 
         .row {
@@ -139,12 +145,13 @@
         }
 
         .memoCard {
-            padding: 10px 40px;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
             border: 1px solid #ddd;
             border-radius: 5px;
             width: fit-content;
-            margin: 10px 0px;
-            ;
+            text-align: center;
         }
 
         .latex {
@@ -321,9 +328,9 @@
 
     <h2>Fonctions</h2>
     <div class="memoCard">
-        <div class="row memoCard">
-            <div class="colAligned">
-                <h3>Définition d'une fonction</h3>
+        <div class="col">
+            <h3>Définition d'une fonction</h3>
+            <div class="row">
                 <div class="memoCard">
                     \[ \begin{aligned}
                     & f: && A && \to && B \\
@@ -357,7 +364,6 @@
                 </div>
             </div>
         </div>
-
         <div class="col">
             <h3>Composition de fonctions</h3>
             <div class="row">
@@ -400,112 +406,118 @@
             </div>
         </div>
 
-        <h3>Fonctions "inverses"</h3>
-        <div class="row">
-            <table>
-                <tr>
-                    <td style="width: 300px">
-                        fonction
-                        \[ f(x) \]
-                        <img style="width: 120px"
-                            src="https://www.arthurbourquin.ch/OuaisLesMedias/FonctionsInverses/g_g-de-x.png">
-                        <span class="small">
-                            \[ x^2-2x+1 \]
-                            \[ D(f)=\mathbb{R} \quad;\quad Im(f)=\mathbb{R}_+ \]
-                        </span>
-                    </td>
-                    <td style="width: 300px">
-                        opposée
-                        \[ -f(x) \]
-                        <img style="width: 120px"
-                            src="https://www.arthurbourquin.ch/OuaisLesMedias/FonctionsInverses/g_moins-g-de-x.png">
-                        <span class="small">
-                            \[ -(x^2-2x+1) \]
-                            \[ D(-f)=\mathbb{R} \quad;\quad Im(f)=\mathbb{R}_- \]
-                        </span>
-                    </td>
-                </tr>
-                <tr>
-                    <td style="width: 300px">
-                        ?
-                        \[ f(-x) \]
-                        <img style="width: 120px"
-                            src="https://www.arthurbourquin.ch/OuaisLesMedias/FonctionsInverses/g_g-de-moins-x.png">
-                        <span class="small">
-                            \[ (-x)^2-(-2x)+1 \]
-                            \[ D(?)=\mathbb{R} \quad;\quad Im(?)=\mathbb{R}_+ \]
-                        </span>
-                    </td>
-                    <td style="width: 300px">
-                        réciproque (inverse)
-                        \[f^{-1}(x)\]
-                        <img style="width: 120px"
-                            src="https://www.arthurbourquin.ch/OuaisLesMedias/FonctionsInverses/g_g-moins-un-de-x.png">
-                        <span class="small">
-                            \[
-                            \left\{ \begin{array}{ll}
-                            x \ge 0 \quad 1 + \sqrt{x} \\[1em]
-                            x \le 0 \quad 1 - \sqrt{x}
-                            \end{array} \right.
-                            \]
-                            \[
-                            \left\{ \begin{array}{ll}
-                            D(f^{-1})=\mathbb{R_+} \quad;\quad Im(f^{-1})=[1, \infty[ \\[1em]
-                            D(f^{-1})=\mathbb{R_+} \quad;\quad Im(f^{-1})=]-\infty , 1]
-                            \end{array} \right.
-                            \]
-                        </span>
-                    </td>
-                </tr>
-            </table>
+        <div class="col">
+            <h3>Fonctions "inverses"</h3>
+            <div class="row">
+                <table>
+                    <tr>
+                        <td style="width: 300px">
+                            fonction
+                            \[ f(x) \]
+                            <img style="width: 120px"
+                                src="https://www.arthurbourquin.ch/OuaisLesMedias/FonctionsInverses/g_g-de-x.png">
+                            <span class="small">
+                                \[ x^2-2x+1 \]
+                                \[ D(f)=\mathbb{R} \quad;\quad Im(f)=\mathbb{R}_+ \]
+                            </span>
+                        </td>
+                        <td style="width: 300px">
+                            opposée
+                            \[ -f(x) \]
+                            <img style="width: 120px"
+                                src="https://www.arthurbourquin.ch/OuaisLesMedias/FonctionsInverses/g_moins-g-de-x.png">
+                            <span class="small">
+                                \[ -(x^2-2x+1) \]
+                                \[ D(-f)=\mathbb{R} \quad;\quad Im(f)=\mathbb{R}_- \]
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 300px">
+                            ?
+                            \[ f(-x) \]
+                            <img style="width: 120px"
+                                src="https://www.arthurbourquin.ch/OuaisLesMedias/FonctionsInverses/g_g-de-moins-x.png">
+                            <span class="small">
+                                \[ (-x)^2-(-2x)+1 \]
+                                \[ D(?)=\mathbb{R} \quad;\quad Im(?)=\mathbb{R}_+ \]
+                            </span>
+                        </td>
+                        <td style="width: 300px">
+                            réciproque (inverse)
+                            \[f^{-1}(x)\]
+                            <img style="width: 120px"
+                                src="https://www.arthurbourquin.ch/OuaisLesMedias/FonctionsInverses/g_g-moins-un-de-x.png">
+                            <span class="small">
+                                \[
+                                \left\{ \begin{array}{ll}
+                                x \ge 0 \quad 1 + \sqrt{x} \\[1em]
+                                x \le 0 \quad 1 - \sqrt{x}
+                                \end{array} \right.
+                                \]
+                                \[
+                                \left\{ \begin{array}{ll}
+                                D(f^{-1})=\mathbb{R_+} \quad;\quad Im(f^{-1})=[1, \infty[ \\[1em]
+                                D(f^{-1})=\mathbb{R_+} \quad;\quad Im(f^{-1})=]-\infty , 1]
+                                \end{array} \right.
+                                \]
+                            </span>
+                        </td>
+                    </tr>
+                </table>
+            </div>
         </div>
 
-        <h3>injectivif + surjectif = bijectif</h3>
         <div class="col">
-            <table>
-                <tr>
-                    <th>
-                        \[ f(x) \]
-                    </th>
-                    <th style="width: 200px;">
-                    </th>
-                    <th style="width: 200px;">
-                        Injective
-                    </th>
-                </tr>
-                <tr>
-                    <th>
+            <h3>injectivif + surjectif = bijectif</h3>
+            <div class="col">
+                <table>
+                    <tr>
+                        <th>
+                            \[ f(x) \]
+                        </th>
+                        <th style="width: 200px;">
+                        </th>
+                        <th style="width: 200px;">
+                            Injective
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            </td>
+                        <td>
+                            <div class="col">
+                                \[ x^2 \]
+                                <img width="100px"
+                                    src="http://www.arthurbourquin.ch/OuaisLesMedias/Fonctions/x-carre.png">
+                            </div>
                         </td>
-                    <td>
-                        <div class="col">
-                            \[ x^2 \]
-                            <img width="100px" src="http://www.arthurbourquin.ch/OuaisLesMedias/Fonctions/x-carre.png">
-                        </div>
-                    </td>
-                    <td>
-                        <div class="col">
-                            \[ e^x \]
-                            <img width="100px" src="http://www.arthurbourquin.ch/OuaisLesMedias/Fonctions/e-x.png">
-                    </td>
-                </tr>
-                <tr>
-                    <th>
-                        Surjective
+                        <td>
+                            <div class="col">
+                                \[ e^x \]
+                                <img width="100px" src="http://www.arthurbourquin.ch/OuaisLesMedias/Fonctions/e-x.png">
                         </td>
-                    <td>
-                        <div class="col">
-                            \[ ln(x) \]
-                            <img width="100px" src="http://www.arthurbourquin.ch/OuaisLesMedias/Fonctions/ln-x.png">
-                        </div>
-                    </td>
-                    <td>
-                        <div class="col">
-                            \[ x^3 \]
-                            <img width="100px" src="http://www.arthurbourquin.ch/OuaisLesMedias/Fonctions/x-cube.png">
-                        </div>
-                    </td>
-                </tr>
-            </table>
+                    </tr>
+                    <tr>
+                        <th>
+                            Surjective
+                            </td>
+                        <td>
+                            <div class="col">
+                                \[ ln(x) \]
+                                <img width="100px" src="http://www.arthurbourquin.ch/OuaisLesMedias/Fonctions/ln-x.png">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="col">
+                                \[ x^3 \]
+                                <img width="100px"
+                                    src="http://www.arthurbourquin.ch/OuaisLesMedias/Fonctions/x-cube.png">
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
         </div>
         <table>
             <tr>
@@ -540,11 +552,13 @@
     </div>
 
     <h2>Produits</h2>
-    <div class="row">
-        <h3>Désambiguïsation des produits</h3>
+    <h3>Désambiguïsation des produits</h3>
+    <div class="latex">
         \[ \begin{aligned}
         & a^2 \neq A^2 \neq M^2 \neq R^2 \quad \text{et c'est super !}
         \end{aligned} \]
+    </div>
+    <div class="row">
         <table>
             <tr>
                 <th>Français</th>
@@ -590,7 +604,7 @@
                 <td>matrice n dim</td>
                 <td>matrice</td>
             </tr>
-            <tr>
+            <tr style="color: grey">
                 <td>produit de Hadamard / produit élément par élément</td>
                 <td>Hadamard product / Element wise product</td>
                 <td>\[A \circ B\]</td>
@@ -653,7 +667,7 @@
     </div>
 
     <h2>Ensembles</h2>
-    <div class="col">
+    <div class="row">
         <div class="memoCard">
             \[ \begin{aligned}
             Les \; & \blue{\mathbb{N}}aturels \\
@@ -668,138 +682,140 @@
             Les \; \orange{\mathbb{Z}}'entiers \, \orange{\mathbb{N}}on\, \orange{\mathbb{N}}égatifs
             \end{aligned} \]
         </div>
-    </div>
-    <div class="memoCard">
-        Ah oui :
-        <div class="latex" style="font-size: 2em;">
-            \[ \varnothing \subseteq \varnothing \]
-        </div>
-    </div>
-    <div class="memoCard">
-
-        <div class="col">
-            <h3>Exemples</h3>
-            <h4>Ensemble</h4>
-            <div class="memoCard">
-                \[ \begin{aligned}
-                & A = \{a, b, c\} \\[0.5em]
-                & |A| = 3
-                \end{aligned} \]
-                <table>
-                    <tr>
-                        <td style="width: 20px;">
-                            a
-                        </td>
-                        <td style="width: 20px;">
-                            b
-                        </td>
-                        <td style="width: 20px;">
-                            c
-                        </td>
-                    </tr>
-                </table>
-            </div>
-
-            <h4>Produit cartésien</h4>
-            <div class="memoCard">
-                \[ \begin{aligned}
-                & A×A = A^2 = \{(a, a), (a, b), ..., (c, c)\} \\[0.5em]
-                & |A|^2 = 9 \\
-                \end{aligned} \]
-                <table>
-                    <tr>
-                        <th></th>
-                        <th>a</th>
-                        <th>b</th>
-                        <th>c</th>
-                    </tr>
-                    <tr>
-                        <th>a</th>
-                        <td>(a,a)</td>
-                        <td>(a,b)</td>
-                        <td>(a,c)</td>
-                    </tr>
-                    <tr>
-                        <th>b</th>
-                        <td>(b,a)</td>
-                        <td>(b,b)</td>
-                        <td>(b,c)</td>
-                    </tr>
-                    <tr>
-                        <th>c</th>
-                        <td>(c,a)</td>
-                        <td>(c,b)</td>
-                        <td>(c,c)</td>
-                    </tr>
-                </table>
-            </div>
-
-            <h4>Parties</h4>
-            <div class="memoCard">
-                \[ \begin{aligned}
-                & \mathscr{P}(A) = \{\emptyset, \{a\}, ..., \{a, b, c\}\} \\
-                & \mathscr{P}(A) | = 2^{|A|} = 2^3 = 8
-                \end{aligned} \]
-                <table>
-                    <tr>
-                        <th>a</th>
-                        <th>b</th>
-                        <th>c</th>
-                        <th></th>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>∅</td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td>✔</td>
-                        <td>{c}</td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>✔</td>
-                        <td></td>
-                        <td>{b}</td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>✔</td>
-                        <td>✔</td>
-                        <td>{b, c}</td>
-                    </tr>
-                    <tr>
-                        <td>✔</td>
-                        <td></td>
-                        <td></td>
-                        <td>{a}</td>
-                    </tr>
-                    <tr>
-                        <td>✔</td>
-                        <td></td>
-                        <td>✔</td>
-                        <td>{a, c}</td>
-                    </tr>
-                    <tr>
-                        <td>✔</td>
-                        <td>✔</td>
-                        <td></td>
-                        <td>{a, b}</td>
-                    </tr>
-                    <tr>
-                        <td>✔</td>
-                        <td>✔</td>
-                        <td>✔</td>
-                        <td>{a, b, c}</td>
-                    </tr>
-                </table>
+        <div class="memoCard">
+            Ah oui :
+            <div class="latex" style="font-size: 2em;">
+                \[ \varnothing \subseteq \varnothing \]
             </div>
         </div>
     </div>
-
+    <h3>Exemples</h3>
+    <div class="memoCard">
+        <div class="row">
+            <div class="col">
+                <h4>Ensemble</h4>
+                <div class="memoCard">
+                    \[ \begin{aligned}
+                    & A = \{a, b, c\} \\[0.5em]
+                    & |A| = 3
+                    \end{aligned} \]
+                    <table>
+                        <tr>
+                            <td style="width: 20px;">
+                                a
+                            </td>
+                            <td style="width: 20px;">
+                                b
+                            </td>
+                            <td style="width: 20px;">
+                                c
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="col">
+                <h4>Produit cartésien</h4>
+                <div class="memoCard">
+                    \[ \begin{aligned}
+                    & A×A = A^2 = \{(a, a), (a, b), ..., (c, c)\} \\[0.5em]
+                    & |A|^2 = 9 \\
+                    \end{aligned} \]
+                    <table>
+                        <tr>
+                            <th></th>
+                            <th>a</th>
+                            <th>b</th>
+                            <th>c</th>
+                        </tr>
+                        <tr>
+                            <th>a</th>
+                            <td>(a,a)</td>
+                            <td>(a,b)</td>
+                            <td>(a,c)</td>
+                        </tr>
+                        <tr>
+                            <th>b</th>
+                            <td>(b,a)</td>
+                            <td>(b,b)</td>
+                            <td>(b,c)</td>
+                        </tr>
+                        <tr>
+                            <th>c</th>
+                            <td>(c,a)</td>
+                            <td>(c,b)</td>
+                            <td>(c,c)</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="col">
+                <h4>Parties</h4>
+                <div class="memoCard">
+                    \[ \begin{aligned}
+                    & \mathscr{P}(A) = \{\emptyset, \{a\}, ..., \{a, b, c\}\} \\
+                    & \mathscr{P}(A) | = 2^{|A|} = 2^3 = 8
+                    \end{aligned} \]
+                    <table>
+                        <tr>
+                            <th>a</th>
+                            <th>b</th>
+                            <th>c</th>
+                            <th></th>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>∅</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td>✔</td>
+                            <td>{c}</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>✔</td>
+                            <td></td>
+                            <td>{b}</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>✔</td>
+                            <td>✔</td>
+                            <td>{b, c}</td>
+                        </tr>
+                        <tr>
+                            <td>✔</td>
+                            <td></td>
+                            <td></td>
+                            <td>{a}</td>
+                        </tr>
+                        <tr>
+                            <td>✔</td>
+                            <td></td>
+                            <td>✔</td>
+                            <td>{a, c}</td>
+                        </tr>
+                        <tr>
+                            <td>✔</td>
+                            <td>✔</td>
+                            <td></td>
+                            <td>{a, b}</td>
+                        </tr>
+                        <tr>
+                            <td>✔</td>
+                            <td>✔</td>
+                            <td>✔</td>
+                            <td>{a, b, c}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
     <table>
         <tr>
             <td>\[ A \in B \]</td>
@@ -832,702 +848,776 @@
     <h2>Matrices</h2>
 
     <h3>Définitions</h3>
+    <div class="memoCard">
+        <div class="row">
+            <div class="memoCard">
+                <h4>
+                    <span style="color: orange">matrice</span><br>
+                    <span style="color: yellowgreen">élément</span><br>
+                    <span>dimensions = 2 x 3</span><br>
+                    <span>taille = 6</span><br>
+                </h4>
+                <table class="TableCarree" style="color: yellowgreen">
+                    <tr>
+                        <td style="border-color: orange">1</td>
+                        <td style="border-color: orange">2</td>
+                        <td style="border-color: orange">3</td>
+                    </tr>
+                    <tr>
+                        <td style="border-color: orange">4</td>
+                        <td style="border-color: orange">5</td>
+                        <td style="border-color: orange">6</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="memoCard">
+                <h4 style="color: pink">vecteur (ligne)</h4><br>
+                <table class="TableCarree" style="color: pink">
+                    <tr>
+                        <td style="border-color: pink">1</td>
+                        <td style="border-color: pink">2</td>
+                        <td style="border-color: pink">3</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="memoCard">
+                <h4 style="color: steelblue">vecteur colonne</h4><br>
+                <table class="TableCarree" style="color: steelblue">
+                    <tr>
+                        <td style="border-color: steelblue">1</td>
+                    </tr>
+                    <tr>
+                        <td style="border-color: steelblue">2</td>
+                    </tr>
+                    <tr>
+                        <td style="border-color: steelblue">3</td>
+                    </tr>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="memoCard">
+            \[
+            \gray{Propriétés} \\[1em]
+            A + B = B + A \\[1em]
+            A \times B \neq B \times A \\[1em]
+            A \otimes (B \otimes C) = (A \otimes B) \otimes C \\[1em]
+            \lambda A = A \lambda \\[1em]
+            A(B + C) = AB + BC \\[1em]
+            AI = A
+            \]
+        </div>
+    </div>
+    <h4>Matrices carrées</h4>
     <div class="row">
         <div class="memoCard">
-            <div>
-                <span style="color: orange">matrice</span><br>
-                <span style="color: yellowgreen">élément</span><br>
-                <span>dimensions = 2 x 3</span><br>
-                <span>taille = 6</span><br>
-            </div>
-            <table style="color: yellowgreen">
+            <h4>Matrice<br>triangulaire<br>supérieure</h4>
+            <table class="TableCarree">
                 <tr>
-                    <td style="border-color: orange">1</td>
-                    <td style="border-color: orange">2</td>
-                    <td style="border-color: orange">3</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                 </tr>
                 <tr>
-                    <td style="border-color: orange">4</td>
-                    <td style="border-color: orange">5</td>
-                    <td style="border-color: orange">6</td>
+                    <td>0</td>
+                    <td></td>
+                    <td></td>
                 </tr>
-            </table>
-        </div>
-        <div class="memoCard">
-            <span style="color: pink">vecteur (ligne)</span><br>
-            <table style="color: pink">
                 <tr>
-                    <td style="border-color: pink">1</td>
-                    <td style="border-color: pink">2</td>
-                    <td style="border-color: pink">3</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td></td>
                 </tr>
             </table>
         </div>
         <div class="memoCard">
-            <span style="color: steelblue">vecteur colonne</span><br>
-            <table style="color: steelblue">
+            <h4>Matrice<br>triangulaire<br>inférieure</h4>
+            <table class="TableCarree">
                 <tr>
-                    <td style="border-color: steelblue">1</td>
+                    <td></td>
+                    <td>0</td>
+                    <td>0</td>
                 </tr>
                 <tr>
-                    <td style="border-color: steelblue">2</td>
+                    <td></td>
+                    <td></td>
+                    <td>0</td>
                 </tr>
                 <tr>
-                    <td style="border-color: steelblue">3</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                 </tr>
+            </table>
+        </div>
+        <div class="memoCard">
+            <h4>Matrice<br>diagonale</h4>
+            <table class="TableCarree">
+                <tr>
+                    <td></td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>0</td>
+                    <td></td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>0</td>
+                    <td>0</td>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+        <div class="memoCard">
+            <h4>Matrice<br>identité</h4>
+            <table class="TableCarree">
+                <tr>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>1</td>
+                </tr>
+            </table>
+        </div>
+        <div class="memoCard">
+            <h4>Matrice<br>nulle</h4>
+            <table class="TableCarree">
+                <tr>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
                 </tr>
             </table>
         </div>
     </div>
-    <div class="row">
-        <div class="memoCard">
-            <span class="Slab">Matric carrée</span>
-            <table class="TableCarree">
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-            </table>
-            \[ a \times a \]
-        </div>
-        <div class="memoCard">
-            <span class="Slab">Matrice<br>triangulaire<br>supérieure</span>
-            <table class="TableCarree">
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>0</td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>0</td>
-                    <td>0</td>
-                    <td></td>
-                </tr>
-            </table>
-            \[ a \times a \]
-        </div>
-        <div class="memoCard">
-            <span class="Slab">Matrice<br>triangulaire<br>inférieure</span>
-            <table class="TableCarree">
-                <tr>
-                    <td></td>
-                    <td>0</td>
-                    <td>0</td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td>0</td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-            </table>
-            \[ a \times a \]
-        </div>
-        <div class="memoCard">
-            <span class="Slab">Matrice<br>diagonale</span>
-            <table class="TableCarree">
-                <tr>
-                    <td></td>
-                    <td>0</td>
-                    <td>0</td>
-                </tr>
-                <tr>
-                    <td>0</td>
-                    <td></td>
-                    <td>0</td>
-                </tr>
-                <tr>
-                    <td>0</td>
-                    <td>0</td>
-                    <td></td>
-                </tr>
-            </table>
-            \[ a \times a \]
-        </div>
-        <div class="memoCard">
-            <span class="Slab">Matrice<br>identité</span>
-            <table class="TableCarree">
-                <tr>
-                    <td>1</td>
-                    <td>0</td>
-                    <td>0</td>
-                </tr>
-                <tr>
-                    <td>0</td>
-                    <td>1</td>
-                    <td>0</td>
-                </tr>
-                <tr>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>1</td>
-                </tr>
-            </table>
-            \[ a \times a \]
-        </div>
-        <div class="memoCard">
-            <span class="Slab">Matrice<br>nulle</span>
-            <table class="TableCarree">
-                <tr>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>0</td>
-                </tr>
-                <tr>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>0</td>
-                </tr>
-                <tr>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>0</td>
-                </tr>
-            </table>
-            \[ a \times a \]
-        </div>
-        <div class="memoCard">
-            <span class="Slab">Transposition</span>
-            <div class="row">
-                <div class="col">
-                    <table class="TableCarree">
-                        <tr>
-                            <td>1</td>
-                            <td>2</td>
-                            <td>3</td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td>5</td>
-                            <td>6</td>
-                        </tr>
-                    </table>
-                    \[ n \times m \]
-                </div>
-                \[ \rightarrow \]
-                <div class="col">
-                    <table class="TableCarree">
-                        <tr>
-                            <td>1</td>
-                            <td>4</td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>5</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>6</td>
-                        </tr>
-                    </table>
-                    \[ m \times n \]
-                </div>
+
+    <h3>Transposition</h3>
+    <div class="memoCard">
+        <div class="row">
+            <div class="col">
+                <table class="TableCarree">
+                    <tr>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>5</td>
+                        <td>6</td>
+                    </tr>
+                </table>
+            </div>
+            \[ \rightarrow \]
+            <div class="col">
+                <table class="TableCarree">
+                    <tr>
+                        <td>1</td>
+                        <td>4</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>5</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>6</td>
+                    </tr>
+                </table>
             </div>
         </div>
-        <div class="memoCard">
-            <span class="Slab">\[ A \times I = A \]</span>
-            <table class="TablePacked">
-                <tr>
-                    <td>
+        \[ {}\\
+        \gray{Propriétés} \\[1em]
+        (A + B)^T = A^T + B^T \\[1em]
+        (A \times B)^T = A^T \times B^T \\[1em]
+        (\lambda A)^T = \lambda A^T \\[1em]
+        (A^T)^T = A \\[1em]
+        (A^T)^k = (A^k)^T
+        \]
+    </div>
+    <h3>Matrices inverses</h3>
+    <div class="memoCard">
+        \[
+        Si ~~ \orange{A} ~~ existe \\[1em]
+        \orange{A} \times \blue{A^{-1}} = I \quad \gray{et~~ A^{-1} \times A = I}
+        \]
+        <table class="TablePacked">
+            <tr>
+                <td></td>
+                <td>
+                    <table class="TableCarree" style="color: steelblue">
+                        <tr>
+                            <td>?</td>
+                            <td>?</td>
+                            <td>?</td>
+                        </tr>
+                        <tr>
+                            <td>?</td>
+                            <td>?</td>
+                            <td>?</td>
+                        </tr>
+                        <tr>
+                            <td>?</td>
+                            <td>?</td>
+                            <td>?</td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <table class="TableCarree" style="color: orange;">
+                        <tr>
+                            <td>2</td>
+                            <td>1</td>
+                            <td>3</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>0</td>
+                            <td>4</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>2</td>
+                            <td>6</td>
+                        </tr>
+                    </table>
+                </td>
+                <td>
+                    <table class="TableCarree">
+                        <tr>
+                            <td>1</td>
+                            <td>0</td>
+                            <td>0</td>
+                        </tr>
+                        <tr>
+                            <td>0</td>
+                            <td>1</td>
+                            <td>0</td>
+                        </tr>
+                        <tr>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>1</td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+        <div>
+            \[ {}\\
+            \lambda A^k \quad et \quad A^T \quad \text{sont aussi inversibles} \\[1em]
+            \lambda \neq 0, ~~~ k \in \mathbb{Z}
+            \]
+        </div>
+    </div>
+    <div class="memoCard">
+        \[
+        \gray{\text{Calcul de matrice inverse de } 2 \times 2} \\[1em]
+        A^{-1} =
+        \left[ \begin{array}{c} a ~~ b \\ c ~~ d \end{array} \right] =
+        \frac{1}{ad - bc}
+        \left[ \begin{array}{c} d & -b \\ -c & a \end{array} \right]
+        \]
+    </div>
 
-                    </td>
-                    <td>
-                        <table class="TableCarree">
-                            <tr>
-                                <td>1</td>
-                                <td>0</td>
-                                <td>0</td>
-                            </tr>
-                            <tr>
-                                <td>0</td>
-                                <td>1</td>
-                                <td>0</td>
-                            </tr>
-                            <tr>
-                                <td>0</td>
-                                <td>0</td>
-                                <td>1</td>
-                            </tr>
-                        </table>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <table class="TableCarree">
-                            <tr>
-                                <td>1</td>
-                                <td>2</td>
-                                <td>3</td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td>5</td>
-                                <td>6</td>
-                            </tr>
-                            <tr>
-                                <td>7</td>
-                                <td>8</td>
-                                <td>9</td>
-                            </tr>
-                        </table>
-                    </td>
-                    <td>
-                        <table class="TableCarree">
-                            <tr>
-                                <td>1</td>
-                                <td>2</td>
-                                <td>3</td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td>5</td>
-                                <td>6</td>
-                            </tr>
-                            <tr>
-                                <td>7</td>
-                                <td>8</td>
-                                <td>9</td>
-                            </tr>
-                        </table>
-                    </td>
-                </tr>
-            </table>
+    <h3>Gauss-Jordan</h3>
+    <div class="memoCard">
+        Système d'équation de base
+        <div class="latex">
+            \[ \begin{aligned}
+            a_1 x_1 && + && a_2 x_2 && + && ... && = && R_1 \\
+            b_1 x_1 && + && b_2 x_2 && + && ... && = && R_2 \\
+            ... && + && ... && + && ... && = && ... \\
+            \end{aligned} \]
+        </div>
+        Création des matrices utiles
+        <div class="row">
+            <div class="latex">
+                \[
+                A =
+                \begin{bmatrix}
+                a_1 & a_2 & ... \\
+                b_1 & b_2 & ... \\
+                ... & ... & ...
+                \end{bmatrix} \]
+            </div>
+            <div class="latex">
+                \[
+                \overrightarrow{ix} =
+                \begin{bmatrix}
+                x_1 \\
+                x_2 \\
+                ...
+                \end{bmatrix} \]
+            </div>
+            <div class="latex">
+                \[
+                \overrightarrow{b} =
+                \begin{bmatrix}
+                R_1 \\
+                R_2 \\
+                ...
+                \end{bmatrix} \]
+            </div>
+        </div>
+        Matrice augmentée
+        <div class="latex">
+            \[ \begin{aligned}
+            & \overline{A} = [A ~ | ~ \overrightarrow{b}]
+            \end{aligned} \]
+        </div>
+        <div class="latex">
+            \[ \begin{bmatrix}
+            a_1 & a_2 & ... & | & R_1 \\
+            b_1 & b_2 & ... & | & R_2 \\
+            ... & ... & ... & | & ... \\
+            \end{bmatrix} \]
+        </div>
+        <div style="text-align: left;">
+            Gauss
+            <ul>
+                <li>échelonnement</li>
+                <li>réduction</li>
+            </ul>
         </div>
     </div>
 
     <h3>Matrices de Relations</h3>
-    <div class="row">
-        <div class="col">
-            <div class="col">
+    <h3>Exemple</h3>
+    <div class="memoCard">
+        <div class="row">
+            <div>
                 \[ \begin{aligned}
                 & A = \{ a,b,c \} \\[0.5em]
                 & B = \{ x,y \} \\[0.5em]
                 & R = \{ (b,x),(c,x),(c,y) \} \\[0.5em]
                 & R \subseteq A \times B
-                \end{aligned}
-                \]
-            </div>
-            <div class="col">
-                <table>
-                    <tr>
-                        <th>\[ R \]</th>
-                        <th>x</th>
-                        <th>y</th>
-                    </tr>
-                    <tr>
-                        <th>a</th>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <th>b</th>
-                        <td>✔</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <th>c</th>
-                        <td>✔</td>
-                        <td>✔</td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="memoCard">
-                <span class="Slab">Réflexivité</span>
-                <table class="TableCarree">
-                    <tr>
-                        <td>1</td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>1</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td>1</td>
-                    </tr>
-                </table>
-                \[ aRa \]
-            </div>
-
-            <div class="memoCard">
-                <span class="Slab">Symétrie</span>
-                <table class="TableCarree">
-                    <tr>
-                        <td></td>
-                        <td>●</td>
-                        <td>▲</td>
-                    </tr>
-                    <tr>
-                        <td>●</td>
-                        <td></td>
-                        <td>■</td>
-                    </tr>
-                    <tr>
-                        <td>▲</td>
-                        <td>■</td>
-                        <td></td>
-                    </tr>
-                </table>
-                \[ aRb \Leftrightarrow bRa \]
-            </div>
-
-            <div class="memoCard">
-                <span class="Slab">Antisymétrie</span>
-                <table class="TableCarree" style="color: yellowgreen">
-                    <tr>
-                        <td></td>
-                        <td>●</td>
-                        <td>▲</td>
-                    </tr>
-                    <tr>
-                        <td>○</td>
-                        <td></td>
-                        <td>■</td>
-                    </tr>
-                    <tr>
-                        <td>△</td>
-                        <td>□</td>
-                        <td></td>
-                    </tr>
-                </table>
-                \[ aRb \Leftrightarrow b\cancel{R}a \]
-            </div>
-
-            <div class="memoCard">
-                <span class="Slab">Transitivité</span>
-                <table class="TableCarree" style="color: steelblue;">
-                    <tr>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
-                    </tr>
-                    <tr>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
-                    </tr>
-                </table>
-                \[ R^2 \subseteq R \]
-            </div>
-
-            <div class="memoCard">
-                <span class="Slab">Ordre partiel</span>
-                <table class="TableCarree" style="color: steelblue;">
-                    <tr>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>0</td>
-                    </tr>
-                    <tr>
-                        <td>0</td>
-                        <td>1</td>
-                        <td>0</td>
-                    </tr>
-                    <tr>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>1</td>
-                    </tr>
-                </table>
-                \[ - \]
-            </div>
-
-            <div class="memoCard">
-                <span class="Slab">Ordre total ?</span>
-                <table class="TableCarree">
-                    <tr>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
-                    </tr>
-                    <tr>
-                        <td>0</td>
-                        <td>1</td>
-                        <td>1</td>
-                    </tr>
-                    <tr>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>1</td>
-                    </tr>
-                </table>
-                \[ - \]
-            </div>
-
-            <div class="memoCard">
-                <span class="Slab">Equivalence</span>
-                <table class="TableCarree" style="color: steelblue;">
-                    <tr>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>0</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>0</td>
-                    </tr>
-                    <tr>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>1</td>
-                    </tr>
-                </table>
-                <span style="color: steelblue;">\[ [a]_R \;,\; [b]_R \]</span>
-            </div>
-        </div>
-
-        <div class="memoCard">
-            <p><b>Exemple de calcul de la transitivité ("vide" = 0 pour la lisibilité)</b>
-            <p>
-            <p>En blanc : cette valeur et aucune autre</p>
-            <p>Vide : n'importe quelle valeur</p>
-            <p>Forme pleine et même forme pleine = même valeur</p>
-            <p>Forme pleine et même forme vide = valeur opposée</p>
-            <p style="color: yellowgreen;">En vert, cette valeur ou 0</p>
-            <p style="color: steelblue;">En bleu, valeurs exemples</p>
-            <div class="col">
-                \[ \begin{aligned}
-                & R^2 \subseteq R
                 \end{aligned} \]
             </div>
-
-            <div class="row">
-                <div class="memoCard" style="color: steelblue;">
-                    <table class="TableCarree">
-                        <tr>
-                            <td>1</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td></td>
-                            <td></td>
-                            <td>1</td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td></td>
-                            <td>1</td>
-                        </tr>
-                    </table>
-                    \[ M(R) \\[0.5em]
-                    - \]
-                </div>
-
-                <div class="memoCard" style="color: steelblue;">
-                    <table class="TableCarree">
-                        <tr>
-                            <td>1</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td>2</td>
-                            <td>2</td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td>2</td>
-                            <td>2</td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td></td>
-                            <td></td>
-                            <td>1</td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>3</td>
-                            <td>3</td>
-                            <td></td>
-                            <td>1</td>
-                        </tr>
-                    </table>
-                    \[ M(R)^2 \\[0.5em]
-                    - \]
-                </div>
-
-                <div class="memoCard" style="color: steelblue;">
-                    <table class="TableCarree">
-                        <tr>
-                            <td>1</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td></td>
-                            <td></td>
-                            <td>1</td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td></td>
-                            <td>1</td>
-                        </tr>
-                    </table>
-                    \[ M(R^2) \\[0.5em]
-                    M(R \circ R) \]
-                </div>
-            </div>
-
             <table>
                 <tr>
-                    <th></th>
-                    <th>Refl.</th>
-                    <th>Sym.</th>
-                    <th>Ant.</th>
-                    <th>Tran.</th>
-                    <th>exemple</th>
+                    <th>\[ R \]</th>
+                    <th>x</th>
+                    <th>y</th>
                 </tr>
                 <tr>
-                    <td>relation d'ordre totale</td>
-                    <td>✔</td>
+                    <th>a</th>
                     <td></td>
-                    <td>✔</td>
-                    <td>✔</td>
-                    <td>\[ \le \]</td>
+                    <td></td>
                 </tr>
                 <tr>
-                    <td>relation d'ordre partielle</td>
+                    <th>b</th>
                     <td>✔</td>
                     <td></td>
-                    <td>✔</td>
-                    <td>✔</td>
-                    <td>\[ \subseteq \]</td>
                 </tr>
                 <tr>
-                    <td>relation d'équivalence</td>
+                    <th>c</th>
                     <td>✔</td>
                     <td>✔</td>
-                    <td></td>
-                    <td>✔</td>
-                    <td>\[ = \]</td>
                 </tr>
             </table>
         </div>
     </div>
+    <h3>Propriétés</h3>
+    <div class="row">
+        <div class="memoCard">
+            <h4>Réflexivité</h4>
+            <table class="TableCarree">
+                <tr>
+                    <td>1</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>1</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td>1</td>
+                </tr>
+            </table>
+            \[ aRa \]
+        </div>
 
-    <h2>Suites</h2>
+        <div class="memoCard">
+            <h4>Symétrie</h4>
+            <table class="TableCarree">
+                <tr>
+                    <td></td>
+                    <td>●</td>
+                    <td>▲</td>
+                </tr>
+                <tr>
+                    <td>●</td>
+                    <td></td>
+                    <td>■</td>
+                </tr>
+                <tr>
+                    <td>▲</td>
+                    <td>■</td>
+                    <td></td>
+                </tr>
+            </table>
+            \[ aRb \Leftrightarrow bRa \]
+        </div>
+
+        <div class="memoCard">
+            <h4>Antisymétrie</h4>
+            <table class="TableCarree" style="color: yellowgreen">
+                <tr>
+                    <td></td>
+                    <td>●</td>
+                    <td>▲</td>
+                </tr>
+                <tr>
+                    <td>○</td>
+                    <td></td>
+                    <td>■</td>
+                </tr>
+                <tr>
+                    <td>△</td>
+                    <td>□</td>
+                    <td></td>
+                </tr>
+            </table>
+            \[ aRb \Leftrightarrow b\cancel{R}a \]
+        </div>
+
+        <div class="memoCard">
+            <h4>Transitivité</h4>
+            <table class="TableCarree" style="color: steelblue;">
+                <tr>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>1</td>
+                </tr>
+                <tr>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>1</td>
+                </tr>
+                <tr>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>1</td>
+                </tr>
+            </table>
+            \[ R^2 \subseteq R \]
+        </div>
+        <div class="memoCard">
+            <h4>Ordre partiel</h4>
+            <div style="text-align: left;">
+                <ul>
+                    <li>Réflexive</li>
+                    <li style="text-decoration: line-through; color: grey">Symétrique</li>
+                    <li>Antisymétrique</li>
+                    <li>Transitive</li>
+                    <li style="text-decoration: line-through; color: grey">Tous les éléments<br>sont comparables</li>
+                </ul>
+            </div>
+        </div>
+        <div class="memoCard">
+            <h4>Ordre total</h4>
+            <div style="text-align: left;">
+                <ul>
+                    <li>Réflexive</li>
+                    <li style="text-decoration: line-through; color: grey">Symétrique</li>
+                    <li>Antisymétrique</li>
+                    <li>Transitive</li>
+                    <li>Tous les éléments<br>sont comparables</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="memoCard">
+            <h4>Equivalence</h4>
+            <div style="text-align: left;">
+                <ul>
+                    <li>Réflexive</li>
+                    <li>Symétrique</li>
+                    <li style="text-decoration: line-through; color: grey">Antisymétrique</li>
+                    <li>Transitive</li>
+                    <li style="color: grey;">Tous les éléments<br>sont comparables</li>
+                </ul>
+            </div>
+            <span style="color: steelblue;">\[ [a]_R \;,\; [b]_R \]</span>
+        </div>
+    </div>
     <table>
         <tr>
-            <th>Suite arithmétique</th>
+            <th></th>
+            <th>Refl.</th>
+            <th>Sym.</th>
+            <th>Ant.</th>
+            <th>Tran.</th>
+            <th>Tout.</th>
+            <th>exemple<br>classique</th>
+        </tr>
+        <tr>
+            <td>relation d'ordre total</td>
+            <td>✔</td>
+            <td></td>
+            <td>✔</td>
+            <td>✔</td>
+            <td>✔</td>
+            <td>\[ \le \]</td>
+        </tr>
+        <tr>
+            <td>relation d'ordre partiel</td>
+            <td>✔</td>
+            <td></td>
+            <td>✔</td>
+            <td>✔</td>
+            <td></td>
+            <td>\[ \subseteq \]</td>
+        </tr>
+        <tr>
+            <td>relation d'équivalence</td>
+            <td>✔</td>
+            <td>✔</td>
+            <td></td>
+            <td>✔</td>
+            <td>~</td>
+            <td>\[ = \]</td>
+        </tr>
+    </table>
+
+    <h3>Exemple de calcul de la transitivité</h3>
+    <div class="memoCard">
+        <p>
+            Vide = 0 (pour la lisibilité)<br>
+            En blanc : cette valeur et aucune autre<br>
+            Vide : n'importe quelle valeur<br>
+            Forme pleine et même forme pleine = même valeur<br>
+            Forme pleine et même forme vide = valeur opposée<br>
+            <span style="color: yellowgreen;">En vert, cette valeur ou 0</span><br>
+            <span style="color: steelblue;">En bleu, valeurs exemples</span>
+        </p>
+        <div class="col">
+            \[ \begin{aligned}
+            & R^2 \subseteq R
+            \end{aligned} \]
+        </div>
+
+        <div class="row">
+            <div class="memoCard" style="color: steelblue;">
+                <table class="TableCarree">
+                    <tr>
+                        <td>1</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td></td>
+                        <td></td>
+                        <td>1</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td></td>
+                        <td>1</td>
+                    </tr>
+                </table>
+                \[ M(R) \\[0.5em]
+                - \]
+            </div>
+
+            <div class="memoCard" style="color: steelblue;">
+                <table class="TableCarree">
+                    <tr>
+                        <td>1</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>2</td>
+                        <td>2</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>2</td>
+                        <td>2</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td></td>
+                        <td></td>
+                        <td>1</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>3</td>
+                        <td>3</td>
+                        <td></td>
+                        <td>1</td>
+                    </tr>
+                </table>
+                \[ M(R)^2 \\[0.5em]
+                - \]
+            </div>
+
+            <div class="memoCard" style="color: steelblue;">
+                <table class="TableCarree">
+                    <tr>
+                        <td>1</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td></td>
+                        <td></td>
+                        <td>1</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td></td>
+                        <td>1</td>
+                    </tr>
+                </table>
+                \[ M(R^2) \\[0.5em]
+                M(R \circ R) \]
+            </div>
+        </div>
+    </div>
+
+    <h2>Suites et Séries</h2>
+    <table>
+        <tr>
+            <th></th>
+            <th></th>
+            <th colspan="2"> \[ S(n) = \]</th>
+        </tr>
+        <tr>
+            <th></th>
+            <th></th>
+            <th>\[ \sum_{k=i}^{n} \]</th>
+            <th>\[ \sum_{k=i}^{\infin} \]</th>
+        </tr>
+        <tr>
+            <th>arithmétique</th>
             <td>
-                \[ \begin{aligned}
-                & a_k = a_0 + k \cdot r \\[1em]
-                &
-                \left\{ \begin{array}{ll}
+                \[
+                a_k = a_0 + k \cdot r \\[1em]
+                \gray{
+                \left\{\begin{array}{ll}
                 a_k = a_{k - 1} + r, \quad k \ge 1 \\[1em]
                 a_0 \in \mathbb{R} \; donné
-                \end{array} \right.
-                \end{aligned}\]
+                \end{array} \right. }
+                \]
+            </td>
+            <td>
+                \[ \begin{aligned}
+                n \cdot \frac{a_0 + a_{n - 1}}{2}
+                \end{aligned} \]
+            </td>
+            <td>
+                \[ \frac{a_0}{1 - r} \]
             </td>
         </tr>
         <tr>
-            <th>Suite géométrique</th>
+            <th>géométrique</th>
             <td>
-                \[ \begin{aligned}
-                & a_k = a_0 \cdot r\\[1em]
-                &
+                \[
+                a_k = a_0 \cdot r^k \\[1em]
+                \gray{
                 \left\{ \begin{array}{ll}
                 a_k = r \cdot a_{k - 1}, \quad k \ge 1 \\[1em]
                 a_0 \in \mathbb{R} \; donné
-                \end{array} \right.
-                \end{aligned}\]
+                \end{array} \right. }
+                \]
+            </td>
+            <td>
+                \[
+                \frac{a_0 - r \cdot a_{n-1}}{1 - r} \\[1em]
+                \gray{r = 1, ~~ n \cdot a_0}
+                \]
+            </td>
+            <td>
+
             </td>
         </tr>
         <tr>
-            <th>Suite arithmético-géométrique</th>
+            <th>arithmético-<br>géométrique</th>
             <td>
-                \[ \begin{aligned}
-                \left\{ \begin{array}{ll}
-                a_k = r \cdot a_{k - 1} + c, \quad k \ge 1 \\[1em]
-                a_0 \in \mathbb{R} \; donné
-                \end{array} \right.
-                \end{aligned}\]
             </td>
-            <td>pas de raison</td>
+            <td>
+            </td>
+            <td>
+            </td>
         </tr>
     </table>
     <div class="memoCard">
@@ -1548,153 +1638,81 @@
                 </tr>
             </table>
         </div>
-        <h3>Égalités <span style="color: grey;">et inégalités</span></h3>
-        <h3 style="color: orange;">En cours et à vérifier...</h3>
-        <div class="latex">
-            \[ \begin{aligned}
-            & \bigoplus_{k=i}^{n} (f_{k}) \quad\quad \bigoplus_{i=i_0}^{m}\bigoplus_{j=j_0}^{n} (f_j ~ g_j)
-            \end{aligned} \]
-        </div>
+        <h3>Quelques</h3>
         <div class="memoCard">
             \[ \begin{aligned}
-            & \sum_{k=\blue{m}}^{\orange{n}} (k) \quad&=\quad
-            & \sum_{k=1}^{\orange{n}-\blue{m}+1} (k + \blue{m} - 1) \quad&=\quad
-            & \sum_{k=1}^{\orange{n}} (k) - \sum_{k=1}^{\blue{m}-1} (k)
-            \\\\\\
-            & \prod_{k=\blue{m}}^{\orange{n}} (k) \quad&=\quad
-            & \prod_{k=1}^{\orange{n}-\blue{m}+1} (k + \blue{m} - 1) \quad&=\quad
-            & \prod_{k=1}^{\orange{n}} (k)
-            \div
-            \prod_{k=1}^{\blue{m}-1} (k)
-            \end{aligned}
-            \\[3em]
-            \text{valeurs test pour aider : } \blue{3} ~~ \orange{7}
-            \]</div>
+            & \sum_{k=1}^{} = 1,~ 3,~ 6,~ 10,~ 15,~ 21,~ 28,~ 36,~ 45,~ 55, ... \\
+            & \prod_{k=1}^{} = 1,~ 2,~ 6,~ 24,~ 120,~ 720,~ 5040,~ 40'320,~ 362'880,~ 3'628'800,~ ...
+            \end{aligned} \]
         </div>
+        <h3>Égalités</h3>
         <table>
             <tr>
+                <th>\[ \bigoplus \]</th>
+                <th>\[ \sum \]</th>
+                <th>\[ \prod \]</th>
+            </tr>
+            <tr>
+                <td colspan="3" style="height: 4px; padding: 0px;"></td>
+            </tr>
+            <tr>
                 <td>
-                    \[ \begin{aligned}
-                    \sum_{k=1}^n (c)
-                    \quad = \quad
-                    n c
-                    \end{aligned} \]
+                    \[ \bigoplus_{k=1}^n (c) \]
                 </td>
                 <td>
-                    \[ \begin{aligned}
-                    \prod_{k=1}^n (c)
-                    \quad = \quad
-                    n^c
-                    \end{aligned} \]
+                    \[ n c \]
+                </td>
+                <td>
+                    \[ c^n \]
                 </td>
             </tr>
             <tr>
                 <td>
-                    \[ \begin{aligned}
-                    \sum_{k=1}^n (k)
-                    \quad = \quad
-                    \frac{n (n + 1)}{2}
-                    \end{aligned} \]
+                    \[ \bigoplus_{k=1}^n (k) \]
                 </td>
                 <td>
-                    \[ \begin{aligned}
-                    \prod_{k=1}^n (k)
-                    \quad = \quad
-                    n!
-                    \end{aligned} \]
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    \[ \begin{aligned} \gray{
-                    \sum_{k=1}^n (k + c)=...
-                    } \end{aligned} \]
+                    \[ \frac{n (n + 1)}{2} \]
                 </td>
                 <td>
-                    \[ \begin{aligned}
-                    \prod_{k=1}^n (k + c)
-                    \quad = \quad
-                    \frac{n!}{c!}
-                    \end{aligned} \]
+                    \[ n! \]
                 </td>
             </tr>
             </tr>
             <tr>
                 <td>
-                    \[ \begin{aligned}
-                    \sum_{k=1}^n (a_k \cdot c)
-                    \quad = \quad
-                    \sum_{k=1}^n (a_k) ~ \cdot ~ c
-                    \end{aligned} \]
+                    \[ \bigoplus_{k=1}^n (a_k \cdot c) \]
                 </td>
                 <td>
+                    \[ c \cdot \sum_{k=1}^n (a_k) \]
+                </td>
+                <td>
+                    \[ c^n \cdot \prod_{k=1}^n (a_k) \]
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
                     \[ \begin{aligned}
-                    \prod_{k=1}^n (a_k \cdot c)
+                    \bigoplus_{k=i}^n (a_k \oplus b_k)
                     \quad = \quad
-                    \prod_{k=1}^n (a_k) ~ \cdot ~ c^n
+                    \bigoplus_{k=i}^n (a_k) ~ \oplus ~ \bigoplus_{k=i}^n (b_k)
                     \end{aligned} \]
                 </td>
             </tr>
             <tr>
-                <td>
+                <td colspan="3">
                     \[ \begin{aligned}
-                    \sum_{k=i}^n (a_k + b_k)
+                    \orange{\bigoplus_{k=i}^n} \blue{\bigoplus_{l=j}^m} (a_{\orange{i} \blue{j}})
                     \quad = \quad
-                    \sum_{k=i}^n (a_k) ~ + ~ \sum_{k=i}^n (b_k)
-                    \end{aligned} \]
-                </td>
-                <td>
-                    \[ \begin{aligned} \gray{
-                    \prod_{k=i}^n (a_k + b_k)
-                    } \end{aligned} \]
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    \[ \begin{aligned} \gray{
-                    \sum_{k=i}^n (a_k \cdot b_k)
-                    } \end{aligned} \]
-                </td>
-                <td>
-                    \[ \begin{aligned}
-                    \prod_{k=i}^n (a_k \cdot b_k)
-                    \quad = \quad
-                    \prod_{k=i}^n (a_k) \cdot \prod_{k=i}^n (b_k)
+                    \orange{\bigoplus_{l=j}^m} \blue{\bigoplus_{k=i}^n} (a_{\orange{i} \blue{j}})
                     \end{aligned} \]
                 </td>
             </tr>
             <tr>
-                <td>
+                <td colspan="3">
                     \[ \begin{aligned}
-                    \blue{\sum_{i=j}^k} \sum_{l=m}^n (a_{ij})
+                    & \bigoplus_{i = 1}^n \bigoplus_{\orange{j = i}}^n (a_{ij})
                     \quad = \quad
-                    \sum_{l=m}^n \blue{\sum_{i=j}^k} (a_{ij})
-                    \end{aligned} \]
-                </td>
-                <td>
-                    \[ \begin{aligned}
-                    \blue{\prod_{i=j}^k} \prod_{l=m}^n (a_{ij})
-                    \quad = \quad
-                    \prod_{l=m}^n \blue{\prod_{i=j}^k} (a_{ij})
-                    \end{aligned} \]
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2" style="height: 4px; padding: 0px;"></td>
-            </tr>
-            <tr>
-                <td>
-                    \[ \begin{aligned}
-                    & \sum_{i = 1}^n \sum_{\orange{j = i}}^n (a_{ij})
-                    \quad = \quad
-                    \sum_{j = 1}^n \sum_{i = 1}^\orange{j} (a_{ij})
-                    \end{aligned} \]
-                </td>
-                <td>
-                    \[ \begin{aligned}
-                    & \prod_{i = 1}^n \prod_{\orange{j = i}}^n (a_{ij})
-                    \quad = \quad
-                    \prod_{j = 1}^n \prod_{i = 1}^\orange{j} (a_{ij})
+                    \bigoplus_{j = 1}^n \bigoplus_{i = 1}^\orange{j} (a_{ij})
                     \end{aligned} \]
                 </td>
             </tr>
@@ -1857,20 +1875,44 @@
                 <td>\[ \frac{\tau}{4} \]</td>
             </tr>
             <tr>
-                <td>\[ sin\]</td>
+                <td>\[ sin \]</td>
                 <td>\[ \frac{\sqrt{\green{0}}}{2} \]</td>
                 <td>\[ \frac{\sqrt{\green{1}}}{2} \]</td>
                 <td>\[ \frac{\sqrt{\green{2}}}{2} \]</td>
                 <td>\[ \frac{\sqrt{\green{3}}}{2} \]</td>
                 <td>\[ \frac{\sqrt{\green{4}}}{2} \]</td>
             </tr>
+            <tr>
+                <td>\[ cos \]</td>
+                <td>\[ \frac{\sqrt{\green{4}}}{2} \]</td>
+                <td>\[ \frac{\sqrt{\green{3}}}{2} \]</td>
+                <td>\[ \frac{\sqrt{\green{2}}}{2} \]</td>
+                <td>\[ \frac{\sqrt{\green{1}}}{2} \]</td>
+                <td>\[ \frac{\sqrt{\green{0}}}{2} \]</td>
+            </tr>
         </table>
         <h3>Quotients</h3>
-        <div class="memoCard">
-            \[ \begin{aligned}
-            & \frac{sin}{cos} = \frac{tan}{1} = \frac{1}{cot} = \frac{sec}{csc}
-            \end{aligned} \]
+        <div class="row">
+            <div class="memoCard">
+                \[ \begin{aligned}
+                & \orange{\frac{sin}{cos}} = \frac{\green{tan}}{1} = \frac{1}{\green{cot}} = \blue{\frac{sec}{csc}}
+                \end{aligned} \]
+            </div>
+            <div class="memoCard">
+                \[ \begin{aligned}
+                & \blue{sec} = \frac{1}{\orange{cos}}
+                \end{aligned} \]
+            </div>
+            <div class="memoCard">
+                \[ \begin{aligned}
+                & \blue{csc} = \frac{1}{\orange{sin}}
+                \end{aligned} \]
+            </div>
         </div>
+        <div class="avecPadding">
+            <img width="256px" src="http://www.arthurbourquin.ch/OuaisLesMedias/sin-cos-tan-cot-sec-csc.png">
+        </div>
+
         <h3>Angles</h3>
         <div class="memoCard">
             \[ \begin{aligned}

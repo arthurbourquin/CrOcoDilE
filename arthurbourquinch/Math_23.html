@@ -144,7 +144,7 @@
             border-radius: 5px;
             width: fit-content;
             margin: 10px 0px;
-            ;
+            text-align: center;
         }
 
         .latex {
@@ -1044,75 +1044,58 @@
                 </div>
             </div>
         </div>
-        <div class="memoCard">
-            <span class="Slab">\[ A \times I = A \]</span>
-            <table class="TablePacked">
-                <tr>
-                    <td>
+    </div>
+    <h3>Matrices inverses</h3>
+    <div class="memoCard">
+        \[ A \times X = I \quad , \quad X \times A = I \]
+    </div>
+    <div class="memoCard">
+        <span class="Slab">\[ Exemple~:~~ A \times I = A \]</span>
+        <table class="TablePacked">
+            <tr>
+                <td>
 
-                    </td>
-                    <td>
-                        <table class="TableCarree">
-                            <tr>
-                                <td>1</td>
-                                <td>0</td>
-                                <td>0</td>
-                            </tr>
-                            <tr>
-                                <td>0</td>
-                                <td>1</td>
-                                <td>0</td>
-                            </tr>
-                            <tr>
-                                <td>0</td>
-                                <td>0</td>
-                                <td>1</td>
-                            </tr>
-                        </table>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <table class="TableCarree">
-                            <tr>
-                                <td>1</td>
-                                <td>2</td>
-                                <td>3</td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td>5</td>
-                                <td>6</td>
-                            </tr>
-                            <tr>
-                                <td>7</td>
-                                <td>8</td>
-                                <td>9</td>
-                            </tr>
-                        </table>
-                    </td>
-                    <td>
-                        <table class="TableCarree">
-                            <tr>
-                                <td>1</td>
-                                <td>2</td>
-                                <td>3</td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td>5</td>
-                                <td>6</td>
-                            </tr>
-                            <tr>
-                                <td>7</td>
-                                <td>8</td>
-                                <td>9</td>
-                            </tr>
-                        </table>
-                    </td>
-                </tr>
-            </table>
-        </div>
+                </td>
+                <td>
+                    <table class="TableCarree">
+                        <tr>
+                            <td>1</td>
+                            <td>0</td>
+                        </tr>
+                        <tr>
+                            <td>0</td>
+                            <td>1</td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <table class="TableCarree">
+                        <tr>
+                            <td>1</td>
+                            <td>2</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>4</td>
+                        </tr>
+                    </table>
+                </td>
+                <td>
+                    <table class="TableCarree">
+                        <tr>
+                            <td>1</td>
+                            <td>2</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>4</td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
     </div>
 
     <h3>Matrices de Relations</h3>
@@ -1548,154 +1531,113 @@
                 </tr>
             </table>
         </div>
-        <h3>Égalités <span style="color: grey;">et inégalités</span></h3>
-        <h3 style="color: orange;">En cours et à vérifier...</h3>
-        <div class="latex">
-            \[ \begin{aligned}
-            & \bigoplus_{k=i}^{n} (f_{k}) \quad\quad \bigoplus_{i=i_0}^{m}\bigoplus_{j=j_0}^{n} (f_j ~ g_j)
-            \end{aligned} \]
-        </div>
+        <h3>Quelques</h3>
         <div class="memoCard">
             \[ \begin{aligned}
-            & \sum_{k=\blue{m}}^{\orange{n}} (k) \quad&=\quad
-            & \sum_{k=1}^{\orange{n}-\blue{m}+1} (k + \blue{m} - 1) \quad&=\quad
-            & \sum_{k=1}^{\orange{n}} (k) - \sum_{k=1}^{\blue{m}-1} (k)
-            \\\\\\
-            & \prod_{k=\blue{m}}^{\orange{n}} (k) \quad&=\quad
-            & \prod_{k=1}^{\orange{n}-\blue{m}+1} (k + \blue{m} - 1) \quad&=\quad
-            & \prod_{k=1}^{\orange{n}} (k)
-            \div
-            \prod_{k=1}^{\blue{m}-1} (k)
-            \end{aligned}
-            \\[3em]
-            \text{valeurs test pour aider : } \blue{3} ~~ \orange{7}
-            \]</div>
+            & \sum_{k=1}^{} = 1,~ 3,~ 6,~ 10,~ 15,~ 21,~ 28,~ 36,~ 45,~ 55, ... \\
+            & \prod_{k=1}^{} = 1,~ 2,~ 6,~ 24,~ 120,~ 720,~ 5040,~ 40'320,~ 362'880,~ 3'628'800,~ ...
+            \end{aligned} \]
         </div>
+        <h3>Égalités</h3>
         <table>
             <tr>
+                <th>\[ \bigoplus \]</th>
+                <th>\[ \sum \]</th>
+                <th>\[ \prod \]</th>
+            </tr>
+            <tr>
+                <td colspan="3" style="height: 4px; padding: 0px;"></td>
+            </tr>
+            <tr>
                 <td>
-                    \[ \begin{aligned}
-                    \sum_{k=1}^n (c)
-                    \quad = \quad
-                    n c
-                    \end{aligned} \]
+                    \[ \bigoplus_{k=1}^n (c) \]
                 </td>
                 <td>
-                    \[ \begin{aligned}
-                    \prod_{k=1}^n (c)
-                    \quad = \quad
-                    n^c
-                    \end{aligned} \]
+                    \[ n c \]
+                </td>
+                <td>
+                    \[ n^c \]
                 </td>
             </tr>
             <tr>
                 <td>
-                    \[ \begin{aligned}
-                    \sum_{k=1}^n (k)
-                    \quad = \quad
-                    \frac{n (n + 1)}{2}
-                    \end{aligned} \]
+                    \[ \bigoplus_{k=1}^n (k) \]
                 </td>
                 <td>
-                    \[ \begin{aligned}
-                    \prod_{k=1}^n (k)
-                    \quad = \quad
-                    n!
-                    \end{aligned} \]
+                    \[ \frac{n (n + 1)}{2} \]
+                </td>
+                <td>
+                    \[ n! \]
                 </td>
             </tr>
             <tr>
                 <td>
-                    \[ \begin{aligned} \gray{
-                    \sum_{k=1}^n (k + c)=...
-                    } \end{aligned} \]
+                    \[ \bigoplus_{k=1}^n (k + c) \]
                 </td>
                 <td>
-                    \[ \begin{aligned}
-                    \prod_{k=1}^n (k + c)
-                    \quad = \quad
-                    \frac{n!}{c!}
-                    \end{aligned} \]
+                    \[ \gray{...} \]
+                </td>
+                <td>
+                    \[ \frac{n!}{c!} \]
                 </td>
             </tr>
             </tr>
             <tr>
                 <td>
-                    \[ \begin{aligned}
-                    \sum_{k=1}^n (a_k \cdot c)
-                    \quad = \quad
-                    \sum_{k=1}^n (a_k) ~ \cdot ~ c
-                    \end{aligned} \]
+                    \[ \bigoplus_{k=1}^n (a_k \cdot c) \]
                 </td>
                 <td>
-                    \[ \begin{aligned}
-                    \prod_{k=1}^n (a_k \cdot c)
-                    \quad = \quad
-                    \prod_{k=1}^n (a_k) ~ \cdot ~ c^n
-                    \end{aligned} \]
+                    \[ \sum_{k=1}^n (a_k) ~ \cdot ~ c \]
+                </td>
+                <td>
+                    \[ \prod_{k=1}^n (a_k) ~ \cdot ~ c^n \]
                 </td>
             </tr>
             <tr>
                 <td>
-                    \[ \begin{aligned}
-                    \sum_{k=i}^n (a_k + b_k)
-                    \quad = \quad
-                    \sum_{k=i}^n (a_k) ~ + ~ \sum_{k=i}^n (b_k)
-                    \end{aligned} \]
+                    \[ \bigoplus_{k=i}^n (a_k + b_k) \]
                 </td>
                 <td>
-                    \[ \begin{aligned} \gray{
-                    \prod_{k=i}^n (a_k + b_k)
-                    } \end{aligned} \]
+                    \[ \sum_{k=i}^n (a_k) ~ + ~ \sum_{k=i}^n (b_k) \]
+                </td>
+                <td>
                 </td>
             </tr>
             <tr>
                 <td>
-                    \[ \begin{aligned} \gray{
-                    \sum_{k=i}^n (a_k \cdot b_k)
-                    } \end{aligned} \]
+                    \[ \bigoplus_{k=i}^n (a_k \cdot b_k) \]
                 </td>
                 <td>
+                </td>
+                <td>
+                    \[ \prod_{k=i}^n (a_k) ~ \cdot ~ \prod_{k=i}^n (b_k) \]
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
                     \[ \begin{aligned}
-                    \prod_{k=i}^n (a_k \cdot b_k)
+                    \blue{\bigoplus_{i=j}^k} \bigoplus_{l=m}^n (a_{il})
                     \quad = \quad
-                    \prod_{k=i}^n (a_k) \cdot \prod_{k=i}^n (b_k)
+                    \bigoplus_{l=m}^n \blue{\bigoplus_{i=j}^k} (a_{il})
                     \end{aligned} \]
                 </td>
             </tr>
             <tr>
-                <td>
+                <td colspan="3">
                     \[ \begin{aligned}
-                    \blue{\sum_{i=j}^k} \sum_{l=m}^n (a_{ij})
+                    & \bigoplus_{i = 1}^n \bigoplus_{\orange{j = i}}^n (a_{ij})
                     \quad = \quad
-                    \sum_{l=m}^n \blue{\sum_{i=j}^k} (a_{ij})
-                    \end{aligned} \]
-                </td>
-                <td>
-                    \[ \begin{aligned}
-                    \blue{\prod_{i=j}^k} \prod_{l=m}^n (a_{ij})
-                    \quad = \quad
-                    \prod_{l=m}^n \blue{\prod_{i=j}^k} (a_{ij})
+                    \bigoplus_{j = 1}^n \bigoplus_{i = 1}^\orange{j} (a_{ij})
                     \end{aligned} \]
                 </td>
             </tr>
             <tr>
-                <td colspan="2" style="height: 4px; padding: 0px;"></td>
-            </tr>
-            <tr>
-                <td>
-                    \[ \begin{aligned}
-                    & \sum_{i = 1}^n \sum_{\orange{j = i}}^n (a_{ij})
+                <td colspan="3">
+                    \[
+                    \bigoplus_{i=j}^{k}\bigoplus_{l=m}^{n}(a_i \cdot b_l)
                     \quad = \quad
-                    \sum_{j = 1}^n \sum_{i = 1}^\orange{j} (a_{ij})
-                    \end{aligned} \]
-                </td>
-                <td>
-                    \[ \begin{aligned}
-                    & \prod_{i = 1}^n \prod_{\orange{j = i}}^n (a_{ij})
-                    \quad = \quad
-                    \prod_{j = 1}^n \prod_{i = 1}^\orange{j} (a_{ij})
-                    \end{aligned} \]
+                    \bigoplus_{i=j}^{k} (a_i) \cdot \bigoplus_{l=m}^{n}(b_l)
+                    \]
                 </td>
             </tr>
         </table>
