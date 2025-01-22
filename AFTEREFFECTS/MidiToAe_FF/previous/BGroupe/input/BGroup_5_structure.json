@@ -1,0 +1,29 @@
+{
+  "header": {},
+  "tracks": [
+    {
+      "channel": 0,
+      "controlChanges": {},
+      "pitchBends": [],
+      "instrument": {
+        "family": "piano",
+        "name": "acoustic grand piano",
+        "number": 0
+      },
+      "name": "Claypot Percussion 01",
+      "notes": [
+        {
+          "duration": 4,
+          "durationTicks": 3840,
+          "midi": 76,
+          "name": "E5",
+          "ticks": 0,
+          "time": 0,
+          "velocity": 0.9448818897637795
+        }
+      ],
+      "endOfTrackTicks": 3840
+    }
+  ]
+}
+

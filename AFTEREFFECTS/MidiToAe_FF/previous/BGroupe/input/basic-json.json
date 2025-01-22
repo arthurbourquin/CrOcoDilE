@@ -1,0 +1,18 @@
+{
+  "compositions": [
+    {
+      "name": "Comp1",
+      "width": 1920,
+      "height": 1080,
+      "duration": 10,
+      "frameRate": 30
+    },
+    {
+      "name": "Comp2",
+      "width": 1280,
+      "height": 720,
+      "duration": 5,
+      "frameRate": 24
+    }
+  ]
+}

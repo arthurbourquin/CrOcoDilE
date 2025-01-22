@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playwrite+NG+Modern:wght@100..400&family=Roboto+Slab:wght@100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dokdo&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto+Slab:wght@100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playwrite+NG+Modern:wght@100..400&family=Roboto+Slab:wght@100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MIDI to JSON Converter</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tonejs/midi@2.0.26/build/Midi.js"></script>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: Roboto Slab;
+            font-weight: 400;
+            color: #ddd;
+            background: #222;
+            width: 600px;
+            text-align: center;
+            margin: auto;
+        }
+
+        b {
+            font-weight: 800;
+        }
+
+        h1,
+        h2 {
+            font-family: Dokdo;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 3em;
+            margin-top: 50px;
+        }
+
+        h2 {
+            font-size: 2em;
+        }
+
+        #scriptBtn,
+        #midiFileInput,
+        #jsonBtn {
+            font-family: Roboto Slab;
+            background-color: #222;
+            font-size: 1em;
+            font-weight: 500;
+            border-radius: 10px;
+            padding: 15px;
+            width: fit-content;
+            margin: 20px 0px;
+        }
+
+        #scriptBtn {
+            color: #a6c;
+            border: 1px solid #a6c;
+            text-decoration: none;
+        }
+        #scriptBtn:hover {
+            font-weight: 900;
+            color: #222;
+            background-color: #a6c;
+        }
+
+        #midiFileInput {
+            display: flex;
+            flex-direction: column;
+            color: #ea0;
+            border: 1px solid #ea0;
+            text-decoration: none;
+        }
+
+        input {
+            width: fit-content;
+            color: #ea0;
+        }
+
+        #jsonBtn {
+            color: #3bd;
+            border: 1px solid #3bd;
+            text-decoration: none;
+        }
+        #jsonBtn:hover {
+            font-weight: 900;
+            color: #222;
+            background-color: #3bd;
+        }
+
+
+        #actions {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 100px 0px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>MIDI to<br>After Effects!*</h1>
+    <p>
+        *Encore très limité : ne prend pas en compte les notes, seulement des instruments "mono-tonaux" (genre
+        percussions).
+    </p>
+    <div id="actions">
+        <div id="midiFileInput">
+            Uploader le morceau .mid<br><br>
+            <input type="file" accept=".mid" value="Uploader le fichier Midi">
+        </div>
+        <button id="jsonBtn" onclick="saveAsJson()">Télécharger le morceau .json</button>
+        <button id="scriptBtn" onclick="downloadScript()">Télécharger le script After Effects .jsx</button>
+    </div>
+    <div style="text-align: left; line-height: 2em;">
+        <h2>Step by step</h2>
+        <img width="600px" src="https://www.arthurbourquin.ch/OuaisLesMedias/Midi-to-Ae-quick.png">
+        <br>
+        <ol>
+            <li>Télécharger le fichier .zip et déziper (.jsx)</li>
+            Optionnel : placer le script .jsx dans :
+            <ul>
+                <li>Win : C:/ Program Files / Adobe / Adobe After Effects / Scripts / </li>
+                <li>Mac : Applications / Adobe / Adobe After Effects / Scripts / </li>
+            </ul>
+            <li>Uploader votre fichier .midi</li>
+            <li>Télécharger le fichier .json</li>
+            <b>
+            <li>Dans After Effects
+                <ul>
+                    <li>File > Script > Run Script File...</li>
+                    <li>Sélectionner le fichier .json</li>
+                </ul>
+            </b>
+        </ol>
+        <br><br><br><br><br>
+    </div>
+    <script>
+        let currentMidi = null;
+
+        document.getElementById('midiFileInput').addEventListener('change', function (event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    // Parse the MIDI file from the ArrayBuffer
+                    currentMidi = new Midi(e.target.result);
+                    alert("MIDI file loaded! Ready to save as JSON.");
+                };
+                reader.readAsArrayBuffer(file);
+            }
+        });
+
+        // Filter to keep only name and occurrences
+        function keepOnlyNameAndOccurrences(data) {
+            return data.tracks.map(track => ({
+                name: track.name,
+                occurrences: track.notes.length > 0 ? track.notes.map(note => note.time) : []
+            }));
+        }
+
+        // Remove empty sets
+        function removeEmptySets(data) {
+            return data.filter(item => item.name !== "");
+        }
+
+        // Merge duplicate sets
+        function mergeDoubleSets(data) {
+            const mergedData = {};
+            data.forEach(item => {
+                if (mergedData[item.name]) {
+                    mergedData[item.name].occurrences.push(...item.occurrences);
+                } else {
+                    mergedData[item.name] = { name: item.name, occurrences: item.occurrences };
+                }
+            });
+            return Object.values(mergedData);
+        }
+
+        // Save MIDI data as JSON
+        function saveAsJson() {
+            if (currentMidi) {
+                // Apply transformations
+                let midiData = keepOnlyNameAndOccurrences(currentMidi.toJSON());
+                midiData = removeEmptySets(midiData);
+                midiData = mergeDoubleSets(midiData);
+
+                // Convert processed data to JSON
+                const midiJson = JSON.stringify(midiData, null, 2);
+                const blob = new Blob([midiJson], { type: 'application/json' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'midi_data.json';
+                a.click();
+                URL.revokeObjectURL(url);
+            } else {
+                alert("No MIDI file loaded.");
+            }
+        }
+
+        function downloadScript() {
+            const link = document.createElement("a");
+            link.href = "http://www.arthurbourquin.ch/OuaisLesFichiers/midi-json-to-Ae_10.jsx.zip";  // Replace with the file URL
+            link.download = "midi-json-to-Ae_10.jsx";  // Desired file name for download
+
+            // Programmatically trigger a click event to initiate the download
+            link.click();  // Trigger the download directly
+        }
+    </script>
+</body>
+
+</html>

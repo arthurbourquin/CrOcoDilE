@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="https://unpkg.com/tone@latest/build/Tone.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/@tonejs/ui@0.0.8/build/tonejs-ui.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/@tonejs/midi"></script>
+</head>
+
+<body>
+    <div>
+        Ceci c'est qu'une pâle copie de <a href="https://tonejs.github.io/Midi/">https://tonejs.github.io/Midi/</a>
+    </div>
+    <div id="FileDrop">
+        <div id="Text">
+            Mettre le fichier MIDI ici...
+        </div>
+        <input type="file" accept="audio/midi" />
+    </div>
+    <div id="Results">
+        <textarea id="ResultsText" placeholder="Ici y aura le fichier json..."></textarea>
+    </div>
+
+    <script type="text/javascript">
+        // Check for file API support in the browser
+        if (
+            !( // If any of these File APIs are unsupported, show a message
+                window.File &&
+                window.FileReader &&
+                window.FileList &&
+                window.Blob
+            )
+        ) {
+            // Display a message if file reading is not supported
+            document.querySelector("#FileDrop #Text").textContent =
+                "Reading files not supported by this browser";
+        } else {
+            // File reading is supported, so we proceed with file drop setup
+            const fileDrop = document.querySelector("#FileDrop");
+
+            // Add hover class on drag enter
+            fileDrop.addEventListener("dragenter", () =>
+                fileDrop.classList.add("Hover")
+            );
+
+            // Remove hover class on drag leave
+            fileDrop.addEventListener("dragleave", () =>
+                fileDrop.classList.remove("Hover")
+            );
+
+            // Remove hover class on file drop
+            fileDrop.addEventListener("drop", () =>
+                fileDrop.classList.remove("Hover")
+            );
+
+            // Event listener for file input selection
+            document.querySelector("#FileDrop input").addEventListener("change", (e) => {
+                // Retrieve selected files
+                const files = e.target.files;
+                if (files.length > 0) {
+                    const file = files[0]; // Use the first selected file
+                    // Display the selected file name in the text area
+                    document.querySelector("#FileDrop #Text").textContent = file.name;
+                    parseFile(file); // Call parseFile function to handle the file
+                }
+            });
+        }
+
+        let currentMidi = null; // Variable to store the current MIDI file
+
+        // Function to parse and display MIDI file content
+        function parseFile(file) {
+            const reader = new FileReader(); // Create a new file reader
+
+            // When file is loaded, parse and display MIDI data
+            reader.onload = function (e) {
+                const midi = new Midi(e.target.result); // Parse the MIDI data
+                // Display parsed MIDI data in JSON format in the results text area
+                document.querySelector("#ResultsText").value = JSON.stringify(midi, undefined, 2);
+                // Enable play toggle after MIDI data is loaded
+                document.querySelector("tone-play-toggle").removeAttribute("disabled");
+                currentMidi = midi; // Store the parsed MIDI data
+            };
+
+            // Read the file as an ArrayBuffer (required for MIDI parsing)
+            reader.readAsArrayBuffer(file);
+        }
+    </script>
+
+</body>
+
+</html>

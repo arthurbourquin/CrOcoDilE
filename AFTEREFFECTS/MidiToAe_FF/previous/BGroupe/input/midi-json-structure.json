@@ -1,0 +1,43 @@
+{
+    "header": {
+        "keySignatures": [{"key": "C", "scale": "major", "ticks": 0}],
+        "meta": [{"text": "Marqueur ##", "ticks": 26880, "type": "marker"}],
+        "name": "",
+        "ppq": 480,
+        "tempos": [{"bpm": 120, "ticks": 0}],
+        "timeSignatures": [{"ticks": 0, "timeSignature": [4,4], "measures": 0}]
+    },
+    "tracks": [
+        {"channel": 0,
+        "controlChanges": {},
+        "pitchBends": [],
+        "instrument": {"family": "piano", "number": 0, "name": "acoustic grand piano"},
+        "name": "Membrane",
+        "notes": [{
+            "duration": 0.18541666666666667,
+            "durationTicks": 178,
+            "midi": 55,
+            "name": "G3",
+            "ticks": 0,
+            "time": 0,
+            "velocity": 0.9212598425196851}],
+        "endOfTrackTicks": 15277
+        }
+    ]
+}
+tracks
+tracks.channel
+tracks.controlChanges
+tracks.pitchBends
+tracks.instrument.family
+tracks.instrument.number
+tracks.instrument.name
+tracks.name
+tracks.notes.duration
+tracks.notes.durationTicks
+tracks.notes.midi
+tracks.notes.name
+tracks.notes.ticks
+tracks.notes.time
+tracks.notes.velocity
+tracks.endOfTrackTicks

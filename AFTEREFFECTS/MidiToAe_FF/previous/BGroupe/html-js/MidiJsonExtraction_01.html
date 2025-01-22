@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON Processor</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .output { margin-top: 20px; white-space: pre-wrap; }
+    </style>
+</head>
+<body>
+    <h1>JSON Processor</h1>
+    <p>Select a JSON file to process:</p>
+    
+    <input type="file" id="jsonFileInput" accept=".json">
+    <button onclick="processFile()">Process File</button>
+    
+    <h2>Processed Output:</h2>
+    <div class="output" id="output"></div>
+
+    <script>
+        // Function to process the uploaded file
+        function processFile() {
+            const fileInput = document.getElementById('jsonFileInput');
+            const outputDiv = document.getElementById('output');
+
+            // Check if a file was selected
+            if (fileInput.files.length === 0) {
+                outputDiv.textContent = "Please select a JSON file.";
+                return;
+            }
+
+            const file = fileInput.files[0];
+            const reader = new FileReader();
+
+            reader.onload = function(event) {
+                try {
+                    const jsonData = JSON.parse(event.target.result);
+                    
+                    // Process JSON data
+                    let processedData = keepOnlyNameAndOccurrences(jsonData);
+                    processedData = removeEmptySets(processedData);
+                    processedData = mergeDoubleSets(processedData);
+
+                    // Display processed data
+                    outputDiv.textContent = JSON.stringify(processedData, null, 4);
+                } catch (error) {
+                    outputDiv.textContent = "Error processing JSON: " + error.message;
+                }
+            };
+
+            reader.readAsText(file);
+        }
+
+        // Function to keep only name and occurrences
+        function keepOnlyNameAndOccurrences(data) {
+            return data.tracks.map(track => ({
+                name: track.name,
+                occurrences: track.notes.length > 0 ? track.notes.map(note => note.time) : []
+            }));
+        }
+
+        // Function to remove empty sets
+        function removeEmptySets(data) {
+            return data.filter(item => item.name !== "");
+        }
+
+        // Function to merge duplicate sets
+        function mergeDoubleSets(data) {
+            const mergedData = {};
+            data.forEach(item => {
+                if (mergedData[item.name]) {
+                    mergedData[item.name].occurrences.push(...item.occurrences);
+                } else {
+                    mergedData[item.name] = { name: item.name, occurrences: item.occurrences };
+                }
+            });
+            return Object.values(mergedData);
+        }
+    </script>
+</body>
+</html>

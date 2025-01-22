@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display Notes from JSON</title>
+    <style>
+        body {
+            color: #ddd;
+            background-color: #222;
+        }
+    </style>
+</head>
+
+<body>
+
+    <span id="test">test</span>
+    <script>
+
+        // Fonctionne online mais pas depuis VSCode
+        
+        function getElement(id) {
+            return document.getElementById(id);
+        }
+
+        fetch('https://arthurbourquin.ch/OuaisLesMedias/Mario.json')
+            .then(res => res.json())
+            .then((res) => {
+                const data = res.tracks;  // Access tracks directly
+                getElement('test').innerHTML = data[0].notes[0].name;  // Access first note in the first track
+            });
+
+    </script>
+</body>
+
+</html>
