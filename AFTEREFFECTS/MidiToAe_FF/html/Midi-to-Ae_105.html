@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playwrite+NG+Modern:wght@100..400&family=Roboto+Slab:wght@100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dokdo&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto+Slab:wght@100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playwrite+NG+Modern:wght@100..400&family=Roboto+Slab:wght@100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MIDI to JSON Converter</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tonejs/midi@2.0.26/build/Midi.js"></script>
+    <style>
+        :root {
+            --rouge: #d32;
+            --vert: #794;
+            --bleu: #06e;
+            --magenta: #f38;
+            --jaune: #ea0;
+            --cyan: #3bd;
+            --rose: #f89;
+            --brun: #853;
+            --orange: #e61;
+            --violet: #a6c;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: Roboto Slab;
+            font-weight: 400;
+            color: #ddd;
+            background: #222;
+            width: 600px;
+            text-align: center;
+            margin: auto;
+        }
+
+        div {
+            margin: 50px 0px;
+        }
+
+        b {
+            font-weight: 600;
+        }
+
+        h1,
+        h2 {
+            font-family: Dokdo;
+            text-align: center;
+            color: var(--violet);
+        }
+
+        h1 {
+            font-size: 3em;
+            margin-top: 50px;
+        }
+
+        h2 {
+            font-size: 2em;
+        }
+
+        #scriptBtn,
+        #midiFileInput,
+        #jsonBtn {
+            font-family: Roboto Slab;
+            background-color: #222;
+            font-size: 1em;
+            font-weight: 500;
+            border-radius: 10px;
+            padding: 15px;
+            width: fit-content;
+        }
+
+        #scriptBtn:hover {
+            font-weight: 900;
+            color: #222;
+            background-color: var(--cyan);
+        }
+
+        #midiFileInput {
+            display: flex;
+            flex-direction: column;
+            color: var(--jaune);
+            border: 1px solid var(--jaune);
+            text-decoration: none;
+        }
+
+        input {
+            width: fit-content;
+            color: var(--jaune);
+        }
+
+        #jsonBtn {
+            color: #3bd;
+            border: 1px solid var(--cyan);
+            text-decoration: none;
+        }
+
+        #jsonBtn:hover {
+            font-weight: 900;
+            color: #222;
+            background-color: var(--cyan);
+        }
+
+
+        #actions {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .funFont {
+            font-family: Dokdo;
+            font-size: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>MIDI to<br>After Effects!*</h1>
+    <p>
+        *Encore très limité : ne prend pas en compte les notes, seulement des instruments "mono-tonaux" (genre
+        percussions).
+    </p>
+    <div id="actions">
+        <div id="midiFileInput">
+            Uploader le morceau .mid<br><br>
+            <input type="file" accept=".mid" value="Uploader le fichier Midi">
+        </div>
+        <button id="jsonBtn" onclick="saveAsJsx()">Télécharger le script magique .jsx</button>
+    </div>
+    <div style="text-align: left; line-height: 2em;">
+        <h2>Step by step</h2>
+        <br>
+        <ol>
+            <li style="color: #ea0;">Uploader votre fichier .midi</li>
+            <li style="color: #3bd;">Télécharger le fichier .jsx</li>
+            <li>Dans After Effects
+            <li>File > Script > Run Script File...</li>
+            <li>Sélectionner le fichier .jsx</li>
+        </ol>
+    </div>
+    <div class="funFont" style="color: var(--rose);">
+        Joyeux anniversaire Felix !
+    </div>
+    <div class="funFont" style="color: var(--vert);">
+        Un grand merci à Benoît pour avoir lancer le truc avec cette vidéo : "lien manquant".
+    </div>
+    <script>
+
+        // Tout ce qui est script After Effects est ici dans SCRIPT...
+        // C'est dégueulasse mais j'ai pas su faire mieux...
+        const SCRIPT = `
+        var mainCompWidth = 512;
+var mainCompHeight = 256;
+var gridX = 3;
+var gridY = 3;
+var noteCompWidth = 512;
+var noteCompHeight = 256;
+var trackCompSizeLikeNote = true;
+var trackCompWidth = trackCompSizeLikeNote ? noteCompWidth : trackCompWidth;
+var trackCompHeight = trackCompSizeLikeNote ? noteCompHeight : trackCompHeight;
+var fps = 30;
+var trackDuration = 60 * 3;
+var noteDuration = 5;
+var noteEarlyPlacement = 1;
+
+// Demander les propriétés à l'utilisateur
+function askUserInput() {
+    // Create a new window
+    var win = new Window("dialog", "User Input");
+
+    // Add input fields (same as before)
+    var inputGroup = win.add("group", undefined, "Input Group");
+    inputGroup.orientation = "column";
+
+    inputGroup.add("statictext", undefined, "Main Comp Width:");
+    var widthInput = inputGroup.add("edittext", undefined, "1920");
+    widthInput.characters = 20;
+
+    inputGroup.add("statictext", undefined, "Main Comp Height:");
+    var heightInput = inputGroup.add("edittext", undefined, "1080");
+    heightInput.characters = 20;
+
+    inputGroup.add("statictext", undefined, "Grid Subdivision X:");
+    var gridSubXInput = inputGroup.add("edittext", undefined, "3");
+    gridSubXInput.characters = 20;
+
+    inputGroup.add("statictext", undefined, "Grid Subdivision Y:");
+    var gridSubYInput = inputGroup.add("edittext", undefined, "3");
+    gridSubYInput.characters = 20;
+
+    inputGroup.add("statictext", undefined, "Track comp size = note comps size? (default: true):");
+    var isTrackSameInput = inputGroup.add("edittext", undefined, "true");
+    isTrackSameInput.characters = 20;
+
+    inputGroup.add("statictext", undefined, "Framerate:");
+    var framerateInput = inputGroup.add("edittext", undefined, "30");
+    framerateInput.characters = 20;
+
+    inputGroup.add("statictext", undefined, "Beginning Note Offset: (default: -1 sec)");
+    var noteOffsetInput = inputGroup.add("edittext", undefined, "-1");
+    noteOffsetInput.characters = 20;
+
+    // Buttons
+    var buttonGroup = win.add("group", undefined, "Buttons");
+    buttonGroup.orientation = "row";
+    var okButton = buttonGroup.add("button", undefined, "OK");
+    var cancelButton = buttonGroup.add("button", undefined, "Cancel");
+
+    okButton.onClick = function() {
+        // Assign directly to global variables
+        mainCompWidth = parseInt(widthInput.text, 10);
+        mainCompHeight = parseInt(heightInput.text, 10);
+        gridX = parseInt(gridSubXInput.text, 10);
+        gridY = parseInt(gridSubYInput.text, 10);
+        noteCompWidth = mainCompWidth / gridX;
+        noteCompHeight = mainCompHeight / gridY;
+        trackCompWidth = trackCompSizeLikeNote ? noteCompWidth : trackCompWidth;
+        trackCompHeight = trackCompSizeLikeNote ? noteCompHeight : trackCompHeight;
+        trackCompSizeLikeNote = isTrackSameInput.text.toLowerCase() === "true";
+        fps = parseFloat(framerateInput.text);
+        noteEarlyPlacement = parseFloat(noteOffsetInput.text);
+        win.close();
+    };
+
+    cancelButton.onClick = function() {
+        inputValues = null; // User canceled
+        win.close();
+    };
+
+    win.center();
+    win.show();
+
+}
+
+// Run the function
+askUserInput();
+
+// fonction pour savoir si y a déjà une composition qui a ce nom (éviter doublons)
+function compExists(name) {
+    for (var i = 1; i <= app.project.items.length; i++) {
+        if (app.project.items[i] instanceof CompItem && app.project.items[i].name === name) {
+            return true;
+        }
+    }
+    return false;
+}
+
+// fonction pour trouver la compo d'un nom donné
+function getComp(name) {
+    for (var i = 1; i <= app.project.items.length; i++) {
+        if (app.project.items[i] instanceof CompItem && app.project.items[i].name === name) {
+            return app.project.items[i]; // Return the CompItem object itself
+        }
+    }
+    return null; // Return null if no composition is found
+}
+
+// ajouter la compo principale
+var main_comp = app.project.items.addComp("MIDI", mainCompWidth, mainCompHeight, 1, trackDuration, fps);
+
+// Pour toutes les pistes dans le fichier midi (json)
+// i2 c'est comme i mais il s'incrémente pas si y a des pistes vides
+var i2 = 0;
+for (var i = 0; i < track.tracks.length; ++i) {
+
+    // Si y a des notes dans la piste courante
+    if (track.tracks[i].notes.length != 0) {
+
+        // définir un nom pour l'instrument (piste et note)
+        var name = track.tracks[i].name;
+        // définir un nom pour la piste courante
+        var trackName = name + " Track";
+        // définir un nom pour la note courante
+        var noteName = name + " Note";
+
+        // couleur aléatoire pour la note
+        var from = 0.3;
+        var to = 0.7;
+        color = [Math.random(from, to), Math.random(from, to), Math.random(from, to)];
+
+        // compo piste / track
+        // si elle existe pas...
+        if (!compExists(trackName)) {
+            // ...créer la compo piste
+            var trackComp = app.project.items.addComp(trackName, trackCompWidth, trackCompHeight, 1, trackDuration, fps);
+            // ...et l'ajouter dans la compo principale
+            var trackCompLayer = main_comp.layers.add(trackComp);
+            // ...à une place selon la grille
+            var posX = (i2 % gridX) * trackCompWidth + (1 / 2) * trackCompWidth; // Adjust with the width of the comp
+            var posY = Math.floor(i2 / gridX) * trackCompHeight + (1 / 2) * trackCompHeight; // Adjust with the height of the comp
+            trackCompLayer.transform.position.setValue([posX, posY, trackCompLayer.transform.position.value[2]]);
+            // ajouter un solide
+            var solidLayer = trackComp.layers.addSolid(color, noteName + " solid", noteCompWidth, noteCompHeight, 1);
+            // ajouter un calque de texte qui contient le nom
+            var textLayer = trackComp.layers.addText(noteName);
+            // placer le texte à 1/3 du haut
+            textLayer.transform.position.setValue([textLayer.transform.position.value[0], noteCompHeight * 1 / 3, textLayer.transform.position.value[2]]);
+            // customiser le calque de texte
+            var textDocument = textLayer.property("Source Text").value;
+            textDocument.fontSize = 50;
+            textDocument.fillColor = [1, 1, 1];
+            textDocument.justification = ParagraphJustification.CENTER_JUSTIFY;
+            textLayer.property("Source Text").setValue(textDocument);
+            i2++;
+        }
+
+        // compo note
+        // si elle existe pas...
+        if (!compExists(noteName)) {
+            // ...créer la compo note
+            var trackComp = app.project.items.addComp(noteName, noteCompWidth, noteCompHeight, 1, noteDuration, fps);
+            // ajouter un calque de texte qui contient le nom
+            var textLayer = trackComp.layers.addText(noteName);
+            // placer le texte à 1/3 du bas
+            textLayer.transform.position.setValue([textLayer.transform.position.value[0], noteCompHeight * 2 / 3, textLayer.transform.position.value[2]]);
+            // customiser le calque de texte
+            var textDocument = textLayer.property("Source Text").value;
+            textDocument.fontSize = 50;
+            textDocument.fillColor = [1, 1, 1];
+            textDocument.justification = ParagraphJustification.CENTER_JUSTIFY;
+            textLayer.property("Source Text").setValue(textDocument);
+        }
+
+        // pour chaque note...
+        for (var j = 0; j < track.tracks[i].notes.length; ++j) {
+            // ...l'ajouter dans la piste correspondante
+            var currentNote = (getComp(trackName)).layers.add(getComp(noteName));
+            // et la placer au bon timing
+            currentNote.startTime = track.tracks[i].notes[j].time - noteEarlyPlacement;
+        }
+    }
+}
+        `;
+
+        let currentMidi = null;
+
+        document.getElementById('midiFileInput').addEventListener('change', function (event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    // Parse the MIDI file from the ArrayBuffer
+                    currentMidi = new Midi(e.target.result);
+                };
+                reader.readAsArrayBuffer(file);
+            }
+        });
+
+        // Save MIDI data as JavaScript with added variable and script
+        function saveAsJsx() {
+            if (currentMidi) {
+                // Convert MIDI data directly to JSON
+                var midiJson = JSON.stringify(currentMidi.toJSON(), null, 2);
+                midiJson = "var track = " + midiJson + SCRIPT;
+                const blob = new Blob([midiJson], { type: 'application/json' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'midi_data.jsx';
+                a.click();
+                URL.revokeObjectURL(url);
+            } else {
+                alert("No MIDI file loaded.");
+            }
+        }
+
+        function downloadScript() {
+            const link = document.createElement("a");
+            link.href = "http://www.arthurbourquin.ch/OuaisLesFichiers/midi-json-to-Ae_10.jsx.zip";  // Replace with the file URL
+            link.download = "midi-json-to-Ae_10.jsx";  // Desired file name for download
+
+            // Programmatically trigger a click event to initiate the download
+            link.click();  // Trigger the download directly
+        }
+
+        // - MIDI TO JSON - END
+
+    </script>
+</body>
+
+</html>
