@@ -1217,6 +1217,18 @@
         </div>
     </div>
 
+    <h3>Formule de Laplace (matrices)</h3>
+    <div class="memoCard">
+        <div class="latex">
+            \[ \begin{aligned}
+            & det(A) \quad = \quad |A| \quad = \quad \sum_{j=1}^{n} (a_{ij} \cdot C_{ij} ) \\[2em]
+            & = \sum_{i=1}^{n} (a_{ij} \cdot (-1)^{i+j} \cdot |A_{ij}| )
+            \quad = \sum_{j=1}^{n} (a_{ij} \cdot (-1)^{i+j} \cdot |A_{ij}| ) \\[3em]
+            & C_{ij} = (-1)^{i+j} M_{ij} = (-1)^{i+j} |A_{ij}| = cofacteur
+            \end{aligned} \]
+        </div>
+    </div>
+
     <h3>Matrices de Relations</h3>
     <h3>Exemple</h3>
     <div class="memoCard">
@@ -1744,7 +1756,7 @@
     </div>
 
     <h2>Dérivées</h2>
-    <div class="row">
+    <div class="col">
         <table>
             <tr>
                 <th>Fonction</th>
@@ -1780,22 +1792,22 @@
                 <td>\[ sin(\blue{x}) \]</td>
                 <td>\[ cos(\blue{x}) \]</td>
                 <td></td>
-                <td>\[ sin^{-1}(\blue{x}) \]</td>
-                <td>\[ \frac{1}{\sqrt{1 - x^2}} \]</td>
+                <td>\[ cos(\blue{x}) \]</td>
+                <td>\[ -sin(\blue{x} )\]</td>
             </tr>
             <tr>
                 <td>\[ sec(\blue{x}) \]</td>
                 <td>\[ sec(\blue{x})tan(\blue{x}) \]</td>
                 <td></td>
-                <td>\[ sec^{-1}(\blue{x}) \]</td>
-                <td>\[ \frac{1}{|\blue{x}|\sqrt{\blue{x}^2 - 1}} \]</td>
+                <td>\[ csc(\blue{x}) \]</td>
+                <td>\[ -csc(\blue{x})cot(\blue{x}) \]</td>
             </tr>
             <tr>
                 <td>\[ tan(\blue{x}) \]</td>
                 <td>\[ 1 + tan^2(\blue{x}) \]</td>
                 <td></td>
-                <td>\[ tg^{-1}(\blue{x}) \]</td>
-                <td>\[ \frac{1}{1 + \blue{x}^2} \]</td>
+                <td>\[ cot^{-1}(\blue{x}) \]</td>
+                <td>\[ -\frac{1}{1 + \blue{x}^2} \]</td>
             </tr>
             <tr>
                 <td></td>
@@ -1805,15 +1817,15 @@
                 <td></td>
             </tr>
             <tr>
-                <td>\[ cos(\blue{x}) \]</td>
-                <td>\[ -sin(\blue{x} )\]</td>
+                <td>\[ sin^{-1}(\blue{x}) \]</td>
+                <td>\[ \frac{1}{\sqrt{1 - x^2}} \]</td>
                 <td></td>
                 <td>\[ cos^{-1}(\blue{x}) \]</td>
                 <td>\[ -\frac{1}{\sqrt{1 - x^2}} \]</td>
             </tr>
             <tr>
-                <td>\[ csc(\blue{x}) \]</td>
-                <td>\[ -csc(\blue{x})cot(\blue{x}) \]</td>
+                <td>\[ sec^{-1}(\blue{x}) \]</td>
+                <td>\[ \frac{1}{|\blue{x}|\sqrt{\blue{x}^2 - 1}} \]</td>
                 <td></td>
                 <td>\[ csc^{-1}(\blue{x}) \]</td>
                 <td>\[ -\frac{1}{|\blue{x}|\sqrt{\blue{x}^2 - 1}} \]</td>
@@ -1822,8 +1834,8 @@
                 <td>\[ cot(\blue{x}) \]</td>
                 <td>\[ -csc^2(\blue{x}) \]</td>
                 <td></td>
-                <td>\[ cot^{-1}(\blue{x}) \]</td>
-                <td>\[ -\frac{1}{1 + \blue{x}^2} \]</td>
+                <td>\[ tg^{-1}(\blue{x}) \]</td>
+                <td>\[ \frac{1}{1 + \blue{x}^2} \]</td>
             </tr>
         </table>
         <table>
@@ -1918,6 +1930,14 @@
                 <td>\[ \frac{\sqrt{\green{2}}}{2} \]</td>
                 <td>\[ \frac{\sqrt{\green{1}}}{2} \]</td>
                 <td>\[ \frac{\sqrt{\green{0}}}{2} \]</td>
+            </tr>
+            <tr>
+                <td>\[ tan \]</td>
+                <td>\[ 0 \]</td>
+                <td>\[ \frac{1}{\sqrt{\green{3}}} \]</td>
+                <td>\[ 1 \]</td>
+                <td>\[ \frac{\sqrt{\green{3}}}{1} \]</td>
+                <td>\[ - \]</td>
             </tr>
         </table>
         <h3>Quotients</h3>

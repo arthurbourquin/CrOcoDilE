@@ -105,6 +105,68 @@
     <h1>notes Arthur sur C++</h1><br><br>
 
     <table>
+        <tr>
+            <th></th>
+            <th></th>
+            <th>Dynamique</th>
+            <th>Allocation</th>
+            <th>Durée de vie</th>
+            <th>Visibilité</th>
+        </tr>
+        <tr>
+            <th>Global</th>
+            <th></th>
+            <td style="color: dimgray;">Non</td>
+            <td style="color: pink">Heap</td>
+            <td style="color: MediumTurquoise;">programme</td>
+            <td style="color: orange;">Fichier</td>
+        </tr>
+        <tr>
+            <th>Global</th>
+            <th>Static</th>
+            <td style="color: dimgray;">Non</td>
+            <td style="color: pink">Heap</td>
+            <td style="color: MediumTurquoise;">programme</td>
+            <td style="color: orange;">Fichier</td>
+        </tr>
+        <tr>
+            <th>Global</th>
+            <th>Dynamic (=new)</th>
+            <td>Oui</td>
+            <td style="color: pink">Heap</td>
+            <td style="color: deepskyblue;">Manuel</td>
+            <td style="color: orange;">Fichier</td>
+        </tr>
+        <tr>
+            <th>Local</th>
+            <th></th>
+            <td style="color: dimgray;">Non</td>
+            <td style="color: PaleVioletRed;">Stack</td>
+            <td style="color: steelblue;">Bloc d'instruction</td>
+            <td style="color: tomato;">Bloc d'instruction</td>
+        </tr>
+        <tr>
+            <th>Local</th>
+            <th>Static</th>
+            <td style="color: dimgray;">Non</td>
+            <td style="color: pink">Heap</td>
+            <td style="color: MediumTurquoise;">programme</td>
+            <td style="color: tomato;">Bloc d'instruction</td>
+        </tr>
+        <tr>
+            <th>Local</th>
+            <th>Dynamic (=new)</th>
+            <td>Oui</td>
+            <td style="color: pink">Heap</td>
+            <td style="color: deepskyblue;">Manuel</td>
+            <td style="color: tomato;">Bloc d'instruction</td>
+        </tr>
+    </table>
+    
+    
+    
+    
+    <table>
         <tr style="background-color: #222;">
             <td>
                 <table style="text-align: right;">
