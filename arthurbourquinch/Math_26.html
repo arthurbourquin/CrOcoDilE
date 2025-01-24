@@ -682,12 +682,6 @@
             Les \; \orange{\mathbb{Z}}'entiers \, \orange{\mathbb{N}}on\, \orange{\mathbb{N}}égatifs
             \end{aligned} \]
         </div>
-        <div class="memoCard">
-            Ah oui :
-            <div class="latex" style="font-size: 2em;">
-                \[ \varnothing \subseteq \varnothing \]
-            </div>
-        </div>
     </div>
     <h3>Exemples</h3>
     <div class="memoCard">
@@ -754,7 +748,7 @@
                 <div class="memoCard">
                     \[ \begin{aligned}
                     & \mathscr{P}(A) = \{\emptyset, \{a\}, ..., \{a, b, c\}\} \\
-                    & \mathscr{P}(A) | = 2^{|A|} = 2^3 = 8
+                    & | \mathscr{P}(A) | = 2^{|A|} = 2^3 = 8
                     \end{aligned} \]
                     <table>
                         <tr>
@@ -812,6 +806,15 @@
                             <td>{a, b, c}</td>
                         </tr>
                     </table>
+                </div>
+            </div>
+            <div class="memoCard">
+                <div class="latex">
+                    \[
+                    \varnothing \subseteq \varnothing \\[2em]
+                    \varnothing \notin \{ 1 \} \\[2em]
+                    \varnothing \subseteq \{ 1 \}
+                    \]
                 </div>
             </div>
         </div>
@@ -1228,6 +1231,42 @@
             \end{aligned} \]
         </div>
     </div>
+    <h4>Système d'équation sous forme de multiplication de matrices</h4>
+    <div class="latex">
+        \[ \orange{A} \times \green{\overrightarrow{v}} = \blue{\overrightarrow{r}} \]
+    </div>
+    <table>
+        <tr>
+            <td style="width: 80px;"></td>
+            <td style="width: 80px;"></td>
+            <td style="width: 80px;"></td>
+            <td style="width: 80px;"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td style="color: green;">\[ x_1 \]</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td style="color: green;">\[ x_2 \]</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td style="color: orange;">\[ a \]</td>
+            <td style="color: orange;">\[ b \]</td>
+            <td style="color: steelblue;">\[ ax_1 + bx_2 \]</td>
+            <td style="color: dodgerblue;">\[ r_1 \]</td>
+        </tr>
+        <tr>
+            <td style="color: orange;">\[ c \]</td>
+            <td style="color: orange;">\[ d \]</td>
+            <td style="color: steelblue;">\[ cx_1 + dx_2 \]</td>
+            <td style="color: dodgerblue;">\[ r_2 \]</td>
+        </tr>
+    </table>
 
     <h3>Matrices de Relations</h3>
     <h3>Exemple</h3>
