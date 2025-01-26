@@ -53,17 +53,28 @@
         }
 
         #divDesDes,
-        #divDesDesDeCouleur,
+        #divDesDesDeCouleurs {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        #divDesResultatsDesDes,
+        #divDesResultatsDesDesDeCouleurs,
         #divDesPossibilitesDesDes,
         #divDesPossibilitesDesDesDeCouleurs {
             display: flex;
+            flex-wrap: wrap;
             flex-direction: row;
             align-items: center;
             justify-content: center;
             gap: 10px;
         }
 
-        .desDeCouleur,
+        .desDeCouleurs,
         .des {
             width: 50px;
             height: 50px;
@@ -82,7 +93,7 @@
         }
 
         .possibiliteDesDes,
-        .possibiliteDesDesDeCouleur {
+        .possibiliteDesDesDeCouleurs {
             width: 20px;
             height: 20px;
             border-radius: 5px;
@@ -93,49 +104,45 @@
             color: #222;
             background-color: #ddd;
         }
-        .row {
-            display: flex;
-            flex-direction: row;
-            gap: 20px;
-        }
-
-        .col {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
     </style>
 </head>
 
 <body>
-    <div class="col">
+    <div>
 
-        <div class="row">
-            <input id="inputNombreDeDes" type="number" value="2">
-            <span>Dé(s)</span>
-            <input id="inputNombreDeFaces" type="number" value="6">
-            <span>Faces</span>
+        <div id="divDesDes">
+            <div id="specificationsDesDes">
+                <input id="inputNombreDeDes" type="number" value="2">
+                <span>Dé(s) de</span>
+                <input id="inputNombreDeFaces" type="number" value="6">
+                <span>Faces</span>
+            </div>
+            <div id="divDesPossibilitesDesDes"></div>
+            <button id="buttonDes" onclick="jetDesDes()">jeter les dés</button>
+            <div id="divDesResultatsDesDes"></div>
         </div>
 
-        <div class="row">
-            <button id="buttonDes" onclick="jetDeDes()">jeter des dés</button>
-            <button id="buttonDesDeCouleur" onclick="jetDeDesDeCouleur()">jeter des dés de couleur</button>
+        <div id="divDesDesDeCouleurs">
+            <div id="specificationsDesDesDeCouleurs">
+                <input id="inputNombreDeDesDeCouleurs" type="number" value="2">
+                <span>Dé(s) de</span>
+                <input id="inputNombreDeFacesDesDesDeCouleurs" type="number" value="6">
+                <span>Faces</span>
+            </div>
+            <div id="divDesPossibilitesDesDesDeCouleurs"></div>
+            <button id="buttonDesDeCouleurs" onclick="jetDeDesDeCouleurs()">jeter les dés de couleurs</button>
+            <div id="divDesResultatsDesDesDeCouleurs"></div>
         </div>
-
-        <div id="divDesPossibilitesDesDes"></div>
-        <div id="divDesDes"></div>
-
-        <div id="divDesPossibilitesDesDesDeCouleurs"></div>
-        <div id="divDesDesDeCouleur"></div>
 
     </div>
     <script>
         const couleurs = ["#d32", "#691", "#06e", "#f38", "#ea0", "#3bd", "#f89", "#853", "#e61", "#a6c"];
 
-        function jetDeDes() {
+        function jetDesDes() {
+
             let nombreDeDes = parseInt(document.getElementById("inputNombreDeDes").value);
             let nombreDeFaces = parseInt(document.getElementById("inputNombreDeFaces").value);
-            let divDesDes = document.getElementById("divDesDes");
+            let divDesDes = document.getElementById("divDesResultatsDesDes");
             divDesDes.innerHTML = "";
             let divDesPossibilitesDesDes = document.getElementById("divDesPossibilitesDesDes");
             divDesPossibilitesDesDes.innerHTML = "";
@@ -152,22 +159,60 @@
                 let divResultat = document.createElement("div");
                 divResultat.innerText = r;
                 divResultat.className = "des";
-                document.getElementById("divDesDes").appendChild(divResultat);
+                document.getElementById("divDesResultatsDesDes").appendChild(divResultat);
             }
+
+            const parentDiv = document.getElementById("divDesResultatsDesDes");
+            const childDiv = parentDiv.querySelectorAll("div");
+            const interval = setInterval(() => {
+                childDiv.forEach(child => {
+                    const translateX = (Math.random() - 0.5) * 20;
+                    const translateY = (Math.random() - 0.5) * 20;
+                    const rotate = Math.random() * 360;
+                    child.style.transform = `translate(${translateX}px, ${translateY}px) rotate(${rotate}deg)`;
+
+                });
+            }, 50);
+
+            // Stop the animation after 1 second
+            setTimeout(() => {
+                // Reset the transform for all dice
+                childDiv.forEach(child => {
+                    child.style.transform = "none";
+                });
+                clearInterval(interval);
+            }, 500);
 
         }
 
-        function jetDeDesDeCouleur() {
-            let nombreDeDes = parseInt(document.getElementById("inputNombreDeDes").value);
-            let nombreDeFaces = parseInt(document.getElementById("inputNombreDeFaces").value);
-            let divDesDeCouleur = document.getElementById("divDesDesDeCouleur");
+        function jetDeDesDeCouleurs() {
+            anmationDesDeCouleurs();
+            donnerUneValeurAleatoireAuxDesDeCouleurs();
+        }
+
+        function anmationDesDeCouleurs() {
+            const interval = setInterval(() => {
+                document.getElementById("divDesResultatsDesDesDeCouleurs").style.transform =
+                    `translate(${(Math.random() - 0.5) * 20}px, ${(Math.random() - 0.5) * 20}px)`;
+            }, 50);
+
+            // Stop the animation after 1 second
+            setTimeout(() => {
+                clearInterval(interval);
+            }, 500);
+        }
+
+        function donnerUneValeurAleatoireAuxDesDeCouleurs() {
+            let nombreDeDes = parseInt(document.getElementById("inputNombreDeDesDeCouleurs").value);
+            let nombreDeFaces = parseInt(document.getElementById("inputNombreDeFacesDesDesDeCouleurs").value);
+            let divDesDeCouleur = document.getElementById("divDesResultatsDesDesDeCouleurs");
             divDesDeCouleur.innerHTML = "";
             let divDesPossibilitesDesDesDeCouleurs = document.getElementById("divDesPossibilitesDesDesDeCouleurs");
             divDesPossibilitesDesDesDeCouleurs.innerHTML = "";
 
             for (let i = 0; i < nombreDeFaces; ++i) {
                 let resultat = document.createElement("div");
-                resultat.className = "possibiliteDesDesDeCouleur";
+                resultat.className = "possibiliteDesDesDeCouleurs";
                 resultat.style.backgroundColor = couleurs[i];
                 divDesPossibilitesDesDesDeCouleurs.appendChild(resultat);
             }
@@ -175,11 +220,14 @@
             for (let i = 0; i < nombreDeDes; ++i) {
                 let r = Math.floor(Math.random() * nombreDeFaces);
                 let resultat = document.createElement("div");
-                resultat.className = "desDeCouleur";
+                resultat.className = "desDeCouleurs";
                 resultat.style.backgroundColor = couleurs[r];
                 divDesDeCouleur.appendChild(resultat);
             }
         }
+
+        jetDesDes();
+        jetDeDesDeCouleurs();
     </script>
 </body>
 
