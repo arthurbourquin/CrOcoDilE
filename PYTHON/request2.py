@@ -15,8 +15,8 @@ if not os.path.exists(download_directory):
     os.makedirs(download_directory)
 
 # Base URL and pattern for image names
-base_url = "https://siteporno/hotfemale/"
-image_count = 100
+base_url = "https://m3.imhentai.xxx/010/mec0id96su/"
+image_count = 140
 
 for i in range(1, image_count + 1):
     image_number = str(i)
