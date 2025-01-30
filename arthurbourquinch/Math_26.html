@@ -851,67 +851,108 @@
     <h2>Matrices</h2>
 
     <h3>Définitions</h3>
-    <div class="memoCard">
-        <div class="row">
-            <div class="memoCard">
-                <h4>
-                    <span style="color: orange">matrice</span><br>
-                    <span style="color: yellowgreen">élément</span><br>
-                    <span>dimensions = 2 x 3</span><br>
-                    <span>taille = 6</span><br>
-                </h4>
-                <table class="TableCarree" style="color: yellowgreen">
-                    <tr>
-                        <td style="border-color: orange">1</td>
-                        <td style="border-color: orange">2</td>
-                        <td style="border-color: orange">3</td>
-                    </tr>
-                    <tr>
-                        <td style="border-color: orange">4</td>
-                        <td style="border-color: orange">5</td>
-                        <td style="border-color: orange">6</td>
-                    </tr>
-                </table>
-            </div>
-            <div class="memoCard">
-                <h4 style="color: pink">vecteur (ligne)</h4><br>
-                <table class="TableCarree" style="color: pink">
-                    <tr>
-                        <td style="border-color: pink">1</td>
-                        <td style="border-color: pink">2</td>
-                        <td style="border-color: pink">3</td>
-                    </tr>
-                </table>
-            </div>
-            <div class="memoCard">
-                <h4 style="color: steelblue">vecteur colonne</h4><br>
-                <table class="TableCarree" style="color: steelblue">
-                    <tr>
-                        <td style="border-color: steelblue">1</td>
-                    </tr>
-                    <tr>
-                        <td style="border-color: steelblue">2</td>
-                    </tr>
-                    <tr>
-                        <td style="border-color: steelblue">3</td>
-                    </tr>
-                    </tr>
-                </table>
-            </div>
+    <div class="row">
+        <div class="memoCard">
+            <h4>
+                <span style="color: orange">matrice</span><br>
+                <span style="color: yellowgreen">élément</span><br>
+                <span>dimensions = 2 x 3</span><br>
+                <span>taille = 6</span><br>
+            </h4>
+            <table class="TableCarree" style="color: yellowgreen">
+                <tr>
+                    <td style="border-color: orange">1</td>
+                    <td style="border-color: orange">2</td>
+                    <td style="border-color: orange">3</td>
+                </tr>
+                <tr>
+                    <td style="border-color: orange">4</td>
+                    <td style="border-color: orange">5</td>
+                    <td style="border-color: orange">6</td>
+                </tr>
+            </table>
         </div>
         <div class="memoCard">
-            \[
-            \gray{Propriétés} \\[1em]
-            A + B = B + A \\[1em]
-            A \times B \neq B \times A \\[1em]
-            A \otimes (B \otimes C) = (A \otimes B) \otimes C \\[1em]
-            \lambda A = A \lambda \\[1em]
-            A(B + C) = AB + BC \\[1em]
-            AI = A
-            \]
+            <h4 style="color: pink">vecteur (ligne)</h4><br>
+            <table class="TableCarree" style="color: pink">
+                <tr>
+                    <td style="border-color: pink">1</td>
+                    <td style="border-color: pink">2</td>
+                    <td style="border-color: pink">3</td>
+                </tr>
+            </table>
+        </div>
+        <div class="memoCard">
+            <h4 style="color: steelblue">vecteur colonne</h4><br>
+            <table class="TableCarree" style="color: steelblue">
+                <tr>
+                    <td style="border-color: steelblue">1</td>
+                </tr>
+                <tr>
+                    <td style="border-color: steelblue">2</td>
+                </tr>
+                <tr>
+                    <td style="border-color: steelblue">3</td>
+                </tr>
+                </tr>
+            </table>
         </div>
     </div>
-    <h4>Matrices carrées</h4>
+
+    <h3>Algèbre matriciel</h3>
+    <div class="memoCard">
+        \[
+        \gray{A + B = B + A} \\[1em]
+        A B \neq B A \\[1em]
+        \gray{A \otimes (B \otimes C) = (A \otimes B) \otimes C} \\[1em]
+        \lambda A = A \lambda \\[1em]
+        A(B + C) = AB + BC \\[1em]
+        AI = A \\[1em]
+        A^2 + A = A(A + I)
+        \]
+    </div>
+    <div class="memoCard">
+        \[
+        (A + B)^T = A^T + B^T \\[1em]
+        (A B)^T = A^T B^T \\[1em]
+        (\lambda A)^T = \lambda A^T \\[1em]
+        (A^T)^T = A \\[1em]
+        (A^T)^k = (A^k)^T
+        \]
+    </div>
+    <div class="memoCard">
+        \[
+        \text{S'il existe une matrice invers de } A \text{ alors }\\[1em] AA^{-1} = I
+        \]
+    </div>
+    <div class="memoCard">
+        \[
+        \begin{aligned}
+        & \text{Matrice carrée :} \\[0.5em]
+        & |\lambda A| = \lambda^n |A| \\[0.5em]
+        & |A| = |A^T| \\[0.5em]
+        & |A^k| = |A|^k \quad k \in \mathbb{Z} \gray{\text{(attention à div par 0 et } A^{-1})} \\[0.5em]
+        & |AB| = |A||B| \\[0.5em]
+        & L_x = L_y \quad \text{ou} \quad C_x = C_y \quad \Rightarrow |A| = 0 \\[0.5em]
+        & L_x = 0 \quad \text{ou} \quad C_x = 0 \quad \Rightarrow |A| = 0 \\[0.5em]
+        \\
+        & \text{Matrice triangulaire :} \\[0.5em]
+        & |A| = (a_{11})(a_{22}) \dots (a_{nn}) \\[0.5em]
+        \\
+        & \text{Opérations sur les lignes :} \\[0.5em]
+        & L_x * \lambda \quad \Rightarrow \quad \frac{1}{\lambda}|A| \\[0.5em]
+        & L_x \pm L_y \quad \gray{\Rightarrow \quad |A| ~ inchangé} \\[0.5em]
+        & L_x \leftrightarrow L_y ~~ou~~ C_x \leftrightarrow C_y \quad \Rightarrow \quad (-1)|A|
+        \end{aligned}
+        \]
+    </div>
+    <div class="memoCard">
+        \[ \begin{aligned}
+        & A^{-1} = \frac{1}{|A|}C^T
+        \end{aligned} \]
+    </div>
+
+    <h3>Matrices carrées</h3>
     <div class="row">
         <div class="memoCard">
             <h4>Matrice<br>triangulaire<br>supérieure</h4>
@@ -1050,14 +1091,6 @@
                 </table>
             </div>
         </div>
-        \[ {}\\
-        \gray{Propriétés} \\[1em]
-        (A + B)^T = A^T + B^T \\[1em]
-        (A \times B)^T = A^T \times B^T \\[1em]
-        (\lambda A)^T = \lambda A^T \\[1em]
-        (A^T)^T = A \\[1em]
-        (A^T)^k = (A^k)^T
-        \]
     </div>
     <h3>Matrices inverses</h3>
     <div class="memoCard">
@@ -1146,6 +1179,87 @@
         \]
     </div>
 
+    <h3>Système d'équation sous forme de multiplication de matrices</h3>
+    <div class="memoCard">
+        <div class="latex">
+            \[ \begin{aligned}
+
+            & ax_1 + bx_2 = b_1 \\
+            & cx_1 + dx_2 = b_2
+
+            \\[2em]
+
+            & \begin{bmatrix}
+            a & b \\
+            c & d
+            \end{bmatrix}
+            \begin{bmatrix}
+            x_1 \\
+            x_2
+            \end{bmatrix}
+            =
+            \begin{bmatrix}
+            a x_1 + b x_2 \\
+            c x_1 + d x_2
+            \end{bmatrix}
+
+            \\[2em]
+
+            & M \vec{x} = \vec{b}
+
+            \end{aligned} \]
+        </div>
+        <div class="latex">
+            \[ \begin{aligned}
+            & M : && \text{coefficients du système} \\
+            & \vec{x} : && \text{inconnues} \\
+            & \vec{b} : && \text{membres de droite} \\
+            \end{aligned} \]
+        </div>
+    </div>
+    <h3>Déterminant</h3>
+    <div class="memoCard">
+        <div class="latex">
+            <table>
+                <tr>
+                    <td></td>
+                    <th>\[ \vec{b} = 0 \]</th>
+                    <th>\[ \vec{b} \neq 0 \]</th>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th>\[ |M| = 0 \]</th>
+                    <td>\[ \infty \]</td>
+                    <td>\[ 0 ~ ou ~ \infty \]</td>
+                    <td>\[ \red{\sout{M^{-1}}} \]</td>
+                </tr>
+                <tr>
+                    <th>\[ |M| \neq 0 \]</th>
+                    <td>\[ \vec{x} = 0 \]</td>
+                    <td>\[ \vec{x} = M^{-1}\vec{b} \]</td>
+                    <td>\[ M^{-1} \]</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>\[ homogène \]</td>
+                    <td>\[ inhomogène \]</td>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <h3>Règle de Cramer</h3>
+    <div class="memoCard">
+        <div class="latex">
+            \[ \begin{aligned}
+            & x_n = \frac{|A_n|}{|A|} \\
+            & A_n = \text{matrice A dont colonne n aété substituée par le vecteur } \vec{b} \\
+            \end{aligned} \]
+        </div>
+    </div>
+
+    </div>
     <h3>Gauss-Jordan</h3>
     <div class="memoCard">
         Système d'équation de base
@@ -1200,10 +1314,20 @@
             \end{bmatrix} \]
         </div>
         <div style="text-align: left;">
-            Algorithme :
             <ul>
-                <li>échelonnement</li>
-                <li>réduction</li>
+                <li>Méthode :
+                    <ul>
+                        <li>échelonnement</li>
+                        <li>réduction</li>
+                    </ul>
+                </li>
+                <li>Opérations :
+                    <ul>
+                        <li class="latex">\[ L_x \cdot x, ~~x \in \mathbb{R}^* \]</li>
+                        <li class="latex">\[ L_x \cdot x \cdot L_y, ~~x \in \mathbb{R}^* \]</li>
+                        <li>permuter lignes</li>
+                    </ul>
+                </li>
             </ul>
         </div>
         <br>
@@ -1224,49 +1348,11 @@
     <div class="memoCard">
         <div class="latex">
             \[ \begin{aligned}
-            & det(A) \quad = \quad |A| \quad = \quad \sum_{j=1}^{n} (a_{ij} \cdot C_{ij} ) \\[2em]
-            & = \sum_{i=1}^{n} (a_{ij} \cdot (-1)^{i+j} \cdot |A_{ij}| )
-            \quad = \sum_{j=1}^{n} (a_{ij} \cdot (-1)^{i+j} \cdot |A_{ij}| ) \\[3em]
-            & C_{ij} = (-1)^{i+j} M_{ij} = (-1)^{i+j} |A_{ij}| = cofacteur
+            & det(A) = |A| = \quad
+            \sum_{i=1}^{n} (a_{ij} \cdot (-1)^{i+j} \cdot |A_{\orange{\setminus i \setminus j}}| ) \\
             \end{aligned} \]
         </div>
     </div>
-    <h4>Système d'équation sous forme de multiplication de matrices</h4>
-    <div class="latex">
-        \[ \orange{A} \times \green{\overrightarrow{v}} = \blue{\overrightarrow{r}} \]
-    </div>
-    <table>
-        <tr>
-            <td style="width: 80px;"></td>
-            <td style="width: 80px;"></td>
-            <td style="width: 80px;"></td>
-            <td style="width: 80px;"></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td style="color: green;">\[ x_1 \]</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td style="color: green;">\[ x_2 \]</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td style="color: orange;">\[ a \]</td>
-            <td style="color: orange;">\[ b \]</td>
-            <td style="color: steelblue;">\[ ax_1 + bx_2 \]</td>
-            <td style="color: dodgerblue;">\[ r_1 \]</td>
-        </tr>
-        <tr>
-            <td style="color: orange;">\[ c \]</td>
-            <td style="color: orange;">\[ d \]</td>
-            <td style="color: steelblue;">\[ cx_1 + dx_2 \]</td>
-            <td style="color: dodgerblue;">\[ r_2 \]</td>
-        </tr>
-    </table>
 
     <h3>Matrices de Relations</h3>
     <h3>Exemple</h3>
@@ -1401,7 +1487,8 @@
                     <li style="text-decoration: line-through; color: grey">Symétrique</li>
                     <li>Antisymétrique</li>
                     <li>Transitive</li>
-                    <li style="text-decoration: line-through; color: grey">Tous les éléments<br>sont comparables</li>
+                    <li style="text-decoration: line-through; color: grey">Tous les éléments<br>sont comparables
+                    </li>
                 </ul>
             </div>
         </div>
@@ -1835,18 +1922,18 @@
                 <td>\[ -sin(\blue{x} )\]</td>
             </tr>
             <tr>
+                <td>\[ tan(\blue{x}) \]</td>
+                <td>\[ 1 + tan^2(\blue{x}) \]</td>
+                <td></td>
+                <td>\[ cot(\blue{x}) \]</td>
+                <td>\[ -1 - cot^2(\blue{x}) \]</td>
+            </tr>
+            <tr>
                 <td>\[ sec(\blue{x}) \]</td>
                 <td>\[ sec(\blue{x})tan(\blue{x}) \]</td>
                 <td></td>
                 <td>\[ csc(\blue{x}) \]</td>
                 <td>\[ -csc(\blue{x})cot(\blue{x}) \]</td>
-            </tr>
-            <tr>
-                <td>\[ tan(\blue{x}) \]</td>
-                <td>\[ 1 + tan^2(\blue{x}) \]</td>
-                <td></td>
-                <td>\[ cot^{-1}(\blue{x}) \]</td>
-                <td>\[ -\frac{1}{1 + \blue{x}^2} \]</td>
             </tr>
             <tr>
                 <td></td>
@@ -1863,18 +1950,18 @@
                 <td>\[ -\frac{1}{\sqrt{1 - x^2}} \]</td>
             </tr>
             <tr>
+                <td>\[ tg^{-1}(\blue{x}) \]</td>
+                <td>\[ \frac{1}{1 + \blue{x}^2} \]</td>
+                <td></td>
+                <td>\[ cot^{-1}(\blue{x}) \]</td>
+                <td>\[ -\frac{1}{1 + \blue{x}^2} \]</td>
+            </tr>
+            <tr>
                 <td>\[ sec^{-1}(\blue{x}) \]</td>
                 <td>\[ \frac{1}{|\blue{x}|\sqrt{\blue{x}^2 - 1}} \]</td>
                 <td></td>
                 <td>\[ csc^{-1}(\blue{x}) \]</td>
                 <td>\[ -\frac{1}{|\blue{x}|\sqrt{\blue{x}^2 - 1}} \]</td>
-            </tr>
-            <tr>
-                <td>\[ cot(\blue{x}) \]</td>
-                <td>\[ -csc^2(\blue{x}) \]</td>
-                <td></td>
-                <td>\[ tg^{-1}(\blue{x}) \]</td>
-                <td>\[ \frac{1}{1 + \blue{x}^2} \]</td>
             </tr>
         </table>
         <table>
