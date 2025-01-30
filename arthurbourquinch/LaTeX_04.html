@@ -63,7 +63,8 @@
         }
 
         button:hover {
-            background-color: steelblue;
+            color: #222;
+            background-color: #ddd;
         }
 
         .inOutDiv {
@@ -73,6 +74,10 @@
         }
 
         .header {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 10px;
             font-weight: 600;
         }
     </style>
@@ -83,7 +88,7 @@
         <span>Size</span>
         <input type="number" value="14" id="changeSize">
         <input id="checkboxHelp" type="checkbox">help
-        <a href="https://latexeditor.lagrida.com/">latexeditor.lagrida.com</a>
+        <a href="https://latexeditor.lagrida.com/">lagrida</a>
         <button id="layout" onclick="changeLyout()">Formula(s) under input box</button>
     </div>
 
