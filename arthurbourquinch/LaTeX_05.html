@@ -31,7 +31,8 @@
 
         #output {
             font-size: 14px;
-            margin: 10px;;
+            margin: 10px;
+            ;
         }
 
         a {
@@ -70,7 +71,7 @@
 
         .inOutDiv {
             display: flex;
-            flex-direction: row;
+            flex-direction: column;
             align-items: flex-start;
         }
 
@@ -83,10 +84,12 @@
         }
 
         #helpDiv {
-            display: inline;
+            display: none;
             z-index: 1;
             position: absolute;
+            padding: 20px;
             margin: 10px;
+            background-color: #222;
         }
 
         input {
@@ -96,14 +99,23 @@
             border-radius: 5px;
             padding: 5px;
         }
+
+        #finalRawLatex {
+            display: inline;
+            padding: 5px;
+            margin: 0px;
+            background-color: #222;
+            border: 1px solid #ddd;
+        }
     </style>
 </head>
 
 <body>
     <div id="helpDiv">
-        <input id="helpInput_1_from"><input id="helpInput_1_to"><br>
-        <input id="helpInput_2_from"><input id="helpInput_2_to"><br>
-        <input id="helpInput_3_from"><input id="helpInput_3_to"><br>
+        <input type="checkbox" checked>{aligned} encapsulation<br>
+        <input id="helpInput_1_from" value=" so "><input id="helpInput_1_to" value=" \quad\Rightarrow\quad "><br>
+        <input id="helpInput_2_from" value="  "><input id="helpInput_2_to" value=" \; "><br>
+        <input id="helpInput_3_from" value="   "><input id="helpInput_3_to" value=" \quad "><br>
         <input id="helpInput_4_from"><input id="helpInput_4_to"><br>
         <input id="helpInput_5_from"><input id="helpInput_5_to"><br>
         <input id="helpInput_6_from"><input id="helpInput_6_to"><br>
@@ -111,19 +123,21 @@
         <input id="helpInput_8_from"><input id="helpInput_8_to"><br>
         <input id="helpInput_9_from"><input id="helpInput_9_to"><br>
         <input id="helpInput_10_from"><input id="helpInput_10_to"><br>
+        <button onclick="displayHideHelpFormat()">close</button>
     </div>
     <div class="header">
         <span>Size</span>
         <input type="number" value="14" id="changeSize">
-        <input id="checkboxHelp" type="checkbox">help
+        <input id="checkboxHelp" type="checkbox" checked><button onclick="displayHideHelpFormat()">format help</button>
         <a href="https://latexeditor.lagrida.com/">lagrida</a>
         <button id="layout" onclick="changeLyout()">Formula(s) under input box</button>
     </div>
 
     <div class="inOutDiv">
-        <textarea type="text" id="userInput">T_n(x) = \sum_{k=0}^{n} \frac{f^{(k)}(x_0)}{k!} (x - x_0)^k</textarea>
+        <textarea type="text" id="userInput">x = 2y so y = \frac{x}{2}T_n(x) \\ = \sum_{k=0}^{n} \frac{f^{(k)}(x_0)}{k!} (x - x_0)^k</textarea>
         <span id="output"></span>
     </div>
+    <div id="finalRawLatex">finale latex</div>
 
     <script>
         function renderLatex() {
@@ -135,12 +149,15 @@
         }
 
         function helpFormat(input) {
-                input = input.replace(/ so /g, ' \\quad\\Rightarrow\\quad ');
-                input = input.replace(/   /g, '\\quad ');
-                input = input.replace(/  /g, '\\; ');
-                input = input.split('\n').map(line => '& ' + line.trim() + ' \\\\[1em]').join('\n');
-                input = `\\begin{aligned}\n${input}\n\\end{aligned}`;
-                return input;
+            for (let i = 1; i <= 10; i++) {
+                input = input.replace(
+                    document.getElementById(`helpInput_${i}_from`).value,
+                    document.getElementById(`helpInput_${i}_to`).value
+                );
+            }
+            input = input.split('\n').map(line => '& ' + line.trim() + ' \\\\[1em]').join('\n');
+            input = `\\begin{aligned} \n${ input } \n\\end{aligned}`;
+            return input;
         }
 
         function updateSize() {
@@ -160,6 +177,15 @@
 
             // Apply the new direction to the container
             document.querySelector('.inOutDiv').style.flexDirection = currentFlexDirection;
+        }
+
+        function displayHideHelpFormat() {
+            let helpDiv = document.getElementById('helpDiv');
+            if (helpDiv.style.display === "inline") {
+                helpDiv.style.display = "none";
+            } else {
+                helpDiv.style.display = "inline";
+            }
         }
 
         document.getElementById('userInput').addEventListener('input', renderLatex);

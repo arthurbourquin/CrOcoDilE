@@ -10,12 +10,12 @@ def download_image(image_url, save_path):
         print(f"Error downloading {image_url}: {e}")
 
 # Directory to save images
-download_directory = 'downloaded_images'
+download_directory = 'downloaded_images_2'
 if not os.path.exists(download_directory):
     os.makedirs(download_directory)
 
 # Base URL and pattern for image names
-base_url = "https://m3.imhentai.xxx/010/mec0id96su/"
+base_url = "olé"
 image_count = 140
 
 for i in range(1, image_count + 1):
