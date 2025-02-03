@@ -343,15 +343,9 @@
                     & && préimage && \mapsto && image
                     \end{aligned} \]
                 </div>
-                <div class="memoCard" style="color: grey; border-color: grey;">
+                <div class="memoCard">
                     \[ \begin{aligned}
-                    & f: && A && \to && Im(f) \\
-                    & && x && \mapsto && f(x)
-                    \end{aligned} \]
-                </div>
-                <div class="memoCard" style="color: grey; border-color: grey;">
-                    \[ \begin{aligned}
-                    & f: && A && \to && f(A) \\
+                    & f: && A=Dom(f) && \to && B=Im(f)=f(A) \\
                     & && x && \mapsto && f(x)
                     \end{aligned} \]
                 </div>
@@ -550,6 +544,8 @@
             </tr>
         </table>
     </div>
+    <h3>Limites</h3>
+    <div></div>
 
     <h2>Produits</h2>
     <h3>Désambiguïsation des produits</h3>
@@ -914,7 +910,7 @@
     <div class="memoCard">
         \[
         (A + B)^T = A^T + B^T \\[1em]
-        (A B)^T = A^T B^T \\[1em]
+        (A B)^T = B^T A^T \\[1em]
         (\lambda A)^T = \lambda A^T \\[1em]
         (A^T)^T = A \\[1em]
         (A^T)^k = (A^k)^T
@@ -922,7 +918,7 @@
     </div>
     <div class="memoCard">
         \[
-        \text{S'il existe une matrice invers de } A \text{ alors }\\[1em] AA^{-1} = I
+        \text{S'il existe une matrice inverse de } A \text{ alors }\\[1em] AA^{-1} = I, \quad A^{-1}A = I
         \]
     </div>
     <div class="memoCard">
@@ -940,9 +936,9 @@
         & |A| = (a_{11})(a_{22}) \dots (a_{nn}) \\[0.5em]
         \\
         & \text{Opérations sur les lignes :} \\[0.5em]
-        & L_x * \lambda \quad \Rightarrow \quad \frac{1}{\lambda}|A| \\[0.5em]
+        & L_x \lambda \quad \Rightarrow \quad \frac{1}{\lambda}|A| \\[0.5em]
         & L_x \pm L_y \quad \gray{\Rightarrow \quad |A| ~ inchangé} \\[0.5em]
-        & L_x \leftrightarrow L_y ~~ou~~ C_x \leftrightarrow C_y \quad \Rightarrow \quad (-1)|A|
+        & \text{permutation} \quad \Rightarrow \quad (-1)|A|
         \end{aligned}
         \]
     </div>
@@ -1765,6 +1761,16 @@
         </tr>
     </table>
     <div class="memoCard">
+        \[ \begin{aligned}
+        & &&&&&&&&&&&&&&&& nbt\frac{p+d}{2} && \frac{p-rd}{1-r} \\[1em]
+        & \sum_{k=2}^{4}(3) && = && (3)+(3)+(3) && = && 3+3+3 && = && 9 && = && 3\frac{3+3}{2} \\[1em]
+        & \sum_{k=2}^{4}(k+3) && = && (2+3)+(3+3)+(4+3) && = && 5+6+7 && = && 18 && = && 3\frac{5+7}{2} \\[1em]
+        & \sum_{k=2}^{4}(k*3) && = && (2*3)+(3*3)+(4*3) && = && 6+8+10 && = && 24 && = && 3\frac{6+10}{2} \\[1em]
+        & \sum_{k=2}^{4}(k^3) && = && (2^3)+(3^3)+(4^3) && = && 8+27+64 && = && 99 && = && \\[1em]
+        & \sum_{k=2}^{4}(3^k) && = && (3^2)+(3^3)+(3^4) && = && 9+27+81 && = && 117 && = && && \frac{9-3\cdot81}{1-3} \\[1em]
+        & \sum_{k=2}^{4}(ln(k)) && = && (ln(3))+(ln(4))+(ln(5)) && = && ln(3*4*5) && = && ln(60) \\[1em]
+        \end{aligned} \]    </div>
+    <div class="memoCard">
         <div>
             <h3>Rappels</h3>
             <table>
@@ -1845,9 +1851,9 @@
             <tr>
                 <td colspan="3">
                     \[ \begin{aligned}
-                    \orange{\bigoplus_{k=i}^n} \blue{\bigoplus_{l=j}^m} (a_{\orange{i} \blue{j}})
+                    \orange{\bigoplus_{k=i}^n} \blue{\bigotimes_{l=j}^m} (a_{\orange{i} \blue{j}})
                     \quad = \quad
-                    \orange{\bigoplus_{l=j}^m} \blue{\bigoplus_{k=i}^n} (a_{\orange{i} \blue{j}})
+                    \blue{\bigotimes_{l=j}^m} \orange{\bigoplus_{k=i}^n} (a_{\orange{i} \blue{j}})
                     \end{aligned} \]
                 </td>
             </tr>
@@ -1898,12 +1904,42 @@
                 <td>\[ cab^{c\blue{x} +d} ln(a) \]</td>
             </tr>
             <tr>
+                <td>\[ log_a( \blue{x} ) \]</td>
+                <td>\[ \frac{1}{ \blue{x} ln(a)} \]</td>
+            </tr>
+            <tr>
                 <td>\[ \blue{x}^{\blue{x}} \]</td>
                 <td>\[ \blue{x}^{\blue{x}}ln(\blue{x} + 1) \]</td>
             </tr>
+        </table>
+        <table>
             <tr>
-                <td>\[ log_a( \blue{x} ) \]</td>
-                <td>\[ \frac{1}{ \blue{x} ln(a)} \]</td>
+                <th>Fonction</th>
+                <th>Dérivée</th>
+            </tr>
+            <tr>
+                <td>\[ a \cdot f(\blue{x}) \]</td>
+                <td>\[ a \cdot f'(\blue{x}) \]</td>
+            </tr>
+            <tr>
+                <td>\[ f(\blue{x} )\green±g(\blue{x} )\]</td>
+                <td>\[ f'(\blue{x} )\green±g'(\blue{x} )\]</td>
+            </tr>
+            <tr>
+                <td>\[ f(\blue{x}) \cdot g(\blue{x}) \]</td>
+                <td>\[ f'(\blue{x}) \cdot g(\blue{x}) + f(\blue{x}) \cdot g'(\blue{x} )\]</td>
+            </tr>
+            <tr>
+                <td>\[ \frac{f(\blue{x})}{g(\blue{x})} \]</td>
+                <td>\[ \frac{f'(\blue{x}) g(\blue{x}) - f(\blue{x}) g'(\blue{x})}{(g(\blue{x}))^2} \]</td>
+            </tr>
+            <tr>
+                <td>\[ f(g(h(\blue{x}))) \]</td>
+                <td>\[ f'(g(h(\blue{x}))) \cdot g'(h(\blue{x})) \cdot h'(\blue{x}) \]</td>
+            </tr>
+            <tr>
+                <td>\[ f^{-1}(\blue{x}) \]</td>
+                <td>\[ \frac{1}{f'(f^{-1}(\blue{x}))} \]</td>
             </tr>
         </table>
         <table>
@@ -1962,28 +1998,6 @@
                 <td></td>
                 <td>\[ csc^{-1}(\blue{x}) \]</td>
                 <td>\[ -\frac{1}{|\blue{x}|\sqrt{\blue{x}^2 - 1}} \]</td>
-            </tr>
-        </table>
-        <table>
-            <tr>
-                <th>Fonction</th>
-                <th>Dérivée</th>
-            </tr>
-            <tr>
-                <td>\[ f(\blue{x} )\green±g(\blue{x} )\]</td>
-                <td>\[ f'(\blue{x} )\green±g'(\blue{x} )\]</td>
-            </tr>
-            <tr>
-                <td>\[ f(\blue{x}) \cdot g(\blue{x}) \]</td>
-                <td>\[ f'(\blue{x}) \cdot g(\blue{x}) + f(\blue{x}) \cdot g'(\blue{x} )\]</td>
-            </tr>
-            <tr>
-                <td>\[ \frac{f(\blue{x})}{g(\blue{x})} \]</td>
-                <td>\[ \frac{f'(\blue{x}) g(\blue{x}) - f(\blue{x}) g'(\blue{x})}{(g(\blue{x}))^2} \]</td>
-            </tr>
-            <tr>
-                <td>\[ f(g(h(\blue{x}))) \]</td>
-                <td>\[ f'(g(h(\blue{x}))) \cdot g'(h(\blue{x})) \cdot h'(\blue{x}) \]</td>
             </tr>
         </table>
 

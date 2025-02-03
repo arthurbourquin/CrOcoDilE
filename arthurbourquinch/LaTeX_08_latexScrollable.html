@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap"
+        rel="stylesheet">
+
+    <title>LaTeX</title>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        body,
+        #renderedLatex,
+        a {
+            font-family: Roboto Slab;
+            font-size: 16px;
+            font-weight: 300;
+            color: #ddd;
+            background: #222;
+        }
+
+        #userInputTextarea {
+            color: #ddd;
+            background-color: #222;
+            width: 200px;
+            height: 100px;
+            resize: both;
+            margin: 10px;
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        #renderedLatex {
+            font-size: 14px;
+            margin: 10px;
+            overflow: auto;
+            resize: both;
+            min-width: 200px;
+            min-height: 100px;
+            max-width: 100%;
+            max-height: 500px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        a {
+            color: steelblue;
+        }
+
+        a:hover {
+            color: #ddd;
+        }
+
+        button,
+        #changeSize {
+            font-family: Roboto Slab;
+            text-align: center;
+            border: 0px;
+            border-radius: 5px;
+            padding: 5px 10px;
+        }
+
+        #changeSize {
+            color: #ddd;
+            background-color: #222;
+            width: 30px;
+        }
+
+        button {
+            color: #ddd;
+            background-color: #222;
+            border: 1px solid #ddd;
+        }
+
+        button:hover {
+            color: #222;
+            background-color: #ddd;
+        }
+
+        #inOutDiv {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .header {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+        }
+
+        #helpDiv {
+            display: none;
+            flex-direction: column;
+            gap: 3px;
+            align-items: center;
+            z-index: 1;
+            position: absolute;
+            padding: 20px;
+            margin: 10px;
+            background-color: #191919;
+            border: 1px solid #ddd;
+        }
+
+        input {
+            color: #ddd;
+            background-color: #222;
+            border: 1px solid #ddd;
+            padding: 5px;
+        }
+
+        #finalRawLatex {
+            display: none;
+            font-size: 12px;
+            color: #999;
+            background-color: #333;
+            padding: 5px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!--
+    bloc pour l'édition de l'aide au formattage
+    où ça définit tout ce qui est remplacé par quoi
+    qui peut être modifié par l'utilisateur
+    -->
+    <div id="helpDiv">
+        <div><input type="checkbox" checked>{aligned} encapsulation</div>
+        <div><input id="helpInput_1_from" value=" so "> ➞ <input id="helpInput_1_to" value=" \quad\Rightarrow\quad ">
+        </div>
+        <div><input id="helpInput_2_from"> ➞ <input id="helpInput_2_to"></div>
+        <div><input id="helpInput_3_from"> ➞ <input id="helpInput_3_to"></div>
+        <div><input id="helpInput_4_from"> ➞ <input id="helpInput_4_to"></div>
+        <div><input id="helpInput_5_from"> ➞ <input id="helpInput_5_to"></div>
+        <div><input id="helpInput_6_from"> ➞ <input id="helpInput_6_to"></div>
+        <div><input id="helpInput_7_from"> ➞ <input id="helpInput_7_to"></div>
+        <div><input id="helpInput_8_from"> ➞ <input id="helpInput_8_to"></div>
+        <div><input id="helpInput_9_from"> ➞ <input id="helpInput_9_to"></div>
+        <div><input id="helpInput_10_from"> ➞ <input id="helpInput_10_to"></div>
+        <button onclick="displayHideHelpFormat()">close</button>
+    </div>
+
+    <!--
+    bloc avec tous les boutons
+    -->
+    <div class="header">
+        <span>Size</span>
+        <input type="number" value="14" id="changeSize">
+        <input id="checkboxHelp" type="checkbox"><button id="editHelpFormatButton"
+            onclick="displayHideHelpFormat()">format...</button>
+        <button id="layoutButton" onclick="changeLayout()">down/right</button>
+        <button onclick="displayHideFinalRawLatex()">final raw latex</button>
+        <a href="https://latexeditor.lagrida.com/">See also Lagrida</a>
+    </div>
+
+    <!--
+    bloc avec l'input de l'utilisateur et l'output en latex rendu
+    -->
+    <div id="inOutDiv">
+        <textarea type="text" id="userInputTextarea">x = 2y
+         y T_n(x) = \sum_{k=0}^{n} \frac{f^{(k)}(x_0)}{k!} (x - x_0)^k</textarea>
+        <div id="renderedLatex"></div>
+    </div>
+
+    <!--
+    bloc qui montre le latex final brute
+    pour copier coller dans un autre logiciel par exemple
+    -->
+    <div id="finalRawLatex"></div>
+
+    <script>
+        function renderLatex() {
+            // sauvegarder la position du scroll
+            let posTop = document.getElementById('renderedLatex').scrollTop;
+            let posLeft = document.getElementById('renderedLatex').scrollLeft;
+
+            let helpOn = document.getElementById('checkboxHelp').checked;
+            let userInput = document.getElementById('userInputTextarea').value;
+            if (helpOn) {
+                formatedInput = helpFormat(userInput);
+                document.getElementById('editHelpFormatButton').style.color = "yellowgreen";
+                document.getElementById('editHelpFormatButton').style.borderColor = "yellowgreen";
+            } else {
+                formatedInput = "\\[" + userInput + "\\]";
+                document.getElementById('editHelpFormatButton').style.color = "#ddd";
+                document.getElementById('editHelpFormatButton').style.borderColor = "#ddd";
+            }
+            document.getElementById('renderedLatex').innerHTML = formatedInput;
+            MathJax.typesetPromise();
+            document.getElementById('finalRawLatex').innerText = formatedInput;
+
+            // redeonner les valeurs de position de scroll
+            document.getElementById('renderedLatex').scrollTop = posTop;
+            document.getElementById('renderedLatex').scrollLeft = posLeft;
+        }
+
+        function helpFormat(input) {
+            for (let i = 1; i <= 10; i++) {
+                for (let j = 1; j <= 100; j++) { // scotch caca
+                    input = input.replace(
+                        document.getElementById(`helpInput_${i}_from`).value,
+                        document.getElementById(`helpInput_${i}_to`).value
+                    );
+                }
+            }
+            input = input.split('\n').map(line => '& ' + line.trim() + ' \\\\[1em]').join('\n');
+            input = `\\begin{aligned} \n${input} \n\\end{aligned}`;
+            return input;
+        }
+
+        function updateSize() {
+            const size = document.getElementById('changeSize').value;
+            document.getElementById('renderedLatex').style.fontSize = `${size}px`;
+        }
+
+
+        let renderedLatexIsBelow = true;
+        function changeLayout() {
+            if (renderedLatexIsBelow == true) {
+                renderedLatexIsBelow = false;
+                document.getElementById('inOutDiv').style.flexDirection = "row";
+            } else {
+                renderedLatexIsBelow = true;
+                document.getElementById('inOutDiv').style.flexDirection = "column";
+            }
+        }
+
+        let helpFormatLayout = 'row';
+        function displayHideHelpFormat() {
+            let helpDiv = document.getElementById('helpDiv');
+            if (helpDiv.style.display === "flex") {
+                helpDiv.style.display = "none";
+            } else {
+                helpDiv.style.display = "flex";
+            }
+        }
+
+        let finalRawLatexDisplay = "block";
+        function displayHideFinalRawLatex() {
+            let ouais = document.getElementById('finalRawLatex');
+            if (ouais.style.display === "block") {
+                ouais.style.display = "none";
+            } else {
+                ouais.style.display = "block";
+            }
+        }
+
+        document.getElementById('userInputTextarea').addEventListener('input', renderLatex);
+        document.getElementById('changeSize').addEventListener('input', updateSize);
+        document.getElementById('checkboxHelp').addEventListener('change', renderLatex);
+
+
+    </script>
+</body>
+
+</html>
