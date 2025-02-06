@@ -345,16 +345,9 @@
                 </div>
                 <div class="memoCard">
                     \[ \begin{aligned}
-                    & f: && A=Dom(f) && \to && B=Im(f)=f(A) \\
+                    & f: && A=Dom(f) && \to && Im(f)=f(A)\subseteq B \\
                     & && x && \mapsto && f(x)
                     \end{aligned} \]
-                </div>
-                <div class="memoCard">
-                    \[
-                    x \in A \\[1em]
-                    f(x) \in B \\[1em]
-                    B \supseteq Im(f) = f(A)
-                    \]
                 </div>
             </div>
         </div>
@@ -438,7 +431,7 @@
                             </span>
                         </td>
                         <td style="width: 300px">
-                            réciproque (inverse)
+                            réciproque ("inverse")
                             \[f^{-1}(x)\]
                             <img style="width: 120px"
                                 src="https://www.arthurbourquin.ch/OuaisLesMedias/FonctionsInverses/g_g-moins-un-de-x.png">
@@ -498,8 +491,9 @@
                             </td>
                         <td>
                             <div class="col">
-                                \[ ln(x) \]
-                                <img width="100px" src="http://www.arthurbourquin.ch/OuaisLesMedias/Fonctions/ln-x.png">
+                                \[ x^3-x \]
+                                <img width="100px"
+                                    src="http://www.arthurbourquin.ch/OuaisLesMedias/Fonctions/x-cube-moins-x.png">
                             </div>
                         </td>
                         <td>
@@ -546,6 +540,143 @@
     </div>
     <h3>Limites</h3>
     <div></div>
+
+    <h2>Désambiguïsation des opérateurs et opérandes</h2>
+    <table>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>booléen</td>
+            <td>scalaire</td>
+            <td>vecteur</td>
+            <td>matrice</td>
+            <td>ensemble</td>
+            <td>fonction</td>
+            <td>relation</td>
+        </tr>
+        <tr>
+            <td>\[ \]</td>
+            <td>\[ ab \]</td>
+            <td>\[ AB \]</td>
+            <td>\[ \]</td>
+            <td>produit</td>
+            <td></td>
+            <td>produit matriciel</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>\[ \times \]</td>
+            <td>\[ a \times b\]</td>
+            <td>\[ A \times B \]</td>
+            <td></td>
+            <td>produit</td>
+            <td>produit vectoriel</td>
+            <td>produit matriciel</td>
+            <td>produit cartésien</td>
+            <td>\[ \]</td>
+            <td>\[ \]</td>
+        </tr>
+        <tr>
+            <td>\[ \cdot \]</td>
+            <td>\[ a \cdot b \]</td>
+            <td>\[ A \cdot B \]</td>
+            <td></td>
+            <td>produit</td>
+            <td>produit scalaire</td>
+            <td>produit matriciel</td>
+            <td>produit cartésien</td>
+            <td>\[ \]</td>
+            <td>\[ \]</td>
+        </tr>
+        <tr>
+            <td>\[ ^{-1} \]</td>
+            <td>\[ a^{-1} \]</td>
+            <td>\[ A^{-1} \]</td>
+            <td></td>
+            <td>inverse</td>
+            <td>inverse</td>
+            <td>inverse</td>
+            <td></td>
+            <td>réciproque</td>
+            <td>inverse</td>
+        </tr>
+        <tr>
+            <td>\[ \circ \]</td>
+            <td>\[ \]</td>
+            <td>\[ A \circ B \]</td>
+            <td>\[ \]</td>
+            <td>\[ \]</td>
+            <td>\[ \]</td>
+            <td>produit de Hadamard</td>
+            <td>\[ \]</td>
+            <td>composition de fonction</td>
+            <td>composition de relation</td>
+        </tr>
+        <tr>
+            <td>\[ || \]</td>
+            <td>\[ |a| \]</td>
+            <td>\[ |A| \]</td>
+            <td>\[ \]</td>
+            <td>valeur absolue</td>
+            <td>magnitude</td>
+            <td>déterminant</td>
+            <td>cardinal</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>\[ - \]</td>
+            <td>\[ \overline{a} \]</td>
+            <td>\[ \overline{A} \]</td>
+            <td>complément</td>
+            <td>\[ \]</td>
+            <td>\[ \]</td>
+            <td>\[ \]</td>
+            <td>complément</td>
+            <td>\[ \]</td>
+            <td>complément</td>
+        </tr>
+        <tr>
+            <td>\[ \cup \]</td>
+            <td>\[ \]</td>
+            <td>\[ A \cup B \]</td>
+            <td>union</td>
+            <td>\[ \]</td>
+            <td>\[ \]</td>
+            <td>\[ \]</td>
+            <td>union</td>
+            <td>\[ \]</td>
+            <td>\[ \]</td>
+        </tr>
+        <tr>
+            <td>\[ \cap \]</td>
+            <td>\[ \]</td>
+            <td>\[ A \cap B \]</td>
+            <td>intersection</td>
+            <td>\[ \]</td>
+            <td></td>
+            <td>\[ \]</td>
+            <td>intersection</td>
+            <td></td>
+            <td>\[ \]</td>
+        </tr>
+        <tr>
+            <td>\[ \bigtriangleup \]</td>
+            <td>\[ A \bigtriangleup B \]</td>
+            <td>\[ \]</td>
+            <td>xor</td>
+            <td>\[ \]</td>
+            <td>\[ \]</td>
+            <td>\[ \]</td>
+            <td>différence exclusive</td>
+            <td>\[ \]</td>
+            <td>\[ \]</td>
+        </tr>
+    </table>
+
 
     <h2>Produits</h2>
     <h3>Désambiguïsation des produits</h3>
@@ -804,13 +935,16 @@
                     </table>
                 </div>
             </div>
-            <div class="memoCard">
-                <div class="latex">
-                    \[
-                    \varnothing \subseteq \varnothing \\[2em]
-                    \varnothing \notin \{ 1 \} \\[2em]
-                    \varnothing \subseteq \{ 1 \}
-                    \]
+            <div class="col">
+                <h4>Et...</h4>
+                <div class="memoCard">
+                    <div class="latex">
+                        \[
+                        \varnothing \subseteq \varnothing \\[2em]
+                        \varnothing \notin \{ 1 \} \\[2em]
+                        \varnothing \subseteq \{ 1 \}
+                        \]
+                    </div>
                 </div>
             </div>
         </div>
@@ -896,56 +1030,60 @@
     </div>
 
     <h3>Algèbre matriciel</h3>
-    <div class="memoCard">
-        \[
-        \gray{A + B = B + A} \\[1em]
-        A B \neq B A \\[1em]
-        \gray{A \otimes (B \otimes C) = (A \otimes B) \otimes C} \\[1em]
-        \lambda A = A \lambda \\[1em]
-        A(B + C) = AB + BC \\[1em]
-        AI = A \\[1em]
-        A^2 + A = A(A + I)
-        \]
-    </div>
-    <div class="memoCard">
-        \[
-        (A + B)^T = A^T + B^T \\[1em]
-        (A B)^T = B^T A^T \\[1em]
-        (\lambda A)^T = \lambda A^T \\[1em]
-        (A^T)^T = A \\[1em]
-        (A^T)^k = (A^k)^T
-        \]
-    </div>
-    <div class="memoCard">
-        \[
-        \text{S'il existe une matrice inverse de } A \text{ alors }\\[1em] AA^{-1} = I, \quad A^{-1}A = I
-        \]
-    </div>
-    <div class="memoCard">
-        \[
-        \begin{aligned}
-        & \text{Matrice carrée :} \\[0.5em]
-        & |\lambda A| = \lambda^n |A| \\[0.5em]
-        & |A| = |A^T| \\[0.5em]
-        & |A^k| = |A|^k \quad k \in \mathbb{Z} \gray{\text{(attention à div par 0 et } A^{-1})} \\[0.5em]
-        & |AB| = |A||B| \\[0.5em]
-        & L_x = L_y \quad \text{ou} \quad C_x = C_y \quad \Rightarrow |A| = 0 \\[0.5em]
-        & L_x = 0 \quad \text{ou} \quad C_x = 0 \quad \Rightarrow |A| = 0 \\[0.5em]
-        \\
-        & \text{Matrice triangulaire :} \\[0.5em]
-        & |A| = (a_{11})(a_{22}) \dots (a_{nn}) \\[0.5em]
-        \\
-        & \text{Opérations sur les lignes :} \\[0.5em]
-        & L_x \lambda \quad \Rightarrow \quad \frac{1}{\lambda}|A| \\[0.5em]
-        & L_x \pm L_y \quad \gray{\Rightarrow \quad |A| ~ inchangé} \\[0.5em]
-        & \text{permutation} \quad \Rightarrow \quad (-1)|A|
-        \end{aligned}
-        \]
-    </div>
-    <div class="memoCard">
-        \[ \begin{aligned}
-        & A^{-1} = \frac{1}{|A|}C^T
-        \end{aligned} \]
+    <div class="row">
+        <div class="memoCard">
+            \[
+            \gray{A + B = B + A} \\[1em]
+            A B \neq B A \\[1em]
+            \gray{A \otimes (B \otimes C) = (A \otimes B) \otimes C} \\[1em]
+            \lambda A = A \lambda \\[1em]
+            A(B + C) = AB + BC \\[1em]
+            AI = A \\[1em]
+            A^2 + A = A(A + I)
+            \]
+        </div>
+        <div class="memoCard">
+            \[
+            (A + B)^T = A^T + B^T \\[1em]
+            (A B)^T = B^T A^T \\[1em]
+            (\lambda A)^T = \lambda A^T \\[1em]
+            (A^T)^T = A \\[1em]
+            (A^T)^k = (A^k)^T
+            \]
+        </div>
+        <div class="memoCard">
+            \[
+            \text{S'il existe une matrice inverse de } A \text{ alors }\\[1em] AA^{-1} = I, \quad A^{-1}A = I
+            \]
+        </div>
+        <div class="memoCard">
+            \[
+            \begin{aligned}
+            & \gray{\text{Déterminant} \Longleftrightarrow \text{matrice carrée}} \\[0.5em]
+            & |\lambda A| = \lambda^n |A| \\[0.5em]
+            & |A| = |A^T| \\[0.5em]
+            & |A^k| = |A|^k ~~\gray{^\ast} \\[0.5em]
+            & |AB| = |A||B| \\[0.5em]
+            & L_x = L_y \quad \text{ou} \quad C_x = C_y \quad \Rightarrow |A| = 0 \\[0.5em]
+            & L_x = 0 \quad \text{ou} \quad C_x = 0 \quad \Rightarrow |A| = 0 \\[0.5em]
+            & \gray{^\ast\text{matrice invesible } \Leftrightarrow |A|\neq0 \text{ } \Leftrightarrow k\in\mathbb{Z}} \\[0.5em]
+            & \gray{^\ast\text{matrice non invesible } \Leftrightarrow |A|=0 \text{ } \Leftrightarrow k\in\mathbb{N}} \\[0.5em]
+            \\
+            & \text{Matrice triangulaire :} \\[0.5em]
+            & |A| = (a_{11})(a_{22}) \dots (a_{nn}) \\[0.5em]
+            \\
+            & \text{Opérations sur les lignes :} \\[0.5em]
+            & L_x \lambda \quad \Rightarrow \quad \frac{1}{\lambda}|A| \\[0.5em]
+            & L_x \pm L_y \quad \gray{\Rightarrow \quad |A| ~ inchangé} \\[0.5em]
+            & \text{permutation} \quad \Rightarrow \quad (-1)|A|
+            \end{aligned}
+            \]
+        </div>
+        <div class="memoCard">
+            \[ \begin{aligned}
+            & A^{-1} = \frac{1}{|A|}C^T
+            \end{aligned} \]
+        </div>
     </div>
 
     <h3>Matrices carrées</h3>
@@ -1091,8 +1229,8 @@
     <h3>Matrices inverses</h3>
     <div class="memoCard">
         \[
-        Si ~~ \orange{A} ~~ existe \\[1em]
-        \orange{A} \times \blue{A^{-1}} = I \quad \gray{et~~ A^{-1} \times A = I}
+        Si ~~ \blue{A^{-1}} ~~ existe \\[1em]
+        \orange{A} \blue{A^{-1}} = I \quad ; \quad \blue{A^{-1}} \orange{A} = I
         \]
         <table class="TablePacked">
             <tr>
@@ -1178,32 +1316,6 @@
     <h3>Système d'équation sous forme de multiplication de matrices</h3>
     <div class="memoCard">
         <div class="latex">
-            \[ \begin{aligned}
-
-            & ax_1 + bx_2 = b_1 \\
-            & cx_1 + dx_2 = b_2
-
-            \\[2em]
-
-            & \begin{bmatrix}
-            a & b \\
-            c & d
-            \end{bmatrix}
-            \begin{bmatrix}
-            x_1 \\
-            x_2
-            \end{bmatrix}
-            =
-            \begin{bmatrix}
-            a x_1 + b x_2 \\
-            c x_1 + d x_2
-            \end{bmatrix}
-
-            \\[2em]
-
-            & M \vec{x} = \vec{b}
-
-            \end{aligned} \]
         </div>
         <div class="latex">
             \[ \begin{aligned}
@@ -1249,9 +1361,55 @@
     <div class="memoCard">
         <div class="latex">
             \[ \begin{aligned}
-            & x_n = \frac{|A_n|}{|A|} \\
-            & A_n = \text{matrice A dont colonne n aété substituée par le vecteur } \vec{b} \\
-            \end{aligned} \]
+            & \text{Pour un système d'équation :} \\
+            & ax_1 + bx_2 + cx_3 = b_1 \\
+            & dx_1 + ex_2 + fx_3 = b_2 \\
+            & gx_1 + hx_2 + ix_3 = b_3 \\\\
+
+            & \text{on peut établir la multiplication de matrice :} \\
+            & \begin{bmatrix}
+            a & b & c \\
+            d & e & f \\
+            g & h & i
+            \end{bmatrix}
+            \begin{bmatrix}
+            x_1 \\
+            x_2 \\
+            x_3
+            \end{bmatrix}
+            =
+            \begin{bmatrix}
+            b_1 \\
+            b_2 \\
+            b_3
+            \end{bmatrix} \\\\
+
+            & \text{Soit :} \\
+            & M \vec{x} = \vec{b} \\\\
+
+
+            & \text{Solution avec la méthode de Cramer :} \\
+            & x_k = \frac{\left| A_k \right|}{\left| A \right|}, \quad \text{où} \quad A_k \text{ est la matrice } A \text{ dont la colonne } k \text{ a été remplacée par } \vec{b} \\\\
+            & A_1 = \frac{\left|
+            \begin{matrix}
+            b_1 & b & c \\
+            b_2 & e & f \\
+            b_3 & h & i
+            \end{matrix} \right|}{\left| A \right|}, \quad
+            A_2 = \frac{\left|
+            \begin{matrix}
+            a & b_1 & c \\
+            d & b_2 & f \\
+            g & b_3 & i
+            \end{matrix} \right|}{\left| A \right|}, \quad
+            A_3 = \frac{\left|
+            \begin{matrix}
+            a & b & b_1 \\
+            d & e & b_2 \\
+            g & h & b_3
+            \end{matrix} \right|}{\left| A \right|}
+            \end{aligned}                  
+            \]
         </div>
     </div>
 
@@ -1761,16 +1919,6 @@
         </tr>
     </table>
     <div class="memoCard">
-        \[ \begin{aligned}
-        & &&&&&&&&&&&&&&&& nbt\frac{p+d}{2} && \frac{p-rd}{1-r} \\[1em]
-        & \sum_{k=2}^{4}(3) && = && (3)+(3)+(3) && = && 3+3+3 && = && 9 && = && 3\frac{3+3}{2} \\[1em]
-        & \sum_{k=2}^{4}(k+3) && = && (2+3)+(3+3)+(4+3) && = && 5+6+7 && = && 18 && = && 3\frac{5+7}{2} \\[1em]
-        & \sum_{k=2}^{4}(k*3) && = && (2*3)+(3*3)+(4*3) && = && 6+8+10 && = && 24 && = && 3\frac{6+10}{2} \\[1em]
-        & \sum_{k=2}^{4}(k^3) && = && (2^3)+(3^3)+(4^3) && = && 8+27+64 && = && 99 && = && \\[1em]
-        & \sum_{k=2}^{4}(3^k) && = && (3^2)+(3^3)+(3^4) && = && 9+27+81 && = && 117 && = && && \frac{9-3\cdot81}{1-3} \\[1em]
-        & \sum_{k=2}^{4}(ln(k)) && = && (ln(3))+(ln(4))+(ln(5)) && = && ln(3*4*5) && = && ln(60) \\[1em]
-        \end{aligned} \]    </div>
-    <div class="memoCard">
         <div>
             <h3>Rappels</h3>
             <table>
@@ -1841,6 +1989,13 @@
             </tr>
             <tr>
                 <td colspan="3">
+                    \[
+                    \bigoplus_{k=i}^n \bigoplus_{l=j}^m (a_k \cdot b_l) = \bigoplus_{k=i}^n (a_k) \cdot \bigoplus_{l=j}^m (b_l) \\[1em]
+                    \]
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
                     \[ \begin{aligned}
                     \bigoplus_{k=i}^n (a_k \oplus b_k)
                     \quad = \quad
@@ -1888,7 +2043,7 @@
     </div>
 
     <h2>Dérivées</h2>
-    <div class="col">
+    <div class="row">
         <table>
             <tr>
                 <th>Fonction</th>
@@ -2044,7 +2199,7 @@
     <h2>Trigonométrie</h2>
     <div class="col">
         <div class="avecPadding">
-            <img width="500px" src="http://www.arthurbourquin.ch/OuaisLesMedias/Circle-trig6white.png">
+            <img width="256px" src="http://www.arthurbourquin.ch/OuaisLesMedias/sin-cos-tan-cot-sec-csc.png">
         </div>
         <table>
             <tr>
@@ -2097,9 +2252,6 @@
                 & \blue{csc} = \frac{1}{\orange{sin}}
                 \end{aligned} \]
             </div>
-        </div>
-        <div class="avecPadding">
-            <img width="256px" src="http://www.arthurbourquin.ch/OuaisLesMedias/sin-cos-tan-cot-sec-csc.png">
         </div>
 
         <h3>Angles</h3>
