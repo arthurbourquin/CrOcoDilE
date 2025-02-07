@@ -538,8 +538,6 @@
             </tr>
         </table>
     </div>
-    <h3>Limites</h3>
-    <div></div>
 
     <h2>Désambiguïsation des opérateurs et opérandes</h2>
     <table>
@@ -1114,8 +1112,10 @@
             & |AB| = |A||B| \\[0.5em]
             & L_x = L_y \quad \text{ou} \quad C_x = C_y \quad \Rightarrow |A| = 0 \\[0.5em]
             & L_x = 0 \quad \text{ou} \quad C_x = 0 \quad \Rightarrow |A| = 0 \\[0.5em]
-            & \gray{^\ast\text{matrice invesible } \Leftrightarrow |A|\neq0 \text{ } \Leftrightarrow k\in\mathbb{Z}} \\[0.5em]
-            & \gray{^\ast\text{matrice non invesible } \Leftrightarrow |A|=0 \text{ } \Leftrightarrow k\in\mathbb{N}} \\[0.5em]
+            & \gray{^\ast\text{matrice invesible } \Leftrightarrow |A|\neq0 \text{ } \Leftrightarrow k\in\mathbb{Z}}
+            \\[0.5em]
+            & \gray{^\ast\text{matrice non invesible } \Leftrightarrow |A|=0 \text{ } \Leftrightarrow k\in\mathbb{N}}
+            \\[0.5em]
             \\
             & \text{Matrice triangulaire :} \\[0.5em]
             & |A| = (a_{11})(a_{22}) \dots (a_{nn}) \\[0.5em]
@@ -1437,7 +1437,8 @@
 
 
             & \text{Solution avec la méthode de Cramer :} \\
-            & x_k = \frac{\left| A_k \right|}{\left| A \right|}, \quad \text{où} \quad A_k \text{ est la matrice } A \text{ dont la colonne } k \text{ a été remplacée par } \vec{b} \\\\
+            & x_k = \frac{\left| A_k \right|}{\left| A \right|}, \quad \text{où} \quad A_k \text{ est la matrice } A
+            \text{ dont la colonne } k \text{ a été remplacée par } \vec{b} \\\\
             & A_1 = \frac{\left|
             \begin{matrix}
             b_1 & b & c \\
@@ -1456,7 +1457,7 @@
             d & e & b_2 \\
             g & h & b_3
             \end{matrix} \right|}{\left| A \right|}
-            \end{aligned}                  
+            \end{aligned}
             \]
         </div>
     </div>
@@ -2038,7 +2039,8 @@
             <tr>
                 <td colspan="3">
                     \[
-                    \bigoplus_{k=i}^n \bigoplus_{l=j}^m (a_k \cdot b_l) = \bigoplus_{k=i}^n (a_k) \cdot \bigoplus_{l=j}^m (b_l) \\[1em]
+                    \bigoplus_{k=i}^n \bigoplus_{l=j}^m (a_k \cdot b_l) = \bigoplus_{k=i}^n (a_k) \cdot
+                    \bigoplus_{l=j}^m (b_l) \\[1em]
                     \]
                 </td>
             </tr>
@@ -2087,6 +2089,36 @@
                     \end{aligned} \]
                 </div>
             </div>
+        </div>
+    </div>
+
+    <h2>Limites</h2>
+    <div class="memoCard">
+        <p>
+            On cherche la pente d'une droite passant par deux points extrêment proches appartenant à f(x)
+        </p>
+        <div class="latex">
+            \[
+            t(x)
+            \quad=\quad
+            mx + b
+            \quad=\quad
+            \lim_{\Delta \rightarrow 0} \frac{f(x + \Delta) - f(x)}{(x + \Delta) - (x)}x + b
+            \]
+        </div>
+        <p>
+            On cherche la pente d'une droite passant par deux points extrêment proches appartenant à f(x)
+        </p>
+        <div class="latex">
+            \[
+            m = \lim_{\Delta \rightarrow 0} \frac{f(x + \Delta) - f(x)}{(x + \Delta) - (x)}
+            \quad=\quad
+            \lim_{\Delta \rightarrow 0} \frac{f(x + \Delta) - f(x)}{\Delta}
+            \quad=\quad
+            \lim_{\Delta \rightarrow 0} \frac{\Delta f}{\Delta x}
+            \quad=\quad
+            \frac{df}{dx}
+            \]
         </div>
     </div>
 
