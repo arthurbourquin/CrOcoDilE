@@ -573,23 +573,12 @@
             <td>\[ AB \]</td>
             <td>ET</td>
             <td>produit</td>
-            <td></td>
-            <td>produit matriciel</td>
-            <td></td>
-            <td></td>
+            <td>produit scalaire</td>
+            <td>produit</td>
+            <td>produit cartésien</td>
+            <td>produit</td>
             <td></td>
         </tr>
-        <tr>
-            <td>\[ \times \]</td>
-            <td>\[ a \times b\]</td>
-            <td>\[ A \times B \]</td>
-            <td>ET</td>
-            <td>produit</td>
-            <td>produit vectoriel</td>
-            <td>produit matriciel</td>
-            <td>produit cartésien</td>
-            <td>\[ \]</td>
-            <td>\[ \]</td>
         </tr>
         <tr>
             <td>\[ \cdot \]</td>
@@ -598,11 +587,22 @@
             <td>ET</td>
             <td>produit</td>
             <td>produit scalaire</td>
-            <td>produit matriciel</td>
+            <td>produit</td>
             <td>produit cartésien</td>
-            <td>\[ \]</td>
+            <td>produit</td>
             <td>\[ \]</td>
         </tr>
+        <tr>
+            <td>\[ \times \]</td>
+            <td>\[ a \times b\]</td>
+            <td>\[ A \times B \]</td>
+            <td>ET</td>
+            <td>produit</td>
+            <td>produit vectoriel*</td>
+            <td>produit</td>
+            <td>produit cartésien</td>
+            <td>produit</td>
+            <td>\[ \]</td>
         <tr>
             <td>\[ ^{-1} \]</td>
             <td>\[ a^{-1} \]</td>
@@ -618,7 +618,7 @@
         <tr>
             <td>\[ ' \]</td>
             <td>\[ a' \]</td>
-            <td>\[  \]</td>
+            <td>\[ \]</td>
             <td></td>
             <td></td>
             <td></td>
@@ -654,7 +654,7 @@
         <tr>
             <td>\[ \hat{} \]</td>
             <td>\[ \hat{a} \]</td>
-            <td>\[  \]</td>
+            <td>\[ \]</td>
             <td>\[ \]</td>
             <td></td>
             <td>normalisé</td>
@@ -713,8 +713,8 @@
         </tr>
         <tr>
             <td>\[ \bigtriangleup \]</td>
-            <td>\[  \]</td>
-            <td>\[  A \bigtriangleup B \]</td>
+            <td>\[ \]</td>
+            <td>\[ A \bigtriangleup B \]</td>
             <td></td>
             <td>\[ \]</td>
             <td>\[ \]</td>
@@ -726,120 +726,7 @@
     </table>
 
 
-    <h2>Produits</h2>
-    <h3>Désambiguïsation des produits</h3>
-    <div class="latex">
-        \[ \begin{aligned}
-        & a^2 \neq A^2 \neq M^2 \neq R^2 \quad \text{et c'est super !}
-        \end{aligned} \]
-    </div>
-    <div class="row">
-        <table>
-            <tr>
-                <th>Français</th>
-                <th>English</th>
-                <th></th>
-                <th></th>
-                <th>a</th>
-                <th>c</th>
-                <th>m</th>
-                <th>type des arguments</th>
-                <th>type du résultat</th>
-            </tr>
-            <tr>
-                <td>produit de scalaires</td>
-                <td>scalar product</td>
-                <td>\[a⋅b\]</td>
-                <td>\[ a^2 \]</td>
-                <td>✔</td>
-                <td>✔</td>
-                <td>∞</td>
-                <td>scalaire</td>
-                <td>scalaire</td>
-            </tr>
-            <tr>
-                <td>produit scalaire</td>
-                <td>dot product</td>
-                <td>\[|a|⋅|b|⋅cos(θ)\]</td>
-                <td></td>
-                <td>-</td>
-                <td>✔</td>
-                <td>2</td>
-                <td>vecteur n dim</td>
-                <td>scalaire</td>
-            </tr>
-            <tr>
-                <td>produit matriciel</td>
-                <td>matrix product</td>
-                <td>\[M×N\]</td>
-                <td>\[ M^2 \]</td>
-                <td>✔</td>
-                <td></td>
-                <td>!</td>
-                <td>matrice n dim</td>
-                <td>matrice</td>
-            </tr>
-            <tr style="color: grey">
-                <td>produit de Hadamard / produit élément par élément</td>
-                <td>Hadamard product / Element wise product</td>
-                <td>\[A \circ B\]</td>
-                <td>\[ A^{\circ 2} \]</td>
-                <td>✔</td>
-                <td>✔</td>
-                <td>!</td>
-                <td>matrice n dim</td>
-                <td>matrice</td>
-            </tr>
-            <tr>
-                <td>produit cartésien</td>
-                <td>cartesian product</td>
-                <td>\[A×B\]</td>
-                <td>\[ A^2 \]</td>
-                <td>✔</td>
-                <td></td>
-                <td>∞</td>
-                <td>ensemble</td>
-                <td>ensemble de relations</td>
-            </tr>
-            <tr>
-                <td>composition de relations</td>
-                <td>composition of relations</td>
-                <td>\[R \circ S\]</td>
-                <td>\[ R^2 \]</td>
-                <td>✔</td>
-                <td></td>
-                <td>∞</td>
-                <td>relation</td>
-                <td>ensemble de relations</td>
-            </tr>
-            <tr>
-                <td>produit vectoriel</td>
-                <td>cross product</td>
-                <td>\[ \hat{a} × \hat{b} \]</td>
-                <td> \[ \hat{v} \]</td>
-                <td>-</td>
-                <td></td>
-                <td>2</td>
-                <td>vecteur 3D</td>
-                <td>vecteur 3D</td>
-            </tr>
-            <tr>
-                <td style="padding: 2px;"></td>
-            </tr>
-            <tr>
-                <td>composition de fonction</td>
-                <td>function composition</td>
-                <td>\[ f \circ g \]</td>
-                <td>\[ h \]</td>
-                <td></td>
-                <td></td>
-                <td>∞</td>
-                <td>fonction</td>
-                <td>fonction</td>
-            </tr>
-        </table>
-        a = associatif, c = commutatif, m = nombre maximum d'éléments
-    </div>
+
 
     <h2>Ensembles</h2>
     <div class="row">
@@ -983,34 +870,27 @@
                     </table>
                 </div>
             </div>
-            <div class="col">
-                <h4>Et...</h4>
-                <div class="memoCard">
-                    <div class="latex">
-                        \[
-                        \varnothing \subseteq \varnothing \\[2em]
-                        \varnothing \notin \{ 1 \} \\[2em]
-                        \varnothing \subseteq \{ 1 \}
-                        \]
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
     <table>
         <tr>
             <td>\[ A \in B \]</td>
-            <td>apparient</td>
-            <td>Il y a l'élément <b>A</b> dans l'ensemble <b>B</b></td>
+            <td>A est dans B</td>
         </tr>
         <tr>
             <td>\[ A \subseteq B \]</td>
-            <td>inclus dans</td>
-            <td>avec les éléments de l'ensemble <b>B</b> on peut représenter tous les éléments de l'ensemble
-                <b>A</b>
-            </td>
+            <td>A sont dans B</td>
         </tr>
     </table>
+    <div class="memoCard">
+        <div class="latex">
+            \[
+            \varnothing \subseteq \varnothing \\[2em]
+            \varnothing \notin \{ 1 \} \\[2em]
+            \varnothing \subseteq \{ 1 \}
+            \]
+        </div>
+    </div>
 
     <div class="memoCard">
         <h4>Exemple</h4>
@@ -1114,8 +994,10 @@
             & |AB| = |A||B| \\[0.5em]
             & L_x = L_y \quad \text{ou} \quad C_x = C_y \quad \Rightarrow |A| = 0 \\[0.5em]
             & L_x = 0 \quad \text{ou} \quad C_x = 0 \quad \Rightarrow |A| = 0 \\[0.5em]
-            & \gray{^\ast\text{matrice invesible } \Leftrightarrow |A|\neq0 \text{ } \Leftrightarrow k\in\mathbb{Z}} \\[0.5em]
-            & \gray{^\ast\text{matrice non invesible } \Leftrightarrow |A|=0 \text{ } \Leftrightarrow k\in\mathbb{N}} \\[0.5em]
+            & \gray{^\ast\text{matrice invesible } \Leftrightarrow |A|\neq0 \text{ } \Leftrightarrow k\in\mathbb{Z}}
+            \\[0.5em]
+            & \gray{^\ast\text{matrice non invesible } \Leftrightarrow |A|=0 \text{ } \Leftrightarrow k\in\mathbb{N}}
+            \\[0.5em]
             \\
             & \text{Matrice triangulaire :} \\[0.5em]
             & |A| = (a_{11})(a_{22}) \dots (a_{nn}) \\[0.5em]
@@ -1437,7 +1319,8 @@
 
 
             & \text{Solution avec la méthode de Cramer :} \\
-            & x_k = \frac{\left| A_k \right|}{\left| A \right|}, \quad \text{où} \quad A_k \text{ est la matrice } A \text{ dont la colonne } k \text{ a été remplacée par } \vec{b} \\\\
+            & x_k = \frac{\left| A_k \right|}{\left| A \right|}, \quad \text{où} \quad A_k \text{ est la matrice } A
+            \text{ dont la colonne } k \text{ a été remplacée par } \vec{b} \\\\
             & A_1 = \frac{\left|
             \begin{matrix}
             b_1 & b & c \\
@@ -1456,7 +1339,7 @@
             d & e & b_2 \\
             g & h & b_3
             \end{matrix} \right|}{\left| A \right|}
-            \end{aligned}                  
+            \end{aligned}
             \]
         </div>
     </div>
@@ -2038,7 +1921,8 @@
             <tr>
                 <td colspan="3">
                     \[
-                    \bigoplus_{k=i}^n \bigoplus_{l=j}^m (a_k \cdot b_l) = \bigoplus_{k=i}^n (a_k) \cdot \bigoplus_{l=j}^m (b_l) \\[1em]
+                    \bigoplus_{k=i}^n \bigoplus_{l=j}^m (a_k \cdot b_l) = \bigoplus_{k=i}^n (a_k) \cdot
+                    \bigoplus_{l=j}^m (b_l) \\[1em]
                     \]
                 </td>
             </tr>
