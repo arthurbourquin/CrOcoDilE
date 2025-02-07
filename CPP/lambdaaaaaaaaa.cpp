@@ -4,34 +4,41 @@
 using namespace std;
 
 template<typename T>
-void increment_vector_elements(vector<T> & vicky) {
-    for(T & e : vicky) {
-        e++;
-    }
+void cout_vector(const vector<T> & vicky) {
+    for(T e : vicky) {cout << e << " ";}
+    cout << endl;
 }
 
 template<typename T>
-void cout_vector(const vector<T> & vicky) {
-    cout << "[";
-    for(T e : vicky) {
-        cout << e << ", ";
-    }
-    cout << "]" << endl;
+void cout_vector(const vector<vector<T>> & vicky) {
+    for(vector<T> e : vicky) {cout_vector(e);}
+    cout << endl;
 }
-
 
 
 int main() {
 
-    vector<int> v = {1, 2, 3, 4, 5};
+    vector<double> v1 = {1, 3, 2, 3, 1};
+    vector<double> v2 = {3, 2, 3, 1, 3};
+    vector<double> v3(5, 0);
 
-    cout_vector(v);
-    increment_vector_elements(v);
-    cout_vector(v);
+    cout_vector(vector<vector<double>>{v1, v2, v3});
 
-    int e = 7;
+    // unary
+    // parameter function doesn't return anything
+    for_each(v1.begin(), v1.end(), [](double & x) {x < 2 ? x = 0 : x = 4;});
 
-    for_each(v.begin(), v.end(), ()[int a, int b]{return a == b;});
+    cout_vector(vector<vector<double>>{v1, v2, v3});
+
+    // binary
+    // parameter function must return something
+    transform(v1.begin(), v1.end(), v2.begin(), v3.begin(), [](double a, double b){return max(a, b);});
+
+    cout_vector(vector<vector<double>>{v1, v2, v3});
+
+    // unary
+    //
+    transform(v1.begin(), v1.end(), v3.begin(), [](){});
 
     return 0;
 }
