@@ -2087,7 +2087,25 @@
                 <td>\[ -\frac{1}{|\blue{x}|\sqrt{\blue{x}^2 - 1}} \]</td>
             </tr>
         </table>
-
+        <h3>Intégrales</h3>
+        <div class="memoCard">
+            Exemple
+            <div class="latex">
+                \[ \begin{aligned}
+                & f(x) = ln(x) \\[1em]
+                & \int \Big((u(x)v(x))'\Big)dx = \int \Big(u(x)'v(x)\Big)dx + \int \Big(u(x)v'(x)\Big)dx
+                \quad\Rightarrow\quad \\[1em]
+                & \int \Big(u(x)v'(x)\Big)dx = \int \Big((u(x)v(x))'\Big)dx - \int \Big(u(x)'v(x)\Big)dx
+                \quad\Rightarrow\quad \\[1em]
+                & \int \Big(u(x)v'(x)\Big)dx = [u(x)v(x)] - \int \Big(u(x)'v(x)\Big)dx \\[1em]
+                & u(x) = ln(x) \quad;\quad u'(x) = \frac{1}{x} \quad;\quad v(x) = x \quad;\quad v'(x) = 1 \\[1em]
+                & F(x) = \int ln(x)(1)dx \quad=\quad (x)(ln(x)) - \int (\frac{1}{x})(x)dx \quad=\quad (x)(ln(x)) - \int
+                (1)dx \quad=\quad x ln(x) - x + C \\[1em]
+                \end{aligned} \]
+            </div>
+    
+        </div>
+    
         <table>
             <tr>
                 <th colspan="2">Taylor-Young et Maclaurin</th>
