@@ -15,10 +15,9 @@ if not os.path.exists(download_directory):
     os.makedirs(download_directory)
 
 # Base URL and pattern for image names
-base_url = "olé"
-image_count = 140
+base_url = "oléurl/"
 
-for i in range(1, image_count + 1):
+for i in range(0, 170):
     image_number = str(i)
     image_url = f"{base_url}{image_number}.jpg"
     save_path = os.path.join(download_directory, f"YWing_{image_number}.jpg")

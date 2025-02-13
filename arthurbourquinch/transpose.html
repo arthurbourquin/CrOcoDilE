@@ -1,0 +1,28 @@
+<!--
+marche pas
+ -->
+
+<style>
+    body {
+        color: #ddd;
+        background-color: #222;
+    }
+
+    textarea,
+    #output {
+        color: #ddd;
+        background-color: #222;
+        border: 1px solid #ddd;
+    }
+</style>
+
+<textarea id="ouais">ouais</textarea>
+<div id="output">caca</div>
+
+<script>
+    function f(){
+        content = document.getElementById('ouais').value;
+        document.getElementById('output').innerText = content;
+    }
+    document.getElementById('ouais').addEventListener('input', f());
+</script>
