@@ -1,0 +1,31 @@
+<style>
+    body,
+    input {
+        color: #ddd;
+        background-color: #222;
+    }
+
+    input {
+        border: 1px solid #ddd;
+        padding: 10px;
+    }
+</style>
+<input id="rangeA" value="6"></input>
+<input id="rangeB" value="23"></input>
+<div id="question">ouais</div>
+<input type="number">
+<button onclick="f()">ok</button>
+<script>
+
+    function f() {
+        var from = document.getElementById('rangeA').value;
+        var to = document.getElementById('rangeB').value;
+        var a = Math.floor(Math.random(from, to));
+        var b = Math.floor(Math.random(from, to));
+        var range = to - from;
+        var random = Math.random();
+        document.getElementById('question').innerText = random * range + from + " " + random + " " + range + " " + from;
+
+    }
+
+</script>
