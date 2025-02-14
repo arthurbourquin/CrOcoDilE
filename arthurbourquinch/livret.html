@@ -1,31 +1,146 @@
 <style>
-    body,
-    input {
+    body {
+        font-size: 20px;
         color: #ddd;
         background-color: #222;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
     }
 
     input {
+        font-size: 20px;
+        color: #ddd;
+        background-color: #222;
         border: 1px solid #ddd;
+        border-radius: 10px;
+        padding: 5px;
+        width: 50px;
+        text-align: center;
+    }
+
+    #question {
+        width: fit-content;
+    }
+
+    #questionDiv {
+        display: flex;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        padding: 20px;
+    }
+
+    #setupDiv {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 10px;
+        border: 1px solid #ddd;
+        border-radius: 10px;
         padding: 10px;
     }
+
+    #answerInput {
+        border: 0px;
+    }
+
+    .row {
+        flex-direction: row;
+    }
+
+    .col {
+        flex-direction: column;
+    }
+
+    button {
+        font-size: 10px;
+        padding: 10px;
+        border-radius: 10px;
+    }
+
+    #correctResultDiv {
+        font-size: 10px;
+        color: yellowgreen;
+    }
+
+    #wrongResultDiv {
+        font-size: 10px;
+        color: orangered;
+    }
+
+    textarea {
+        font-size: 20px;
+        color: #ddd;
+        background-color: #222;
+        width: 40px;
+        height: 22px;
+        text-align: center;
+        resize: none;
+        border: 0px;
+    }
 </style>
-<input id="rangeA" value="6"></input>
-<input id="rangeB" value="23"></input>
-<div id="question">ouais</div>
-<input type="number">
-<button onclick="f()">ok</button>
+
+<div id="setupDiv">
+    entre <textarea type="text" id="rangeA">6</textarea>
+    et <textarea type="text" id="rangeB">24</textarea>
+</div>
+<div id="questionDiv">
+    <div id="question">...</div>
+    <div id="answerInput"></div>
+</div>
+<button onclick="f(), check()">Enter</button>
+<div id="reslutDiv">
+    <div id="correctResultDiv"></div>
+    <div id="wrongResultDiv"></div>
+</div>
 <script>
 
-    function f() {
-        var from = document.getElementById('rangeA').value;
-        var to = document.getElementById('rangeB').value;
-        var a = Math.floor(Math.random(from, to));
-        var b = Math.floor(Math.random(from, to));
-        var range = to - from;
-        var random = Math.random();
-        document.getElementById('question').innerText = random * range + from + " " + random + " " + range + " " + from;
+    var a = 1;
+    var b = 1;
+    var correctAnswers = "";
+    var wrongAnswers = "";
 
+    function f() {
+        let from = parseInt(document.getElementById('rangeA').value);
+        let to = parseInt(document.getElementById('rangeB').value);
+        let range = (to - from);
+        a = Math.floor(Math.random() * range) + from;
+        b = Math.floor(Math.random() * range) + from;
+        document.getElementById('question').innerText = a + " * " + b + " = ";
     }
+
+    function check() {
+        var userAnswer = parseInt(document.getElementById('answerInput').innerText);
+        var correctAnswer = a * b;
+        if (userAnswer == correctAnswer) {
+            correctAnswers += " " + a + " * " + b + " = " + correctAnswer + "; ";
+        } else {
+            wrongAnswers += " " + a + " * " + b + " = " + correctAnswer + "; ";
+        }
+        document.getElementById('correctResultDiv').innerText = correctAnswers;
+        document.getElementById('wrongResultDiv').innerText = wrongAnswers;
+    }
+
+    document.addEventListener('keydown', function (event) {
+        if (event.key === "Enter") {
+            check();
+            f();
+            document.getElementById('answerInput').innerText = "";
+        }
+    });
+
+    document.addEventListener('keydown', function (event) {
+        const answerInput = document.getElementById('answerInput');
+
+        if (/\d/.test(event.key)) {  // Checks if the key is a digit
+            answerInput.innerText += event.key;
+        } else if (event.key === 'Backspace') {  // Checks if Backspace is pressed
+            answerInput.innerText = answerInput.innerText.slice(0, -1);
+        }        
+    });
+
+
+    f();
 
 </script>

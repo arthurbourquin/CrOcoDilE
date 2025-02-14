@@ -1,0 +1,134 @@
+        :root {
+            --red: #d32;
+            --green: #691;
+            --blue: #06e;
+            --magenta: #f38;
+            --yellow: #ea0;
+            --cyan: #3bd;
+            --rose: #f89;
+            --brun: #853;
+            --orange: #e61;
+            --violet: #a6c;
+        }
+
+        body {
+            background: #222;
+            color: #ddd;
+            font-family: Roboto;
+            line-height: 1.5em;
+            font-weight: 300;
+            margin: 40px;
+        }
+
+        body,
+        .card,
+        .section {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .b {
+            font-weight: 700;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            color: var(--yellow);
+            font-family: Roboto Slab;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            word-spacing: 0.2em;
+        }
+
+        h1 {
+            color: var(--yellow);
+            font-size: 40px;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-size: 30px;
+        }
+
+        h3 {
+            font-size: 24px;
+            width: fit-content;
+        }
+
+        h4 {
+            font-size: 20px;
+        }
+
+        .card {
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 30px;
+            width: fit-content;
+        }
+
+        .section {
+            border-left: 1px solid #ddd;
+            padding-left: 20px;
+        }
+
+        .latex {
+            width: fit-content;
+        }
+
+        table {
+            width: fit-content;
+        }
+
+        td,
+        th {
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #303030;
+        }
+
+        .grandeTableCarree,
+        .petiteTableCarree {
+            table-layout: fixed;
+            white-space: nowrap;
+            text-overflow: clip;
+        }
+
+        .grandeTableCarree td,
+        .grandeTableCarree th {
+            padding: 0px;
+            width: 100px;
+            height: 100px;
+            overflow: hidden;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .petiteTableCarree td,
+        .petiteTableCarree th {
+            padding: 0px;
+            width: 30px;
+            height: 30px;
+            overflow: hidden;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .article {
+            column-width: 200px;
+            column-gap: 50px;
+            text-indent: 10px;
+            column-rule: 1px solid #ddd;
+            padding: 0px 25px;
+            border-left: 1px solid #ddd;
+            border-right: 1px solid #ddd;
+        }
+
+        .article * {
+            margin-bottom: 20px;
+        }
