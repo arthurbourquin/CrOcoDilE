@@ -35,7 +35,7 @@
             background-color: var(--darkgray);
         }
 
-        header {
+        #headerWideScreen {
             display: flex;
             flex-direction: row;
             flex-wrap: nowrap;
@@ -48,10 +48,22 @@
             align-items: center;
         }
 
-        @media (max-width: 800px) {
-            header {
-                flex-direction: column;
-            }
+        #headerNarrowScreen {
+            display: flex;
+            flex-direction: column;
+            font-family: Roboto Slab;
+            color: var(--darkgray);
+            background-color: var(--color1);
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            padding: 20px;
+        }
+
+        #headerNarrowScreen-LogoButton {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
         }
 
         #logo {
@@ -100,7 +112,7 @@
         }
 
         #description {
-            display: none;
+            display: flex;
             flex-direction: column;
             gap: 50px;
             padding: 100px;
@@ -143,15 +155,33 @@
             height: 100%;
         }
 
+        .row {
+            flex-direction: row;
+        }
+
+        .col {
+            flex-direction: column;
+        }
     </style>
 </head>
 
 <body>
 
-    <header>
+    <!--
+    <header id="headerWideScreen">
         <img id="logo" src="https://arthurbourquin.ch/OuaisLesMedias/TohmStudio-logo-moche.png" alt="Tohm Studio Logo">
         <span id="tagline">Vidéo | Motion Design | Illustration | 3D | VFX</span>
         <button id="boutonCommentCaMarche" onclick="displayHideContent()">Comment<br>ça marche ?</button>
+    </header>
+    -->
+
+    <header id="headerNarrowScreen">
+        <div id="headerNarrowScreen-LogoButton">
+            <img id="logo" src="https://arthurbourquin.ch/OuaisLesMedias/TohmStudio-logo-moche.png"
+                alt="Tohm Studio Logo">
+            <button id="boutonCommentCaMarche" onclick="displayHideContent()">Comment<br>ça marche ?</button>
+        </div>
+        <span id="tagline">Vidéo | Motion Design | Illustration | 3D | VFX</span>
     </header>
 
     <main>
@@ -163,9 +193,9 @@
         <section id="description">
 
             <div class="bloc">
-                <h2>Ce qu'offre Tohm Studio</h2>
+                <h2>Tohm Studio c'est</h2>
                 <div class="sousBloc">
-                    <p>Un travail de qualité, sur mesure, avec une large marge de manoeuvre quant au style et au ton
+                    <p>Un travail de qualité, sur mesure, avec une grande marge de manoeuvre quant au style et au ton
                         employé.</p>
                     <p>Un contact direct sans aucun intermédiaires. Travailler avec Tohm Studio, c'est travailler en
                         direct avec moi, Arthur Bourquin.</p>
@@ -178,13 +208,17 @@
             <div class="bloc">
                 <h2>Services proposés</h2>
                 <div class="sousBloc">
-                    <p>Vidéo (avec audio), comprenant des propositions de scénario selon vos directives et possibilités de review.</p>
+                    <p>Vidéo (avec audio), comprenant des propositions de scénario selon vos directives et possibilités
+                        de review.</p>
                     <p>Motion Design et animation, 2D et ou ou 3D.</p>
                     <p>Illustration.</p>
-                    <p>VFX (effects numériques), cleaning, tracking 2D et 3D, keying, retouches, travail avec fichiers raw 4K voir plus.</p>
+                    <p>VFX (effects numériques), cleaning, tracking 2D et 3D, keying, retouches, travail avec fichiers
+                        raw 4K voir plus.</p>
                     <p>Scénario et storytelling.</p>
                     <p>Storyboarding, pour réalisateur ou pour unr présentation client.</p>
-                    <p>Cours, (After Effects, Blender). Fort d'une expérience de plus de 5 années dans l'enseignement, je peux prendre en charge des étudiants en individuel ou jusqu'à 4 personnes en cours collectifs.</p>
+                    <p>Cours, (After Effects, Blender). Fort d'une expérience de plus de 5 années dans l'enseignement,
+                        je peux prendre en charge des étudiants en individuel ou jusqu'à 4 personnes en cours
+                        collectifs.</p>
                 </div>
             </div>
 
