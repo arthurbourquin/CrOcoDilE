@@ -232,8 +232,7 @@ var track = {
             }
         ]
     },
-    "tracks": [
-        {
+    "tracks": [{
             "channel": 0,
             "controlChanges": {},
             "pitchBends": [],
@@ -9042,8 +9041,8 @@ var gridY = 3;
 var noteCompWidth = 512;
 var noteCompHeight = 256;
 var trackCompSizeLikeNote = true;
-var trackCompWidth = trackCompSizeLikeNote ? noteCompWidth : trackCompWidth;
-var trackCompHeight = trackCompSizeLikeNote ? noteCompHeight : trackCompHeight;
+var trackCompWidth = trackCompSizeLikeNote ? noteCompWidth : mainCompWidth;
+var trackCompHeight = trackCompSizeLikeNote ? noteCompHeight : mainCompHeight;
 var fps = 30;
 var trackDuration = 60 * 3;
 var noteDuration = 5;
@@ -9051,40 +9050,47 @@ var noteEarlyPlacement = 1;
 
 // Demander les propriétés à l'utilisateur
 function askUserInput() {
-    // Create a new window
+
     var win = new Window("dialog", "User Input");
 
-    // Add input fields (same as before)
     var inputGroup = win.add("group", undefined, "Input Group");
     inputGroup.orientation = "column";
 
-    inputGroup.add("statictext", undefined, "Main Comp Width:");
-    var widthInput = inputGroup.add("edittext", undefined, "1920");
-    widthInput.characters = 20;
+    var sizeInputGroup = inputGroup.add("group", undefined, "")
+    sizeInputGroup.orientation = "row";
+    sizeInputGroup.add("statictext", undefined, "Main Comp Width:");
+    var widthInput = sizeInputGroup.add("edittext", undefined, "1920");
+    widthInput.characters = 5;
+    sizeInputGroup.add("statictext", undefined, "Main Comp Height:");
+    var heightInput = sizeInputGroup.add("edittext", undefined, "1080");
+    heightInput.characters = 5;
 
-    inputGroup.add("statictext", undefined, "Main Comp Height:");
-    var heightInput = inputGroup.add("edittext", undefined, "1080");
-    heightInput.characters = 20;
+    var gridInputGroup = inputGroup.add("group", undefined, "");
+    gridInputGroup.orientation = "row";
+    gridInputGroup.add("statictext", undefined, "Grid Subdivision X");
+    var gridSubXInput = gridInputGroup.add("edittext", undefined, "3");
+    gridSubXInput.characters = 5;
+    gridInputGroup.add("statictext", undefined, "Grid Subdivision Y");
+    var gridSubYInput = gridInputGroup.add("edittext", undefined, "3");
+    gridSubYInput.characters = 5;
 
-    inputGroup.add("statictext", undefined, "Grid Subdivision X:");
-    var gridSubXInput = inputGroup.add("edittext", undefined, "3");
-    gridSubXInput.characters = 20;
+    var trackNoteSizesInputGroup = inputGroup.add("group", undefined, "");
+    trackNoteSizesInputGroup.orientation = "row";
+    trackNoteSizesInputGroup.add("statictext", undefined, "Track Comp sizes = Note Comp sizes");
+    var isTrackSameInput = trackNoteSizesInputGroup.add("checkbox", undefined, "true");
+    isTrackSameInput.value = true;
 
-    inputGroup.add("statictext", undefined, "Grid Subdivision Y:");
-    var gridSubYInput = inputGroup.add("edittext", undefined, "3");
-    gridSubYInput.characters = 20;
-
-    inputGroup.add("statictext", undefined, "Track comp size = note comps size? (default: true):");
-    var isTrackSameInput = inputGroup.add("edittext", undefined, "true");
-    isTrackSameInput.characters = 20;
-
-    inputGroup.add("statictext", undefined, "Framerate:");
-    var framerateInput = inputGroup.add("edittext", undefined, "30");
-    framerateInput.characters = 20;
-
-    inputGroup.add("statictext", undefined, "Beginning Note Offset: (default: -1 sec)");
-    var noteOffsetInput = inputGroup.add("edittext", undefined, "-1");
-    noteOffsetInput.characters = 20;
+    var timingInputGroup = inputGroup.add("group", undefined, "");
+    timingInputGroup.orientation = "row";
+    timingInputGroup.add("statictext", undefined, "Duration");
+    var durationInput = timingInputGroup.add("edittext", undefined, "180");
+    durationInput.characters = 5;
+    timingInputGroup.add("statictext", undefined, "Framerate");
+    var framerateInput = timingInputGroup.add("edittext", undefined, "30");
+    framerateInput.characters = 5;
+    timingInputGroup.add("statictext", undefined, "Beginning Note Offset");
+    var noteOffsetInput = timingInputGroup.add("edittext", undefined, "0");
+    noteOffsetInput.characters = 5;
 
     // Buttons
     var buttonGroup = win.add("group", undefined, "Buttons");
@@ -9100,8 +9106,8 @@ function askUserInput() {
         gridY = parseInt(gridSubYInput.text, 10);
         noteCompWidth = mainCompWidth / gridX;
         noteCompHeight = mainCompHeight / gridY;
-        trackCompWidth = trackCompSizeLikeNote ? noteCompWidth : trackCompWidth;
-        trackCompHeight = trackCompSizeLikeNote ? noteCompHeight : trackCompHeight;
+        trackCompWidth = trackCompSizeLikeNote ? noteCompWidth : mainCompWidth;
+        trackCompHeight = trackCompSizeLikeNote ? noteCompHeight : mainCompHeight;
         trackCompSizeLikeNote = isTrackSameInput.text.toLowerCase() === "true";
         fps = parseFloat(framerateInput.text);
         noteEarlyPlacement = parseFloat(noteOffsetInput.text);
@@ -9144,6 +9150,23 @@ function getComp(name) {
 // ajouter la compo principale
 var main_comp = app.project.items.addComp("MIDI", mainCompWidth, mainCompHeight, 1, trackDuration, fps);
 
+function randomColor() {
+    t = Math.random(0, 1);
+    s = 0.7;
+    l = 0.7;
+
+    r = Math.max(Math.abs(3 * t - 1.5) - 0.5, 0);
+    g = Math.max(-Math.abs(3 * t - 1) + 1, 0);
+    b = Math.max(-Math.abs(3 * t - 2) + 1, 0);
+
+    r = r * 0.7 + 0.3;
+    g = g * 0.4 + 0.3;
+    b = b;
+
+    return [r, g, b];
+
+}
+
 // Pour toutes les pistes dans le fichier midi (json)
 var i2 = 0; // i2 c'est comme i mais il s'incrémente pas si y a des pistes vides
 for (var i = 0; i < track.tracks.length; ++i) {
@@ -9159,6 +9182,7 @@ for (var i = 0; i < track.tracks.length; ++i) {
         var noteName = name + " Note";
 
         // couleur aléatoire pour la note
+
         var from = 0.3;
         var to = 0.7;
         color = [Math.random(from, to), Math.random(from, to), Math.random(from, to)];
@@ -9167,10 +9191,10 @@ for (var i = 0; i < track.tracks.length; ++i) {
         // si elle existe pas...
         if (!compExists(trackName)) {
             // ...créer la compo piste
-            var trackComp = app.project.items.addComp(name, trackCompWidth, trackCompHeight, 1, trackDuration, fps);
+            var trackComp = app.project.items.addComp(trackName, trackCompWidth, trackCompHeight, 1, trackDuration, fps);
             // ...et l'ajouter dans la compo principale
             var trackCompLayer = main_comp.layers.add(trackComp);
-            // ...à une place selon la grille
+            // ...à une place selon la grille 
             var posX = (i2 % gridX) * trackCompWidth + (1 / 2) * trackCompWidth; // Adjust with the width of the comp
             var posY = Math.floor(i2 / gridX) * trackCompHeight + (1 / 2) * trackCompHeight; // Adjust with the height of the comp
             trackCompLayer.transform.position.setValue([posX, posY, trackCompLayer.transform.position.value[2]]);
@@ -9183,7 +9207,7 @@ for (var i = 0; i < track.tracks.length; ++i) {
             // customiser le calque de texte
             var textDocument = textLayer.property("Source Text").value;
             textDocument.fontSize = 50;
-            textDocument.fillColor = [1, 1, 1];
+            textDocument.fillColor = randomColor();
             textDocument.justification = ParagraphJustification.CENTER_JUSTIFY;
             textLayer.property("Source Text").setValue(textDocument);
             i2++;
