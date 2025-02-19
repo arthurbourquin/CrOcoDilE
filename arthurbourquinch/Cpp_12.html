@@ -41,14 +41,17 @@
             border-collapse: collapse;
         }
 
-        th,
-        td {
-            border: 1px solid #999;
-            padding: 10px;
+        .tableText th,
+        .tableText td {
+                padding: 10px;
         }
 
         th,
-        table tr:nth-child(1) {
+        td {
+            border: 1px solid #999;
+        }
+
+        th {
             background-color: #333;
             font-weight: 900;
         }
@@ -67,14 +70,9 @@
             text-align: center;
         }
 
-        #pointeur {
-        }
-
-        #pointeur tr {
-        }
-
         #pointeur td {
-            border: 0px;
+            width: 80px;
+            text-align: center;
         }
 
         .non-valide {
@@ -113,18 +111,114 @@
 
     <h1>notes Arthur sur C++</h1><br><br>
 
+    <h2>Sorting</h2>
+    <h3>bubble sorting</h3>
+    <table>
+        <tr>
+            <td style="background-color: #c55;"></td>
+            <td style="background-color: #c55;"></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td style="background-color: #c55;"></td>
+            <td style="background-color: #c55;"></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td style="background-color: #c55;"></td>
+            <td style="background-color: #c55;"></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td style="background-color: #c55;"></td>
+            <td style="background-color: #c55;"></td>
+        </tr>
+        <tr><td colspan="5" style="height: 2px; padding: 0px;"></td></tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>☻</td>
+        </tr>
+        <tr><td colspan="5" style="height: 2px; padding: 0px;"></td></tr>
+        <tr>
+            <td style="background-color: #c55;"></td>
+            <td style="background-color: #c55;"></td>
+            <td></td>
+            <td></td>
+            <td style="background-color: #483;"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td style="background-color: #c55;"></td>
+            <td style="background-color: #c55;"></td>
+            <td></td>
+            <td style="background-color: #483;"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td style="background-color: #c55;"></td>
+            <td style="background-color: #c55;"></td>
+            <td style="background-color: #483;"></td>
+        </tr>
+        <tr><td colspan="5" style="height: 2px; padding: 0px;"></td></tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td style="background-color: #483;"></td>
+            <td style="background-color: #483;"></td>
+        </tr>
+        <tr><td colspan="5" style="height: 2px; padding: 0px;"></td></tr>
+        <tr>
+            <td style="background-color: #c55;"></td>
+            <td style="background-color: #c55;"></td>
+            <td></td>
+            <td style="background-color: #483;"></td>
+            <td style="background-color: #483;"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td style="background-color: #c55;"></td>
+            <td style="background-color: #c55;"></td>
+            <td style="background-color: #483;"></td>
+            <td style="background-color: #483;"></td>
+        </tr>
+        <tr><td colspan="5" style="height: 2px; padding: 0px;"></td></tr>
+        <tr>
+            <td style="background-color: #c55;"></td>
+            <td style="background-color: #c55;"></td>
+            <td style="background-color: #483;"></td>
+            <td style="background-color: #483;"></td>
+            <td style="background-color: #483;"></td>
+        </tr>
+    </table>
+
+
+
     <h3>Vector / Array</h3>
     <table id="pointeur">
         <tr>
-            <td>vector<int> v = </td>
-            <td></td>
-            <td>a</td>
-            <td>b</td>
-            <td>c</td>
-            <td>...</td>
-            <td>z</td>
-            <td></td>
-            <td>returned:</td>
+            <th>vector<int> v = </th>
+            <th></th>
+            <th>a</th>
+            <th>b</th>
+            <th>c</th>
+            <th>...</th>
+            <th>z</th>
+            <th></th>
+            <th>returned:</th>
         </tr>
         <tr>
             <td>index</td>
@@ -173,7 +267,7 @@
     </table>
 
     <h3>Variables</h3>
-    <table>
+    <table class="tableText">
         <tr>
             <th></th>
             <th></th>
@@ -324,13 +418,13 @@
         Integer to Real lossless conversion
         <table>
             <tr>
-                <td>type</td>
-                <td>\[ 2^{mantissa + 1} \]</td>
-                <td></td>
-                <td>char</td>
-                <td>short</td>
-                <td>int</td>
-                <td>long long</td>
+                <th>type</th>
+                <th>\[ 2^{mantissa + 1} \]</th>
+                <th></th>
+                <th>char</th>
+                <th>short</th>
+                <th>int</th>
+                <th>long long</th>
             </tr>
             <tr>
                 <td>float</td>
