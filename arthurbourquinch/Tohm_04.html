@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sonsie+One&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playwrite+NG+Modern:wght@100..400&family=Roboto+Slab:wght@100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
+    <title>Tohm.ch</title>
+    <style>
+        :root {
+            --color1: #ffc300;
+            --color2: #ea498b;
+            --lowwhite: #ddd;
+            --darkgray: #222;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Roboto Slab;
+            color: var(--lowwhite);
+            display: flex;
+            flex-direction: column;
+            font-family: Arial, sans-serif;
+            background-color: var(--darkgray);
+        }
+
+        header {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            height: 15vh;
+            background-color: var(--color1);
+            padding: 0px 50px;
+        }
+
+        @media (min-width: 800px) {
+            header {
+                flex-direction: row;
+                align-items: center;
+            }
+
+            .headerLine {
+                flex-grow: 1;
+            }
+        }
+
+        #logo {
+            width: 100px;
+            height: auto;
+            object-fit: contain;
+            margin-right: 80px;
+        }
+
+        .headerLine {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            font-family: Roboto Slab;
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--darkgray);
+        }
+
+        #videoContainer {
+            max-height: 80vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        #video {
+            height: 100%;
+            width: auto;
+            object-fit: cover;
+        }
+
+        section {
+            display: flex;
+            flex-direction: column;
+            padding: 50px;
+            gap: 60px;
+            background-color: var(--darkgray);
+        }
+
+        .bloc {
+            font-family: Roboto Slab;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .sousBloc {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: 20px;
+            text-indent: 7px;
+        }
+
+        p {
+            font-size: 14px;
+            border-left: 1px solid var(--color1);
+            padding-left: 15px;
+            width: 250px;
+            line-height: 1.5em;
+        }
+
+        h2 {
+            font-family: Roboto Slab;
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--color1);
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <img id="logo" src="https://arthurbourquin.ch/OuaisLesMedias/TohmStudio-logo-moche2.png" alt="Tohm Studio Logo">
+        <div class="headerLine">
+            <span> Vidéo </span>
+            <span> Animation </span>
+            <span> Illustration </span>
+            <span> 3D </span>
+            <span> VFX </span>
+        </div>
+    </header>
+
+    <div id="videoContainer">
+        <video id="video" autoplay loop muted playsinline>
+            <source src="https://arthurbourquin.ch/OuaisLesMedias/TohmShowreel2023.mp4" type="video/mp4">
+            <source src="https://arthurbourquin.ch/OuaisLesMedias/TohmShowreel2023.webm" type="video/webm">
+        </video>
+    </div>
+
+    <section>
+
+        <div class="bloc">
+            <h2>Tohm Studio c'est</h2>
+            <div class="sousBloc">
+                <p>Un travail de qualité, sur mesure, avec une grande marge de manoeuvre quant au style et au ton
+                    employé.</p>
+                <p>Un contact direct sans aucun intermédiaires. Travailler avec Tohm Studio, c'est travailler diretement avec moi, Arthur Bourquin.</p>
+                <p>De la transparence et de l'honnêteté</p>
+                <p>Une grande fiabilité, avec plus de 10 ans de travaux réussis de haute qualité.</p>
+                <p>Un large pannel de solutions audio-visuelles.</p>
+            </div>
+        </div>
+
+        <div class="bloc">
+            <h2>Services proposés</h2>
+            <div class="sousBloc">
+                <p>Vidéo, production / réalisation, avec ou sans audio, comprenant des propositions de scénario selon vos directives et possibilités de révision.</p>
+                <p>Motion Design et animation, 2D et ou 3D.</p>
+                <p>Illustration.</p>
+                <p>VFX (effets numériques), nettoyage, tracking 2D et 3D, keying, retouches, suppression / ajout d'éléments 2D, 3D ou filmés, détourage, travail avec fichiers raw 4K voire plus.</p>
+                <p>Scénario et storytelling.</p>
+                <p>Storyboarding, pour réalisateur ou pour présentation client.</p>
+                <p>Cours, (After Effects, Blender). Fort d'une expérience de plus de 5 années dans l'enseignement,
+                    je peux prendre en charge des étudiants en individuel ou jusqu'à 4 personnes en cours
+                    collectifs.</p>
+            </div>
+        </div>
+
+        <div class="bloc">
+            <h2>Tarifs</h2>
+            <div class="sousBloc">
+                <p>Vous pouvez demander une offre gratuite pour n'importe quel projet, sans engagement.</p>
+                <p>Contactez-moi par téléphone au 078 406 57 14 ou par mail à l'adresse arthur@tohm.ch.</p>
+            </div>
+        </div>
+
+    </section>
+
+    </main>
+
+    <script>
+
+        let contentIsDisplayed = false;
+
+        function displayHideContent() {
+            if (contentIsDisplayed == true) {
+                contentIsDisplayed = false;
+                document.getElementById('description').style.display = "none";
+                document.getElementById('video').style.display = "inline";
+            } else {
+                contentIsDisplayed = true;
+                document.getElementById('description').style.display = "flex";
+                document.getElementById('video').style.display = "none";
+            }
+
+
+        }
+    </script>
+
+</body>
+
+</html>

@@ -86,15 +86,19 @@
     entre <textarea type="text" id="rangeA">6</textarea>
     et <textarea type="text" id="rangeB">24</textarea>
 </div>
+
 <div id="questionDiv">
     <div id="question">...</div>
     <div id="answerInput"></div>
 </div>
+
 <button onclick="f(), check()">Enter</button>
+
 <div id="reslutDiv">
     <div id="correctResultDiv"></div>
     <div id="wrongResultDiv"></div>
 </div>
+
 <script>
 
     var a = 1;
@@ -103,12 +107,9 @@
     var wrongAnswers = "";
 
     function f() {
-        let from = parseInt(document.getElementById('rangeA').value);
-        let to = parseInt(document.getElementById('rangeB').value);
-        let range = (to - from);
-        a = Math.floor(Math.random() * range) + from;
-        b = Math.floor(Math.random() * range) + from;
-        document.getElementById('question').innerText = a + " * " + b + " = ";
+        x1 = Math.floor(Math.random() * 7) + 1;
+        x2 = Math.floor(Math.random() * 7) + 1;
+        document.getElementById('question').innerText = "x^2 + " + x1 + x2 + "x + " + x1 * x2;
     }
 
     function check() {
