@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>c++</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playwrite+NG+Modern:wght@100..400&family=Roboto+Slab:wght@100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css"
+        integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"
+        integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz"
+        crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"
+        integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+    <style>
+        body {
+            font-family: Roboto Mono, 'courier';
+            font-size: 12px;
+            line-height: 1.5em;
+            color: #ddd;
+            background: #222;
+        }
+
+        .b {
+            font-weight: 900;
+        }
+
+        h1 {
+            margin: 50px 0px 0px;
+        }
+
+        table {
+            margin: 20px 0px 40px;
+            border-collapse: collapse;
+        }
+
+        th {
+            background-color: #333;
+            font-weight: 900;
+        }
+
+        th,
+        td {
+            border: 1px solid #999;
+        }
+
+        .tableText th,
+        .tableText td {
+            padding: 10px;
+        }
+
+        .tableCarree th,
+        .tableCarree td {
+            width: 20px;
+            height: 20px;
+            text-align: center;
+            font-size: 20px;
+        }
+
+        #tableauDesTypes td:nth-child(1),
+        #tableauDesTypes td:nth-child(2),
+        #tableauDesTypes td:nth-child(3),
+        #tableauDesTypes td:nth-child(3),
+        #tableauDesTypes td:nth-child(7) {
+            background-color: #333;
+        }
+
+        #tableauDesTypes tr,
+        #tableauDesTypes th,
+        #tableauDesTypes td {
+            text-align: center;
+        }
+
+        #pointeur td {
+            width: 80px;
+            text-align: center;
+        }
+
+        .non-valide {
+            color: #c55;
+        }
+
+        .box {
+            border: 1px solid #fff;
+        }
+
+        .row,
+        .col {
+            display: flex;
+            margin: 10px;
+            align-items: flex-start;
+        }
+
+        .row {
+            flex-direction: row;
+        }
+
+        .col {
+            flex-direction: column;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Table builder -->
+    <script>
+        function table(data) {
+            const rows = data.trim().split('\n'); // Sépare les lignes
+            const table = document.createElement('table'); // Crée un élément de tableau
+
+            rows.forEach((row, index) => {
+                const tr = document.createElement('tr'); // Crée une nouvelle ligne
+                const cols = row.split(','); // Sépare les colonnes
+
+                cols.forEach(col => {
+                    const cell = document.createElement(index === 0 ? 'th' : 'td'); // Utilise 'th' pour la première ligne
+                    cell.innerHTML = col.trim(); // Utilise innerHTML pour permettre les balises HTML
+                    tr.appendChild(cell); // Ajoute la cellule à la ligne
+                });
+
+                table.appendChild(tr); // Ajoute la ligne au tableau
+            });
+
+            document.body.appendChild(table); // Ajoute le tableau au corps du document
+        }
+    </script>
+
+    <h1>notes Arthur sur C++</h1><br><br>
+
+    <h2>Sorting</h2>
+    <div class="row">
+        <div class="col">
+            <h3>bubble sort</h3>
+            <table class="tableCarree">
+                <tr>
+                    <td style="background-color: #aaa;"></td>
+                    <td style="background-color: #aaa;"></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td style="background-color: #aaa;"></td>
+                    <td style="background-color: #aaa;"></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td style="background-color: #aaa;"></td>
+                    <td style="background-color: #aaa;"></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td style="background-color: #aaa;"></td>
+                    <td style="background-color: #aaa;"></td>
+                </tr>
+                <tr>
+                    <td colspan="5" style="height: 2px; padding: 0px;"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>☻</td>
+                </tr>
+                <tr>
+                    <td colspan="5" style="height: 2px; padding: 0px;"></td>
+                </tr>
+                <tr>
+                    <td style="background-color: #aaa;"></td>
+                    <td style="background-color: #aaa;"></td>
+                    <td></td>
+                    <td></td>
+                    <td>☻</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td style="background-color: #aaa;"></td>
+                    <td style="background-color: #aaa;"></td>
+                    <td></td>
+                    <td>☻</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td style="background-color: #aaa;"></td>
+                    <td style="background-color: #aaa;"></td>
+                    <td>☻</td>
+                </tr>
+                <tr>
+                    <td colspan="5" style="height: 2px; padding: 0px;"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>☻</td>
+                    <td>☻</td>
+                </tr>
+                <tr>
+                    <td colspan="5" style="height: 2px; padding: 0px;"></td>
+                </tr>
+                <tr>
+                    <td style="background-color: #aaa;"></td>
+                    <td style="background-color: #aaa;"></td>
+                    <td></td>
+                    <td>☻</td>
+                    <td>☻</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td style="background-color: #aaa;"></td>
+                    <td style="background-color: #aaa;"></td>
+                    <td>☻</td>
+                    <td>☻</td>
+                </tr>
+                <tr>
+                    <td colspan="5" style="height: 2px; padding: 0px;"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td>☻</td>
+                    <td>☻</td>
+                    <td>☻</td>
+                </tr>
+                <tr>
+                    <td colspan="5" style="height: 2px; padding: 0px;"></td>
+                </tr>
+                <tr>
+                    <td style="background-color: #aaa;"></td>
+                    <td style="background-color: #aaa;"></td>
+                    <td>☻</td>
+                    <td>☻</td>
+                    <td>☻</td>
+                </tr>
+                <tr>
+                    <td colspan="5" style="height: 2px; padding: 0px;"></td>
+                </tr>
+                <tr>
+                    <td style="color: grey;">☻</td>
+                    <td>☻</td>
+                    <td>☻</td>
+                    <td>☻</td>
+                    <td>☻</td>
+                </tr>
+                <tr>
+                    <td colspan="5" style="height: 2px; padding: 0px;"></td>
+                </tr>
+            </table>
+        </div>
+        <div class="col">
+            <h3>selection sort</h3>
+            <table class="tableCarree">
+                <tr>
+                    <td style="background-color: #aaa;"></td>
+                    <td style="background-color: #aaa;"></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td style="background-color: #aaa;"></td>
+                    <td></td>
+                    <td style="background-color: #aaa;"></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td style="background-color: #aaa;"></td>
+                    <td></td>
+                    <td></td>
+                    <td style="background-color: #aaa;"></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td style="background-color: #aaa;"></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td style="background-color: #aaa;"></td>
+                </tr>
+                <tr>
+                    <td colspan="5" style="height: 2px; padding: 0px;"></td>
+                </tr>
+                <tr>
+                    <td>☻</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td colspan="5" style="height: 2px; padding: 0px;"></td>
+                </tr>
+                <tr>
+                    <td>☻</td>
+                    <td style="background-color: #aaa;"></td>
+                    <td style="background-color: #aaa;"></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>☻</td>
+                    <td style="background-color: #aaa;"></td>
+                    <td></td>
+                    <td style="background-color: #aaa;"></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>☻</td>
+                    <td style="background-color: #aaa;"></td>
+                    <td></td>
+                    <td></td>
+                    <td style="background-color: #aaa;"></td>
+                </tr>
+                <tr>
+                    <td colspan="5" style="height: 2px; padding: 0px;"></td>
+                </tr>
+                <tr>
+                    <td>☻</td>
+                    <td>☻</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td colspan="5" style="height: 2px; padding: 0px;"></td>
+                </tr>
+                <tr>
+                    <td>☻</td>
+                    <td>☻</td>
+                    <td style="background-color: #aaa;"></td>
+                    <td style="background-color: #aaa;"></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>☻</td>
+                    <td>☻</td>
+                    <td style="background-color: #aaa;"></td>
+                    <td></td>
+                    <td style="background-color: #aaa;"></td>
+                </tr>
+                <tr>
+                    <td colspan="5" style="height: 2px; padding: 0px;"></td>
+                </tr>
+                <tr>
+                    <td>☻</td>
+                    <td>☻</td>
+                    <td>☻</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td colspan="5" style="height: 2px; padding: 0px;"></td>
+                </tr>
+                <tr>
+                    <td>☻</td>
+                    <td>☻</td>
+                    <td>☻</td>
+                    <td style="background-color: #aaa;"></td>
+                    <td style="background-color: #aaa;"></td>
+                </tr>
+                <tr>
+                    <td colspan="5" style="height: 2px; padding: 0px;"></td>
+                </tr>
+                <tr>
+                    <td>☻</td>
+                    <td>☻</td>
+                    <td>☻</td>
+                    <td>☻</td>
+                    <td style="color: grey;">☻</td>
+                </tr>
+            </table>
+        </div>
+        <div class="col">
+            <h3>insertion sort</h3>
+            <table class="tableCarree">
+                <tr>
+                    <td style="background-color: #aaa;"></td>
+                    <td style="background-color: #aaa;"></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td colspan="5" style="height: 2px; padding: 0px;"></td>
+                </tr>
+                <tr>
+                    <td style="color: dodgerblue;">☻</td>
+                    <td style="color: dodgerblue;">☻</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td colspan="5" style="height: 2px; padding: 0px;"></td>
+                </tr>
+                <tr>
+                    <td style="background-color: #aaa;"></td>
+                    <td style="color: dodgerblue;">☻</td>
+                    <td style="background-color: #aaa;"></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td style="color: dodgerblue;">☻</td>
+                    <td style="background-color: #aaa;"></td>
+                    <td style="background-color: #aaa;"></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td colspan="5" style="height: 2px; padding: 0px;"></td>
+                </tr>
+                <tr>
+                    <td style="color: dodgerblue;">☻</td>
+                    <td style="color: dodgerblue;">☻</td>
+                    <td style="color: dodgerblue;">☻</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td colspan="5" style="height: 2px; padding: 0px;"></td>
+                </tr>
+                <tr>
+                    <td style="background-color: #aaa;"></td>
+                    <td style="color: dodgerblue;">☻</td>
+                    <td style="color: dodgerblue;">☻</td>
+                    <td style="background-color: #aaa;"></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td style="color: dodgerblue;">☻</td>
+                    <td style="background-color: #aaa;"></td>
+                    <td style="color: dodgerblue;">☻</td>
+                    <td style="background-color: #aaa;"></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td style="color: dodgerblue;">☻</td>
+                    <td style="color: dodgerblue;">☻</td>
+                    <td style="background-color: #aaa;"></td>
+                    <td style="background-color: #aaa;"></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td colspan="5" style="height: 2px; padding: 0px;"></td>
+                </tr>
+                <tr>
+                    <td style="color: dodgerblue;">☻</td>
+                    <td style="color: dodgerblue;">☻</td>
+                    <td style="color: dodgerblue;">☻</td>
+                    <td style="color: dodgerblue;">☻</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td colspan="5" style="height: 2px; padding: 0px;"></td>
+                </tr>
+                <tr>
+                    <td style="background-color: #aaa;"></td>
+                    <td style="color: dodgerblue;">☻</td>
+                    <td style="color: dodgerblue;">☻</td>
+                    <td style="color: dodgerblue;">☻</td>
+                    <td style="background-color: #aaa;"></td>
+                </tr>
+                <tr>
+                    <td style="color: dodgerblue;">☻</td>
+                    <td style="background-color: #aaa;"></td>
+                    <td style="color: dodgerblue;">☻</td>
+                    <td style="color: dodgerblue;">☻</td>
+                    <td style="background-color: #aaa;"></td>
+                </tr>
+                <tr>
+                    <td style="color: dodgerblue;">☻</td>
+                    <td style="color: dodgerblue;">☻</td>
+                    <td style="background-color: #aaa;"></td>
+                    <td style="color: dodgerblue;">☻</td>
+                    <td style="background-color: #aaa;"></td>
+                </tr>
+                <tr>
+                    <td style="color: dodgerblue;">☻</td>
+                    <td style="color: dodgerblue;">☻</td>
+                    <td style="color: dodgerblue;">☻</td>
+                    <td style="background-color: #aaa;"></td>
+                    <td style="background-color: #aaa;"></td>
+                </tr>
+                <tr>
+                    <td colspan="5" style="height: 2px; padding: 0px;"></td>
+                </tr>
+                <tr>
+                    <td>☻</td>
+                    <td>☻</td>
+                    <td>☻</td>
+                    <td>☻</td>
+                    <td>☻</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <h3>Vector / Array</h3>
+    <table id="pointeur">
+        <tr>
+            <th>vector<int> v = </th>
+            <th></th>
+            <th>a</th>
+            <th>b</th>
+            <th>c</th>
+            <th>...</th>
+            <th>z</th>
+            <th></th>
+            <th>returned:</th>
+        </tr>
+        <tr>
+            <td>index</td>
+            <td></td>
+            <td>0</td>
+            <td>1</td>
+            <td>2</td>
+            <td>...</td>
+            <td>last</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td>v.front()</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>v.back()</td>
+            <td></td>
+            <td>value</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td>v.begin()</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>v.end()</td>
+            <td>pointor</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>v.rend()</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>v.rbegin()</td>
+            <td></td>
+            <td>pointor</td>
+        </tr>
+    </table>
+
+    <h3>Variables</h3>
+    <table class="tableText">
+        <tr>
+            <th></th>
+            <th></th>
+            <th>Dynamique</th>
+            <th>Allocation</th>
+            <th>Durée de vie</th>
+            <th>Visibilité</th>
+        </tr>
+        <tr>
+            <th>Global</th>
+            <th></th>
+            <td style="color: dimgray;">Non</td>
+            <td style="color: pink">Heap</td>
+            <td style="color: MediumTurquoise;">programme</td>
+            <td style="color: orange;">Fichier</td>
+        </tr>
+        <tr>
+            <th>Global</th>
+            <th>Static</th>
+            <td style="color: dimgray;">Non</td>
+            <td style="color: pink">Heap</td>
+            <td style="color: MediumTurquoise;">programme</td>
+            <td style="color: orange;">Fichier</td>
+        </tr>
+        <tr>
+            <th>Global</th>
+            <th>Dynamic (=new)</th>
+            <td>Oui</td>
+            <td style="color: pink">Heap</td>
+            <td style="color: deepskyblue;">Manuel</td>
+            <td style="color: orange;">Fichier</td>
+        </tr>
+        <tr>
+            <th>Local</th>
+            <th></th>
+            <td style="color: dimgray;">Non</td>
+            <td style="color: PaleVioletRed;">Stack</td>
+            <td style="color: steelblue;">Bloc d'instruction</td>
+            <td style="color: tomato;">Bloc d'instruction</td>
+        </tr>
+        <tr>
+            <th>Local</th>
+            <th>Static</th>
+            <td style="color: dimgray;">Non</td>
+            <td style="color: pink">Heap</td>
+            <td style="color: MediumTurquoise;">programme</td>
+            <td style="color: tomato;">Bloc d'instruction</td>
+        </tr>
+        <tr>
+            <th>Local</th>
+            <th>Dynamic (=new)</th>
+            <td>Oui</td>
+            <td style="color: pink">Heap</td>
+            <td style="color: deepskyblue;">Manuel</td>
+            <td style="color: tomato;">Bloc d'instruction</td>
+        </tr>
+    </table>
+
+
+    <h2>Types</h2>
+    <table class="tableText" id="tableauDesTypes" style="text-align: right;">
+        <tr>
+            <th>B</th>
+            <th>b</th>
+            <th>entiers </th>
+            <th>u +</th>
+            <th>s -</th>
+            <th>s +</th>
+            <th>réels</th>
+            <th>domaine</th>
+            <th>........ S-E-M</th>
+            <th>exemple</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>8</td>
+            <td>char</td>
+            <td>255</td>
+            <td>-128</td>
+            <td>127</td>
+            <th></th>
+            <th></th>
+            <th></th>
+            <td>0x3e</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>16</td>
+            <td>short</td>
+            <td>65'535</td>
+            <td>-32'768</td>
+            <td>32'767</td>
+            <th></th>
+            <th></th>
+            <th></th>
+            <td>0x3ec4</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>32</td>
+            <td>int</td>
+            <td>4 mrd<br>u</td>
+            <td>-2 mrd</td>
+            <td>2 mrd</td>
+            <td>float</td>
+            <td>\[ ±10^{±38} \]f</td>
+            <td>1-8-23</td>
+            <td>0x3ec47bc9</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td>long int</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>8</td>
+            <td>64</td>
+            <td>long long int</td>
+            <td>\[ 10^{19} \]ull</td>
+            <td>\[ -10^{18} \]ll</td>
+            <td>\[ 10^{18} \]ll</td>
+            <td>double </td>
+            <td>\[ ±10^{±308} \]</td>
+            <td>1-11-52</td>
+            <td>0x3ec47bc96d4610a7</td>
+        </tr>
+        <tr>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <td>long double</td>
+            <td>\[ ±10^{±bcp} \]L</td>
+            <td>?</td>
+            <td>?</td>
+        </tr>
+    </table>
+
+
+    Integer to Real lossless conversion
+    <table class="tableText">
+        <tr>
+            <th>type</th>
+            <th>\[ 2^{mantissa + 1} \]</th>
+            <th></th>
+            <th>char</th>
+            <th>short</th>
+            <th>int</th>
+            <th>long long</th>
+        </tr>
+        <tr>
+            <td>float</td>
+            <td>\[ 2^{23 + 1} \]</td>
+            <td>16'777'216</td>
+            <td>✔</td>
+            <td>✔</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>double</td>
+            <td>\[ 9^{52 + 1} \]</td>
+            <td>\[ \sim 9^{15} \]</td>
+            <td>✔</td>
+            <td>✔</td>
+            <td>✔</td>
+            <td></td>
+        </tr>
+    </table>
+    <br><br><br>
+
+    <h3>Exemple de structure de mémoire</h3>
+    <p>
+        a = 0x1234, short, 2 bytes<br>
+        b = 0x11223344, int, 4 bytes<br>
+        c = 0x56, char, 1 byte<br>
+        adresses en 8 bytes
+    </p>
+    <table class="tableText">
+        <tr>
+            <th>Adresse</th>
+            <th>Valeur du byte</th>
+            <th>Variable</th>
+        </tr>
+        <tr>
+            <td>0x1af47ffee4933868</td>
+            <td>0x12</td>
+            <td>a(1)</td>
+        </tr>
+        <tr>
+            <td>0x1af47ffee4933869</td>
+            <td>0x34</td>
+            <td>a(2)</td>
+        </tr>
+        <tr>
+            <td>0x1af47ffee493386a</td>
+            <td>0x11</td>
+            <td>b(1)</td>
+        </tr>
+        <tr>
+            <td>0x1af47ffee493386b</td>
+            <td>0x22</td>
+            <td>b(2)</td>
+        </tr>
+        <tr>
+            <td>0x1af47ffee493386c</td>
+            <td>0x33</td>
+            <td>b(3)</td>
+        </tr>
+        <tr>
+            <td>0x1af47ffee493386d</td>
+            <td>0x44</td>
+            <td>b(4)</td>
+        </tr>
+        <tr>
+            <td>0x1af47ffee493386e</td>
+            <td>0x56</td>
+            <td>c</td>
+        </tr>
+    </table>
+    <br><br>
+
+    <h3>Références et pointeurs</h3>
+    <script>
+        table(`
+            item,sigle associé,possibilité,exemple
+            Adresse,<b>&</b>,Accès en <u>lecture</u><br>via <b>&a</b> ou <b>p</b> ,0x1af47ffee4933868
+            Valeur,<b>*</b>, Accès en <u>lecture</u><br>et/ou <u>écriture</u><br>via <b>a</b> ou <b>*p</b>, 0110 1000 0010 1010
+        `);
+    </script><br><br>
+
+    <h3>Exemple de l'évolution de l'état d'un système 1</h3><br>
+    <script>
+        table(`
+        temps,instruction,0x12,0x13,0x14,0x15,0x15
+        t1,int a = 10;,10,-,-,-,-
+        t2,int* p = &a;,10,0x12,-,-,-
+        t3,*p = 7;,7,0x12,-,-,-
+        t4,int b = 12;,7,0x12,12,-,-
+        t5,a = 99;,99,0x12,12,-,-
+    `);
+    </script><br><br>
+
+    <h3>Exemple de l'évolution de l'état d'un système 2</h3><br>
+    <script>
+        table(`
+    temps,instruction,0x12,0x13,0x14,0x15,0x16
+    t1,int a = 10;,(a) 10,-,-,-,-
+    t2,int* p = &a;,(a) 10,(*p) 0x12,-,-,-
+    t3,*p = 7;,(a) 7,(*p) 0x12,-,-,-
+    t4,int b = 12;,(a) 7,(*p) 0x12,(b) 12,-,-
+    t5,a = 99;,(a) 99,(*p) 0x12,(b) 12,-,-
+    t6,const int c = 5;,(a) 99,(*p) 0x12,(b) 12,-,■ (c) 5
+    t7,int* const q = &b;,(a) 99,(*p) 0x12,(b) 12,■ (q) 0x14,■ (c) 5
+    t8,*q = 15;,(a) 99,(*p) 0x12,(b) 15,■ (q) 0x14, ■ (c) 5
+    t9,int& r = a;,(a r) 99,(*p) 0x12,(b) 15,■ (q) 0x14, ■ (c) 5
+    t10,r = 20;,(a r) 20,(*p) 0x12,(b) 15,■ (q) 0x14, ■ (c) 5
+    `);
+    </script><br>
+
+    <script>
+        table(`
+    Note,int a = 1;<br>int& b = a;,et,int b = 1;<br>int& a = b;,ont exactement le même comportement
+    C'est un peu comme de dire,Un grand bateau,et,Un bateau grand,le sens est le même`);
+    </script><br>
+    Note : une référence c'est (souvent comme) un pointeur constant.
+    <br><br>
+
+    <h1>Pointeurs</h1>
+    <table class="tableText">
+        <tr>
+            <th>a</th>
+            <th>*p</th>
+            <th>ok?</th>
+            <th>explication</th>
+        </tr>
+        <tr>
+            <td>const int a;</td>
+            <td>const int* const p = &a;</td>
+            <td>oui</td>
+            <td>Rien ne peut changer.</td>
+        </tr>
+        <tr>
+            <td>_____ int a;</td>
+            <td>const int* const p = &a;</td>
+            <td>oui</td>
+            <td>La variable peut être modifiée mais pas par le pointeur qui est non modifiable.</td>
+        </tr>
+        <tr>
+            <td>const int a;</td>
+            <td>const int* _____ p = &a;</td>
+            <td>oui</td>
+            <td>Le pointeur peut être redirigé mais ne peut modifier la valeur de l’entier constant.</td>
+        </tr>
+        <tr>
+            <td>_____ int a;</td>
+            <td>const int* _____ p = &a;</td>
+            <td>oui</td>
+            <td>Le pointeur peut être redirigé et ne peut pas modifier pas la valeur de l’entier qui peut
+                être
+                modifiée ailleurs.</td>
+        </tr>
+        <tr class="non-valide">
+            <td>const int a;</td>
+            <td>_____ int* const p = &a;</td>
+            <td>non</td>
+            <td>Un pointeur vers un entier non constant ne peut pas pointer vers une constante.</td>
+        </tr>
+        <tr>
+            <td>_____ int a;</td>
+            <td>_____ int* const p = &a;</td>
+            <td>oui</td>
+            <td>Le pointeur constant vers un entier modifiable ne peut pas être redirigé mais peut
+                modifier
+                la
+                valeur pointée.</td>
+        </tr>
+        <tr class="non-valide">
+            <td>const int a;</td>
+            <td>_____ int* _____ p = &a;</td>
+            <td>non</td>
+            <td>Un pointeur modifiable vers un entier non constant ne peut pas pointer vers une
+                constante.
+            </td>
+        </tr>
+        <tr>
+            <td>_____ int a;</td>
+            <td>_____ int* _____ p = &a;</td>
+            <td>oui</td>
+            <td>Tout est modifiable.</td>
+        </tr>
+    </table>
+    Pointeur constant : c'est le pointeur qui est constant
+
+</body>
+
+</html>
