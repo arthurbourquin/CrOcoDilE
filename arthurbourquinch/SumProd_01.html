@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playwrite+NG+Modern:wght@100..400&family=Roboto+Slab:wght@100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto+Slab:wght@100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
+    <title>Math</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css"
+        integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"
+        integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz"
+        crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"
+        integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+
+    <style>
+        html {
+            scroll-behavior: auto;
+        }
+
+        body {
+            background: #222;
+            color: #ddd;
+            font-family: Roboto Slab;
+            line-height: 1.5em;
+            font-weight: 300;
+            margin: 40px;
+        }
+
+        .b {
+            font-weight: 700;
+        }
+
+        p {
+            text-align: left;
+        }
+
+        h1,
+        h2 {
+            color: #ffc300;
+        }
+
+        h1 {
+            font-size: 60;
+            margin: 40px 0px;
+        }
+
+        h2 {
+            font-size: 30px;
+            margin: 24px 0px;
+        }
+
+        h3 {
+            font-size: 20px;
+            margin: 18px 0px;
+        }
+
+        h4 {}
+
+        .small {
+            font-size: 10px;
+        }
+
+        table {
+            text-align: center;
+            border-collapse: collapse;
+        }
+
+        th {
+            background: #303030;
+            font-weight: bold;
+        }
+
+        th,
+        td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            vertical-align: middle;
+        }
+
+        .karnaughLetter {
+            color: #222;
+            background-color: #777;
+            border: 0px;
+        }
+
+        .TablePacked {
+            display: flex;
+            align-self: center;
+            margin: 0px;
+            padding: 0;
+            border-collapse: collapse;
+        }
+
+        .TablePacked tr,
+        .TablePacked th,
+        .TablePacked td {
+            margin: 0;
+            padding: 0;
+            vertical-align: middle;
+            min-width: 35px;
+            height: 35px;
+        }
+
+        .TableLatex th,
+        .TableLatex td {
+            padding: 20px 40px;
+        }
+
+        .TableCarree {
+            display: flex;
+            align-self: center;
+        }
+
+        .TableCarree th,
+        .TableCarree td {
+            font-weight: bold;
+            width: 35px;
+            height: 35px;
+            padding: 0px;
+            vertical-align: middle;
+        }
+
+        .row,
+        .col {
+            display: flex;
+            flex-wrap: wrap;
+            width: fit-content;
+            height: fit-content;
+            align-items: flex-start;
+            justify-content: flex-start;
+            gap: 10px;
+        }
+
+        .row {
+            flex-direction: row;
+        }
+
+        .col {
+            flex-direction: column;
+        }
+
+        .memoCard {
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            width: fit-content;
+            text-align: center;
+        }
+
+        .latex {
+            width: fit-content;
+        }
+
+        #menu {
+            position: absolute;
+            position: fixed;
+            z-index: 1;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2px;
+            background-color: #222;
+        }
+
+        .menuBouton {
+            color: #ddd;
+            background-color: #222;
+            text-decoration: none;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+        }
+
+        section {
+            padding-left: 10px;
+            border-left: 1px solid #ddd;
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 20px;
+            margin-bottom: 100px;
+        }
+
+        input {
+            width: 50px;
+            margin: 10px;
+        }
+
+        .box {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            align-items: center;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 5px;
+            gap: 15px;
+        }
+
+        input {
+            color: #ddd;
+            background-color: #222;
+            border: 1px solid #ddd;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="box">
+        k = <input type="number" id="k" value="1">
+        n = <input type="number" id="n" value="3">
+        exponent = <input type="number" id="e" value="1">
+        factor = <input type="number" id="f" value="2">
+        addor = <input type="number" id="a" value="1">
+    </div>
+    <div class="box"><span id="sumFormlaDiv">...</span></div>
+    <div class="box"><span id="prodFormlaDiv">...</span></div>
+    <div class="box">sum list: <span id="sumResulAlltDiv"></span></div>
+    <div class="box">sum result: <span id="sumResulFinaltDiv"></span></div>
+    <div class="box">prod list: <span id="prodResulAlltDiv"></span></div>
+    <div class="box">prod result: <span id="prodResulFinaltDiv"></span></div>
+
+    <script>
+
+        function ohYeh() {
+            let k = Number(document.getElementById('k').value);
+            let n = Number(document.getElementById('n').value);
+            let e = Number(document.getElementById('e').value);
+            let f = Number(document.getElementById('f').value);
+            let a = Number(document.getElementById('a').value);
+
+            document.getElementById('sumFormlaDiv').innerText = "Sum from " + k + " to " + n + " of (" + f + "k + " + a + ") =";
+            document.getElementById('prodFormlaDiv').innerText = "Prod from " + k + " to " + n + " of (" + f + "k + " + a + ") =";
+
+            let sumResult = 0;
+            let sumTerm = 0;
+            let sumAllTerms = [];
+
+            let prodResult = 1;
+            let prodTerm = 1;
+            let prodAllTerms = [];
+
+            for (let i = k; i <= n; ++i) {
+                sumTerm = f * Math.pow(i, e) + a;
+                sumAllTerms.push(sumTerm);
+                sumResult += sumTerm;
+            }
+
+            for (let i = k; i <= n; ++i) {
+                prodTerm = f * Math.pow(i, e) + a;
+                prodAllTerms.push(prodTerm);
+                prodResult *= prodTerm;
+            }
+
+            document.getElementById('sumResulAlltDiv').innerText = sumAllTerms.join(", ");
+            document.getElementById('sumResulFinaltDiv').innerText = sumResult;
+            document.getElementById('prodResulAlltDiv').innerText = prodAllTerms.join(", ");
+            document.getElementById('prodResulFinaltDiv').innerText = prodResult;
+
+            document.getElementById('sumFormlaDiv').innerText = `\\\[ \\sum_{k=${k}}^{${n}} (${f}k^{${e}} + ${a}) = ${sumResult} \\\]`;
+            document.getElementById('prodFormlaDiv').innerText = `\\\[ \\prod_{k=${k}}^{${n}} (${f}k^{${e}} + ${a}) = ${prodResult} \\\]`;
+            renderMathInElement(document.body)
+        }
+
+        document.addEventListener('input', ohYeh);
+
+        ohYeh();
+
+    </script>
+
+</body>
+
+</html>

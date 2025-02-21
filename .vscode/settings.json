@@ -5,6 +5,10 @@
         "iosfwd": "cpp",
         "memory": "cpp",
         "utility": "cpp",
-        "algorithm": "cpp"
+        "algorithm": "cpp",
+        "random": "cpp",
+        "vector": "cpp",
+        "iterator": "cpp",
+        "span": "cpp"
     }
 }
