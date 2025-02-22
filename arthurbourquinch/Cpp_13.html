@@ -78,9 +78,22 @@
             text-align: center;
         }
 
-        #pointeur td {
-            width: 80px;
+        #pointeur td:nth-child(1),
+        #pointeur th:nth-child(1) {
+            width: 150px;
+        }
+
+        #pointeur td,
+        #pointeur th {
+            width: 40px;
+            height: 30px;
             text-align: center;
+            vertical-align: middle;
+            border: 0px;
+        }
+
+        #pointeur th {
+            border: 1px solid #999;
         }
 
         .non-valide {
@@ -513,62 +526,55 @@
         </div>
     </div>
 
-    <h3>Vector / Array</h3>
+    <h3>Iterators</h3>
     <table id="pointeur">
         <tr>
-            <th>vector<int> v = </th>
-            <th></th>
-            <th>a</th>
-            <th>b</th>
-            <th>c</th>
-            <th>...</th>
-            <th>z</th>
-            <th></th>
-            <th>returned:</th>
-        </tr>
-        <tr>
             <td>index</td>
+            <td></td>
             <td></td>
             <td>0</td>
             <td>1</td>
             <td>2</td>
-            <td>...</td>
-            <td>last</td>
+            <td>3</td>
+            <td>4</td>
             <td></td>
             <td></td>
         </tr>
         <tr>
-            <td></td>
-            <td></td>
-            <td>v.front()</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>v.back()</td>
-            <td></td>
+            <th>vector v = </th>
+            <th></th>
+            <th></th>
+            <th>a</th>
+            <th>b</th>
+            <th>c</th>
+            <th>d</th>
+            <th>e</th>
+            <th></th>
+            <th></th>
+        </tr>
+        <tr>
             <td>value</td>
+            <td></td>
+            <td colspan="3">v.front()</td>
+            <td></td>
+            <td colspan="3">v.back()</td>
+            <td></td>
         </tr>
         <tr>
+            <td>iterator</td>
+            <td></td>
+            <td colspan="3">v.begin()</td>
             <td></td>
             <td></td>
-            <td>v.begin()</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>v.end()</td>
-            <td>pointor</td>
+            <td colspan="3">v.end()</td>
         </tr>
         <tr>
-            <td></td>
-            <td>v.rend()</td>
-            <td></td>
-            <td></td>
+            <td>iterator</td>
+            <td colspan="3">v.rend()</td>
             <td></td>
             <td></td>
-            <td>v.rbegin()</td>
+            <td colspan="3">v.rbegin()</td>
             <td></td>
-            <td>pointor</td>
         </tr>
     </table>
 
