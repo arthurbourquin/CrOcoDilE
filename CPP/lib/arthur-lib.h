@@ -8,6 +8,8 @@
 #include <algorithm>
 #include <random>
 #include <fstream>
+#include <chrono>
+#include <ctime>
 using namespace std;
 
 string to_string(double val, size_t size) {
@@ -61,7 +63,7 @@ bool bubble_sort(It first, It last) {
 
 template<typename T>
 bool bubble_sort(vector<T> & v) {
-    return tri_a_bulle(v.begin(), v.end());
+    return bubble_sort(v.begin(), v.end());
 }
 
 template<typename It>
@@ -162,6 +164,19 @@ vector<vector<T>> transpose(vector<vector<T>> table) {
         }
     }
     return result;
+}
+
+double chrono_arthur(bool start) {
+    static chrono::time_point<chrono::system_clock> start_time;
+    if(start) {
+        start_time = chrono::system_clock::now();    
+        return 0;
+    } else {
+        chrono::time_point<chrono::system_clock> stop_time;
+        stop_time = chrono::system_clock::now();
+        chrono::duration<double> duration = stop_time - start_time;
+        return duration.count();    
+    }
 }
 
 #endif

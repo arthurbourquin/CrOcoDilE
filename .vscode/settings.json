@@ -9,6 +9,9 @@
         "random": "cpp",
         "vector": "cpp",
         "iterator": "cpp",
-        "span": "cpp"
+        "span": "cpp",
+        "__tuple": "cpp",
+        "array": "cpp",
+        "chrono": "cpp"
     }
 }
