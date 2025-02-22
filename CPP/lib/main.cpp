@@ -11,14 +11,8 @@ vector<vector<int>> table = {
 
 int main() {
 
-    vector<int> v1 = generate_vector<int>(10, true);
-    print_vector(v1, "\t");
-    vector<int> v2 = generate_vector<int>(10, false);
-    print_vector(v2, "\t");
-
-    print_table(table);
-    auto trans = transpose(table);
-    print_table(trans);
+    generate_csv("vector.csv", v);
+    generate_csv("table.csv", table);
 
     return 0;
 }

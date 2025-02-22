@@ -134,7 +134,10 @@ void generate_csv(const string & filename, const vector<vector<T>> & table) {
     }
 
     for(size_t i = 0; i < table.size(); ++i) {
-        if (table.at(i).empty()) continue;
+        if (table.at(i).empty()) {
+            outputfile << "\n";
+            continue;
+        }
         for(size_t j = 0; j < table.at(i).size() - 1; ++j) {
             outputfile << table.at(i).at(j) << ",";
         }
