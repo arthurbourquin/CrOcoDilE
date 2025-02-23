@@ -23,29 +23,10 @@ void print_vector(const vector<T> & v, string separator = "\t") {
 
 template<typename T>
 void print_table(const vector<vector<T>> & table) {
-    for(vector<T> e : table) {
+    for(const vector<T> & e : table) {
         print_vector(e);
     }
 }
 
-template<typename It>
-bool bubble_sort(It first, It last) { 
-    if(first == last) return false;
-    bool swapped = false;
-    It current = first;
-    while(last != first) {
-        while(current != prev(last)) {
-            if(*current > *next(current)) {
-                swap(*current, *next(current));
-                swapped = true;
-            }
-            ++current;
-        }
-        if(swapped == false) break;
-        current = first;
-        --last;
-    }
-    return swapped;
-}
 
 #endif

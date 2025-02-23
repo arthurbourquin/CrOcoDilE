@@ -2,35 +2,27 @@
 #define _TRANSPOSE_
 
 #include <vector>
-#include <array>
 
 using namespace std;
 
 template<typename T>
-vector<vector<T>> transpose(vector<vector<T>> table) {
-    size_t rows = table.size();
-    size_t columns = 0;
-    for(vector<T> e : table) {
-        e.size() > columns ? columns = e.size() : columns = columns;
-    }
-    vector<vector<T>> result(columns, vector<T>(rows, 0));
-    for(size_t i = 0; i < rows; ++i) {
-        for(size_t j = 0; j < table.at(i).size(); ++j) {
-            result.at(j).at(i) = table.at(i).at(j);
+vector<vector<T>> transpose(const vector<vector<T>> & table) {
+    size_t input_rows = table.size();
+    size_t input_columns = 0;
+    for(const vector<T> & e : table) {
+        if(e.size() > input_columns) {
+            input_columns = e.size();
         }
     }
-    return result;
-}
-
-template<typename T, size_t rows, size_t columns>
-array<array<T, rows>, columns> transpose(const array<array<T, columns>, rows> & table) {
-    size_t orig_rows = table.size();
-    size_t orig_columns = table.at(0).size();
-    array<array<T, orig_rows>, orig_columns> result;
-    for(size_t i = 0; i < orig_rows; ++i) {
-        for(size_t j = 0; j < orig_columns; ++j) {
-            result.at(j).at(i) = table.at(i).at(j);
+    vector<vector<T>> result;
+    for(size_t i = 0; i < input_columns; ++i) {
+        vector<T> tmp;
+        for(size_t j = 0; j < input_rows; ++j) {
+            if(table.at(j).at(i)) {
+                tmp.push_back(table.at(j).at(i));
+            }
         }
+        result.push_back(tmp);
     }
     return result;
 }
