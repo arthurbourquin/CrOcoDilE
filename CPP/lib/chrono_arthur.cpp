@@ -17,4 +17,3 @@ double chrono_arthur(bool start, const string & message = "") {
     }
     return result;
 }
-

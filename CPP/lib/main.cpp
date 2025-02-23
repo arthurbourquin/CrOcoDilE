@@ -18,19 +18,28 @@ int main() {
     }
     cout << chrono_arthur(false, "generate table") << endl;
 
-    print_table(table);
-    cout << endl;
-
     cout << chrono_arthur(true, "transpose table") << endl;
     vector<vector<int>> tableT = transpose(table);
     cout << chrono_arthur(false, "transpose table") << endl;
-    
-    print_table(tableT);
+
+
+
+    print_table(table);
     cout << endl;
 
     cout << chrono_arthur(true, "generate csv") << endl;
     generate_csv("table.csv", table);
     cout << chrono_arthur(false, "generate csv") << endl;
+
+
+    
+    print_table(tableT);
+    cout << endl;
+
+    cout << chrono_arthur(true, "generate csv") << endl;
+    generate_csv("tableT.csv", tableT);
+    cout << chrono_arthur(false, "generate csv") << endl;
+
 
     return 0;
 
