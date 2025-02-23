@@ -2,6 +2,13 @@
 
 using namespace std;
 
+/**
+ * @brief Mesure le temps écoulé entre deux appels successifs.
+ * @param start Indique s'il s'agit du début (`true`) ou de la fin (`false`) du chronométrage.
+ * @param message (optionnel) Message à afficher avant ou après la mesure du temps.
+ * @return La durée écoulée en secondes depuis le dernier appel avec `start = true`, 
+ *         ou 0 si l'appel était avec `start = true`.
+ */
 double chrono_arthur(bool start, const string & message = "") {
     double result = 0;
     static chrono::time_point<chrono::system_clock> start_time;
