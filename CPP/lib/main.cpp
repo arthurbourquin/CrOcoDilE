@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "chrono_arthur.h"
+#include "chrono_arthur_all.h"
 #include "generate_vector.h"
 #include "print_vector.h"
 #include "generate_csv.h"
