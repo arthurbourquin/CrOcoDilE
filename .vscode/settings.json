@@ -12,6 +12,7 @@
         "span": "cpp",
         "__tuple": "cpp",
         "array": "cpp",
-        "chrono": "cpp"
+        "chrono": "cpp",
+        "ostream": "cpp"
     }
 }
