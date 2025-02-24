@@ -1,10 +1,15 @@
 #include <iostream>
 
-#include "chrono_arthur_all.h"
+#include "chrono_arthur.h"
+#include "chrono_arthur.cpp"
 #include "generate_vector.h"
+#include "generate_vector.cpp"
 #include "print_vector.h"
+#include "print_vector.cpp"
 #include "generate_csv.h"
+#include "generate_csv.cpp"
 #include "transpose.h"
+#include "transpose.cpp"
 
 using namespace std;
 

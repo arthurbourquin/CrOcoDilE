@@ -9,7 +9,7 @@ using namespace std;
  * @return La durée écoulée en secondes depuis le dernier appel avec `start = true`, 
  *         ou 0 si l'appel était avec `start = true`.
  */
-double chrono_arthur(bool start, const string & message = "") {
+double chrono_arthur(bool start, const string & message) {
     double result = 0;
     static chrono::time_point<chrono::system_clock> start_time;
     if(start) {
